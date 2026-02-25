@@ -1,0 +1,46 @@
+---
+import FeatureDetail from "./FeatureDetail.astro";
+import StatusPipeline from "./StatusPipeline.astro";
+---
+
+<section class="py-20 sm:py-28 bg-slate-50">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="reveal">
+      <FeatureDetail
+        title="Multi-device tickets with intelligent auto-status"
+        subtitle="One ticket can hold multiple devices — each tracked independently with its own status, parts, and timeline. The system does the status updates for you."
+        badge="Smart Tickets"
+        items={[
+          {
+            icon: "ticket",
+            title: "Multi-device support",
+            description: "A customer drops off a phone and a tablet? One ticket, two devices, each tracked separately."
+          },
+          {
+            icon: "zap",
+            title: "Auto-status engine",
+            description: "Statuses advance automatically based on parts workflow. Mark a part as ordered — the device moves to 'Awaiting Parts'."
+          },
+          {
+            icon: "shield",
+            title: "9 built-in statuses",
+            description: "From 'Awaiting Drop Off' through to 'Collected', with full customisation of names, colours, and ordering."
+          },
+          {
+            icon: "clipboard-list",
+            title: "Digital signatures",
+            description: "Capture intake and collection signatures on-screen. Mark a device as received and it auto-advances to 'Booked In'."
+          }
+        ]}
+      >
+        <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-lg">
+          <div class="mb-4 flex items-center gap-2">
+            <span class="text-sm font-semibold text-dark">Auto-Status Pipeline</span>
+            <span class="rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">Automatic</span>
+          </div>
+          <StatusPipeline />
+        </div>
+      </FeatureDetail>
+    </div>
+  </div>
+</section>

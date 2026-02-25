@@ -1,0 +1,38 @@
+---
+const steps = [
+  {
+    number: "1",
+    title: "Sign up in seconds",
+    description: "Create your free account — no credit card, no commitments. Your shop is ready instantly.",
+  },
+  {
+    number: "2",
+    title: "Set up your shop",
+    description: "Add your branding, invite your team, and configure statuses to match your workflow.",
+  },
+  {
+    number: "3",
+    title: "Start managing repairs",
+    description: "Create your first ticket, track devices, and give your customers real-time updates.",
+  },
+];
+---
+
+<section class="border-y border-slate-200/60 bg-slate-50/50 py-16 sm:py-20">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <p class="mb-10 text-center text-sm font-medium uppercase tracking-wider text-slate-500">
+      Up and running in minutes
+    </p>
+    <div class="grid gap-8 sm:grid-cols-3">
+      {steps.map((step) => (
+        <div class="reveal text-center">
+          <div class="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary text-lg font-bold text-white">
+            {step.number}
+          </div>
+          <h3 class="mb-2 text-lg font-semibold text-dark">{step.title}</h3>
+          <p class="text-sm leading-relaxed text-slate-600">{step.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

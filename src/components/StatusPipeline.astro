@@ -1,0 +1,71 @@
+---
+const statuses = [
+  { label: "Awaiting Drop Off", color: "bg-slate-400" },
+  { label: "Booked In", color: "bg-blue-400" },
+  { label: "Diagnosing", color: "bg-indigo-400" },
+  { label: "Parts Need Ordering", color: "bg-amber-400" },
+  { label: "Awaiting Parts", color: "bg-orange-400" },
+  { label: "Parts Arrived", color: "bg-teal-400" },
+  { label: "In Repair", color: "bg-cyan-400" },
+  { label: "Ready for Collection", color: "bg-emerald-400" },
+  { label: "Collected", color: "bg-green-500" },
+];
+---
+
+<div class="pipeline-wrapper reveal">
+  <div class="flex flex-col gap-2 sm:gap-3">
+    {statuses.map((status, i) => (
+      <div class="pipeline-node flex items-center gap-3" style={`--delay: ${i * 120}ms;`}>
+        <div class="relative flex items-center justify-center">
+          <div class:list={["h-4 w-4 rounded-full pipeline-dot", status.color]} />
+          {i < statuses.length - 1 && (
+            <div class="pipeline-line absolute top-4 left-1/2 h-[calc(100%+0.5rem)] w-0.5 -translate-x-1/2 bg-slate-200 sm:h-[calc(100%+0.75rem)]" />
+          )}
+        </div>
+        <span class="pipeline-label rounded-lg bg-white px-3 py-1.5 text-sm font-medium text-slate-700 shadow-sm ring-1 ring-slate-200/60">
+          {status.label}
+        </span>
+        {i < statuses.length - 1 && (
+          <svg class="pipeline-arrow hidden h-4 w-4 flex-shrink-0 text-slate-300 sm:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="m9 18 6-6-6-6" />
+          </svg>
+        )}
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .pipeline-node {
+    opacity: 0;
+    transform: translateX(-12px);
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+    transition-delay: var(--delay);
+  }
+
+  .pipeline-wrapper.revealed .pipeline-node {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .pipeline-dot {
+    transition: transform 0.3s ease;
+  }
+
+  .pipeline-node:hover .pipeline-dot {
+    transform: scale(1.4);
+  }
+
+  .pipeline-node:hover .pipeline-label {
+    color: var(--color-primary);
+    ring-color: var(--color-primary);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pipeline-node {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+</style>

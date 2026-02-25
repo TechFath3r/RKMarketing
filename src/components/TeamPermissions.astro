@@ -1,0 +1,75 @@
+---
+import FeatureDetail from "./FeatureDetail.astro";
+---
+
+<section class="py-20 sm:py-28 bg-slate-50">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="reveal">
+      <FeatureDetail
+        title="Built for teams from day one"
+        subtitle="Three roles, 11 permission flags, invite system, and a full audit trail. Control exactly who can do what."
+        badge="Team Management"
+        items={[
+          {
+            icon: "users",
+            title: "Roles & permissions",
+            description: "Owner, Admin, and Technician roles with 11 granular permission flags — customisable per team member."
+          },
+          {
+            icon: "mail",
+            title: "Email invitations",
+            description: "Invite new team members via email with their role pre-assigned. They're ready to go the moment they accept."
+          },
+          {
+            icon: "shield",
+            title: "Full audit trail",
+            description: "Every create, update, and delete is recorded with before/after diffs, user attribution, and timestamps."
+          },
+          {
+            icon: "lock",
+            title: "Secure by default",
+            description: "Passkey/biometric login, encrypted passwords, multi-tenancy isolation, and JWT sessions with 7-day expiry."
+          }
+        ]}
+      >
+        <!-- Permissions mockup -->
+        <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-lg">
+          <div class="mb-4 flex items-center justify-between">
+            <span class="text-sm font-semibold text-dark">Team Permissions</span>
+            <span class="rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">3 members</span>
+          </div>
+          <div class="space-y-3">
+            {[
+              { name: "Alex (You)", role: "Owner", color: "bg-primary text-white", permissions: "Full access" },
+              { name: "Sam", role: "Admin", color: "bg-indigo-100 text-indigo-700", permissions: "9 of 11 permissions" },
+              { name: "Jordan", role: "Technician", color: "bg-slate-100 text-slate-700", permissions: "4 of 11 permissions" },
+            ].map((member) => (
+              <div class="flex items-center justify-between rounded-lg bg-slate-50 p-3">
+                <div class="flex items-center gap-3">
+                  <div class="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 text-sm font-semibold text-primary">
+                    {member.name[0]}
+                  </div>
+                  <div>
+                    <p class="text-sm font-medium text-dark">{member.name}</p>
+                    <p class="text-xs text-slate-500">{member.permissions}</p>
+                  </div>
+                </div>
+                <span class:list={["rounded-full px-2.5 py-0.5 text-xs font-medium", member.color]}>
+                  {member.role}
+                </span>
+              </div>
+            ))}
+          </div>
+          <div class="mt-4 rounded-lg bg-slate-50 p-3">
+            <p class="mb-2 text-xs font-medium text-slate-500">Recent Audit Log</p>
+            <div class="space-y-1.5 text-xs text-slate-600">
+              <p><span class="font-medium">Sam</span> updated ticket RK-0042 status &rarr; Ready for Collection</p>
+              <p><span class="font-medium">Jordan</span> added part to RK-0044 &rarr; Keyboard Assembly</p>
+              <p><span class="font-medium">Alex</span> finalised invoice INV-0018 &rarr; &pound;89.99</p>
+            </div>
+          </div>
+        </div>
+      </FeatureDetail>
+    </div>
+  </div>
+</section>

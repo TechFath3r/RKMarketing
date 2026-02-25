@@ -1,0 +1,57 @@
+---
+import { faqs } from "@data/faq";
+import SectionHeading from "./SectionHeading.astro";
+
+// Generate FAQPage JSON-LD
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faq.answer,
+    },
+  })),
+};
+---
+
+<section id="faq" class="py-20 sm:py-28 bg-white">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <div class="reveal">
+      <SectionHeading
+        title="Frequently asked questions"
+        subtitle="Got questions? We've got answers."
+        badge="FAQ"
+      />
+    </div>
+
+    <div class="reveal stagger space-y-3">
+      {faqs.map((faq) => (
+        <details class="group rounded-xl border border-slate-200 bg-white transition-all hover:border-primary/30">
+          <summary class="flex cursor-pointer items-center justify-between px-6 py-4 text-left">
+            <span class="pr-4 text-base font-semibold text-dark group-open:text-primary">
+              {faq.question}
+            </span>
+            <svg
+              class="h-5 w-5 shrink-0 text-slate-400 transition-transform group-open:rotate-180 group-open:text-primary"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path d="m6 9 6 6 6-6" />
+            </svg>
+          </summary>
+          <div class="px-6 pb-4">
+            <p class="text-sm leading-relaxed text-slate-600">{faq.answer}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+
+  <!-- FAQ JSON-LD for rich results -->
+  <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
+</section>

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://repairkeeper.co.uk/sitemap-index.xml

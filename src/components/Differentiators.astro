@@ -1,0 +1,81 @@
+---
+import Icon from "./Icon.astro";
+import SectionHeading from "./SectionHeading.astro";
+
+const differentiators = [
+  {
+    icon: "ticket",
+    title: "Multi-device tickets",
+    description: "One ticket, multiple devices — each with independent statuses and parts tracking. Most competitors treat a ticket as one device.",
+  },
+  {
+    icon: "zap",
+    title: "Intelligent auto-status",
+    description: "Statuses move themselves based on your parts workflow. Zero manual updates needed — the system stays accurate without you touching it.",
+  },
+  {
+    icon: "wiki",
+    title: "Global repair wiki",
+    description: "A shared knowledge base across all shops on the platform. Devices, parts, faults, and guides — contributed by the community.",
+  },
+  {
+    icon: "customers",
+    title: "Smart duplicate detection",
+    description: "Automatically identifies potential duplicate customers using name and phone matching, with one-click field-by-field merge.",
+  },
+  {
+    icon: "lock",
+    title: "Passkey authentication",
+    description: "Log in with fingerprint, Face ID, or security key — no password needed. Modern security, zero friction.",
+  },
+  {
+    icon: "tracking",
+    title: "Customer self-service",
+    description: "Customers track repairs and pay invoices from a single link. No app downloads, no account creation required.",
+  },
+  {
+    icon: "shield",
+    title: "Full audit trail",
+    description: "Every change logged with before/after diffs, user attribution, and timestamps. Complete accountability for compliance.",
+  },
+  {
+    icon: "team",
+    title: "Granular permissions",
+    description: "11 permission flags per team member — not just 'admin or not'. Control exactly who can access what.",
+  },
+  {
+    icon: "clipboard-list",
+    title: "Asset registry",
+    description: "Track customer-owned devices across multiple repairs over time. See the full repair history for any device.",
+  },
+  {
+    icon: "message-square",
+    title: "Spam-protected enquiry forms",
+    description: "Embed branded forms on your website with built-in honeypot and time-trap spam protection. Enquiries land as leads.",
+  },
+];
+---
+
+<section class="py-20 sm:py-28 bg-slate-50">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="reveal">
+      <SectionHeading
+        title="What makes RepairKeeper different"
+        subtitle="Built from the ground up for repair shops — not retrofitted from generic helpdesk software."
+        badge="Why RepairKeeper"
+      />
+    </div>
+
+    <div class="reveal stagger grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-5">
+      {differentiators.map((item) => (
+        <div class="text-center">
+          <div class="mx-auto mb-3 flex h-11 w-11 items-center justify-center rounded-lg bg-primary/10 text-primary">
+            <Icon name={item.icon} size={22} />
+          </div>
+          <h3 class="mb-1 text-sm font-semibold text-dark">{item.title}</h3>
+          <p class="text-xs leading-relaxed text-slate-600">{item.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
