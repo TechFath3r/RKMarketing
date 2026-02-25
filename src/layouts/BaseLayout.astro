@@ -16,30 +16,59 @@ const jsonLdSoftware = {
   name: "RepairKeeper",
   applicationCategory: "BusinessApplication",
   operatingSystem: "Web",
-  description: "Repair shop management platform — track tickets, generate quotes, manage customers, and streamline your repair business.",
+  description:
+    "Repair shop management platform — track tickets, generate quotes, manage customers, and streamline your repair business.",
   url: "https://repairkeeper.co.uk",
+  screenshot: "https://repairkeeper.co.uk/dashboard.png",
+  author: {
+    "@type": "Organization",
+    name: "RepairKeeper",
+  },
   offers: [
     {
       "@type": "Offer",
       name: "Free",
       price: "0",
       priceCurrency: "GBP",
+      description: "25 tickets per month, 1 team member, core ticketing and invoicing.",
     },
     {
       "@type": "Offer",
-      name: "Starter",
-      price: "0",
+      name: "Lite",
+      price: "20",
       priceCurrency: "GBP",
-      description: "Currently in beta — all plans are free during early access.",
+      description: "100 tickets per month, public enquiry form, custom ticket prefix, CSV export.",
+    },
+    {
+      "@type": "Offer",
+      name: "Standard",
+      price: "30",
+      priceCurrency: "GBP",
+      description:
+        "Unlimited tickets, 5 team members, inventory, repair wiki, label printing, RBAC, and audit log.",
     },
     {
       "@type": "Offer",
       name: "Pro",
-      price: "0",
+      price: "55",
       priceCurrency: "GBP",
-      description: "Currently in beta — all plans are free during early access.",
+      description:
+        "Unlimited tickets and team members, Stripe Connect payments, and branding removal.",
     },
   ],
+};
+
+const jsonLdOrganization = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "RepairKeeper",
+  url: "https://repairkeeper.co.uk",
+  logo: "https://repairkeeper.co.uk/favicon.svg",
+  contactPoint: {
+    "@type": "ContactPoint",
+    email: "hello@contact.repairkeeper.co.uk",
+    contactType: "customer support",
+  },
 };
 ---
 
@@ -49,6 +78,7 @@ const jsonLdSoftware = {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="author" content="RepairKeeper" />
 
     <!-- SEO -->
     <title>{title}</title>
@@ -63,6 +93,9 @@ const jsonLdSoftware = {
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="RepairKeeper dashboard — repair shop management software" />
     <meta property="og:locale" content="en_GB" />
     <meta property="og:site_name" content="RepairKeeper" />
 
@@ -71,9 +104,11 @@ const jsonLdSoftware = {
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content="RepairKeeper dashboard — repair shop management software" />
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/og-image.png" />
 
     <!-- Preconnect to fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -85,8 +120,17 @@ const jsonLdSoftware = {
 
     <!-- JSON-LD -->
     <script type="application/ld+json" set:html={JSON.stringify(jsonLdSoftware)} />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLdOrganization)} />
   </head>
   <body class="min-h-screen bg-white text-dark">
+    <!-- Skip navigation -->
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-primary focus:px-4 focus:py-2 focus:text-white focus:shadow-lg"
+    >
+      Skip to main content
+    </a>
+
     <slot />
 
     <!-- Scroll reveal + mobile menu -->

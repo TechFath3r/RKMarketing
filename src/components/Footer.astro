@@ -6,19 +6,14 @@ const footerLinks = {
     { label: "Features", href: "#features" },
     { label: "Pricing", href: "#pricing" },
     { label: "FAQ", href: "#faq" },
-    { label: "Sign Up", href: "https://app.repairkeeper.co.uk/beta" },
-  ],
-  company: [
-    { label: "About", href: "#" },
-    { label: "Privacy Policy", href: "#" },
-    { label: "Terms of Service", href: "#" },
+    { label: "Join the Beta", href: "https://app.repairkeeper.co.uk/beta" },
   ],
 };
 ---
 
 <footer class="border-t border-slate-200 bg-dark text-slate-400">
   <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
-    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
       <!-- Brand -->
       <div class="sm:col-span-2 lg:col-span-1">
         <a href="/" class="flex items-center gap-2" aria-label="RepairKeeper home">
@@ -41,20 +36,6 @@ const footerLinks = {
         <h3 class="mb-4 text-sm font-semibold uppercase tracking-wider text-white">Product</h3>
         <ul class="space-y-3">
           {footerLinks.product.map((link) => (
-            <li>
-              <a href={link.href} class="text-sm transition-colors hover:text-white">
-                {link.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      <!-- Company Links -->
-      <div>
-        <h3 class="mb-4 text-sm font-semibold uppercase tracking-wider text-white">Company</h3>
-        <ul class="space-y-3">
-          {footerLinks.company.map((link) => (
             <li>
               <a href={link.href} class="text-sm transition-colors hover:text-white">
                 {link.label}
