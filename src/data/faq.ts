@@ -50,6 +50,11 @@ export const faqs: FAQItem[] = [
       "Yes, with the Pro plan. RepairKeeper integrates with Stripe Connect so your customers can pay invoices directly from their tracking page. Payment status updates automatically — no manual reconciliation needed.",
   },
   {
+    question: "Can I transfer my current data into RepairKeeper?",
+    answer:
+      "Yes. RepairKeeper has built-in migration tools to help you import your existing data from other repair shop management platforms. You can bring across your customers, devices, and repair history so you're not starting from scratch.",
+  },
+  {
     question: "How do I get started?",
     answer:
       "Just click 'Get Started Free' and create your account in under a minute. No credit card required. You'll have a fully functional repair management system ready to use immediately.",
