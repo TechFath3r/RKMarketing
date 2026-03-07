@@ -51,7 +51,7 @@ export const plans: PricingPlan[] = [
     name: "Lite",
     description: "More capacity for solo repairers",
     monthlyPrice: 20,
-    yearlyPrice: 192,
+    yearlyPrice: 200,
     cta: "Start with Lite",
     ctaLink: "https://app.repairkeeper.co.uk/beta",
     limits: [
@@ -77,7 +77,7 @@ export const plans: PricingPlan[] = [
     name: "Standard",
     description: "For growing repair shops",
     monthlyPrice: 30,
-    yearlyPrice: 288,
+    yearlyPrice: 320,
     cta: "Start with Standard",
     ctaLink: "https://app.repairkeeper.co.uk/beta",
     highlighted: true,
@@ -103,8 +103,8 @@ export const plans: PricingPlan[] = [
   {
     name: "Pro",
     description: "Full power, no limits",
-    monthlyPrice: 55,
-    yearlyPrice: 528,
+    monthlyPrice: 60,
+    yearlyPrice: 670,
     cta: "Start with Pro",
     ctaLink: "https://app.repairkeeper.co.uk/beta",
     limits: [
