@@ -1,5 +1,5 @@
 ---
-import { plans } from "@data/pricing";
+import { plans, enterprisePlan } from "@data/pricing";
 import Icon from "./Icon.astro";
 import SectionHeading from "./SectionHeading.astro";
 ---
@@ -98,7 +98,7 @@ import SectionHeading from "./SectionHeading.astro";
                 {/* Yearly price — hidden by default, shown when yearly selected */}
                 <div class="yearly-price hidden">
                   <div class="flex items-baseline gap-1">
-                    <span class="text-3xl font-extrabold text-dark">&pound;{Math.round(plan.yearlyPrice / 12)}</span>
+                    <span class="text-3xl font-extrabold text-dark">&pound;{Math.round(plan.yearlyPrice! / 12)}</span>
                     <span class="text-sm text-slate-500">/mo</span>
                   </div>
                   <p class="mt-0.5 text-xs text-slate-400">&pound;{plan.yearlyPrice} billed yearly</p>
@@ -149,6 +149,31 @@ import SectionHeading from "./SectionHeading.astro";
           </ul>
         </div>
       ))}
+    </div>
+
+    <!-- Enterprise banner -->
+    <div class="reveal mt-8 rounded-2xl border border-slate-200 bg-slate-50 p-8 sm:p-10">
+      <div class="flex flex-col items-center gap-6 text-center sm:flex-row sm:text-left">
+        <div class="flex-1">
+          <h3 class="text-xl font-bold text-dark">{enterprisePlan.name}</h3>
+          <p class="mt-2 text-sm text-slate-600">{enterprisePlan.description}</p>
+          <div class="mt-4 flex flex-wrap justify-center gap-x-6 gap-y-2 sm:justify-start">
+            {enterprisePlan.highlights.map((item) => (
+              <div class="flex items-center gap-2 text-sm text-slate-700">
+                <Icon name="check" size={16} class="shrink-0 text-success" />
+                {item}
+              </div>
+            ))}
+          </div>
+        </div>
+        <a
+          href={enterprisePlan.ctaLink}
+          class="inline-flex shrink-0 items-center gap-2 rounded-lg border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-700 shadow-sm transition-all hover:border-primary/30 hover:text-primary"
+        >
+          {enterprisePlan.cta}
+          <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+        </a>
+      </div>
     </div>
   </div>
 </section>
