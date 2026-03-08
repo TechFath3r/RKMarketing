@@ -30,9 +30,7 @@ export const plans: PricingPlan[] = [
     ctaLink: "https://app.repairkeeper.co.uk/beta",
     limits: [
       { label: "Tickets per month", value: "25" },
-      { label: "Emails per month", value: "50" },
       { label: "Team members", value: "1" },
-      { label: "Storage", value: "5 MB" },
     ],
     features: [
       { text: "Core ticketing (multi-device)", included: true },
@@ -67,9 +65,7 @@ export const plans: PricingPlan[] = [
     ctaLink: "https://app.repairkeeper.co.uk/beta",
     limits: [
       { label: "Tickets per month", value: "150" },
-      { label: "Emails per month", value: "200" },
       { label: "Team members", value: "1" },
-      { label: "Storage", value: "5 MB" },
     ],
     features: [
       { text: "Core ticketing (multi-device)", included: true },
@@ -105,9 +101,7 @@ export const plans: PricingPlan[] = [
     highlighted: true,
     limits: [
       { label: "Tickets per month", value: "Unlimited" },
-      { label: "Emails per month", value: "500" },
       { label: "Team members", value: "5" },
-      { label: "Storage", value: "250 MB" },
     ],
     features: [
       { text: "Core ticketing (multi-device)", included: true },
@@ -142,9 +136,7 @@ export const plans: PricingPlan[] = [
     ctaLink: "https://app.repairkeeper.co.uk/beta",
     limits: [
       { label: "Tickets per month", value: "Unlimited" },
-      { label: "Emails per month", value: "2,000" },
       { label: "Team members", value: "15" },
-      { label: "Storage", value: "1 GB" },
     ],
     features: [
       { text: "Core ticketing (multi-device)", included: true },
@@ -180,9 +172,7 @@ export const enterprisePlan = {
   ctaLink: "mailto:hello@repairkeeper.co.uk",
   limits: [
     { label: "Tickets per month", value: "Unlimited" },
-    { label: "Emails per month", value: "Unlimited" },
     { label: "Team members", value: "Custom" },
-    { label: "Storage", value: "Custom" },
   ],
   highlights: [
     "Everything in Pro",
