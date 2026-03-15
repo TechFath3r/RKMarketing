@@ -17,12 +17,18 @@ const jsonLdSoftware = {
   applicationCategory: "BusinessApplication",
   operatingSystem: "Web",
   description:
-    "Repair shop management platform — track tickets, generate quotes, manage customers, and streamline your repair business.",
+    "Repair shop management platform for phone, electronics, and computer repair businesses. Multi-device ticket tracking, intelligent auto-status, quoting, invoicing, inventory management, trade-in and refurbishment, online booking, customer self-service, and team management.",
   url: "https://repairkeeper.co.uk",
   screenshot: "https://repairkeeper.co.uk/dashboard.png",
   author: {
     "@type": "Organization",
     name: "RepairKeeper",
+  },
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "5",
+    ratingCount: "1",
+    bestRating: "5",
   },
   offers: [
     {
@@ -37,7 +43,7 @@ const jsonLdSoftware = {
       name: "Lite",
       price: "20",
       priceCurrency: "GBP",
-      description: "150 tickets/mo, 1 team member. Adds custom SMTP, Stripe Connect, trade-in system, and product catalogue.",
+      description: "150 tickets/mo, 1 team member. Adds Stripe Connect, trade-in system, online booking, product catalogue, and custom SMTP.",
     },
     {
       "@type": "Offer",
@@ -51,7 +57,7 @@ const jsonLdSoftware = {
       name: "Pro",
       price: "60",
       priceCurrency: "GBP",
-      description: "Unlimited tickets, 15 team members. Adds note file attachments.",
+      description: "Unlimited tickets, 15 team members. Adds file attachments and webhooks.",
     },
   ],
 };
@@ -67,6 +73,28 @@ const jsonLdOrganization = {
     email: "hello@contact.repairkeeper.co.uk",
     contactType: "customer support",
   },
+  sameAs: [],
+};
+
+const jsonLdWebSite = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "RepairKeeper",
+  url: "https://repairkeeper.co.uk",
+  description: "Repair shop management software for UK repair businesses.",
+};
+
+const jsonLdBreadcrumb = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: "https://repairkeeper.co.uk",
+    },
+  ],
 };
 ---
 
@@ -82,8 +110,9 @@ const jsonLdOrganization = {
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
     <meta name="theme-color" content="#4F46E5" />
+    <meta name="keywords" content="repair shop software, repair management, phone repair software, electronics repair, ticket management, repair shop POS, repair tracking, UK repair software, multi-device tickets, repair invoicing" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -93,7 +122,7 @@ const jsonLdOrganization = {
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="RepairKeeper dashboard — repair shop management software" />
+    <meta property="og:image:alt" content="RepairKeeper — repair shop management software dashboard showing tickets, inventory, and customer tracking" />
     <meta property="og:locale" content="en_GB" />
     <meta property="og:site_name" content="RepairKeeper" />
 
@@ -102,7 +131,7 @@ const jsonLdOrganization = {
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
-    <meta name="twitter:image:alt" content="RepairKeeper dashboard — repair shop management software" />
+    <meta name="twitter:image:alt" content="RepairKeeper — repair shop management software dashboard showing tickets, inventory, and customer tracking" />
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -119,6 +148,8 @@ const jsonLdOrganization = {
     <!-- JSON-LD -->
     <script type="application/ld+json" set:html={JSON.stringify(jsonLdSoftware)} />
     <script type="application/ld+json" set:html={JSON.stringify(jsonLdOrganization)} />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLdWebSite)} />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLdBreadcrumb)} />
   </head>
   <body class="min-h-screen bg-white text-dark">
     <!-- Skip navigation -->

@@ -17,12 +17,42 @@ export const faqs: FAQItem[] = [
   {
     question: "What makes RepairKeeper different from other repair shop software?",
     answer:
-      "RepairKeeper is the only platform with true multi-device tickets (one ticket, multiple devices, each tracked independently), an intelligent auto-status engine that moves tickets forward automatically, and a shared global repair wiki. Plus features like passkey login, customer duplicate detection, and a full audit trail.",
+      "RepairKeeper is the only platform with true multi-device tickets (one ticket, multiple devices, each tracked independently), an intelligent auto-status engine, a built-in trade-in and refurbishment pipeline, customer diagnosis approval, online repair booking, and a shared global repair wiki. Plus passkey authentication, GDPR-compliant customer management, and a full audit trail with before/after diffs.",
   },
   {
     question: "Can my customers track their repairs?",
     answer:
-      "Absolutely. Every ticket generates a unique tracking link that you share with the customer. They can see real-time repair progress, view quotes and invoices, and even pay online via Stripe — all without needing to create an account.",
+      "Absolutely. Every ticket generates a unique tracking link. Customers can see real-time repair progress, view device photos, approve or decline diagnoses, accept quotes, and pay invoices or deposits online via Stripe — all without creating an account.",
+  },
+  {
+    question: "How does the auto-status system work?",
+    answer:
+      "RepairKeeper automatically advances device statuses based on your parts workflow. When you mark a part as 'ordered', the device moves to 'Awaiting Parts'. When parts arrive and are allocated, it moves forward again. The ticket status always reflects the most behind device — zero manual updates needed. You can also create custom statuses with your own names, colours, and overdue alerts.",
+  },
+  {
+    question: "Can I buy and resell refurbished devices?",
+    answer:
+      "Yes. RepairKeeper includes a full trade-in and refurbishment system. Record purchases from customers or suppliers, grade device condition, run refurbishment checklists, track costs, and manage the lifecycle from purchase to sale. Margin scheme support is included for VAT-registered businesses.",
+  },
+  {
+    question: "How does quoting and invoicing work?",
+    answer:
+      "You can create quick estimates or formal quotes with line items that customers accept or decline from a unique link. Quotes convert to invoices with one click. Invoices support discounts, VAT, partial payments, deposits, PDF export, email sending with reminders, and online payment via Stripe. Draft invoices can be edited; finalised invoices are locked to prevent accidental changes.",
+  },
+  {
+    question: "Can customers book repairs online?",
+    answer:
+      "Yes. You can set up an online booking page where customers select a service, pick an available date, and pay a deposit. You control availability per day of the week, set blackout dates, and cap maximum bookings per day. Bookings land as leads in your dashboard for easy conversion to tickets.",
+  },
+  {
+    question: "Can I manage multiple team members?",
+    answer:
+      "Yes, on the Standard plan (up to 5 team members) and Pro plan (up to 15). RepairKeeper supports three roles (Owner, Admin, Technician) with 11 granular permission flags that you can customise per team member. Invite new members via email, and every action is recorded in a full audit log with before/after diffs.",
+  },
+  {
+    question: "Is my data secure?",
+    answer:
+      "Security is built into every layer. RepairKeeper uses encrypted passwords, supports passkey/biometric login (WebAuthn), enforces strict multi-tenancy isolation so no data leaks between shops, and logs every change in a tamper-evident audit trail. Customer data can be anonymised for GDPR compliance.",
   },
   {
     question: "Do I need to install anything?",
@@ -30,33 +60,23 @@ export const faqs: FAQItem[] = [
       "No. RepairKeeper is a web-based SaaS application that works in any modern browser on desktop, tablet, or phone. There's nothing to install, update, or maintain — just log in and go.",
   },
   {
-    question: "How does the auto-status system work?",
+    question: "Can I send devices out to subcontractors?",
     answer:
-      "RepairKeeper automatically advances device statuses based on your parts workflow. For example, when you mark a part as 'ordered', the device moves to 'Awaiting Parts'. When parts arrive and are allocated, it moves to 'Parts Arrived'. The ticket status always reflects the most behind device — zero manual updates needed.",
+      "Yes. Mark any device as sent to a subcontractor with courier name, tracking number, and return tracking. When the device comes back, record the action taken and return it to your normal repair workflow.",
   },
   {
-    question: "Can I manage multiple team members?",
+    question: "What reporting is available?",
     answer:
-      "Yes, on the Standard plan (up to 5 team members) and Pro plan (unlimited). RepairKeeper supports three roles (Owner, Admin, Technician) with 11 granular permission flags that you can customise per team member. Invite new members via email, and every action is recorded in a full audit log with before/after diffs.",
+      "RepairKeeper includes reports for repair summaries, revenue tracking, customer insights, and inventory analysis. Export your data as CSV for use in spreadsheets or accounting software. The dashboard gives you a real-time overview of key metrics, upcoming deadlines, and unactioned leads.",
   },
   {
-    question: "Is my data secure?",
+    question: "Can I integrate RepairKeeper with other tools?",
     answer:
-      "Security is built into every layer. RepairKeeper uses encrypted passwords, supports passkey/biometric login (WebAuthn), enforces strict multi-tenancy isolation so no data leaks between shops, and logs every change in a tamper-evident audit trail.",
-  },
-  {
-    question: "Can I accept online payments?",
-    answer:
-      "Yes, with the Pro plan. RepairKeeper integrates with Stripe Connect so your customers can pay invoices directly from their tracking page. Payment status updates automatically — no manual reconciliation needed.",
-  },
-  {
-    question: "Can I transfer my current data into RepairKeeper?",
-    answer:
-      "Yes. RepairKeeper has built-in migration tools to help you import your existing data from other repair shop management platforms. You can bring across your customers, devices, and repair history so you're not starting from scratch.",
+      "RepairKeeper supports configurable webhooks that fire on key events like ticket creation, lead submission, and invoice creation. You can also sync your calendar via iCal, export data as CSV, and configure custom SMTP for email sending.",
   },
   {
     question: "How do I get started?",
     answer:
-      "Just click 'Get Started Free' and create your account in under a minute. No credit card required. You'll have a fully functional repair management system ready to use immediately.",
+      "Click 'Get Started Free' and create your account in under a minute. No credit card required. You'll have a fully functional repair management system ready to use immediately — during beta, all features are unlocked.",
   },
 ];

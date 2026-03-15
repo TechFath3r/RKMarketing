@@ -8,28 +8,38 @@ import StatusPipeline from "./StatusPipeline.astro";
     <div class="reveal">
       <FeatureDetail
         title="Multi-device tickets with intelligent auto-status"
-        subtitle="One ticket can hold multiple devices — each tracked independently with its own status, parts, and timeline. The system does the status updates for you."
+        subtitle="One ticket can hold multiple devices — each tracked independently with its own status, parts, diagnosis, and timeline. The system handles status updates so your team can focus on repairs."
         badge="Smart Tickets"
         items={[
           {
             icon: "ticket",
             title: "Multi-device support",
-            description: "A customer drops off a phone and a tablet? One ticket, two devices, each tracked separately."
+            description: "A customer drops off a phone and a tablet? One ticket, two devices, each tracked separately with independent statuses and costs."
           },
           {
             icon: "zap",
             title: "Auto-status engine",
-            description: "Statuses advance automatically based on parts workflow. Mark a part as ordered — the device moves to 'Awaiting Parts'."
-          },
-          {
-            icon: "shield",
-            title: "9 built-in statuses",
-            description: "From 'Awaiting Drop Off' through to 'Collected', with full customisation of names, colours, and ordering."
+            description: "Statuses advance automatically based on parts workflow. Mark a part as ordered — the device moves to 'Awaiting Parts'. Ticket status always reflects the most behind device."
           },
           {
             icon: "clipboard-list",
-            title: "Digital signatures",
-            description: "Capture intake and collection signatures on-screen. Mark a device as received and it auto-advances to 'Booked In'."
+            title: "Diagnosis & approval workflow",
+            description: "Run diagnostics per device, share findings with customers, and let them approve or decline repairs from their tracking page before work begins."
+          },
+          {
+            icon: "send",
+            title: "Subcontractor & warranty tracking",
+            description: "Send devices out to subcontractors with courier and tracking details. Track warranty returns with customer reports and action taken notes."
+          },
+          {
+            icon: "camera",
+            title: "Device photos & digital signatures",
+            description: "Photograph device condition at intake. Capture digital signatures for drop-off and collection. Record passcodes, accessories, and condition notes."
+          },
+          {
+            icon: "shield",
+            title: "9 built-in statuses — fully customisable",
+            description: "From 'Awaiting Drop Off' through to 'Collected'. Create your own statuses with custom names, colours, ordering, and overdue alerts."
           }
         ]}
       >

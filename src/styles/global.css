@@ -100,6 +100,12 @@ body {
 .stagger > :nth-child(4) { transition-delay: 240ms; }
 .stagger > :nth-child(5) { transition-delay: 320ms; }
 .stagger > :nth-child(6) { transition-delay: 400ms; }
+.stagger > :nth-child(7) { transition-delay: 480ms; }
+.stagger > :nth-child(8) { transition-delay: 560ms; }
+.stagger > :nth-child(9) { transition-delay: 640ms; }
+.stagger > :nth-child(10) { transition-delay: 720ms; }
+.stagger > :nth-child(11) { transition-delay: 800ms; }
+.stagger > :nth-child(12) { transition-delay: 880ms; }
 
 /* Card hover */
 .card-hover {

@@ -7,29 +7,39 @@ import FeatureDetail from "./FeatureDetail.astro";
     <div class="reveal">
       <FeatureDetail
         title="A seamless experience for your customers"
-        subtitle="Give your customers real-time visibility into their repairs — and let them pay online without ever needing to call you."
+        subtitle="Give your customers real-time visibility into their repairs. They can track progress, approve diagnoses, accept quotes, pay invoices, and book appointments — all without calling you."
         badge="Customer Experience"
         reverse={true}
         items={[
           {
             icon: "tracking",
             title: "Live tracking page",
-            description: "Every ticket generates a unique link. Customers see real-time status updates, estimated costs, and public notes."
+            description: "Every ticket generates a unique link. Customers see real-time status, device photos, estimated costs, public notes, and timeline updates."
+          },
+          {
+            icon: "clipboard-list",
+            title: "Diagnosis approval",
+            description: "Share diagnosis findings with customers. They review costs and approve or decline repairs directly from their tracking page — no phone call needed."
           },
           {
             icon: "credit-card",
-            title: "Online payments via Stripe",
-            description: "Customers pay invoices directly from their tracking page. Payment status updates automatically — no manual reconciliation."
+            title: "Online payments & deposits",
+            description: "Customers pay invoices or deposits directly from their tracking page via Stripe. Payment status updates automatically — no manual reconciliation."
+          },
+          {
+            icon: "calendar",
+            title: "Online repair booking",
+            description: "Embed a booking page on your website. Customers choose a service, pick a date, and pay a deposit — enquiries land as leads in your dashboard."
           },
           {
             icon: "mail",
-            title: "Automated email notifications",
-            description: "Customers receive emails when their ticket is created and when statuses change. Respects per-customer opt-out preferences."
+            title: "Smart email notifications",
+            description: "Automated emails on ticket creation, status changes, and diagnosis ready — with intelligent debouncing so customers aren't spammed by rapid updates."
           },
           {
             icon: "message-square",
             title: "Public enquiry form",
-            description: "Embed a branded form on your website. Enquiries land as leads in your dashboard with built-in spam protection."
+            description: "Embed a branded form on your website with built-in spam protection. Enquiries land as leads with one-click conversion to tickets."
           }
         ]}
       >
@@ -44,10 +54,10 @@ import FeatureDetail from "./FeatureDetail.astro";
               <p class="text-xs font-medium uppercase tracking-wider text-slate-400">Repair Status</p>
               <div class="mt-2 flex items-center gap-2">
                 <span class="relative flex h-3 w-3">
-                  <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
-                  <span class="relative inline-flex h-3 w-3 rounded-full bg-emerald-500"></span>
+                  <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-indigo-400 opacity-75"></span>
+                  <span class="relative inline-flex h-3 w-3 rounded-full bg-indigo-500"></span>
                 </span>
-                <span class="text-lg font-bold text-emerald-600">Ready for Collection</span>
+                <span class="text-lg font-bold text-indigo-600">Diagnosing</span>
               </div>
             </div>
             <div class="grid grid-cols-2 gap-4">
@@ -60,14 +70,24 @@ import FeatureDetail from "./FeatureDetail.astro";
                 <p class="text-sm font-medium text-dark">Screen Replacement</p>
               </div>
             </div>
-            <div class="rounded-lg border border-emerald-200 bg-emerald-50 p-3">
+            <!-- Diagnosis approval card -->
+            <div class="rounded-lg border border-amber-200 bg-amber-50 p-3">
+              <p class="text-xs font-medium text-amber-700 mb-2">Diagnosis Ready — Approval Required</p>
+              <p class="text-xs text-amber-600 mb-3">Screen and digitiser need replacing. Estimated cost: &pound;89.99</p>
+              <div class="flex gap-2">
+                <button class="flex-1 rounded-lg bg-emerald-600 px-3 py-1.5 text-xs font-semibold text-white">Approve Repair</button>
+                <button class="flex-1 rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-600">Decline</button>
+              </div>
+            </div>
+            <!-- Quote acceptance -->
+            <div class="rounded-lg border border-primary/20 bg-primary/5 p-3">
               <div class="flex items-center justify-between">
                 <div>
-                  <p class="text-xs text-emerald-600">Invoice #INV-0018</p>
-                  <p class="text-lg font-bold text-emerald-700">&pound;89.99</p>
+                  <p class="text-xs text-primary">Quote #QT-0015</p>
+                  <p class="text-lg font-bold text-primary">&pound;89.99</p>
                 </div>
-                <button class="rounded-lg bg-emerald-600 px-4 py-2 text-sm font-semibold text-white">
-                  Pay Now
+                <button class="rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white">
+                  Accept Quote
                 </button>
               </div>
             </div>

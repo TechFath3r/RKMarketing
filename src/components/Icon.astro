@@ -190,4 +190,79 @@ const { name, class: className = "", size = 24 } = Astro.props;
   {name === "star" && (
     <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a.53.53 0 0 0 .4.29l5.16.752a.53.53 0 0 1 .294.904l-3.733 3.638a.53.53 0 0 0-.152.469l.882 5.14a.53.53 0 0 1-.77.56l-4.615-2.426a.53.53 0 0 0-.494 0L6.18 18.727a.53.53 0 0 1-.77-.56l.882-5.14a.53.53 0 0 0-.152-.47L2.407 8.92a.53.53 0 0 1 .294-.906l5.16-.752a.53.53 0 0 0 .4-.29z" />
   )}
+  {name === "calendar" && (
+    <Fragment>
+      <rect width="18" height="18" x="3" y="4" rx="2" ry="2" />
+      <line x1="16" x2="16" y1="2" y2="6" />
+      <line x1="8" x2="8" y1="2" y2="6" />
+      <line x1="3" x2="21" y1="10" y2="10" />
+    </Fragment>
+  )}
+  {name === "refresh-cw" && (
+    <Fragment>
+      <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" />
+      <path d="M21 3v5h-5" />
+      <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16" />
+      <path d="M8 16H3v5" />
+    </Fragment>
+  )}
+  {name === "camera" && (
+    <Fragment>
+      <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z" />
+      <circle cx="12" cy="13" r="3" />
+    </Fragment>
+  )}
+  {name === "bar-chart" && (
+    <Fragment>
+      <line x1="12" x2="12" y1="20" y2="10" />
+      <line x1="18" x2="18" y1="20" y2="4" />
+      <line x1="6" x2="6" y1="20" y2="14" />
+    </Fragment>
+  )}
+  {name === "pound" && (
+    <Fragment>
+      <path d="M18 5H7.5a4.5 4.5 0 0 0 0 9H12" />
+      <path d="M6 12h12" />
+      <path d="M6 19h12" />
+    </Fragment>
+  )}
+  {name === "smartphone" && (
+    <Fragment>
+      <rect width="14" height="20" x="5" y="2" rx="2" ry="2" />
+      <line x1="12" x2="12.01" y1="18" y2="18" />
+    </Fragment>
+  )}
+  {name === "file-text" && (
+    <Fragment>
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z" />
+      <path d="M14 2v6h6" />
+      <line x1="16" x2="8" y1="13" y2="13" />
+      <line x1="16" x2="8" y1="17" y2="17" />
+      <line x1="10" x2="8" y1="9" y2="9" />
+    </Fragment>
+  )}
+  {name === "send" && (
+    <Fragment>
+      <line x1="22" x2="11" y1="2" y2="13" />
+      <polygon points="22 2 15 22 11 13 2 9 22 2" />
+    </Fragment>
+  )}
+  {name === "tag" && (
+    <Fragment>
+      <path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z" />
+      <path d="M7 7h.01" />
+    </Fragment>
+  )}
+  {name === "tool" && (
+    <Fragment>
+      <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
+    </Fragment>
+  )}
+  {name === "download" && (
+    <Fragment>
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+      <polyline points="7 10 12 15 17 10" />
+      <line x1="12" x2="12" y1="15" y2="3" />
+    </Fragment>
+  )}
 </svg>

@@ -1,0 +1,87 @@
+---
+import FeatureDetail from "./FeatureDetail.astro";
+---
+
+<section class="py-20 sm:py-28 bg-slate-50">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="reveal">
+      <FeatureDetail
+        title="Buy, refurbish, and resell devices"
+        subtitle="Track traded-in and purchased devices through the full refurbishment lifecycle. From intake grading to sale — with checklists, cost tracking, and margin scheme support."
+        badge="Trade-in & Refurbishment"
+        items={[
+          {
+            icon: "tag",
+            title: "Device intake & grading",
+            description: "Record purchases from customers or suppliers. Grade condition from Excellent to Poor, capture IMEI, serial, colour, and storage details."
+          },
+          {
+            icon: "clipboard-list",
+            title: "Refurbishment checklists",
+            description: "Create checklist templates per device type. Track pass/fail results for every check — battery health, screen quality, buttons, speakers, and more."
+          },
+          {
+            icon: "refresh-cw",
+            title: "Full lifecycle tracking",
+            description: "Follow each device from Purchased → Refurbishing → Ready for Sale → Sold. Link to refurbishment tickets for parts and labour tracking."
+          },
+          {
+            icon: "pound",
+            title: "Cost & margin tracking",
+            description: "Track purchase price, refurbishment costs, listed price, and sold price. Margin scheme support for VAT-registered businesses."
+          }
+        ]}
+      >
+        <!-- Trade-in mockup -->
+        <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-lg">
+          <div class="mb-4 flex items-center justify-between">
+            <span class="text-sm font-semibold text-dark">Trade-in Devices</span>
+            <span class="rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">4 devices</span>
+          </div>
+          <div class="space-y-3">
+            <div class="rounded-lg bg-slate-50 p-3">
+              <div class="flex items-center justify-between mb-1">
+                <p class="text-sm font-medium text-dark">iPhone 14 Pro Max</p>
+                <span class="rounded-full bg-emerald-100 px-2 py-0.5 text-xs font-medium text-emerald-700">Ready for Sale</span>
+              </div>
+              <div class="flex items-center justify-between text-xs text-slate-500">
+                <span>Grade: Good &middot; 256GB &middot; Space Black</span>
+                <span class="font-medium text-dark">&pound;420 &rarr; &pound;549</span>
+              </div>
+            </div>
+            <div class="rounded-lg bg-slate-50 p-3">
+              <div class="flex items-center justify-between mb-1">
+                <p class="text-sm font-medium text-dark">Samsung Galaxy S23</p>
+                <span class="rounded-full bg-blue-100 px-2 py-0.5 text-xs font-medium text-blue-700">Refurbishing</span>
+              </div>
+              <div class="flex items-center justify-between text-xs text-slate-500">
+                <span>Grade: Fair &middot; 128GB &middot; Phantom Black</span>
+                <span class="font-medium text-dark">&pound;180 &rarr; &pound;299</span>
+              </div>
+            </div>
+            <div class="rounded-lg bg-slate-50 p-3">
+              <div class="flex items-center justify-between mb-1">
+                <p class="text-sm font-medium text-dark">iPad Air (5th Gen)</p>
+                <span class="rounded-full bg-amber-100 px-2 py-0.5 text-xs font-medium text-amber-700">Purchased</span>
+              </div>
+              <div class="flex items-center justify-between text-xs text-slate-500">
+                <span>Grade: Excellent &middot; 64GB &middot; Blue</span>
+                <span class="font-medium text-dark">&pound;280 &rarr; &pound;389</span>
+              </div>
+            </div>
+          </div>
+          <div class="mt-4 grid grid-cols-2 gap-2">
+            <div class="rounded-lg bg-emerald-50 p-2 text-center">
+              <p class="text-xs text-emerald-600">This month</p>
+              <p class="text-sm font-bold text-emerald-700">8 sold</p>
+            </div>
+            <div class="rounded-lg bg-primary/5 p-2 text-center">
+              <p class="text-xs text-primary">Avg margin</p>
+              <p class="text-sm font-bold text-primary">&pound;127</p>
+            </div>
+          </div>
+        </div>
+      </FeatureDetail>
+    </div>
+  </div>
+</section>

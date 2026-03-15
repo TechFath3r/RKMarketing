@@ -6,12 +6,17 @@ const differentiators = [
   {
     icon: "ticket",
     title: "Multi-device tickets",
-    description: "One ticket, multiple devices — each with independent statuses and parts tracking. Most competitors treat a ticket as one device.",
+    description: "One ticket, multiple devices — each with independent statuses, parts, diagnosis, and costs. Most competitors treat a ticket as one device.",
   },
   {
     icon: "zap",
     title: "Intelligent auto-status",
-    description: "Statuses move themselves based on your parts workflow. Zero manual updates needed — the system stays accurate without you touching it.",
+    description: "Statuses advance automatically based on your parts workflow. Zero manual updates needed — the system always reflects reality.",
+  },
+  {
+    icon: "refresh-cw",
+    title: "Trade-in & refurbishment",
+    description: "A complete buy-grade-refurbish-sell pipeline built in. Condition checklists, cost tracking, and margin scheme support.",
   },
   {
     icon: "wiki",
@@ -19,19 +24,24 @@ const differentiators = [
     description: "A shared knowledge base across all shops on the platform. Devices, parts, faults, and guides — contributed by the community.",
   },
   {
-    icon: "customers",
-    title: "Smart duplicate detection",
-    description: "Automatically identifies potential duplicate customers using name and phone matching, with one-click field-by-field merge.",
+    icon: "clipboard-list",
+    title: "Diagnosis approval",
+    description: "Share diagnoses with customers and let them approve or decline repairs from their tracking page — before any work begins.",
+  },
+  {
+    icon: "calendar",
+    title: "Online repair booking",
+    description: "Customers book repairs on your website with service selection, date picking, and deposit payment — no phone calls required.",
   },
   {
     icon: "lock",
     title: "Passkey authentication",
-    description: "Log in with fingerprint, Face ID, or security key — no password needed. Modern security, zero friction.",
+    description: "Log in with fingerprint, Face ID, or security key — no password needed. Modern security with zero friction.",
   },
   {
     icon: "tracking",
     title: "Customer self-service",
-    description: "Customers track repairs and pay invoices from a single link. No app downloads, no account creation required.",
+    description: "Customers track repairs, approve diagnoses, accept quotes, and pay invoices from a single link. No app downloads needed.",
   },
   {
     icon: "shield",
@@ -39,19 +49,19 @@ const differentiators = [
     description: "Every change logged with before/after diffs, user attribution, and timestamps. Complete accountability for compliance.",
   },
   {
-    icon: "team",
-    title: "Granular permissions",
-    description: "11 permission flags per team member — not just 'admin or not'. Control exactly who can access what.",
+    icon: "customers",
+    title: "Smart duplicate detection",
+    description: "Automatically identifies duplicate customers using name and phone matching, with one-click field-by-field merge and GDPR anonymisation.",
   },
   {
-    icon: "clipboard-list",
-    title: "Asset registry",
-    description: "Track customer-owned devices across multiple repairs over time. See the full repair history for any device.",
+    icon: "team",
+    title: "Granular permissions",
+    description: "11 permission flags per team member — not just 'admin or not'. Control exactly who can create invoices, delete tickets, or manage stock.",
   },
   {
     icon: "message-square",
-    title: "Spam-protected enquiry forms",
-    description: "Embed branded forms on your website with built-in honeypot and time-trap spam protection. Enquiries land as leads.",
+    title: "Spam-protected forms",
+    description: "Embed branded enquiry and booking forms on your website with built-in honeypot and time-trap spam protection.",
   },
 ];
 ---
@@ -66,7 +76,7 @@ const differentiators = [
       />
     </div>
 
-    <div class="reveal stagger grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-5">
+    <div class="reveal stagger grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
       {differentiators.map((item) => (
         <div class="text-center">
           <div class="mx-auto mb-3 flex h-11 w-11 items-center justify-center rounded-lg bg-primary/10 text-primary">
