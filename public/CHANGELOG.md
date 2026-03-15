@@ -4,6 +4,123 @@ A running record of changes shipped to beta testers. Newest entries at the top.
 
 ---
 
+## 13 March 2026
+
+### Integrations
+- **API Keys** — Org-scoped API keys are now available for external integrations. Keys use a `rk_live_` prefix, are hashed with SHA-256 (never stored in plain text), and support per-key permissions and IP allowlists. Requires a Standard plan or above.
+- **Outbound Webhooks** — Configure webhooks to push real-time events (ticket created, device status changed, invoice paid, quote accepted, and more) to external systems. Payloads are signed with HMAC-SHA256 and retried automatically on failure.
+
+---
+
+## 11 March 2026
+
+### Trade-In & Refurbishment
+- **Editable Trade Device Details** — Grade, condition notes, and accessories on trade devices can now be edited inline from the detail page.
+- **Part Allocation After Deposit** — Parts on a ticket with a finalised deposit invoice can now be allocated stock. Previously, the finalised invoice blocked status changes — this is now unblocked for deposit-first workflows.
+
+### Label Printing
+- **DYMO 30336 Preset** — New label size preset for the DYMO 30336 (1" x 2-1/8").
+- Fixed landscape label printing on Dymo drivers by using dimension swapping instead of CSS transforms.
+- Fixed blank labels appearing after printing due to page-break styling.
+- Fixed double labels printing by removing the page-break-after on the last label.
+
+---
+
+## 10 March 2026
+
+### Tickets
+- **Diagnosis Approval Workflow** — Share a completed diagnosis with the customer via their tracking link. Customers can approve or decline the repair from the public tracking page. Approval status is shown on the device card and the dashboard shows a count of responses awaiting action.
+- **Manual Diagnosis Email** — For shops with auto-send emails disabled, a manual "Send Diagnosis" button lets you notify the customer when a diagnosis is ready.
+- **Pre-Work Deposit Requests** — Request a deposit from a customer before ordering parts or starting work. Customers can pay via their tracking link using Stripe, or contact the shop directly. Independent of the invoice system.
+
+### Booking System
+- **ICS Calendar Feed** — Subscribe to your bookings in Google Calendar, Apple Calendar, or Outlook. A unique feed URL is generated in Settings and stays up to date automatically. Cancelled bookings appear as struck-through in supporting apps.
+- **Pre-fill Booking Form** — Booking form fields can now be pre-filled via URL query parameters, useful for linking from your website or social media.
+
+### Reports
+- **Year-End Accounting** — Revenue reports now include a per-invoice CSV export, a quarterly VAT summary table for MTD/VAT return prep, and an accounts receivable aging breakdown (0-30 / 31-60 / 61-90 / 90+ days) with CSV export.
+
+### Inventory
+- **Configurable Low-Stock Minimums** — Each part can now have its own minimum stock level per location. Parts without a minimum set are never flagged as low stock. The inventory overview has a new "Low stock only" filter.
+
+### Emails
+- **Auto-Send Master Toggle** — A new master toggle in email settings lets you disable all automatic status-update emails at once. Manual sends still work. Per-type toggles are dimmed when auto-send is off.
+
+### Bug Fixes
+- Fixed stock adjustment validation and a double-submit issue when receiving stock.
+- Fixed the autoSendEmails field not loading correctly on the settings page.
+- Fixed diagnosis approval polling, badge display, filter, and icon rendering.
+
+---
+
+## 9 March 2026
+
+### Booking System
+- **Public Drop-Off Booking Page** — Customers can now book a drop-off appointment from a public page (`/book/your-slug`). They pick a date from a calendar driven by your per-day availability settings, choose a time preference, and describe the device and fault. Confirmation and notification emails are sent automatically.
+- **Service Catalogue Integration** — The booking form can show your service catalogue so customers select what they need when booking. Services are pulled from your existing catalogue.
+- **Booking Deposits** — Configure a deposit amount per service. When a customer books, they pay the deposit via Stripe Checkout. The deposit is surfaced on the ticket once the booking is converted.
+- **Booking Confirmation & Rejection** — Confirm or reject bookings from the Leads page. Confirmed bookings send a green confirmation email; rejections send a red email with an optional reason.
+- **Blackout Dates** — Mark specific dates as closed in Settings. Blacked-out dates are hidden from the booking calendar and rejected if submitted directly.
+- **Percentage Deposits** — Job deposits and booking deposits now support percentage amounts (e.g. 25%) in addition to fixed amounts.
+
+### Leads
+- **Quote from Lead** — Create a pre-filled formal quote directly from a lead with one click, pulling in the customer and device details.
+- **Lead Correspondence** — Send and log messages to leads from the Leads page. Outbound emails use your custom SMTP when configured. Inbound replies can be pasted manually. The full thread carries over to the ticket after conversion.
+- **Inline Wiki Device Creation** — When converting a lead to a ticket, you can now create a new wiki device entry inline without leaving the dialog.
+
+### Bug Fixes
+- Fixed an error when creating a second warranty return on the same ticket.
+- Fixed stale subcontractor badge not clearing after return was recorded.
+
+---
+
+## 8 March 2026
+
+### Invoices
+- **Per-Invoice Payment Toggle** — Control whether online card payment is available on a per-invoice basis. When disabled, the customer's tracking page hides the Pay by Card button.
+
+### Subcontractors
+- **Return Tracking** — When a device comes back from board work, you can now record the exact return date. The device card shows a full custody timeline with sent and returned dates.
+
+### Plans
+- **Plan Restructure** — Stripe Connect is now available from the Lite plan onwards. Branding removal is now included in Standard. Pro is capped at 15 team members. A new Enterprise tier is shown for shops needing more.
+- **Pricing on Upgrade Cards** — Plan upgrade cards in Account settings now show monthly pricing and a link to the full pricing page.
+
+### Quotes
+- **Response Notifications** — The sidebar now shows a badge when customers have accepted or declined quotes. Quote status badges (accepted, declined, sent) also appear on the ticket list.
+
+### GDPR Compliance
+- **Privacy Policy** — Add your shop's privacy policy in Settings. It's shown on the enquiry form (with a consent checkbox) and on the customer tracking page.
+- **Customer Anonymisation** — When a customer has ticket history and can't be fully deleted, you can now anonymise their personal data instead, satisfying UK GDPR right-to-erasure requirements.
+- **Data Retention Cleanup** — Audit logs older than 2 years and email logs older than 90 days are automatically purged. Ticket photo uploads stored in R2 are now deleted when tickets are permanently purged.
+- **Terms & Conditions** — Terms and Privacy Policy settings have been moved to the Account settings tab for easier access.
+
+### Bug Fixes
+- Fixed the online payment toggle not being saved when clicking Finalise directly.
+- Fixed the Stripe Connect status not syncing correctly from live Stripe account state.
+- Fixed the card payment toggle not appearing in the invoice editor.
+- Fixed cross-organisation data leak in wiki device and fault related tickets.
+- Fixed part status changes being blocked on tickets with a finalised invoice.
+- Fixed sidebar not updating after toggling a feature on or off.
+- Fixed Unpaid invoice filter not including all non-paid finalised invoices.
+- Fixed expired sessions not redirecting to login.
+- Fixed stale SWR cache causing email state to revert on the ticket page.
+
+---
+
+## 7 March 2026
+
+### Trade-In & Refurbishment
+- **Trade-In System** — A complete trade-in and refurbishment pipeline for shops that buy, refurb, and resell devices. Available on Lite plans and above, with an org-level toggle in Settings.
+- **Device Intake** — Record purchase details, source, cost, condition grade (A/B/C/D/Parts Only), and photos when buying a device.
+- **Refurbishment Tickets** — Start a refurbishment ticket directly from a trade device. The ticket tracks parts, labour, and repair work. Actual refurb costs are calculated from the linked ticket.
+- **Sale Recording** — Record the sold price and date. VAT-registered shops can use the VAT Margin Scheme (VAT on profit only). A downloadable PDF sale receipt is generated with full margin breakdown.
+- **Testing Checklists** — Create reusable checklist templates in Settings with pass/fail/N/A items and a critical flag. Run a checklist on any trade device — the system suggests a condition grade based on the results.
+- **Default Checklist Template** — A built-in default checklist is provided to get started quickly. Grades can be overridden manually after running a checklist.
+- **Product Catalogue** — A new catalogue section for accessories, devices, and consumables with quantity tracking, stock movements, and a simple sales flow. Products can be added directly to invoices from the invoice editor via a search dialog.
+
+---
+
 ## 6 March 2026
 
 ### Tickets
