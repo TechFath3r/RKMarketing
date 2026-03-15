@@ -27,7 +27,7 @@ export const plans: PricingPlan[] = [
     monthlyPrice: 0,
     yearlyPrice: 0,
     cta: "Get Started Free",
-    ctaLink: "https://app.repairkeeper.co.uk/beta",
+    ctaLink: "https://app.repairkeeper.co.uk/register",
     limits: [
       { label: "Tickets per month", value: "25" },
       { label: "Team members", value: "1" },
@@ -63,7 +63,7 @@ export const plans: PricingPlan[] = [
     monthlyPrice: 20,
     yearlyPrice: 200,
     cta: "Start with Lite",
-    ctaLink: "https://app.repairkeeper.co.uk/beta",
+    ctaLink: "https://app.repairkeeper.co.uk/register",
     limits: [
       { label: "Tickets per month", value: "150" },
       { label: "Team members", value: "1" },
@@ -99,7 +99,7 @@ export const plans: PricingPlan[] = [
     monthlyPrice: 30,
     yearlyPrice: 320,
     cta: "Start with Standard",
-    ctaLink: "https://app.repairkeeper.co.uk/beta",
+    ctaLink: "https://app.repairkeeper.co.uk/register",
     highlighted: true,
     limits: [
       { label: "Tickets per month", value: "Unlimited" },
@@ -136,7 +136,7 @@ export const plans: PricingPlan[] = [
     monthlyPrice: 60,
     yearlyPrice: 670,
     cta: "Start with Pro",
-    ctaLink: "https://app.repairkeeper.co.uk/beta",
+    ctaLink: "https://app.repairkeeper.co.uk/register",
     limits: [
       { label: "Tickets per month", value: "Unlimited" },
       { label: "Team members", value: "15" },

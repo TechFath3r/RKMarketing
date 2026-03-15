@@ -12,7 +12,7 @@ export const faqs: FAQItem[] = [
   {
     question: "Is there a free plan?",
     answer:
-      "Yes! The Free plan includes core ticketing and invoicing for up to 25 tickets per month at no cost — forever, not a trial. Paid plans start at £20/mo for higher limits and additional features. During our beta period, early adopters get full access to all features.",
+      "Yes! The Free plan includes core ticketing and invoicing for up to 25 tickets per month at no cost — forever, not a trial. Paid plans start at £20/mo for higher limits and additional features.",
   },
   {
     question: "What makes RepairKeeper different from other repair shop software?",
@@ -77,6 +77,6 @@ export const faqs: FAQItem[] = [
   {
     question: "How do I get started?",
     answer:
-      "Click 'Get Started Free' and create your account in under a minute. No credit card required. You'll have a fully functional repair management system ready to use immediately — during beta, all features are unlocked.",
+      "Click 'Get Started Free' and create your account in under a minute. No credit card required. You'll have a fully functional repair management system ready to use immediately.",
   },
 ];

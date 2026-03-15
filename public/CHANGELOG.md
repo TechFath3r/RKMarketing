@@ -1,6 +1,6 @@
 # RepairKeeper Changelog
 
-A running record of changes shipped to beta testers. Newest entries at the top.
+A running record of changes shipped to RepairKeeper. Newest entries at the top.
 
 ---
 
