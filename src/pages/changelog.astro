@@ -1,9 +1,11 @@
 ---
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import Header from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
 
-// --- Fetch & parse changelog at build time ---
+// --- Read & parse changelog at build time ---
 interface ChangelogItem {
   text: string;
 }
@@ -19,58 +21,49 @@ interface ChangelogEntry {
 }
 
 let entries: ChangelogEntry[] = [];
-let fetchFailed = false;
 
-try {
-  const res = await fetch(
-    "https://raw.githubusercontent.com/TechFath3r/Repair-Keeperv2/main/CHANGELOG.md"
-  );
-  if (!res.ok) throw new Error(`HTTP ${res.status}`);
-  const md = await res.text();
+const md = readFileSync(resolve("public/CHANGELOG.md"), "utf-8");
 
-  let currentEntry: ChangelogEntry | null = null;
-  let currentCategory: ChangelogCategory | null = null;
+let currentEntry: ChangelogEntry | null = null;
+let currentCategory: ChangelogCategory | null = null;
 
-  for (const line of md.split("\n")) {
-    const trimmed = line.trim();
+for (const line of md.split("\n")) {
+  const trimmed = line.trim();
 
-    // ## date heading
-    if (trimmed.startsWith("## ")) {
-      if (currentCategory && currentEntry) {
-        currentEntry.categories.push(currentCategory);
-      }
-      if (currentEntry) {
-        entries.push(currentEntry);
-      }
-      currentEntry = { date: trimmed.slice(3).trim(), categories: [] };
-      currentCategory = null;
-      continue;
+  // ## date heading
+  if (trimmed.startsWith("## ")) {
+    if (currentCategory && currentEntry) {
+      currentEntry.categories.push(currentCategory);
     }
-
-    // ### category heading
-    if (trimmed.startsWith("### ")) {
-      if (currentCategory && currentEntry) {
-        currentEntry.categories.push(currentCategory);
-      }
-      currentCategory = { name: trimmed.slice(4).trim(), items: [] };
-      continue;
+    if (currentEntry) {
+      entries.push(currentEntry);
     }
-
-    // Bullet item
-    if (trimmed.startsWith("- ") && currentCategory) {
-      currentCategory.items.push({ text: trimmed.slice(2) });
-    }
+    currentEntry = { date: trimmed.slice(3).trim(), categories: [] };
+    currentCategory = null;
+    continue;
   }
 
-  // Push final category and entry
-  if (currentCategory && currentEntry) {
-    currentEntry.categories.push(currentCategory);
+  // ### category heading
+  if (trimmed.startsWith("### ")) {
+    if (currentCategory && currentEntry) {
+      currentEntry.categories.push(currentCategory);
+    }
+    currentCategory = { name: trimmed.slice(4).trim(), items: [] };
+    continue;
   }
-  if (currentEntry) {
-    entries.push(currentEntry);
+
+  // Bullet item
+  if (trimmed.startsWith("- ") && currentCategory) {
+    currentCategory.items.push({ text: trimmed.slice(2) });
   }
-} catch (e) {
-  fetchFailed = true;
+}
+
+// Push final category and entry
+if (currentCategory && currentEntry) {
+  currentEntry.categories.push(currentCategory);
+}
+if (currentEntry) {
+  entries.push(currentEntry);
 }
 
 // --- Category badge colours ---
@@ -133,12 +126,7 @@ const jsonLdItemList = {
 
     <section class="py-12 sm:py-16">
       <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-        {fetchFailed ? (
-          <div class="rounded-xl border border-slate-200 bg-slate-50 p-8 text-center">
-            <p class="text-slate-600">Unable to load changelog right now. Please check back later.</p>
-          </div>
-        ) : (
-          <div class="relative">
+        <div class="relative">
             {/* Timeline line */}
             <div class="absolute left-[15px] top-2 bottom-2 hidden w-px bg-slate-200 sm:block" aria-hidden="true"></div>
 
@@ -188,7 +176,6 @@ const jsonLdItemList = {
               ))}
             </div>
           </div>
-        )}
       </div>
     </section>
   </main>
