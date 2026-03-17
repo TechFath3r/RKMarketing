@@ -1,0 +1,143 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Header from "@components/Header.astro";
+import Pricing from "@components/Pricing.astro";
+import FAQ from "@components/FAQ.astro";
+import Footer from "@components/Footer.astro";
+import Icon from "@components/Icon.astro";
+import SectionHeading from "@components/SectionHeading.astro";
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://repairkeeper.co.uk" },
+    { "@type": "ListItem", position: 2, name: "Pricing", item: "https://repairkeeper.co.uk/pricing" },
+  ],
+};
+---
+
+<BaseLayout
+  title="Pricing — RepairKeeper Repair Shop Management Software"
+  description="Simple, transparent pricing for repair shop software. Free plan with 25 tickets/mo. Paid plans from £20/mo. No hidden fees, no contracts."
+>
+  <Header />
+  <main id="main-content">
+    <!-- Hero -->
+    <section class="hero-gradient relative overflow-hidden pt-28 pb-16 sm:pt-36 sm:pb-20">
+      <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+        <div class="absolute -top-24 -right-24 h-96 w-96 rounded-full bg-primary/5 blur-3xl animate-pulse-glow"></div>
+        <div class="absolute -bottom-24 -left-24 h-96 w-96 rounded-full bg-accent/5 blur-3xl animate-pulse-glow" style="animation-delay: 1.5s;"></div>
+      </div>
+      <div class="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+        <span class="mb-4 inline-block rounded-full bg-primary/10 px-4 py-1.5 text-sm font-semibold text-primary animate-fade-in">
+          Pricing
+        </span>
+        <h1 class="text-4xl font-extrabold tracking-tight text-dark sm:text-5xl animate-fade-up" style="animation-delay: 0.15s;">
+          Simple, transparent pricing for repair shops
+        </h1>
+        <p class="mx-auto mt-4 max-w-2xl text-lg text-slate-600 animate-fade-up" style="animation-delay: 0.3s;">
+          Start free with 25 tickets a month. Upgrade when you need more capacity, team members, or advanced features. No hidden fees, no long-term contracts.
+        </p>
+      </div>
+    </section>
+
+    <!-- Pricing table (reuse existing component) -->
+    <Pricing />
+
+    <!-- What's included in every plan -->
+    <section class="py-20 sm:py-28 bg-slate-50">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <SectionHeading
+            title="What's included in every plan"
+            subtitle="Even on the Free plan, you get a fully functional repair management system."
+          />
+        </div>
+        <div class="reveal stagger grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {[
+            { icon: "ticket", title: "Multi-device tickets", desc: "One ticket, multiple devices — each tracked independently with its own status and parts." },
+            { icon: "zap", title: "Intelligent auto-status", desc: "Statuses advance automatically based on parts workflow. No manual updates needed." },
+            { icon: "invoice", title: "Quoting & invoicing", desc: "Professional quotes and invoices with line items, discounts, VAT, and PDF export." },
+            { icon: "customers", title: "Customer management", desc: "Full customer profiles with duplicate detection, merge tools, and contact preferences." },
+            { icon: "tracking", title: "Customer tracking page", desc: "Every ticket gets a unique link where customers can follow their repair in real time." },
+            { icon: "mail", title: "Email notifications", desc: "Automated emails when tickets are created and statuses change. Customers stay informed." },
+          ].map((item) => (
+            <div class="card-hover rounded-xl border border-slate-200 bg-white p-6">
+              <div class="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <Icon name={item.icon} size={20} />
+              </div>
+              <h3 class="font-semibold text-dark">{item.title}</h3>
+              <p class="mt-1 text-sm text-slate-600">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ section specific to pricing -->
+    <section class="py-20 sm:py-28 bg-white">
+      <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <SectionHeading
+            title="Pricing questions"
+            subtitle="Common questions about plans, billing, and getting started."
+            badge="FAQ"
+          />
+        </div>
+        <div class="reveal stagger space-y-3">
+          {[
+            { q: "Is the Free plan really free forever?", a: "Yes. The Free plan is not a trial — it's a permanent plan with 25 tickets per month and core features included. You can use it indefinitely." },
+            { q: "Can I change plans at any time?", a: "Absolutely. Upgrade or downgrade whenever you like from your account settings. Changes take effect immediately, and billing is prorated." },
+            { q: "Is there a contract or commitment?", a: "No. All plans are pay-as-you-go with monthly or yearly billing. Cancel anytime — no penalties, no questions asked." },
+            { q: "What happens if I hit my ticket limit?", a: "You'll be notified as you approach your monthly limit. You can upgrade your plan at any time to increase your allowance. Existing tickets remain accessible regardless." },
+            { q: "Do you offer discounts for yearly billing?", a: "Yes. Yearly billing offers a meaningful discount compared to monthly billing on all paid plans. Toggle the billing switch on the pricing table to see yearly prices." },
+            { q: "What payment methods do you accept?", a: "We accept all major credit and debit cards via Stripe. Payments are processed securely — we never see or store your card details." },
+          ].map((item) => (
+            <details class="group rounded-xl border border-slate-200 bg-white transition-all hover:border-primary/30">
+              <summary class="flex cursor-pointer items-center justify-between px-6 py-4 text-left">
+                <span class="pr-4 text-base font-semibold text-dark group-open:text-primary">{item.q}</span>
+                <svg class="h-5 w-5 shrink-0 text-slate-400 transition-transform group-open:rotate-180 group-open:text-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6" /></svg>
+              </summary>
+              <div class="px-6 pb-4">
+                <p class="text-sm leading-relaxed text-slate-600">{item.a}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="relative overflow-hidden bg-dark py-20 sm:py-28">
+      <div class="pointer-events-none absolute inset-0" aria-hidden="true">
+        <div class="absolute -top-32 -left-32 h-96 w-96 rounded-full bg-primary/20 blur-3xl"></div>
+        <div class="absolute -bottom-32 -right-32 h-96 w-96 rounded-full bg-accent/20 blur-3xl"></div>
+      </div>
+      <div class="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+        <div class="reveal">
+          <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+            Start managing repairs today
+          </h2>
+          <p class="mx-auto mt-4 max-w-2xl text-lg text-slate-400">
+            Create your free account in under a minute. No credit card required. Explore every core feature before deciding to upgrade.
+          </p>
+          <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+            <a
+              href="https://app.repairkeeper.co.uk/register"
+              class="inline-flex items-center gap-2 rounded-lg bg-primary px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:bg-primary-light hover:shadow-xl hover:shadow-primary/30"
+            >
+              Get Started Free
+              <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </a>
+          </div>
+          <p class="mt-4 text-sm text-slate-500">
+            Or <a href="/#features" class="text-primary-light hover:underline">explore features</a> to see what's included.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
+</BaseLayout>

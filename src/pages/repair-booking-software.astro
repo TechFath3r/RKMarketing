@@ -1,0 +1,286 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
+import Icon from "@components/Icon.astro";
+import SectionHeading from "@components/SectionHeading.astro";
+import FeatureDetail from "@components/FeatureDetail.astro";
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://repairkeeper.co.uk" },
+    { "@type": "ListItem", position: 2, name: "Repair Booking Software", item: "https://repairkeeper.co.uk/repair-booking-software" },
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "Can customers book repairs online with RepairKeeper?",
+      acceptedAnswer: { "@type": "Answer", text: "Yes. RepairKeeper includes an online booking page where customers select a service, pick an available date, and optionally pay a deposit. You control availability per day of the week, set blackout dates, and cap maximum bookings per day." },
+    },
+    {
+      "@type": "Question",
+      name: "How do online bookings connect to repair tickets?",
+      acceptedAnswer: { "@type": "Answer", text: "Bookings land as leads in your dashboard. From there, you can convert a lead into a repair ticket with one click — all the customer and device details are pre-filled." },
+    },
+    {
+      "@type": "Question",
+      name: "Can I take deposits for online bookings?",
+      acceptedAnswer: { "@type": "Answer", text: "Yes. You can configure deposit amounts for online bookings. Customers pay via Stripe when they book, and the deposit is tracked against the eventual invoice." },
+    },
+  ],
+};
+---
+
+<BaseLayout
+  title="Repair Booking Software — Online Booking for Repair Shops | RepairKeeper"
+  description="Let customers book repairs online with deposits, availability controls, and automatic lead capture. Converts to repair tickets with one click. Free plan available."
+>
+  <Header />
+  <main id="main-content">
+    <!-- Hero -->
+    <section class="hero-gradient relative overflow-hidden pt-28 pb-16 sm:pt-36 sm:pb-20">
+      <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+        <div class="absolute -top-24 -right-24 h-96 w-96 rounded-full bg-primary/5 blur-3xl animate-pulse-glow"></div>
+        <div class="absolute -bottom-24 -left-24 h-96 w-96 rounded-full bg-accent/5 blur-3xl animate-pulse-glow" style="animation-delay: 1.5s;"></div>
+      </div>
+      <div class="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+        <span class="mb-4 inline-block rounded-full bg-primary/10 px-4 py-1.5 text-sm font-semibold text-primary animate-fade-in">
+          Online Booking
+        </span>
+        <h1 class="text-4xl font-extrabold tracking-tight text-dark sm:text-5xl animate-fade-up" style="animation-delay: 0.15s;">
+          Let customers <span class="gradient-text">book repairs online</span>
+        </h1>
+        <p class="mx-auto mt-4 max-w-2xl text-lg text-slate-600 animate-fade-up" style="animation-delay: 0.3s;">
+          Stop fielding phone calls and DMs to schedule repairs. Give your customers a booking page where they pick a service, choose a date, and pay a deposit — all before they walk through the door.
+        </p>
+        <div class="mt-8 flex flex-wrap items-center justify-center gap-4 animate-fade-up" style="animation-delay: 0.45s;">
+          <a href="https://app.repairkeeper.co.uk/register" class="inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 text-base font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:bg-primary-dark hover:shadow-xl hover:shadow-primary/30">
+            Get Started Free
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+          </a>
+          <a href="/pricing" class="inline-flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-6 py-3 text-base font-semibold text-slate-700 transition-all hover:border-primary/30 hover:text-primary">
+            View Pricing
+          </a>
+        </div>
+        <p class="mt-4 text-sm text-slate-500 animate-fade-up" style="animation-delay: 0.55s;">Online booking included on Lite plans and above.</p>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="py-20 sm:py-28 bg-white">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <SectionHeading
+            title="How online booking works"
+            subtitle="From the customer's screen to your repair bench in three steps."
+          />
+        </div>
+        <div class="reveal stagger grid gap-8 lg:grid-cols-3">
+          {[
+            { step: "1", title: "Customer books online", desc: "They visit your booking page, select a repair service, choose an available date, enter their details, and optionally pay a deposit via Stripe." },
+            { step: "2", title: "Booking lands as a lead", desc: "The booking appears in your RepairKeeper dashboard as a new lead with all the customer and device details pre-filled. You get notified instantly." },
+            { step: "3", title: "Convert to a repair ticket", desc: "Review the booking, click 'Convert to Ticket', and the lead becomes a full repair ticket — ready for intake. No re-typing, no copy-pasting." },
+          ].map((item) => (
+            <div class="card-hover relative rounded-xl border border-slate-200 bg-white p-6">
+              <div class="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-primary text-lg font-bold text-white">
+                {item.step}
+              </div>
+              <h3 class="text-lg font-semibold text-dark">{item.title}</h3>
+              <p class="mt-2 text-sm text-slate-600">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Booking controls -->
+    <section class="py-20 sm:py-28 bg-slate-50">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <FeatureDetail
+            title="You control the availability"
+            subtitle="RepairKeeper's booking system gives you full control over when customers can book, how many bookings you accept, and what services are available."
+            badge="Availability Controls"
+            items={[
+              { icon: "calendar", title: "Per-day availability", description: "Set which days of the week you accept bookings. Different capacity for weekdays vs weekends? No problem." },
+              { icon: "x", title: "Blackout dates", description: "Going on holiday? Closing for a bank holiday? Block specific dates from the booking calendar." },
+              { icon: "bar-chart", title: "Maximum bookings per day", description: "Cap the number of bookings per day so you're never overwhelmed. Control your workflow, not the other way around." },
+              { icon: "credit-card", title: "Deposit collection", description: "Require a deposit at booking time. Customers pay via Stripe. The deposit is tracked against the eventual invoice." },
+            ]}
+          >
+            <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-lg">
+              <div class="mb-4 flex items-center gap-2">
+                <span class="text-sm font-semibold text-dark">Booking Calendar</span>
+                <span class="rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">March 2026</span>
+              </div>
+              <div class="grid grid-cols-7 gap-1 text-center text-xs">
+                {["M","T","W","T","F","S","S"].map((d) => (
+                  <div class="py-1 font-medium text-slate-400">{d}</div>
+                ))}
+                {[
+                  { d: "16", available: true, booked: 2 },
+                  { d: "17", available: true, booked: 4 },
+                  { d: "18", available: true, booked: 1 },
+                  { d: "19", available: true, booked: 3 },
+                  { d: "20", available: true, booked: 5 },
+                  { d: "21", available: false, booked: 0 },
+                  { d: "22", available: false, booked: 0 },
+                  { d: "23", available: true, booked: 0 },
+                  { d: "24", available: true, booked: 2 },
+                  { d: "25", available: true, booked: 0 },
+                  { d: "26", available: true, booked: 1 },
+                  { d: "27", available: true, booked: 3 },
+                  { d: "28", available: false, booked: 0 },
+                  { d: "29", available: false, booked: 0 },
+                ].map((day) => (
+                  <div class:list={[
+                    "rounded-md py-2",
+                    day.available ? "bg-slate-50 text-dark" : "bg-slate-100 text-slate-300 line-through",
+                  ]}>
+                    <div class="font-medium">{day.d}</div>
+                    {day.available && day.booked > 0 && (
+                      <div class="text-[10px] text-primary">{day.booked} booked</div>
+                    )}
+                  </div>
+                ))}
+              </div>
+              <p class="mt-3 text-xs text-slate-400">Max 5 bookings/day &middot; Weekends blocked</p>
+            </div>
+          </FeatureDetail>
+        </div>
+      </div>
+    </section>
+
+    <!-- Enquiry form -->
+    <section class="py-20 sm:py-28 bg-white">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <FeatureDetail
+            title="Capture enquiries from your website too"
+            subtitle="Not every customer is ready to book a specific date. RepairKeeper also provides a public enquiry form you can embed on your website — capturing repair requests that land as leads in your dashboard."
+            badge="Enquiry Form"
+            reverse={true}
+            items={[
+              { icon: "send", title: "Branded enquiry form", description: "Customers describe their device and fault. The form captures name, contact details, device type, and fault description." },
+              { icon: "shield", title: "Spam protection", description: "Built-in honeypot and time-trap protection blocks bots without visible CAPTCHAs." },
+              { icon: "zap", title: "Instant lead creation", description: "Enquiries land in your dashboard as leads with a status workflow: New → Contacted → Converted → Closed." },
+              { icon: "ticket", title: "One-click ticket conversion", description: "When you're ready, convert any lead into a full repair ticket. Customer and device details are pre-filled." },
+            ]}
+          >
+            <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-lg">
+              <div class="mb-4">
+                <span class="text-sm font-semibold text-dark">Recent Leads</span>
+              </div>
+              <div class="space-y-2">
+                {[
+                  { name: "Sarah M.", device: "iPhone 15", fault: "Cracked screen", source: "Booking", time: "2h ago" },
+                  { name: "James R.", device: "Samsung S23", fault: "Battery draining fast", source: "Enquiry form", time: "5h ago" },
+                  { name: "Emma T.", device: "iPad Pro", fault: "Won't charge", source: "Booking", time: "1d ago" },
+                ].map((lead) => (
+                  <div class="rounded-lg border border-slate-100 p-3">
+                    <div class="flex items-center justify-between">
+                      <span class="text-sm font-medium text-dark">{lead.name}</span>
+                      <span class="text-xs text-slate-400">{lead.time}</span>
+                    </div>
+                    <p class="mt-0.5 text-xs text-slate-500">{lead.device} — {lead.fault}</p>
+                    <span class="mt-1 inline-block rounded-full bg-blue-50 px-2 py-0.5 text-[10px] font-medium text-blue-600">{lead.source}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </FeatureDetail>
+        </div>
+      </div>
+    </section>
+
+    <!-- Related features -->
+    <section class="py-20 sm:py-28 bg-slate-50">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <SectionHeading title="Booking is just the beginning" subtitle="Online booking connects to the rest of your repair workflow." />
+        </div>
+        <div class="reveal stagger grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {[
+            { icon: "ticket", title: "Repair ticket management", desc: "Bookings convert to tickets with multi-device support, auto-status, and full lifecycle tracking.", href: "/repair-ticket-software" },
+            { icon: "customers", title: "Customer CRM", desc: "Every booking creates or links to a customer profile. Build a complete picture of your customer base.", href: "/repair-shop-crm" },
+            { icon: "invoice", title: "Quoting & invoicing", desc: "Deposits from bookings track against invoices. Generate quotes, send invoices, and accept online payments.", href: "/#features" },
+          ].map((item) => (
+            <a href={item.href} class="card-hover block rounded-xl border border-slate-200 bg-white p-6 transition-colors hover:border-primary/30">
+              <div class="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <Icon name={item.icon} size={20} />
+              </div>
+              <h3 class="font-semibold text-dark">{item.title}</h3>
+              <p class="mt-1 text-sm text-slate-600">{item.desc}</p>
+              <span class="mt-3 inline-flex items-center gap-1 text-sm font-medium text-primary">Learn more <Icon name="arrow-right" size={14} /></span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-20 sm:py-28 bg-white">
+      <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <SectionHeading title="Booking questions" badge="FAQ" />
+        </div>
+        <div class="reveal stagger space-y-3">
+          {[
+            { q: "Can customers book repairs online with RepairKeeper?", a: "Yes. RepairKeeper includes an online booking page where customers select a service, pick an available date, and optionally pay a deposit. You control availability per day of the week, set blackout dates, and cap maximum bookings per day." },
+            { q: "How do online bookings connect to repair tickets?", a: "Bookings land as leads in your dashboard. From there, you can convert a lead into a repair ticket with one click — all the customer and device details are pre-filled." },
+            { q: "Can I take deposits for online bookings?", a: "Yes. You can configure deposit amounts for online bookings. Customers pay via Stripe when they book, and the deposit is tracked against the eventual invoice." },
+            { q: "Which plans include online booking?", a: "Online booking is available on the Lite plan (£20/mo) and above. The Free plan includes the public enquiry form for capturing leads but not the full booking calendar." },
+            { q: "Can I embed the booking page on my own website?", a: "You can link to your RepairKeeper booking page from your website. The booking page is branded with your shop name and handles the entire booking flow." },
+          ].map((item) => (
+            <details class="group rounded-xl border border-slate-200 bg-white transition-all hover:border-primary/30">
+              <summary class="flex cursor-pointer items-center justify-between px-6 py-4 text-left">
+                <span class="pr-4 text-base font-semibold text-dark group-open:text-primary">{item.q}</span>
+                <svg class="h-5 w-5 shrink-0 text-slate-400 transition-transform group-open:rotate-180 group-open:text-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6" /></svg>
+              </summary>
+              <div class="px-6 pb-4">
+                <p class="text-sm leading-relaxed text-slate-600">{item.a}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="relative overflow-hidden bg-dark py-20 sm:py-28">
+      <div class="pointer-events-none absolute inset-0" aria-hidden="true">
+        <div class="absolute -top-32 -left-32 h-96 w-96 rounded-full bg-primary/20 blur-3xl"></div>
+        <div class="absolute -bottom-32 -right-32 h-96 w-96 rounded-full bg-accent/20 blur-3xl"></div>
+      </div>
+      <div class="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+        <div class="reveal">
+          <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+            Start taking bookings online today
+          </h2>
+          <p class="mx-auto mt-4 max-w-2xl text-lg text-slate-400">
+            Give your customers a proper booking experience. Fewer phone calls, fewer no-shows, and a smoother workflow from enquiry to repair.
+          </p>
+          <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+            <a href="https://app.repairkeeper.co.uk/register" class="inline-flex items-center gap-2 rounded-lg bg-primary px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:bg-primary-light hover:shadow-xl hover:shadow-primary/30">
+              Get Started Free
+              <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </a>
+          </div>
+          <p class="mt-4 text-sm text-slate-500">
+            No credit card required. <a href="/pricing" class="text-primary-light hover:underline">See pricing</a>.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
+</BaseLayout>

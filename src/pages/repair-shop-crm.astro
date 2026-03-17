@@ -1,0 +1,275 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
+import Icon from "@components/Icon.astro";
+import SectionHeading from "@components/SectionHeading.astro";
+import FeatureDetail from "@components/FeatureDetail.astro";
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://repairkeeper.co.uk" },
+    { "@type": "ListItem", position: 2, name: "Repair Shop CRM", item: "https://repairkeeper.co.uk/repair-shop-crm" },
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "What is a repair shop CRM?",
+      acceptedAnswer: { "@type": "Answer", text: "A repair shop CRM is customer relationship management software designed specifically for repair businesses. It tracks customer details, repair history, communication preferences, and interactions — so you can provide better service and build repeat business." },
+    },
+    {
+      "@type": "Question",
+      name: "How does RepairKeeper handle duplicate customers?",
+      acceptedAnswer: { "@type": "Answer", text: "RepairKeeper automatically detects potential duplicate customers using name and phone number matching. When duplicates are found, you can merge them with one click using field-by-field conflict resolution — no data is lost." },
+    },
+    {
+      "@type": "Question",
+      name: "Can customers track their own repairs?",
+      acceptedAnswer: { "@type": "Answer", text: "Yes. Every ticket generates a unique tracking link that customers can use to see real-time repair progress, view device statuses, accept quotes, and pay invoices online — all without creating an account." },
+    },
+  ],
+};
+---
+
+<BaseLayout
+  title="Repair Shop CRM — Customer Management for Repair Businesses | RepairKeeper"
+  description="CRM built for repair shops. Track customers, repair history, and communication in one place. Duplicate detection, self-service tracking, and automated notifications."
+>
+  <Header />
+  <main id="main-content">
+    <!-- Hero -->
+    <section class="hero-gradient relative overflow-hidden pt-28 pb-16 sm:pt-36 sm:pb-20">
+      <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+        <div class="absolute -top-24 -right-24 h-96 w-96 rounded-full bg-primary/5 blur-3xl animate-pulse-glow"></div>
+        <div class="absolute -bottom-24 -left-24 h-96 w-96 rounded-full bg-accent/5 blur-3xl animate-pulse-glow" style="animation-delay: 1.5s;"></div>
+      </div>
+      <div class="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+        <span class="mb-4 inline-block rounded-full bg-primary/10 px-4 py-1.5 text-sm font-semibold text-primary animate-fade-in">
+          Customer Management
+        </span>
+        <h1 class="text-4xl font-extrabold tracking-tight text-dark sm:text-5xl animate-fade-up" style="animation-delay: 0.15s;">
+          A CRM that actually understands <span class="gradient-text">repair shops</span>
+        </h1>
+        <p class="mx-auto mt-4 max-w-2xl text-lg text-slate-600 animate-fade-up" style="animation-delay: 0.3s;">
+          Generic CRMs don't know what a repair ticket is. RepairKeeper tracks your customers alongside their devices, repair history, quotes, and invoices — in one purpose-built system.
+        </p>
+        <div class="mt-8 flex flex-wrap items-center justify-center gap-4 animate-fade-up" style="animation-delay: 0.45s;">
+          <a href="https://app.repairkeeper.co.uk/register" class="inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 text-base font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:bg-primary-dark hover:shadow-xl hover:shadow-primary/30">
+            Get Started Free
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+          </a>
+          <a href="/pricing" class="inline-flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-6 py-3 text-base font-semibold text-slate-700 transition-all hover:border-primary/30 hover:text-primary">
+            View Pricing
+          </a>
+        </div>
+        <p class="mt-4 text-sm text-slate-500 animate-fade-up" style="animation-delay: 0.55s;">Free plan available. No credit card required.</p>
+      </div>
+    </section>
+
+    <!-- What makes this different from a generic CRM -->
+    <section class="py-20 sm:py-28 bg-white">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <SectionHeading
+            title="Why repair shops need a purpose-built CRM"
+            subtitle="A Salesforce plan won't track which screen you fitted to which phone. RepairKeeper connects customers to devices, tickets, parts, and invoices — because that's how repair shops actually work."
+          />
+        </div>
+        <div class="reveal stagger grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          {[
+            { icon: "customers", title: "Complete customer profiles", desc: "Name, email, phone, address, company, how they found you, and preferred contact method. Everything you need in one place." },
+            { icon: "ticket", title: "Full repair history", desc: "See every ticket, quote, and invoice for a customer at a glance. Know their repair history before they walk through the door." },
+            { icon: "alert-triangle", title: "Smart duplicate detection", desc: "RepairKeeper automatically flags potential duplicate customers using name and phone matching — so your records stay clean." },
+            { icon: "refresh-cw", title: "One-click customer merge", desc: "When duplicates are found, merge them with field-by-field conflict resolution. No data lost, no manual cleanup." },
+            { icon: "tracking", title: "Self-service tracking", desc: "Every customer gets a unique link to follow their repair in real time. Fewer phone calls for you, more transparency for them." },
+            { icon: "mail", title: "Automated notifications", desc: "Customers receive emails when their ticket is created and when statuses change — with per-customer opt-out preferences." },
+          ].map((item) => (
+            <div class="card-hover rounded-xl border border-slate-200 bg-white p-6">
+              <div class="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <Icon name={item.icon} size={20} />
+              </div>
+              <h3 class="font-semibold text-dark">{item.title}</h3>
+              <p class="mt-1 text-sm text-slate-600">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Customer tracking detail -->
+    <section class="py-20 sm:py-28 bg-slate-50">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <FeatureDetail
+            title="Give your customers a reason to come back"
+            subtitle="RepairKeeper's customer management isn't just a contact list — it's a complete relationship layer that connects every interaction, device, and transaction to the person who walked through your door."
+            badge="Customer Experience"
+            items={[
+              { icon: "link", title: "Device-linked history", description: "Track named assets (e.g. 'Dan's work phone') across multiple repairs. See serial numbers, previous faults, and past costs." },
+              { icon: "credit-card", title: "Balance tracking", description: "See outstanding balances across all invoices for a customer. Know who owes what at a glance." },
+              { icon: "message-square", title: "Internal notes", description: "Add private notes to any customer record — preferences, quirks, things to remember for next time." },
+              { icon: "globe", title: "Source tracking", description: "Record how each customer found you: walk-in, Google, referral, social media. Understand which channels bring business." },
+            ]}
+          >
+            <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-lg">
+              <div class="mb-4 flex items-center gap-2">
+                <span class="text-sm font-semibold text-dark">Customer Overview</span>
+                <span class="rounded-full bg-success/10 px-2 py-0.5 text-xs font-medium text-success">Active</span>
+              </div>
+              <div class="space-y-3">
+                <div class="flex items-center justify-between rounded-lg bg-slate-50 px-4 py-2.5">
+                  <span class="text-sm text-slate-600">Total repairs</span>
+                  <span class="text-sm font-semibold text-dark">14</span>
+                </div>
+                <div class="flex items-center justify-between rounded-lg bg-slate-50 px-4 py-2.5">
+                  <span class="text-sm text-slate-600">Lifetime value</span>
+                  <span class="text-sm font-semibold text-dark">&pound;1,247.50</span>
+                </div>
+                <div class="flex items-center justify-between rounded-lg bg-slate-50 px-4 py-2.5">
+                  <span class="text-sm text-slate-600">Outstanding balance</span>
+                  <span class="text-sm font-semibold text-primary">&pound;0.00</span>
+                </div>
+                <div class="flex items-center justify-between rounded-lg bg-slate-50 px-4 py-2.5">
+                  <span class="text-sm text-slate-600">Source</span>
+                  <span class="text-sm font-semibold text-dark">Google Search</span>
+                </div>
+              </div>
+            </div>
+          </FeatureDetail>
+        </div>
+      </div>
+    </section>
+
+    <!-- Enquiry form / leads -->
+    <section class="py-20 sm:py-28 bg-white">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <FeatureDetail
+            title="Capture leads before they go to a competitor"
+            subtitle="Embed a branded enquiry form on your website. Incoming repair requests land as leads in your dashboard — ready to convert into tickets with one click."
+            badge="Lead Capture"
+            reverse={true}
+            items={[
+              { icon: "send", title: "Public enquiry form", description: "Branded form that captures name, contact details, device type, and fault description. Embed it anywhere on your site." },
+              { icon: "shield", title: "Spam protection built in", description: "Honeypot and time-trap protection block bots without annoying CAPTCHAs for real customers." },
+              { icon: "zap", title: "One-click conversion", description: "Convert a lead directly into a repair ticket with all the details pre-filled. No re-typing." },
+              { icon: "bar-chart", title: "Unactioned leads badge", description: "Dashboard shows how many new leads need attention — nothing slips through the cracks." },
+            ]}
+          >
+            <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-lg">
+              <div class="mb-4 flex items-center gap-2">
+                <span class="text-sm font-semibold text-dark">Leads Pipeline</span>
+              </div>
+              <div class="space-y-2">
+                {[
+                  { status: "New", count: 3, colour: "bg-blue-500" },
+                  { status: "Contacted", count: 5, colour: "bg-amber-500" },
+                  { status: "Converted", count: 12, colour: "bg-emerald-500" },
+                  { status: "Closed", count: 2, colour: "bg-slate-400" },
+                ].map((item) => (
+                  <div class="flex items-center gap-3 rounded-lg bg-slate-50 px-4 py-2.5">
+                    <div class:list={["h-2.5 w-2.5 rounded-full", item.colour]}></div>
+                    <span class="flex-1 text-sm text-slate-600">{item.status}</span>
+                    <span class="text-sm font-semibold text-dark">{item.count}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </FeatureDetail>
+        </div>
+      </div>
+    </section>
+
+    <!-- Related features -->
+    <section class="py-20 sm:py-28 bg-slate-50">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <SectionHeading title="Works alongside everything else" subtitle="Customer management is just one part of RepairKeeper. Here's what else connects to it." />
+        </div>
+        <div class="reveal stagger grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {[
+            { icon: "ticket", title: "Repair ticket management", desc: "Every customer links to their tickets — with multi-device support and intelligent auto-status.", href: "/repair-ticket-software" },
+            { icon: "calendar", title: "Online repair booking", desc: "Let customers book repairs online. Bookings land as leads, ready to convert.", href: "/repair-booking-software" },
+            { icon: "invoice", title: "Quoting & invoicing", desc: "Generate quotes, send invoices, and track payments — all tied to the customer record.", href: "/#features" },
+          ].map((item) => (
+            <a href={item.href} class="card-hover block rounded-xl border border-slate-200 bg-white p-6 transition-colors hover:border-primary/30">
+              <div class="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <Icon name={item.icon} size={20} />
+              </div>
+              <h3 class="font-semibold text-dark">{item.title}</h3>
+              <p class="mt-1 text-sm text-slate-600">{item.desc}</p>
+              <span class="mt-3 inline-flex items-center gap-1 text-sm font-medium text-primary">
+                Learn more <Icon name="arrow-right" size={14} />
+              </span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-20 sm:py-28 bg-white">
+      <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <SectionHeading title="CRM questions" badge="FAQ" />
+        </div>
+        <div class="reveal stagger space-y-3">
+          {[
+            { q: "What is a repair shop CRM?", a: "A repair shop CRM is customer relationship management software designed specifically for repair businesses. It tracks customer details, repair history, communication preferences, and interactions — so you can provide better service and build repeat business." },
+            { q: "How does RepairKeeper handle duplicate customers?", a: "RepairKeeper automatically detects potential duplicate customers using name and phone number matching. When duplicates are found, you can merge them with one click using field-by-field conflict resolution — no data is lost." },
+            { q: "Can customers track their own repairs?", a: "Yes. Every ticket generates a unique tracking link that customers can use to see real-time repair progress, view device statuses, accept quotes, and pay invoices online — all without creating an account." },
+            { q: "Is there a limit on how many customers I can store?", a: "No. All plans — including the Free plan — allow unlimited customer records. There are no per-customer charges." },
+            { q: "Can I import existing customers?", a: "Currently, customers are created as you add tickets. Bulk CSV import for customers is on the roadmap." },
+          ].map((item) => (
+            <details class="group rounded-xl border border-slate-200 bg-white transition-all hover:border-primary/30">
+              <summary class="flex cursor-pointer items-center justify-between px-6 py-4 text-left">
+                <span class="pr-4 text-base font-semibold text-dark group-open:text-primary">{item.q}</span>
+                <svg class="h-5 w-5 shrink-0 text-slate-400 transition-transform group-open:rotate-180 group-open:text-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6" /></svg>
+              </summary>
+              <div class="px-6 pb-4">
+                <p class="text-sm leading-relaxed text-slate-600">{item.a}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="relative overflow-hidden bg-dark py-20 sm:py-28">
+      <div class="pointer-events-none absolute inset-0" aria-hidden="true">
+        <div class="absolute -top-32 -left-32 h-96 w-96 rounded-full bg-primary/20 blur-3xl"></div>
+        <div class="absolute -bottom-32 -right-32 h-96 w-96 rounded-full bg-accent/20 blur-3xl"></div>
+      </div>
+      <div class="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+        <div class="reveal">
+          <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+            Stop losing track of your customers
+          </h2>
+          <p class="mx-auto mt-4 max-w-2xl text-lg text-slate-400">
+            RepairKeeper gives you a complete picture of every customer — their devices, repairs, quotes, invoices, and communication — in one place. Start free today.
+          </p>
+          <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+            <a href="https://app.repairkeeper.co.uk/register" class="inline-flex items-center gap-2 rounded-lg bg-primary px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:bg-primary-light hover:shadow-xl hover:shadow-primary/30">
+              Get Started Free
+              <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </a>
+          </div>
+          <p class="mt-4 text-sm text-slate-500">
+            No credit card required. <a href="/pricing" class="text-primary-light hover:underline">See pricing</a>.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
+</BaseLayout>

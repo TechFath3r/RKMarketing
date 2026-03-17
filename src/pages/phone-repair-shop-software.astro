@@ -1,0 +1,267 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
+import Icon from "@components/Icon.astro";
+import SectionHeading from "@components/SectionHeading.astro";
+import FeatureDetail from "@components/FeatureDetail.astro";
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://repairkeeper.co.uk" },
+    { "@type": "ListItem", position: 2, name: "Phone Repair Shop Software", item: "https://repairkeeper.co.uk/phone-repair-shop-software" },
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "Is RepairKeeper specifically designed for phone repair shops?",
+      acceptedAnswer: { "@type": "Answer", text: "Yes. RepairKeeper is built specifically for repair businesses — phone repair shops, electronics repair centres, and computer service providers. Features like multi-device tickets, parts tracking, device condition photography, and the repair wiki are designed around how phone repair shops actually work." },
+    },
+    {
+      "@type": "Question",
+      name: "Can I track multiple devices on a single ticket?",
+      acceptedAnswer: { "@type": "Answer", text: "Yes. RepairKeeper supports multi-device tickets — a customer can drop off a phone and a tablet on the same ticket, and each device is tracked independently with its own status, parts, and diagnosis." },
+    },
+    {
+      "@type": "Question",
+      name: "Does RepairKeeper work in the UK?",
+      acceptedAnswer: { "@type": "Answer", text: "RepairKeeper is built by a UK developer, priced in GBP, and includes UK-specific features like VAT support and GBP invoicing. It's designed for UK repair businesses from the ground up." },
+    },
+  ],
+};
+---
+
+<BaseLayout
+  title="Phone Repair Shop Software — Built for Mobile Repair Businesses | RepairKeeper"
+  description="Management software built specifically for phone repair shops. Multi-device tickets, parts tracking, customer self-service, and invoicing. Free plan available. UK-based."
+>
+  <Header />
+  <main id="main-content">
+    <!-- Hero -->
+    <section class="hero-gradient relative overflow-hidden pt-28 pb-16 sm:pt-36 sm:pb-20">
+      <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+        <div class="absolute -top-24 -right-24 h-96 w-96 rounded-full bg-primary/5 blur-3xl animate-pulse-glow"></div>
+        <div class="absolute -bottom-24 -left-24 h-96 w-96 rounded-full bg-accent/5 blur-3xl animate-pulse-glow" style="animation-delay: 1.5s;"></div>
+      </div>
+      <div class="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+        <span class="mb-4 inline-block rounded-full bg-primary/10 px-4 py-1.5 text-sm font-semibold text-primary animate-fade-in">
+          For Phone Repair Shops
+        </span>
+        <h1 class="text-4xl font-extrabold tracking-tight text-dark sm:text-5xl animate-fade-up" style="animation-delay: 0.15s;">
+          Software built for <span class="gradient-text">phone repair shops</span>
+        </h1>
+        <p class="mx-auto mt-4 max-w-2xl text-lg text-slate-600 animate-fade-up" style="animation-delay: 0.3s;">
+          Screen replacements, battery swaps, water damage, board-level repairs — RepairKeeper handles the full workflow from intake to collection. Built by someone who understands the trade.
+        </p>
+        <div class="mt-8 flex flex-wrap items-center justify-center gap-4 animate-fade-up" style="animation-delay: 0.45s;">
+          <a href="https://app.repairkeeper.co.uk/register" class="inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 text-base font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:bg-primary-dark hover:shadow-xl hover:shadow-primary/30">
+            Get Started Free
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+          </a>
+          <a href="/pricing" class="inline-flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-6 py-3 text-base font-semibold text-slate-700 transition-all hover:border-primary/30 hover:text-primary">
+            View Pricing
+          </a>
+        </div>
+        <p class="mt-4 text-sm text-slate-500 animate-fade-up" style="animation-delay: 0.55s;">Free plan with 25 tickets/month. No credit card required.</p>
+      </div>
+    </section>
+
+    <!-- Why phone repair shops need this -->
+    <section class="py-20 sm:py-28 bg-white">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <SectionHeading
+            title="Everything a phone repair shop needs"
+            subtitle="From the moment a customer walks in with a cracked screen to the moment they collect their repaired device — RepairKeeper handles every step."
+          />
+        </div>
+        <div class="reveal stagger grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          {[
+            { icon: "ticket", title: "Multi-device tickets", desc: "Customer drops off a phone and a tablet? One ticket, two devices. Each tracked independently with its own status and parts." },
+            { icon: "zap", title: "Auto-status updates", desc: "Order a screen? The device moves to 'Awaiting Parts' automatically. Parts arrive? It advances again. No manual status changes." },
+            { icon: "inventory", title: "Screen & parts stock", desc: "Track LCD screens, batteries, charging ports, and flex cables across locations. Know what's in stock before you promise a turnaround." },
+            { icon: "camera", title: "Condition photos", desc: "Photograph devices at intake to record existing damage. Protects you and sets expectations with the customer." },
+            { icon: "tracking", title: "Customer tracking page", desc: "Customers get a link to follow their repair in real time. Fewer 'is my phone ready?' calls." },
+            { icon: "invoice", title: "Quotes & invoices", desc: "Quote a screen replacement, get approval, then convert to an invoice. Customers can pay online via Stripe." },
+            { icon: "tag", title: "Label printing", desc: "Print adhesive labels with QR codes, ticket reference, device info, and fault description. Stick it on the device bag." },
+            { icon: "wiki", title: "Repair knowledge base", desc: "Build a wiki of devices, parts, common faults, and repair guides. Share knowledge across your team or the RepairKeeper community." },
+            { icon: "shield", title: "Digital signatures", desc: "Capture intake and collection signatures on screen. A clear record of what was agreed and when." },
+          ].map((item) => (
+            <div class="card-hover rounded-xl border border-slate-200 bg-white p-6">
+              <div class="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <Icon name={item.icon} size={20} />
+              </div>
+              <h3 class="font-semibold text-dark">{item.title}</h3>
+              <p class="mt-1 text-sm text-slate-600">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Multi-device + auto-status detail -->
+    <section class="py-20 sm:py-28 bg-slate-50">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <FeatureDetail
+            title="Multi-device tickets that manage themselves"
+            subtitle="Most repair software treats a ticket as one device. RepairKeeper lets you add multiple devices to a single ticket — each with its own status, diagnosis, parts, and cost. The ticket status always reflects the most behind device, automatically."
+            badge="Key Differentiator"
+            items={[
+              { icon: "smartphone", title: "Independent device tracking", description: "A phone needing a screen and a tablet needing a battery? Each device has its own status pipeline and parts list." },
+              { icon: "zap", title: "Intelligent auto-status", description: "When you mark a part as ordered, the device moves to 'Awaiting Parts'. When parts arrive and are allocated, it advances automatically." },
+              { icon: "clipboard-list", title: "Diagnosis per device", description: "Run diagnostics on each device separately. Share findings with the customer and let them approve or decline repairs." },
+              { icon: "send", title: "Subcontractor handoff", description: "Need to send a board-level repair to a specialist? Track subcontractor details, courier info, and return status per device." },
+            ]}
+          >
+            <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-lg">
+              <div class="mb-4 flex items-center justify-between">
+                <span class="text-sm font-semibold text-dark">Ticket RK-0047</span>
+                <span class="rounded-full bg-amber-100 px-2.5 py-0.5 text-xs font-medium text-amber-700">In Progress</span>
+              </div>
+              <div class="space-y-3">
+                <div class="rounded-lg border border-slate-100 p-3">
+                  <div class="flex items-center justify-between">
+                    <span class="text-sm font-medium text-dark">iPhone 14 Pro</span>
+                    <span class="rounded-full bg-emerald-100 px-2 py-0.5 text-xs font-medium text-emerald-700">In Repair</span>
+                  </div>
+                  <p class="mt-1 text-xs text-slate-500">Screen replacement — parts allocated</p>
+                </div>
+                <div class="rounded-lg border border-slate-100 p-3">
+                  <div class="flex items-center justify-between">
+                    <span class="text-sm font-medium text-dark">iPad Air 5th Gen</span>
+                    <span class="rounded-full bg-blue-100 px-2 py-0.5 text-xs font-medium text-blue-700">Awaiting Parts</span>
+                  </div>
+                  <p class="mt-1 text-xs text-slate-500">Battery replacement — part on order</p>
+                </div>
+              </div>
+              <p class="mt-3 text-xs text-slate-400">Ticket status reflects the most behind device</p>
+            </div>
+          </FeatureDetail>
+        </div>
+      </div>
+    </section>
+
+    <!-- UK-specific section -->
+    <section class="py-20 sm:py-28 bg-white">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <div class="mx-auto max-w-3xl text-center">
+            <span class="mb-4 inline-block rounded-full bg-primary/10 px-4 py-1.5 text-sm font-semibold text-primary">Built in the UK</span>
+            <h2 class="text-3xl font-bold tracking-tight text-dark sm:text-4xl">
+              Designed for UK phone repair shops
+            </h2>
+            <p class="mt-4 text-lg text-slate-600">
+              RepairKeeper is built by a UK developer, priced in GBP, and includes VAT support out of the box. Most repair shop software is US-focused and bolted onto generic helpdesk platforms. RepairKeeper is purpose-built for the way UK repair shops work — from trade-in margin scheme support to customer-facing tracking pages that respect your brand.
+            </p>
+          </div>
+        </div>
+        <div class="reveal stagger mt-12 grid gap-6 sm:grid-cols-3">
+          {[
+            { icon: "pound", title: "GBP pricing & invoicing", desc: "Prices, invoices, and quotes all in pounds sterling. VAT registration and configurable rates included." },
+            { icon: "globe", title: "UK-hosted SaaS", desc: "Web-based — works on any device. No US-centric assumptions or irrelevant features cluttering your workflow." },
+            { icon: "shield", title: "GDPR-aware", desc: "Customer data anonymisation, per-customer email preferences, and audit logging to help you stay compliant." },
+          ].map((item) => (
+            <div class="card-hover rounded-xl border border-slate-200 bg-white p-6 text-center">
+              <div class="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <Icon name={item.icon} size={20} />
+              </div>
+              <h3 class="font-semibold text-dark">{item.title}</h3>
+              <p class="mt-1 text-sm text-slate-600">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Related pages -->
+    <section class="py-20 sm:py-28 bg-slate-50">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <SectionHeading title="Explore more features" />
+        </div>
+        <div class="reveal stagger grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {[
+            { icon: "ticket", title: "Repair ticket software", desc: "Deep dive into RepairKeeper's ticket management system — statuses, signatures, scheduling, and more.", href: "/repair-ticket-software" },
+            { icon: "customers", title: "Repair shop CRM", desc: "Manage customers, track repair history, detect duplicates, and automate notifications.", href: "/repair-shop-crm" },
+            { icon: "calendar", title: "Repair booking software", desc: "Let customers book repairs online with deposit payments and availability controls.", href: "/repair-booking-software" },
+          ].map((item) => (
+            <a href={item.href} class="card-hover block rounded-xl border border-slate-200 bg-white p-6 transition-colors hover:border-primary/30">
+              <div class="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <Icon name={item.icon} size={20} />
+              </div>
+              <h3 class="font-semibold text-dark">{item.title}</h3>
+              <p class="mt-1 text-sm text-slate-600">{item.desc}</p>
+              <span class="mt-3 inline-flex items-center gap-1 text-sm font-medium text-primary">Learn more <Icon name="arrow-right" size={14} /></span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-20 sm:py-28 bg-white">
+      <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <SectionHeading title="Phone repair shop questions" badge="FAQ" />
+        </div>
+        <div class="reveal stagger space-y-3">
+          {[
+            { q: "Is RepairKeeper specifically designed for phone repair shops?", a: "Yes. RepairKeeper is built specifically for repair businesses — phone repair shops, electronics repair centres, and computer service providers. Features like multi-device tickets, parts tracking, device condition photography, and the repair wiki are designed around how phone repair shops actually work." },
+            { q: "Can I track multiple devices on a single ticket?", a: "Yes. RepairKeeper supports multi-device tickets — a customer can drop off a phone and a tablet on the same ticket, and each device is tracked independently with its own status, parts, and diagnosis." },
+            { q: "Does RepairKeeper work in the UK?", a: "RepairKeeper is built by a UK developer, priced in GBP, and includes UK-specific features like VAT support and GBP invoicing. It's designed for UK repair businesses from the ground up." },
+            { q: "Can my customers see when their phone is ready?", a: "Yes. Every ticket generates a unique tracking link. Customers can check their device status, see public notes, and get email notifications when statuses change — so they know exactly when to collect." },
+            { q: "Is there a free plan for small phone repair shops?", a: "Yes. The Free plan includes 25 tickets per month with core ticketing, invoicing, and customer management. It's not a trial — you can use it indefinitely." },
+          ].map((item) => (
+            <details class="group rounded-xl border border-slate-200 bg-white transition-all hover:border-primary/30">
+              <summary class="flex cursor-pointer items-center justify-between px-6 py-4 text-left">
+                <span class="pr-4 text-base font-semibold text-dark group-open:text-primary">{item.q}</span>
+                <svg class="h-5 w-5 shrink-0 text-slate-400 transition-transform group-open:rotate-180 group-open:text-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6" /></svg>
+              </summary>
+              <div class="px-6 pb-4">
+                <p class="text-sm leading-relaxed text-slate-600">{item.a}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="relative overflow-hidden bg-dark py-20 sm:py-28">
+      <div class="pointer-events-none absolute inset-0" aria-hidden="true">
+        <div class="absolute -top-32 -left-32 h-96 w-96 rounded-full bg-primary/20 blur-3xl"></div>
+        <div class="absolute -bottom-32 -right-32 h-96 w-96 rounded-full bg-accent/20 blur-3xl"></div>
+      </div>
+      <div class="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+        <div class="reveal">
+          <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+            Ready to run your phone repair shop properly?
+          </h2>
+          <p class="mx-auto mt-4 max-w-2xl text-lg text-slate-400">
+            Join phone repair shops across the UK already using RepairKeeper to manage tickets, track parts, and serve customers. Start free — upgrade when you're ready.
+          </p>
+          <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+            <a href="https://app.repairkeeper.co.uk/register" class="inline-flex items-center gap-2 rounded-lg bg-primary px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:bg-primary-light hover:shadow-xl hover:shadow-primary/30">
+              Get Started Free
+              <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </a>
+          </div>
+          <p class="mt-4 text-sm text-slate-500">
+            No credit card required. <a href="/pricing" class="text-primary-light hover:underline">See pricing</a>.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
+</BaseLayout>

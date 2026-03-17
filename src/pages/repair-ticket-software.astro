@@ -1,0 +1,264 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
+import Icon from "@components/Icon.astro";
+import SectionHeading from "@components/SectionHeading.astro";
+import FeatureDetail from "@components/FeatureDetail.astro";
+import StatusPipeline from "@components/StatusPipeline.astro";
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://repairkeeper.co.uk" },
+    { "@type": "ListItem", position: 2, name: "Repair Ticket Software", item: "https://repairkeeper.co.uk/repair-ticket-software" },
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "How does RepairKeeper's auto-status system work?",
+      acceptedAnswer: { "@type": "Answer", text: "RepairKeeper automatically advances device statuses based on your parts workflow. When you mark a part as ordered, the device moves to 'Awaiting Parts'. When parts arrive and are allocated, it moves forward again. The ticket status always reflects the most behind device — zero manual updates needed." },
+    },
+    {
+      "@type": "Question",
+      name: "Can I customise the ticket statuses?",
+      acceptedAnswer: { "@type": "Answer", text: "Yes. RepairKeeper comes with 9 built-in statuses, but you can create your own with custom names, colours, ordering, and overdue timing alerts. The auto-status engine works with your custom statuses too." },
+    },
+    {
+      "@type": "Question",
+      name: "What happens if I accidentally delete a ticket?",
+      acceptedAnswer: { "@type": "Answer", text: "RepairKeeper uses soft delete with 30-day recovery. Deleted tickets are moved to a recycle bin and can be restored within 30 days. Nothing is permanently lost by accident." },
+    },
+  ],
+};
+---
+
+<BaseLayout
+  title="Repair Ticket Software — Track Jobs from Intake to Collection | RepairKeeper"
+  description="Repair ticket management software with multi-device support, intelligent auto-status, digital signatures, and customer tracking. Free plan available."
+>
+  <Header />
+  <main id="main-content">
+    <!-- Hero -->
+    <section class="hero-gradient relative overflow-hidden pt-28 pb-16 sm:pt-36 sm:pb-20">
+      <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+        <div class="absolute -top-24 -right-24 h-96 w-96 rounded-full bg-primary/5 blur-3xl animate-pulse-glow"></div>
+        <div class="absolute -bottom-24 -left-24 h-96 w-96 rounded-full bg-accent/5 blur-3xl animate-pulse-glow" style="animation-delay: 1.5s;"></div>
+      </div>
+      <div class="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+        <span class="mb-4 inline-block rounded-full bg-primary/10 px-4 py-1.5 text-sm font-semibold text-primary animate-fade-in">
+          Ticket Management
+        </span>
+        <h1 class="text-4xl font-extrabold tracking-tight text-dark sm:text-5xl animate-fade-up" style="animation-delay: 0.15s;">
+          Repair ticket software that <span class="gradient-text">handles the complexity</span>
+        </h1>
+        <p class="mx-auto mt-4 max-w-2xl text-lg text-slate-600 animate-fade-up" style="animation-delay: 0.3s;">
+          Multi-device tickets, intelligent auto-status, digital signatures, scheduling, and customer self-service — in a system designed for how repair shops actually work.
+        </p>
+        <div class="mt-8 flex flex-wrap items-center justify-center gap-4 animate-fade-up" style="animation-delay: 0.45s;">
+          <a href="https://app.repairkeeper.co.uk/register" class="inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 text-base font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:bg-primary-dark hover:shadow-xl hover:shadow-primary/30">
+            Get Started Free
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+          </a>
+          <a href="/pricing" class="inline-flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-6 py-3 text-base font-semibold text-slate-700 transition-all hover:border-primary/30 hover:text-primary">
+            View Pricing
+          </a>
+        </div>
+        <p class="mt-4 text-sm text-slate-500 animate-fade-up" style="animation-delay: 0.55s;">Free plan with 25 tickets/month. No credit card required.</p>
+      </div>
+    </section>
+
+    <!-- Auto-status feature detail -->
+    <section class="py-20 sm:py-28 bg-white">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <FeatureDetail
+            title="Statuses that update themselves"
+            subtitle="Most ticket systems need you to manually drag tickets between columns. RepairKeeper's auto-status engine watches your parts workflow and moves devices through statuses automatically — so your team can focus on repairs, not admin."
+            badge="Intelligent Auto-Status"
+            items={[
+              { icon: "zap", title: "Parts-driven automation", description: "Mark a part as ordered → device moves to 'Awaiting Parts'. Allocate arrived parts → device advances to 'In Repair'. Zero clicks." },
+              { icon: "ticket", title: "Ticket-level rollup", description: "The ticket status always reflects the most behind device. If one device is ready but another is waiting for parts, the ticket shows 'Awaiting Parts'." },
+              { icon: "shield", title: "9 built-in statuses", description: "Awaiting Drop Off → Booked In → Diagnosing → Parts Need Ordering → Awaiting Parts → Parts Arrived → In Repair → Ready for Collection → Collected." },
+              { icon: "tag", title: "Fully customisable", description: "Create your own statuses with custom names, colours, ordering, and overdue timing alerts. The auto-status engine works with custom statuses too." },
+            ]}
+          >
+            <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-lg">
+              <div class="mb-4 flex items-center gap-2">
+                <span class="text-sm font-semibold text-dark">Auto-Status Pipeline</span>
+                <span class="rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">Automatic</span>
+              </div>
+              <StatusPipeline />
+            </div>
+          </FeatureDetail>
+        </div>
+      </div>
+    </section>
+
+    <!-- Multi-device -->
+    <section class="py-20 sm:py-28 bg-slate-50">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <FeatureDetail
+            title="One ticket, multiple devices"
+            subtitle="A customer drops off a phone with a cracked screen and a tablet with a dead battery. In most systems, you'd create two separate tickets. In RepairKeeper, it's one ticket with two devices — each tracked independently."
+            badge="Multi-Device Tickets"
+            reverse={true}
+            items={[
+              { icon: "smartphone", title: "Independent device tracking", description: "Each device has its own status, diagnosis, parts list, cost breakdown, and timeline. Nothing bleeds across." },
+              { icon: "clipboard-list", title: "Per-device diagnosis", description: "Run diagnostics on each device separately. Share findings with the customer and get approval before starting work." },
+              { icon: "send", title: "Subcontractor tracking", description: "Send devices to specialists with courier and tracking details. Track returns and action taken notes." },
+              { icon: "camera", title: "Device photos & signatures", description: "Photograph condition at intake. Capture digital signatures for drop-off and collection. Record passcodes and accessories." },
+            ]}
+          >
+            <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-lg">
+              <div class="mb-4 flex items-center justify-between">
+                <span class="text-sm font-semibold text-dark">Ticket RK-0112</span>
+                <span class="rounded-full bg-amber-100 px-2.5 py-0.5 text-xs font-medium text-amber-700">2 devices</span>
+              </div>
+              <div class="space-y-3">
+                <div class="rounded-lg border border-slate-100 p-3">
+                  <div class="flex items-center justify-between">
+                    <span class="text-sm font-medium text-dark">Samsung Galaxy S24</span>
+                    <span class="rounded-full bg-emerald-100 px-2 py-0.5 text-xs font-medium text-emerald-700">Ready for Collection</span>
+                  </div>
+                  <p class="mt-1 text-xs text-slate-500">Screen replacement — completed</p>
+                  <p class="mt-0.5 text-xs font-medium text-dark">&pound;89.99</p>
+                </div>
+                <div class="rounded-lg border border-slate-100 p-3">
+                  <div class="flex items-center justify-between">
+                    <span class="text-sm font-medium text-dark">MacBook Air M2</span>
+                    <span class="rounded-full bg-purple-100 px-2 py-0.5 text-xs font-medium text-purple-700">Diagnosing</span>
+                  </div>
+                  <p class="mt-1 text-xs text-slate-500">No power — running diagnostics</p>
+                  <p class="mt-0.5 text-xs font-medium text-slate-400">Pending quote</p>
+                </div>
+              </div>
+            </div>
+          </FeatureDetail>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ticket lifecycle features -->
+    <section class="py-20 sm:py-28 bg-white">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <SectionHeading
+            title="The full ticket lifecycle"
+            subtitle="Everything you need from the moment a customer enquires to the moment they collect."
+          />
+        </div>
+        <div class="reveal stagger grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {[
+            { icon: "file-text", title: "Rich ticket details", desc: "Customer info, device details, fault descriptions, accessories, passcodes, condition notes — capture everything at intake." },
+            { icon: "calendar", title: "Scheduling & deadlines", desc: "Set drop-off dates, collection dates, and repair-due-by deadlines. View everything in a scheduling calendar." },
+            { icon: "users", title: "Assign to technicians", desc: "Assign tickets to specific team members. See who's working on what. Track workload across the team." },
+            { icon: "tracking", title: "Custody tracking", desc: "Track where each device is: With Customer, In Shop, or Collected. Always know what's on your bench." },
+            { icon: "lock", title: "Soft delete & recovery", desc: "Accidentally delete a ticket? It sits in the recycle bin for 30 days. Restore with one click." },
+            { icon: "tag", title: "Custom ticket prefix", desc: "Configure your own ticket reference format — RK-0001, SHOP-0001, or whatever fits your brand." },
+            { icon: "mail", title: "Automated notifications", desc: "Customers get emails when tickets are created and statuses change. Configurable per event type." },
+            { icon: "bar-chart", title: "Stale & urgent alerts", desc: "Configure how many days before a status is flagged as overdue. Never let a repair sit forgotten." },
+          ].map((item) => (
+            <div class="card-hover rounded-xl border border-slate-200 bg-white p-5">
+              <div class="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <Icon name={item.icon} size={20} />
+              </div>
+              <h3 class="text-sm font-semibold text-dark">{item.title}</h3>
+              <p class="mt-1 text-xs text-slate-600">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Related features -->
+    <section class="py-20 sm:py-28 bg-slate-50">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <SectionHeading title="Tickets connect to everything" subtitle="Ticketing is the core — but it works alongside your whole repair workflow." />
+        </div>
+        <div class="reveal stagger grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {[
+            { icon: "customers", title: "Customer management & CRM", desc: "Every ticket links to a customer profile with full history, duplicate detection, and balance tracking.", href: "/repair-shop-crm" },
+            { icon: "inventory", title: "Inventory & parts", desc: "Parts added to a ticket automatically check and decrement stock. One-click allocation when stock arrives.", href: "/#features" },
+            { icon: "calendar", title: "Online booking", desc: "Customers book online, bookings land as leads, and leads convert to tickets with one click.", href: "/repair-booking-software" },
+          ].map((item) => (
+            <a href={item.href} class="card-hover block rounded-xl border border-slate-200 bg-white p-6 transition-colors hover:border-primary/30">
+              <div class="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <Icon name={item.icon} size={20} />
+              </div>
+              <h3 class="font-semibold text-dark">{item.title}</h3>
+              <p class="mt-1 text-sm text-slate-600">{item.desc}</p>
+              <span class="mt-3 inline-flex items-center gap-1 text-sm font-medium text-primary">Learn more <Icon name="arrow-right" size={14} /></span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-20 sm:py-28 bg-white">
+      <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <SectionHeading title="Ticket software questions" badge="FAQ" />
+        </div>
+        <div class="reveal stagger space-y-3">
+          {[
+            { q: "How does RepairKeeper's auto-status system work?", a: "RepairKeeper automatically advances device statuses based on your parts workflow. When you mark a part as ordered, the device moves to 'Awaiting Parts'. When parts arrive and are allocated, it moves forward again. The ticket status always reflects the most behind device — zero manual updates needed." },
+            { q: "Can I customise the ticket statuses?", a: "Yes. RepairKeeper comes with 9 built-in statuses, but you can create your own with custom names, colours, ordering, and overdue timing alerts. The auto-status engine works with your custom statuses too." },
+            { q: "What happens if I accidentally delete a ticket?", a: "RepairKeeper uses soft delete with 30-day recovery. Deleted tickets are moved to a recycle bin and can be restored within 30 days. Nothing is permanently lost by accident." },
+            { q: "Can I assign tickets to specific technicians?", a: "Yes. You can assign tickets to team members and see who's working on what. This requires the Standard plan or above which includes team management features." },
+            { q: "How many tickets can I create per month?", a: "The Free plan includes 25 tickets per month. Lite includes 150. Standard and Pro plans have unlimited tickets. See the pricing page for full details." },
+          ].map((item) => (
+            <details class="group rounded-xl border border-slate-200 bg-white transition-all hover:border-primary/30">
+              <summary class="flex cursor-pointer items-center justify-between px-6 py-4 text-left">
+                <span class="pr-4 text-base font-semibold text-dark group-open:text-primary">{item.q}</span>
+                <svg class="h-5 w-5 shrink-0 text-slate-400 transition-transform group-open:rotate-180 group-open:text-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6" /></svg>
+              </summary>
+              <div class="px-6 pb-4">
+                <p class="text-sm leading-relaxed text-slate-600">{item.a}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="relative overflow-hidden bg-dark py-20 sm:py-28">
+      <div class="pointer-events-none absolute inset-0" aria-hidden="true">
+        <div class="absolute -top-32 -left-32 h-96 w-96 rounded-full bg-primary/20 blur-3xl"></div>
+        <div class="absolute -bottom-32 -right-32 h-96 w-96 rounded-full bg-accent/20 blur-3xl"></div>
+      </div>
+      <div class="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+        <div class="reveal">
+          <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+            Replace the spreadsheet with a real ticket system
+          </h2>
+          <p class="mx-auto mt-4 max-w-2xl text-lg text-slate-400">
+            RepairKeeper gives you multi-device tickets, auto-status, digital signatures, scheduling, and customer self-service — all in one system. Start free today.
+          </p>
+          <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+            <a href="https://app.repairkeeper.co.uk/register" class="inline-flex items-center gap-2 rounded-lg bg-primary px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:bg-primary-light hover:shadow-xl hover:shadow-primary/30">
+              Get Started Free
+              <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </a>
+          </div>
+          <p class="mt-4 text-sm text-slate-500">
+            No credit card required. <a href="/pricing" class="text-primary-light hover:underline">See pricing</a>.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
+</BaseLayout>
