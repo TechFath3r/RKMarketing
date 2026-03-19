@@ -126,7 +126,7 @@ export const plans: PricingPlan[] = [
       { text: "Device photos on tickets", included: true },
       { text: "Branding removal", included: true },
       { text: "Note file attachments", included: false },
-      { text: "Webhooks & integrations", included: false },
+      { text: "Webhooks & integrations", included: true },
       { text: "Multiple locations / branches", included: false },
     ],
   },
