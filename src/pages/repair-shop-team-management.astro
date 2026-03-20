@@ -1,0 +1,368 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
+import Icon from "@components/Icon.astro";
+import SectionHeading from "@components/SectionHeading.astro";
+import FeatureDetail from "@components/FeatureDetail.astro";
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://repairkeeper.co.uk" },
+    { "@type": "ListItem", position: 2, name: "Team Management & Permissions", item: "https://repairkeeper.co.uk/repair-shop-team-management" },
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "How many team members can I add to RepairKeeper?",
+      acceptedAnswer: { "@type": "Answer", text: "The Standard plan includes up to 5 team members and the Pro plan includes up to 15. The Free and Lite plans are single-user. You can invite new members by email with a pre-assigned role at any time." },
+    },
+    {
+      "@type": "Question",
+      name: "What roles are available in RepairKeeper?",
+      acceptedAnswer: { "@type": "Answer", text: "RepairKeeper has three roles: Owner, Admin, and Technician. The Owner always has full access and their permissions cannot be modified. Admins and Technicians can have their permissions customised using 11 granular permission flags." },
+    },
+    {
+      "@type": "Question",
+      name: "Can I control exactly what each team member can do?",
+      acceptedAnswer: { "@type": "Answer", text: "Yes. RepairKeeper offers 11 granular permission flags that can be toggled independently per team member. These cover managing settings, statuses, team, customers, inventory, creating and finalising invoices, unlocking invoices, editing the wiki, deleting tickets, and removing members." },
+    },
+    {
+      "@type": "Question",
+      name: "Does RepairKeeper have an audit log?",
+      acceptedAnswer: { "@type": "Answer", text: "Yes. Every create, update, and delete action is recorded in a full audit log with before/after diffs, user attribution, and timestamps. This gives you complete accountability and traceability across your team." },
+    },
+    {
+      "@type": "Question",
+      name: "How do I invite new team members?",
+      acceptedAnswer: { "@type": "Answer", text: "You can invite team members by email directly from RepairKeeper. Each invitation includes a pre-assigned role (Admin or Technician), so new members have the right access from the moment they accept." },
+    },
+  ],
+};
+---
+
+<BaseLayout
+  title="Team Management & Permissions for Repair Shops | RepairKeeper"
+  description="Manage your repair shop team with roles, granular permissions, email invitations, and a full audit trail. Standard plan includes 5 members."
+>
+  <Header />
+  <main id="main-content">
+    <!-- Hero -->
+    <section class="hero-gradient relative overflow-hidden pt-28 pb-16 sm:pt-36 sm:pb-20">
+      <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+        <div class="absolute -top-24 -right-24 h-96 w-96 rounded-full bg-primary/5 blur-3xl animate-pulse-glow"></div>
+        <div class="absolute -bottom-24 -left-24 h-96 w-96 rounded-full bg-accent/5 blur-3xl animate-pulse-glow" style="animation-delay: 1.5s;"></div>
+      </div>
+      <div class="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+        <span class="mb-4 inline-block rounded-full bg-primary/10 px-4 py-1.5 text-sm font-semibold text-primary animate-fade-in">
+          Team Management
+        </span>
+        <h1 class="text-4xl font-extrabold tracking-tight text-dark sm:text-5xl animate-fade-up" style="animation-delay: 0.15s;">
+          Repair shop team management with <span class="gradient-text">granular permissions</span>
+        </h1>
+        <p class="mx-auto mt-4 max-w-2xl text-lg text-slate-600 animate-fade-up" style="animation-delay: 0.3s;">
+          Three roles, 11 permission flags, email invitations, and a full audit trail — control exactly who can do what in your repair shop, with complete accountability.
+        </p>
+        <div class="mt-8 flex flex-wrap items-center justify-center gap-4 animate-fade-up" style="animation-delay: 0.45s;">
+          <a href="https://app.repairkeeper.co.uk/register" class="inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 text-base font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:bg-primary-dark hover:shadow-xl hover:shadow-primary/30">
+            Get Started Free
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+          </a>
+          <a href="/pricing" class="inline-flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-6 py-3 text-base font-semibold text-slate-700 transition-all hover:border-primary/30 hover:text-primary">
+            View Pricing
+          </a>
+        </div>
+        <p class="mt-4 text-sm text-slate-500 animate-fade-up" style="animation-delay: 0.55s;">Standard plan includes 5 team members. No credit card required.</p>
+      </div>
+    </section>
+
+    <!-- Roles & Permissions feature detail -->
+    <section class="py-20 sm:py-28 bg-white">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <FeatureDetail
+            title="Roles and permissions that fit your shop"
+            subtitle="Not everyone needs access to everything. RepairKeeper gives you three roles — Owner, Admin, and Technician — with 11 granular permission flags you can toggle per team member. No more 'admin or nothing' access control."
+            badge="Roles & RBAC"
+            items={[
+              { icon: "shield", title: "Three distinct roles", description: "Owner has permanent full access. Admins handle day-to-day management. Technicians focus on repairs. Each role is a starting point you can customise." },
+              { icon: "lock", title: "11 permission flags", description: "Toggle permissions independently: manage settings, statuses, team, customers, inventory, create/finalise/unlock invoices, edit wiki, delete tickets, remove members." },
+              { icon: "users", title: "Owner permissions locked", description: "The shop owner always has full access — their permissions cannot be downgraded or accidentally changed by anyone." },
+              { icon: "zap", title: "Per-member customisation", description: "Two admins can have completely different permissions. Give your senior tech invoice access without granting settings control." },
+            ]}
+          >
+            <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-lg">
+              <div class="mb-4 flex items-center gap-2">
+                <span class="text-sm font-semibold text-dark">Team Permissions</span>
+                <span class="rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">RBAC</span>
+              </div>
+              <div class="space-y-3">
+                <div class="rounded-lg border border-slate-100 p-3">
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                      <div class="flex h-7 w-7 items-center justify-center rounded-full bg-amber-100 text-xs font-bold text-amber-700">DM</div>
+                      <span class="text-sm font-medium text-dark">Dan Mitchell</span>
+                    </div>
+                    <span class="rounded-full bg-amber-100 px-2 py-0.5 text-xs font-medium text-amber-700">Owner</span>
+                  </div>
+                  <p class="mt-1 text-xs text-slate-500">Full access &middot; All 11 permissions &middot; Cannot be modified</p>
+                </div>
+                <div class="rounded-lg border border-slate-100 p-3">
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                      <div class="flex h-7 w-7 items-center justify-center rounded-full bg-blue-100 text-xs font-bold text-blue-700">SJ</div>
+                      <span class="text-sm font-medium text-dark">Sarah Jones</span>
+                    </div>
+                    <span class="rounded-full bg-blue-100 px-2 py-0.5 text-xs font-medium text-blue-700">Admin</span>
+                  </div>
+                  <p class="mt-1 text-xs text-slate-500">9 of 11 permissions &middot; No delete tickets &middot; No remove members</p>
+                </div>
+                <div class="rounded-lg border border-slate-100 p-3">
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                      <div class="flex h-7 w-7 items-center justify-center rounded-full bg-emerald-100 text-xs font-bold text-emerald-700">TK</div>
+                      <span class="text-sm font-medium text-dark">Tom Khan</span>
+                    </div>
+                    <span class="rounded-full bg-emerald-100 px-2 py-0.5 text-xs font-medium text-emerald-700">Technician</span>
+                  </div>
+                  <p class="mt-1 text-xs text-slate-500">4 of 11 permissions &middot; Customers &middot; Inventory &middot; Wiki &middot; Create invoices</p>
+                </div>
+              </div>
+            </div>
+          </FeatureDetail>
+        </div>
+      </div>
+    </section>
+
+    <!-- Audit log feature detail -->
+    <section class="py-20 sm:py-28 bg-slate-50">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <FeatureDetail
+            title="Full audit trail for every action"
+            subtitle="Every create, update, and delete in your shop is logged with who did it, when they did it, and exactly what changed. Before/after diffs give you complete visibility — perfect for accountability, dispute resolution, and compliance."
+            badge="Audit Log"
+            reverse={true}
+            items={[
+              { icon: "clipboard-list", title: "Before/after diffs", description: "See exactly what changed on every update. Field-level diffs show the old value and the new value side by side." },
+              { icon: "users", title: "User attribution", description: "Every log entry records which team member made the change. No more 'who changed this?' conversations." },
+              { icon: "calendar", title: "Timestamped entries", description: "Precise timestamps on every action. Build a complete timeline of everything that's happened in your shop." },
+              { icon: "shield", title: "Tamper-proof records", description: "Audit logs are append-only and cannot be edited or deleted by any team member — including the owner." },
+            ]}
+          >
+            <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-lg">
+              <div class="mb-4 flex items-center gap-2">
+                <span class="text-sm font-semibold text-dark">Audit Log</span>
+                <span class="rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">Live</span>
+              </div>
+              <div class="space-y-3">
+                <div class="rounded-lg border border-slate-100 p-3">
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs font-medium text-dark">Invoice #INV-0047 finalised</span>
+                    <span class="text-xs text-slate-400">2 mins ago</span>
+                  </div>
+                  <p class="mt-1 text-xs text-slate-500">By Sarah Jones &middot; Status: Draft &rarr; Finalised</p>
+                </div>
+                <div class="rounded-lg border border-slate-100 p-3">
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs font-medium text-dark">Ticket RK-0112 updated</span>
+                    <span class="text-xs text-slate-400">15 mins ago</span>
+                  </div>
+                  <p class="mt-1 text-xs text-slate-500">By Tom Khan &middot; Device status: Diagnosing &rarr; Parts Need Ordering</p>
+                </div>
+                <div class="rounded-lg border border-slate-100 p-3">
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs font-medium text-dark">Customer merged</span>
+                    <span class="text-xs text-slate-400">1 hour ago</span>
+                  </div>
+                  <p class="mt-1 text-xs text-slate-500">By Dan Mitchell &middot; "John Smith" merged into "John P. Smith"</p>
+                </div>
+                <div class="rounded-lg border border-slate-100 p-3">
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs font-medium text-dark">Team member invited</span>
+                    <span class="text-xs text-slate-400">3 hours ago</span>
+                  </div>
+                  <p class="mt-1 text-xs text-slate-500">By Dan Mitchell &middot; lisa@example.com &middot; Role: Technician</p>
+                </div>
+              </div>
+            </div>
+          </FeatureDetail>
+        </div>
+      </div>
+    </section>
+
+    <!-- Invitations feature detail -->
+    <section class="py-20 sm:py-28 bg-white">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <FeatureDetail
+            title="Invite your team in seconds"
+            subtitle="Add new team members by sending an email invitation with a pre-assigned role. They accept the invite, set up their account, and start working immediately — with exactly the right permissions from day one."
+            badge="Email Invitations"
+            items={[
+              { icon: "mail", title: "One-click email invites", description: "Enter an email address, choose a role, and send. The invite link handles the rest — no manual account setup needed." },
+              { icon: "shield", title: "Pre-assigned roles", description: "Each invitation includes a role (Admin or Technician). New members get the right access level the moment they join." },
+              { icon: "lock", title: "Secure invite links", description: "Invitation links are single-use and time-limited. They can't be shared or reused by unauthorised people." },
+              { icon: "users", title: "Scale as you grow", description: "Standard plan includes 5 team members. Pro plan supports up to 15. Add new technicians as your business grows." },
+            ]}
+          >
+            <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-lg">
+              <div class="mb-4 flex items-center gap-2">
+                <span class="text-sm font-semibold text-dark">Team Invitations</span>
+                <span class="rounded-full bg-emerald-100 px-2 py-0.5 text-xs font-medium text-emerald-700">Active</span>
+              </div>
+              <div class="space-y-3">
+                <div class="rounded-lg border border-emerald-100 bg-emerald-50/50 p-3">
+                  <div class="flex items-center justify-between">
+                    <span class="text-sm font-medium text-dark">sarah@repairshop.co.uk</span>
+                    <span class="rounded-full bg-emerald-100 px-2 py-0.5 text-xs font-medium text-emerald-700">Accepted</span>
+                  </div>
+                  <p class="mt-1 text-xs text-slate-500">Invited as Admin &middot; Joined 12 Mar 2026</p>
+                </div>
+                <div class="rounded-lg border border-emerald-100 bg-emerald-50/50 p-3">
+                  <div class="flex items-center justify-between">
+                    <span class="text-sm font-medium text-dark">tom@repairshop.co.uk</span>
+                    <span class="rounded-full bg-emerald-100 px-2 py-0.5 text-xs font-medium text-emerald-700">Accepted</span>
+                  </div>
+                  <p class="mt-1 text-xs text-slate-500">Invited as Technician &middot; Joined 14 Mar 2026</p>
+                </div>
+                <div class="rounded-lg border border-amber-100 bg-amber-50/50 p-3">
+                  <div class="flex items-center justify-between">
+                    <span class="text-sm font-medium text-dark">lisa@repairshop.co.uk</span>
+                    <span class="rounded-full bg-amber-100 px-2 py-0.5 text-xs font-medium text-amber-700">Pending</span>
+                  </div>
+                  <p class="mt-1 text-xs text-slate-500">Invited as Technician &middot; Sent 20 Mar 2026</p>
+                </div>
+              </div>
+            </div>
+          </FeatureDetail>
+        </div>
+      </div>
+    </section>
+
+    <!-- Permission flags grid -->
+    <section class="py-20 sm:py-28 bg-slate-50">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <SectionHeading
+            title="11 permission flags, fully customisable"
+            subtitle="Toggle each permission independently per team member. Build the exact access profile your shop needs."
+          />
+        </div>
+        <div class="reveal stagger grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {[
+            { icon: "tool", title: "Manage settings", desc: "Control who can change shop settings, branding, ticket prefix, notification preferences, and system configuration." },
+            { icon: "tag", title: "Manage statuses", desc: "Allow or restrict the ability to create, edit, reorder, and delete custom ticket statuses and their timing alerts." },
+            { icon: "users", title: "Manage team", desc: "Control who can invite new members, change roles, and modify permissions for other team members." },
+            { icon: "customers", title: "Manage customers", desc: "Grant access to create, edit, merge, and manage customer profiles, contact details, and preferences." },
+            { icon: "inventory", title: "Manage inventory", desc: "Control who can add stock, adjust quantities, manage locations, and update supplier information." },
+            { icon: "file-text", title: "Create invoices", desc: "Allow team members to create new invoices and quotes. Essential for front-desk staff handling customer billing." },
+            { icon: "lock", title: "Finalise invoices", desc: "Restrict who can lock invoices for sending. Prevent junior staff from finalising before a manager reviews." },
+            { icon: "shield", title: "Unlock invoices", desc: "Control who can unlock finalised invoices for editing. A sensitive permission for corrections and adjustments." },
+            { icon: "wiki", title: "Edit wiki", desc: "Grant access to create and edit repair guides, device entries, fault descriptions, and knowledge base content." },
+            { icon: "alert-triangle", title: "Delete tickets", desc: "A powerful permission — restrict who can soft-delete tickets. Deleted tickets are recoverable for 30 days." },
+            { icon: "x", title: "Remove members", desc: "Control who can remove team members from the organisation. A critical permission reserved for trusted staff." },
+          ].map((item) => (
+            <div class="card-hover rounded-xl border border-slate-200 bg-white p-5">
+              <div class="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <Icon name={item.icon} size={20} />
+              </div>
+              <h3 class="text-sm font-semibold text-dark">{item.title}</h3>
+              <p class="mt-1 text-xs text-slate-600">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Related features -->
+    <section class="py-20 sm:py-28 bg-white">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <SectionHeading title="Team management connects to everything" subtitle="Permissions and audit logging work across your entire repair workflow." />
+        </div>
+        <div class="reveal stagger grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {[
+            { icon: "ticket", title: "Repair ticket software", desc: "Assign tickets to technicians, control who can delete tickets, and track every change in the audit log.", href: "/repair-ticket-software" },
+            { icon: "customers", title: "Customer management & CRM", desc: "Control who can manage customer profiles, merge duplicates, and access sensitive contact information.", href: "/repair-shop-crm" },
+            { icon: "invoice", title: "Quoting & invoicing", desc: "Separate permissions for creating, finalising, and unlocking invoices. Keep your billing process controlled.", href: "/repair-shop-invoicing-software" },
+          ].map((item) => (
+            <a href={item.href} class="card-hover block rounded-xl border border-slate-200 bg-white p-6 transition-colors hover:border-primary/30">
+              <div class="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <Icon name={item.icon} size={20} />
+              </div>
+              <h3 class="font-semibold text-dark">{item.title}</h3>
+              <p class="mt-1 text-sm text-slate-600">{item.desc}</p>
+              <span class="mt-3 inline-flex items-center gap-1 text-sm font-medium text-primary">Learn more <Icon name="arrow-right" size={14} /></span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-20 sm:py-28 bg-slate-50">
+      <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <SectionHeading title="Team management questions" badge="FAQ" />
+        </div>
+        <div class="reveal stagger space-y-3">
+          {[
+            { q: "How many team members can I add to RepairKeeper?", a: "The Standard plan includes up to 5 team members and the Pro plan includes up to 15. The Free and Lite plans are single-user. You can invite new members by email with a pre-assigned role at any time." },
+            { q: "What roles are available in RepairKeeper?", a: "RepairKeeper has three roles: Owner, Admin, and Technician. The Owner always has full access and their permissions cannot be modified. Admins and Technicians can have their permissions customised using 11 granular permission flags." },
+            { q: "Can I control exactly what each team member can do?", a: "Yes. RepairKeeper offers 11 granular permission flags that can be toggled independently per team member. These cover managing settings, statuses, team, customers, inventory, creating and finalising invoices, unlocking invoices, editing the wiki, deleting tickets, and removing members." },
+            { q: "Does RepairKeeper have an audit log?", a: "Yes. Every create, update, and delete action is recorded in a full audit log with before/after diffs, user attribution, and timestamps. This gives you complete accountability and traceability across your team." },
+            { q: "How do I invite new team members?", a: "You can invite team members by email directly from RepairKeeper. Each invitation includes a pre-assigned role (Admin or Technician), so new members have the right access from the moment they accept." },
+          ].map((item) => (
+            <details class="group rounded-xl border border-slate-200 bg-white transition-all hover:border-primary/30">
+              <summary class="flex cursor-pointer items-center justify-between px-6 py-4 text-left">
+                <span class="pr-4 text-base font-semibold text-dark group-open:text-primary">{item.q}</span>
+                <svg class="h-5 w-5 shrink-0 text-slate-400 transition-transform group-open:rotate-180 group-open:text-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6" /></svg>
+              </summary>
+              <div class="px-6 pb-4">
+                <p class="text-sm leading-relaxed text-slate-600">{item.a}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="relative overflow-hidden bg-dark py-20 sm:py-28">
+      <div class="pointer-events-none absolute inset-0" aria-hidden="true">
+        <div class="absolute -top-32 -left-32 h-96 w-96 rounded-full bg-primary/20 blur-3xl"></div>
+        <div class="absolute -bottom-32 -right-32 h-96 w-96 rounded-full bg-accent/20 blur-3xl"></div>
+      </div>
+      <div class="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+        <div class="reveal">
+          <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+            Give your team the right access from day one
+          </h2>
+          <p class="mx-auto mt-4 max-w-2xl text-lg text-slate-400">
+            RepairKeeper gives you roles, granular permissions, email invitations, and a full audit trail — so you can grow your team with confidence. Start free today.
+          </p>
+          <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+            <a href="https://app.repairkeeper.co.uk/register" class="inline-flex items-center gap-2 rounded-lg bg-primary px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:bg-primary-light hover:shadow-xl hover:shadow-primary/30">
+              Get Started Free
+              <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </a>
+          </div>
+          <p class="mt-4 text-sm text-slate-500">
+            No credit card required. <a href="/pricing" class="text-primary-light hover:underline">See pricing</a>.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
+</BaseLayout>

@@ -1,0 +1,263 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://repairkeeper.co.uk" },
+    { "@type": "ListItem", position: 2, name: "Blog", item: "https://repairkeeper.co.uk/blog" },
+    { "@type": "ListItem", position: 3, name: "How to Manage a Phone Repair Shop", item: "https://repairkeeper.co.uk/blog/how-to-manage-phone-repair-shop" },
+  ],
+};
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: "How to manage a phone repair shop: the complete workflow",
+  description: "A practical guide to running a phone repair shop — from customer intake to device collection. Covers ticketing, parts, communication, and getting paid.",
+  datePublished: "2026-03-20",
+  author: { "@type": "Organization", name: "RepairKeeper" },
+  publisher: { "@type": "Organization", name: "RepairKeeper", url: "https://repairkeeper.co.uk" },
+};
+---
+
+<BaseLayout
+  title="How to Manage a Phone Repair Shop: The Complete Workflow | RepairKeeper"
+  description="A practical guide to running a phone repair shop — from customer intake to device collection. Covers ticketing, parts, communication, and getting paid."
+>
+  <Header />
+  <main id="main-content">
+    <!-- Article header -->
+    <section class="hero-gradient relative overflow-hidden pt-28 pb-12 sm:pt-36 sm:pb-16">
+      <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+        <div class="absolute -top-24 -right-24 h-96 w-96 rounded-full bg-primary/5 blur-3xl animate-pulse-glow"></div>
+      </div>
+      <div class="relative mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
+        <div class="mb-4 flex items-center justify-center gap-3 text-sm text-slate-500">
+          <a href="/blog" class="hover:text-primary">Blog</a>
+          <span>&middot;</span>
+          <time datetime="2026-03-20">20 March 2026</time>
+          <span>&middot;</span>
+          <span>10 min read</span>
+        </div>
+        <h1 class="text-3xl font-extrabold tracking-tight text-dark sm:text-4xl lg:text-5xl animate-fade-up">
+          How to manage a phone repair shop: the complete workflow
+        </h1>
+        <p class="mt-4 text-lg text-slate-600 animate-fade-up" style="animation-delay: 0.15s;">
+          A step-by-step guide to running a smooth, professional repair operation &mdash; from the moment a customer walks in to the moment they leave with a working device.
+        </p>
+      </div>
+    </section>
+
+    <!-- Article body -->
+    <article class="py-16 sm:py-20">
+      <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+        <div class="prose prose-slate prose-lg max-w-none">
+
+          <p>
+            Running a phone repair shop is about far more than fixing screens and replacing batteries. The difference between a shop that struggles and one that thrives usually comes down to <strong>workflow</strong> &mdash; the repeatable process that takes every job from first contact through to a happy customer walking out the door.
+          </p>
+          <p>
+            A clear repair shop workflow reduces mistakes, speeds up turnaround, keeps customers informed, and makes it possible to scale without chaos. Whether you are a sole trader working from a single bench or managing a team of technicians across multiple locations, the fundamentals are the same.
+          </p>
+          <p>
+            This guide walks through each stage of the phone repair shop management process, with practical advice you can apply today.
+          </p>
+
+          <h2>1. Customer intake: getting it right from the start</h2>
+
+          <p>
+            The intake stage sets the tone for the entire repair. Rush it, and you will spend the rest of the job chasing missing information, managing mismatched expectations, or dealing with disputes about pre-existing damage.
+          </p>
+
+          <h3>Capture the right details upfront</h3>
+          <p>
+            At a minimum, you need the customer's name, phone number, and email. But a good intake goes further:
+          </p>
+          <ul>
+            <li><strong>Device details</strong> &mdash; make, model, colour, storage capacity, and IMEI or serial number.</li>
+            <li><strong>Fault description</strong> &mdash; in the customer's own words. "The screen flickers when I press the top left corner" is more useful than "broken screen."</li>
+            <li><strong>Passcode</strong> &mdash; you will need this for testing. Record it securely and explain why you need it.</li>
+            <li><strong>Accessories left with the device</strong> &mdash; case, charger, SIM card, memory card. Document everything to avoid disputes at collection.</li>
+            <li><strong>Condition notes</strong> &mdash; existing scratches, dents, water indicators. Photograph the device from multiple angles before any work begins.</li>
+          </ul>
+
+          <h3>Set expectations early</h3>
+          <p>
+            Tell the customer what happens next, give them a realistic timeframe, and explain how you will keep them updated. If you use a <a href="/repair-ticket-software">repair ticket system</a>, this is where you create the ticket and hand over a reference number or tracking link.
+          </p>
+          <p>
+            A digital intake signature is a simple but powerful addition. It confirms the customer has agreed to your terms, acknowledged the device condition, and authorised the repair. This protects both parties and takes seconds.
+          </p>
+
+          <h2>2. Diagnosis and quoting</h2>
+
+          <p>
+            Not every repair is straightforward. A customer might come in saying their phone "won't charge," but the real issue could be a faulty charging port, a damaged battery, a software glitch, or liquid damage to the logic board. Diagnosis is where your expertise earns its value.
+          </p>
+
+          <h3>Diagnose before you commit</h3>
+          <p>
+            Resist the temptation to quote a price at the counter based on the customer's description alone. A quick initial assessment is fine for obvious faults &mdash; a visibly cracked screen, for example &mdash; but anything ambiguous deserves proper bench time before you commit to a price.
+          </p>
+
+          <h3>Communicate findings clearly</h3>
+          <p>
+            Once you have diagnosed the fault, contact the customer with a clear explanation. Avoid jargon where possible. Instead of "the FPC connector on the display assembly is damaged," try "the cable that connects your screen to the phone's main board is damaged &mdash; we need to replace the screen assembly."
+          </p>
+
+          <h3>Provide a written quote</h3>
+          <p>
+            A formal quote with itemised costs (parts, labour, and any fees) builds trust and gives the customer a clear decision point. If they approve, you have authorisation to proceed. If they decline, you have a record of what was offered. Keep quotes professional &mdash; it reflects directly on your business.
+          </p>
+
+          <h2>3. Parts management</h2>
+
+          <p>
+            Parts are often the biggest bottleneck in a repair shop. A repair that takes 30 minutes of bench time can sit waiting for a week because a part was not in stock. Effective <a href="/repair-shop-inventory-software">parts and inventory management</a> is one of the most impactful improvements you can make to your turnaround time.
+          </p>
+
+          <h3>Know what you have in stock</h3>
+          <p>
+            Maintain an accurate, real-time inventory. Every screen, battery, charging port, and adhesive strip should be tracked. When stock drops below a minimum level, you should know about it before a customer is standing at your counter.
+          </p>
+
+          <h3>Order efficiently</h3>
+          <p>
+            Build relationships with reliable suppliers. Know their lead times, minimum order quantities, and return policies. Where possible, batch your orders &mdash; ordering five iPhone 15 screens once is cheaper and faster than ordering them one at a time as jobs come in.
+          </p>
+
+          <h3>Track parts against jobs</h3>
+          <p>
+            When a part is allocated to a job, your inventory should update automatically. When a part arrives from a supplier, you should be able to see which waiting jobs it can fulfil. This link between inventory and tickets is what separates organised shops from ones that are constantly scrambling.
+          </p>
+
+          <h3>Handle multiple locations</h3>
+          <p>
+            If you operate from more than one site &mdash; or even if you just have a separate storage area &mdash; tracking stock by location prevents the frustrating scenario of thinking you have a part when it is actually at your other branch.
+          </p>
+
+          <h2>4. The repair itself</h2>
+
+          <p>
+            This is the core of what you do, and while the technical work varies by device and fault, the management side is consistent.
+          </p>
+
+          <h3>Track status throughout</h3>
+          <p>
+            Every device should have a clear status: awaiting parts, in repair, ready for testing, and so on. This matters for two reasons. First, it lets you and your team see at a glance what needs attention. Second, it gives you something meaningful to communicate to the customer.
+          </p>
+          <p>
+            The best repair shop workflows use <strong>automatic status updates</strong>. For example, when a part is marked as arrived and allocated to a device, the device status should move forward without anyone having to remember to update it manually. Manual status tracking breaks down the moment you get busy.
+          </p>
+
+          <h3>Manage multiple devices per customer</h3>
+          <p>
+            Customers do not always bring in one device. A business customer might drop off three phones and a tablet. Your workflow needs to handle this cleanly &mdash; each device tracked independently, each with its own fault, status, and parts, but all grouped under a single ticket so the customer has one reference point.
+          </p>
+
+          <h3>Assign work to technicians</h3>
+          <p>
+            If you have a team, assign devices to specific technicians. This creates accountability, helps with workload balancing, and means customers always get a consistent answer about who is working on their device.
+          </p>
+
+          <h2>5. Quality check and customer notification</h2>
+
+          <p>
+            A repair is not finished when the last screw goes back in. The quality check stage is what separates a professional operation from one that generates callbacks and complaints.
+          </p>
+
+          <h3>Test thoroughly</h3>
+          <p>
+            After every repair, run through a checklist: does the screen respond to touch across the entire surface? Do all buttons work? Is the camera functional? Does the device charge? Does it connect to Wi-Fi and mobile data? Does the earpiece, loudspeaker, and microphone work? Test everything, not just the component you replaced.
+          </p>
+
+          <h3>Notify the customer promptly</h3>
+          <p>
+            The moment a device passes quality checks, the customer should know. Automated notifications &mdash; by email or SMS &mdash; are ideal because they happen instantly and do not depend on someone remembering to make a phone call. Include practical details: when they can collect, what they owe, and what to bring (reference number, ID, etc.).
+          </p>
+          <p>
+            If you offer a customer tracking page, this stage is where it really shines. The customer can see in real time that their device has moved to "Ready for Collection" without having to call and ask.
+          </p>
+
+          <h2>6. Collection and payment</h2>
+
+          <p>
+            The collection stage is your last direct interaction with the customer for this job, and it should be as smooth as the intake.
+          </p>
+
+          <h3>Verify and hand over</h3>
+          <p>
+            Confirm the customer's identity and ticket reference. Walk them through what was done, show them the device is working, and return any accessories that were left. A digital collection signature closes the loop &mdash; the customer confirms they have received their device in working order.
+          </p>
+
+          <h3>Invoice professionally</h3>
+          <p>
+            Issue a proper invoice, not a scribbled receipt. Itemised invoices with parts, labour, and VAT (if applicable) look professional and give the customer a record for their own purposes &mdash; especially important for business customers who need to expense repairs.
+          </p>
+
+          <h3>Offer flexible payment</h3>
+          <p>
+            Accept as many payment methods as you reasonably can: cash, card terminal, bank transfer, and online payment. The easier you make it to pay, the faster you get paid. Online payment links are particularly useful for customers who want to pay before they collect, or for posted-in repairs where the customer is not local.
+          </p>
+
+          <h2>7. After the repair</h2>
+
+          <p>
+            Most repair shops treat collection as the end of the process. The shops that grow fastest treat it as the beginning of a relationship.
+          </p>
+
+          <h3>Follow up</h3>
+          <p>
+            A simple follow-up message a few days after collection &mdash; "How is your device working? Let us know if you have any issues" &mdash; costs nothing and makes a strong impression. It shows you stand behind your work and it catches any problems early, before they become complaints or negative reviews.
+          </p>
+
+          <h3>Ask for reviews</h3>
+          <p>
+            Timing matters. Ask when the customer is happiest &mdash; right after a successful repair, or in that follow-up message. Make it easy by including a direct link to your Google Business listing. Reviews are one of the most powerful drivers of new business for local repair shops.
+          </p>
+
+          <h3>Build the customer record</h3>
+          <p>
+            Good <a href="/repair-shop-crm">customer management</a> means every interaction adds to a profile. When that customer comes back six months later, you can see their repair history, their devices, their preferences, and any notes from previous visits. This turns a transactional relationship into a lasting one.
+          </p>
+
+          <h2>Bringing it all together</h2>
+
+          <p>
+            Each of these stages is manageable on its own. The challenge is connecting them into a seamless flow where information moves with the job, nothing falls through the cracks, and customers stay informed without you having to chase every update manually.
+          </p>
+          <p>
+            Paper-based systems and spreadsheets work up to a point, but they break down as volume increases. You end up duplicating information, losing track of parts, and spending more time on admin than on repairs.
+          </p>
+          <p>
+            This is where purpose-built repair shop management software makes a genuine difference. Tools like <strong>RepairKeeper</strong> are designed around exactly this workflow &mdash; from intake and diagnosis through parts tracking, status automation, customer notifications, invoicing, and payment. Instead of stitching together a spreadsheet, a notepad, and a payment app, everything lives in one place and moves forward together.
+          </p>
+          <p>
+            Whatever tools you use, the important thing is to <strong>define your workflow, follow it consistently, and refine it over time</strong>. A shop with a clear process will always outperform one that wings it &mdash; no matter how skilled the technicians on the bench.
+          </p>
+
+        </div>
+      </div>
+    </article>
+
+    <!-- Soft CTA -->
+    <section class="py-16 sm:py-20 bg-slate-50">
+      <div class="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
+        <p class="text-lg text-slate-600">
+          RepairKeeper is built around the workflow described in this guide &mdash; from customer intake and parts tracking to automated status updates and online payment. It is free to get started.
+        </p>
+        <a href="https://app.repairkeeper.co.uk/register" class="mt-6 inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 text-base font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:bg-primary-dark">
+          Try RepairKeeper Free
+          <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+        </a>
+      </div>
+    </section>
+  </main>
+  <Footer />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
+  <script type="application/ld+json" set:html={JSON.stringify(articleJsonLd)} />
+</BaseLayout>

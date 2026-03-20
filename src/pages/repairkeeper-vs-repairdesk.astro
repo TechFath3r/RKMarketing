@@ -1,0 +1,405 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
+import Icon from "@components/Icon.astro";
+import SectionHeading from "@components/SectionHeading.astro";
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://repairkeeper.co.uk" },
+    { "@type": "ListItem", position: 2, name: "RepairKeeper vs RepairDesk", item: "https://repairkeeper.co.uk/repairkeeper-vs-repairdesk" },
+  ],
+};
+
+const comparisonFeatures = [
+  { feature: "Multi-device tickets", rk: true, rd: false },
+  { feature: "Auto-status engine", rk: true, rd: false },
+  { feature: "Repair wiki / knowledge base", rk: true, rd: false },
+  { feature: "Customer self-service tracking", rk: true, rd: true },
+  { feature: "Online payments (Stripe)", rk: true, rd: false },
+  { feature: "Built-in POS", rk: false, rd: true },
+  { feature: "Marketing / SMS tools", rk: false, rd: true },
+  { feature: "Inventory management", rk: true, rd: true },
+  { feature: "Team roles & permissions", rk: true, rd: true },
+  { feature: "Free plan", rk: true, rd: false },
+  { feature: "UK-based / GBP pricing", rk: true, rd: false },
+  { feature: "Digital signatures", rk: true, rd: false },
+];
+---
+
+<BaseLayout
+  title="RepairKeeper vs RepairDesk — Honest Comparison for Repair Shops (2026)"
+  description="Comparing RepairKeeper and RepairDesk for repair shop management. Features, pricing, and honest differences. See which fits your UK repair business."
+>
+  <Header />
+  <main id="main-content">
+    <!-- Hero -->
+    <section class="hero-gradient relative overflow-hidden pt-28 pb-16 sm:pt-36 sm:pb-20">
+      <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+        <div class="absolute -top-24 -right-24 h-96 w-96 rounded-full bg-primary/5 blur-3xl animate-pulse-glow"></div>
+        <div class="absolute -bottom-24 -left-24 h-96 w-96 rounded-full bg-accent/5 blur-3xl animate-pulse-glow" style="animation-delay: 1.5s;"></div>
+      </div>
+      <div class="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+        <span class="mb-4 inline-block rounded-full bg-primary/10 px-4 py-1.5 text-sm font-semibold text-primary animate-fade-in">
+          Comparison
+        </span>
+        <h1 class="text-4xl font-extrabold tracking-tight text-dark sm:text-5xl animate-fade-up" style="animation-delay: 0.15s;">
+          RepairKeeper vs RepairDesk — <span class="gradient-text">honest comparison</span>
+        </h1>
+        <p class="mx-auto mt-4 max-w-2xl text-lg text-slate-600 animate-fade-up" style="animation-delay: 0.3s;">
+          Two different approaches to repair shop management. We break down the features, pricing, and honest differences so you can choose the right platform for your business.
+        </p>
+      </div>
+    </section>
+
+    <!-- Intro -->
+    <section class="py-16 sm:py-20 bg-white">
+      <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <div class="prose prose-slate max-w-none">
+            <p class="text-lg leading-relaxed text-slate-600">
+              RepairDesk is one of the most established names in repair shop software. Based in the US, it has built a large user community and offers a broad feature set including POS capabilities, marketing tools, and a wide integration ecosystem. If you are researching a <strong>RepairDesk alternative</strong>, it is worth understanding what each platform does well and where the trade-offs lie.
+            </p>
+            <p class="mt-4 text-lg leading-relaxed text-slate-600">
+              RepairKeeper is a newer, UK-built platform designed specifically for independent repair shops. It takes a different approach — focusing on multi-device ticket workflows, intelligent automation, and a generous free tier. This comparison is based on publicly available information as of March 2026 and aims to be fair to both platforms.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Feature Comparison Table -->
+    <section class="py-20 sm:py-28 bg-slate-50">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <SectionHeading
+            title="Feature-by-feature comparison"
+            subtitle="A side-by-side look at the capabilities that matter most for repair shops."
+          />
+        </div>
+        <div class="reveal overflow-x-auto rounded-2xl border border-slate-200 bg-white shadow-sm">
+          <table class="w-full min-w-[480px] text-sm">
+            <thead>
+              <tr class="border-b border-slate-200 bg-slate-50">
+                <th class="px-5 py-3.5 text-left font-semibold text-dark">Feature</th>
+                <th class="px-4 py-3.5 text-center font-semibold text-primary">RepairKeeper</th>
+                <th class="px-4 py-3.5 text-center font-semibold text-dark">RepairDesk</th>
+              </tr>
+            </thead>
+            <tbody>
+              {comparisonFeatures.map((row, i) => (
+                <tr class={i % 2 === 0 ? 'bg-white' : 'bg-slate-50/50'}>
+                  <td class="px-5 py-3 font-medium text-dark">{row.feature}</td>
+                  <td class="px-4 py-3 text-center">
+                    {row.rk ? (
+                      <span class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-emerald-100 text-emerald-600">
+                        <Icon name="check" size={14} />
+                      </span>
+                    ) : (
+                      <span class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-slate-100 text-slate-400">
+                        <Icon name="x" size={14} />
+                      </span>
+                    )}
+                  </td>
+                  <td class="px-4 py-3 text-center">
+                    {row.rd ? (
+                      <span class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-emerald-100 text-emerald-600">
+                        <Icon name="check" size={14} />
+                      </span>
+                    ) : (
+                      <span class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-slate-100 text-slate-400">
+                        <Icon name="x" size={14} />
+                      </span>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p class="mt-4 text-center text-xs text-slate-400">Feature availability based on publicly available information as of March 2026. Contact individual providers for the latest details.</p>
+      </div>
+    </section>
+
+    <!-- Where RepairKeeper excels -->
+    <section class="py-20 sm:py-28 bg-white">
+      <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <SectionHeading
+            title="Where RepairKeeper stands out"
+            subtitle="The features and design choices that set RepairKeeper apart from RepairDesk."
+          />
+        </div>
+        <div class="reveal stagger grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {[
+            {
+              icon: "ticket",
+              title: "Multi-device tickets",
+              desc: "A single ticket can hold multiple devices — each with its own status, parts, and tracking. RepairDesk treats each device as a separate ticket. This matters when a customer drops off a phone and a tablet together.",
+              link: "/repair-ticket-software",
+            },
+            {
+              icon: "zap",
+              title: "Auto-status engine",
+              desc: "Statuses move themselves based on your parts workflow. When a part is ordered, the device status advances automatically. The ticket status always reflects the most behind device — zero manual updates needed.",
+              link: "/repair-ticket-software",
+            },
+            {
+              icon: "wiki",
+              title: "Repair wiki / knowledge base",
+              desc: "Build a shared knowledge base of devices, parts, faults, and repair guides. Contribute to a global database visible to all RepairKeeper shops, or keep entries private to your organisation.",
+              link: null,
+            },
+            {
+              icon: "pound",
+              title: "UK-built with GBP & VAT",
+              desc: "RepairKeeper is built in the UK, priced in GBP, and handles VAT natively. RepairDesk is US-based with USD pricing, which means currency conversion and tax handling may need extra configuration for UK shops.",
+              link: "/pricing",
+            },
+            {
+              icon: "star",
+              title: "Generous free plan",
+              desc: "Get started with 25 tickets per month at no cost — no credit card required. RepairDesk does not offer a free tier, with plans starting from around $99/mo USD.",
+              link: "/pricing",
+            },
+            {
+              icon: "shield",
+              title: "Passkey & biometric login",
+              desc: "Log in with fingerprint, Face ID, or a security key — no password needed. RepairKeeper supports modern WebAuthn passkeys alongside traditional email and password authentication.",
+              link: null,
+            },
+          ].map((item) => (
+            <div class="card-hover rounded-xl border border-slate-200 bg-white p-5">
+              <div class="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <Icon name={item.icon} size={20} />
+              </div>
+              <h3 class="text-sm font-semibold text-dark">{item.title}</h3>
+              <p class="mt-1 text-xs text-slate-600 leading-relaxed">{item.desc}</p>
+              {item.link && (
+                <a href={item.link} class="mt-2 inline-flex items-center gap-1 text-xs font-medium text-primary hover:text-primary-dark">
+                  Learn more
+                  <svg class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+                </a>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Where RepairDesk excels -->
+    <section class="py-20 sm:py-28 bg-slate-50">
+      <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <SectionHeading
+            title="Where RepairDesk has the edge"
+            subtitle="Credit where it is due — RepairDesk brings strengths that are worth acknowledging."
+          />
+        </div>
+        <div class="reveal stagger grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {[
+            {
+              icon: "credit-card",
+              title: "Built-in POS system",
+              desc: "RepairDesk includes point-of-sale features for in-store transactions, barcode scanning, and walk-in sales. RepairKeeper focuses on the repair workflow and integrates with Stripe for payments instead.",
+            },
+            {
+              icon: "send",
+              title: "Marketing & SMS campaigns",
+              desc: "RepairDesk offers built-in marketing tools including SMS campaigns, review requests, and customer re-engagement. RepairKeeper does not currently include marketing automation features.",
+            },
+            {
+              icon: "link",
+              title: "Wider integration ecosystem",
+              desc: "With years in the market, RepairDesk has built integrations with a broad range of third-party tools, parts suppliers, and accounting platforms. RepairKeeper's integration library is growing but more focused.",
+            },
+            {
+              icon: "globe",
+              title: "Established community",
+              desc: "RepairDesk has a larger user community, more third-party tutorials, and a longer track record. For shops that value a large support ecosystem, this is a genuine advantage.",
+            },
+            {
+              icon: "bar-chart",
+              title: "Advanced reporting",
+              desc: "RepairDesk offers detailed reporting and analytics dashboards with a wider range of built-in reports. RepairKeeper covers core reporting needs but RepairDesk goes deeper here.",
+            },
+            {
+              icon: "inventory",
+              title: "Parts supplier network",
+              desc: "RepairDesk connects directly to parts suppliers for ordering and price checking. RepairKeeper tracks inventory with supplier management but does not yet have direct supplier ordering integrations.",
+            },
+          ].map((item) => (
+            <div class="card-hover rounded-xl border border-slate-200 bg-white p-5">
+              <div class="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-slate-100 text-slate-500">
+                <Icon name={item.icon} size={20} />
+              </div>
+              <h3 class="text-sm font-semibold text-dark">{item.title}</h3>
+              <p class="mt-1 text-xs text-slate-600 leading-relaxed">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing comparison -->
+    <section class="py-20 sm:py-28 bg-white">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <SectionHeading
+            title="Pricing comparison"
+            subtitle="How the two platforms compare on cost — an important factor for independent repair shops."
+          />
+        </div>
+        <div class="reveal stagger grid gap-6 sm:grid-cols-2">
+          <!-- RepairKeeper pricing -->
+          <div class="card-hover rounded-2xl border border-primary/40 ring-2 ring-primary/10 bg-white p-6 sm:p-8">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <Icon name="star" size={20} />
+              </div>
+              <h3 class="text-lg font-bold text-dark">RepairKeeper</h3>
+            </div>
+            <ul class="space-y-3">
+              <li class="flex items-start gap-2 text-sm text-slate-600">
+                <svg class="mt-0.5 h-4 w-4 shrink-0 text-emerald-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" /></svg>
+                <span><strong class="text-dark">Free</strong> — 25 tickets/mo, 1 user</span>
+              </li>
+              <li class="flex items-start gap-2 text-sm text-slate-600">
+                <svg class="mt-0.5 h-4 w-4 shrink-0 text-emerald-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" /></svg>
+                <span><strong class="text-dark">Lite</strong> — £20/mo, 100 tickets/mo</span>
+              </li>
+              <li class="flex items-start gap-2 text-sm text-slate-600">
+                <svg class="mt-0.5 h-4 w-4 shrink-0 text-emerald-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" /></svg>
+                <span><strong class="text-dark">Standard</strong> — £30/mo, unlimited tickets, 5 users</span>
+              </li>
+              <li class="flex items-start gap-2 text-sm text-slate-600">
+                <svg class="mt-0.5 h-4 w-4 shrink-0 text-emerald-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" /></svg>
+                <span><strong class="text-dark">Pro</strong> — £55/mo, unlimited everything</span>
+              </li>
+            </ul>
+            <p class="mt-4 text-xs text-slate-500">All prices in GBP. Monthly and yearly billing available. No credit card required for Free plan.</p>
+            <a href="/pricing" class="mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary hover:text-primary-dark">
+              View full pricing
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </a>
+          </div>
+
+          <!-- RepairDesk pricing -->
+          <div class="card-hover rounded-2xl border border-slate-200 bg-white p-6 sm:p-8">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-slate-100 text-slate-500">
+                <Icon name="globe" size={20} />
+              </div>
+              <h3 class="text-lg font-bold text-dark">RepairDesk</h3>
+            </div>
+            <ul class="space-y-3">
+              <li class="flex items-start gap-2 text-sm text-slate-600">
+                <svg class="mt-0.5 h-4 w-4 shrink-0 text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
+                <span>No free plan available</span>
+              </li>
+              <li class="flex items-start gap-2 text-sm text-slate-600">
+                <svg class="mt-0.5 h-4 w-4 shrink-0 text-amber-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /><path d="M12 8v4" /><path d="M12 16h.01" /></svg>
+                <span>Plans start from around <strong class="text-dark">$99/mo USD</strong></span>
+              </li>
+              <li class="flex items-start gap-2 text-sm text-slate-600">
+                <svg class="mt-0.5 h-4 w-4 shrink-0 text-amber-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /><path d="M12 8v4" /><path d="M12 16h.01" /></svg>
+                <span>Priced in USD — UK shops pay with currency conversion</span>
+              </li>
+              <li class="flex items-start gap-2 text-sm text-slate-600">
+                <svg class="mt-0.5 h-4 w-4 shrink-0 text-emerald-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" /></svg>
+                <span>Multiple tiers with add-on options</span>
+              </li>
+            </ul>
+            <p class="mt-4 text-xs text-slate-500">Pricing based on publicly available information. Check RepairDesk's website for current plans.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Who should choose which -->
+    <section class="py-20 sm:py-28 bg-slate-50">
+      <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <SectionHeading
+            title="Which platform is right for you?"
+            subtitle="Honest guidance based on what each platform does best."
+          />
+        </div>
+        <div class="reveal stagger grid gap-6 sm:grid-cols-2">
+          <div class="card-hover rounded-2xl border border-primary/40 ring-2 ring-primary/10 bg-white p-6 sm:p-8">
+            <h3 class="text-lg font-bold text-dark mb-3">Choose RepairKeeper if you...</h3>
+            <ul class="space-y-2">
+              {[
+                "Run a UK-based repair shop and want GBP pricing with VAT support",
+                "Handle multi-device repairs and need independent per-device tracking",
+                "Want intelligent automation that moves statuses for you",
+                "Need a free plan to get started without financial commitment",
+                "Value a shared repair knowledge base across your team or industry",
+                "Want customer self-service tracking with online Stripe payments",
+                "Prefer a focused, modern tool without feature bloat",
+              ].map((item) => (
+                <li class="flex items-start gap-2 text-sm text-slate-600">
+                  <svg class="mt-0.5 h-4 w-4 shrink-0 text-emerald-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" /></svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="card-hover rounded-2xl border border-slate-200 bg-white p-6 sm:p-8">
+            <h3 class="text-lg font-bold text-dark mb-3">Choose RepairDesk if you...</h3>
+            <ul class="space-y-2">
+              {[
+                "Need a built-in POS system for walk-in retail sales",
+                "Rely heavily on SMS marketing campaigns and review automation",
+                "Want a wide range of third-party integrations out of the box",
+                "Prefer a platform with a large established community and forums",
+                "Need direct parts supplier ordering integrations",
+                "Are US-based or comfortable with USD pricing",
+              ].map((item) => (
+                <li class="flex items-start gap-2 text-sm text-slate-600">
+                  <svg class="mt-0.5 h-4 w-4 shrink-0 text-emerald-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" /></svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="relative overflow-hidden bg-dark py-20 sm:py-28">
+      <div class="pointer-events-none absolute inset-0" aria-hidden="true">
+        <div class="absolute -top-32 -left-32 h-96 w-96 rounded-full bg-primary/20 blur-3xl"></div>
+        <div class="absolute -bottom-32 -right-32 h-96 w-96 rounded-full bg-accent/20 blur-3xl"></div>
+      </div>
+      <div class="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+        <div class="reveal">
+          <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+            Try RepairKeeper free — no commitment
+          </h2>
+          <p class="mx-auto mt-4 max-w-2xl text-lg text-slate-400">
+            See how RepairKeeper compares in practice. Start with 25 free tickets per month and decide for yourself whether it is the right fit for your repair shop.
+          </p>
+          <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+            <a href="https://app.repairkeeper.co.uk/register" class="inline-flex items-center gap-2 rounded-lg bg-primary px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:bg-primary-light hover:shadow-xl hover:shadow-primary/30">
+              Get Started Free
+              <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </a>
+            <a href="/pricing" class="inline-flex items-center gap-2 rounded-lg border border-slate-600 bg-transparent px-6 py-3.5 text-base font-semibold text-white transition-all hover:border-slate-400">
+              View Pricing
+            </a>
+          </div>
+          <p class="mt-4 text-sm text-slate-500">
+            No credit card required. <a href="/pricing" class="text-primary-light hover:underline">See all plans</a>.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
+</BaseLayout>

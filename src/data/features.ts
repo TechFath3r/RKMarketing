@@ -39,12 +39,14 @@ export const features: Feature[] = [
     description:
       "Buy, grade, refurbish, and resell devices. Condition checklists, margin scheme support, and full lifecycle tracking from purchase to sale.",
     icon: "refresh-cw",
+    href: "/repair-shop-trade-in-software",
   },
   {
     title: "Repair Wiki",
     description:
       "Build a searchable knowledge base of devices, parts, faults, and repair guides — shared across all shops or kept private to yours.",
     icon: "wiki",
+    href: "/repair-wiki-software",
   },
   {
     title: "Online Booking",
@@ -64,5 +66,6 @@ export const features: Feature[] = [
     description:
       "Three roles, 11 granular permission flags, email invitations, and a full audit log with before/after diffs on every action.",
     icon: "team",
+    href: "/repair-shop-team-management",
   },
 ];

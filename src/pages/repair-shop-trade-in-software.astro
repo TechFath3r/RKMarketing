@@ -1,0 +1,434 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
+import Icon from "@components/Icon.astro";
+import SectionHeading from "@components/SectionHeading.astro";
+import FeatureDetail from "@components/FeatureDetail.astro";
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://repairkeeper.co.uk" },
+    { "@type": "ListItem", position: 2, name: "Trade-In & Refurbishment Software", item: "https://repairkeeper.co.uk/repair-shop-trade-in-software" },
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "How does the trade-in grading system work?",
+      acceptedAnswer: { "@type": "Answer", text: "When you buy a device from a customer or supplier, you assign a condition grade — Excellent, Good, Fair, or Poor. Each grade can have its own refurbishment checklist, so your team knows exactly what needs doing before the device is ready for resale." },
+    },
+    {
+      "@type": "Question",
+      name: "Can I track profit margins on refurbished devices?",
+      acceptedAnswer: { "@type": "Answer", text: "Yes. RepairKeeper tracks the full cost chain — purchase price, refurbishment parts and labour, and your listed and sold prices. You can see your margin per device at a glance, so you always know which trade-ins are profitable." },
+    },
+    {
+      "@type": "Question",
+      name: "Does RepairKeeper support the VAT margin scheme?",
+      acceptedAnswer: { "@type": "Answer", text: "Yes. For VAT-registered businesses buying and reselling second-hand goods, RepairKeeper supports the margin scheme. VAT is calculated on the profit margin rather than the full selling price, keeping you compliant with HMRC rules." },
+    },
+    {
+      "@type": "Question",
+      name: "Can I link a trade-in device to a repair ticket for refurbishment?",
+      acceptedAnswer: { "@type": "Answer", text: "Yes. When a device needs refurbishment work, you can create a linked repair ticket to track parts, labour, and costs. The refurbishment costs flow back into the trade-in record automatically, giving you an accurate total cost." },
+    },
+    {
+      "@type": "Question",
+      name: "How does IMEI and serial number tracking work?",
+      acceptedAnswer: { "@type": "Answer", text: "Every trade-in device records its IMEI or serial number at the point of purchase. This gives you a full audit trail from acquisition through refurbishment to sale — useful for warranty claims, compliance, and verifying device provenance." },
+    },
+  ],
+};
+---
+
+<BaseLayout
+  title="Trade-In & Refurbishment Software for Repair Shops | RepairKeeper"
+  description="Buy, grade, refurbish, and resell devices with full lifecycle tracking. Condition checklists, cost tracking, and margin scheme support. Built for UK repair shops."
+>
+  <Header />
+  <main id="main-content">
+    <!-- Hero -->
+    <section class="hero-gradient relative overflow-hidden pt-28 pb-16 sm:pt-36 sm:pb-20">
+      <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+        <div class="absolute -top-24 -right-24 h-96 w-96 rounded-full bg-primary/5 blur-3xl animate-pulse-glow"></div>
+        <div class="absolute -bottom-24 -left-24 h-96 w-96 rounded-full bg-accent/5 blur-3xl animate-pulse-glow" style="animation-delay: 1.5s;"></div>
+      </div>
+      <div class="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+        <span class="mb-4 inline-block rounded-full bg-primary/10 px-4 py-1.5 text-sm font-semibold text-primary animate-fade-in">
+          Trade-In & Refurbishment
+        </span>
+        <h1 class="text-4xl font-extrabold tracking-tight text-dark sm:text-5xl animate-fade-up" style="animation-delay: 0.15s;">
+          Trade-in software that tracks <span class="gradient-text">buy to sold</span>
+        </h1>
+        <p class="mx-auto mt-4 max-w-2xl text-lg text-slate-600 animate-fade-up" style="animation-delay: 0.3s;">
+          Buy devices from customers or suppliers, grade condition, manage refurbishment checklists, and track every cost from purchase to sale — with margin scheme support for VAT-registered businesses.
+        </p>
+        <div class="mt-8 flex flex-wrap items-center justify-center gap-4 animate-fade-up" style="animation-delay: 0.45s;">
+          <a href="https://app.repairkeeper.co.uk/register" class="inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 text-base font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:bg-primary-dark hover:shadow-xl hover:shadow-primary/30">
+            Get Started Free
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+          </a>
+          <a href="/pricing" class="inline-flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-6 py-3 text-base font-semibold text-slate-700 transition-all hover:border-primary/30 hover:text-primary">
+            View Pricing
+          </a>
+        </div>
+        <p class="mt-4 text-sm text-slate-500 animate-fade-up" style="animation-delay: 0.55s;">Free plan available. Trade-in features on Standard plan and above.</p>
+      </div>
+    </section>
+
+    <!-- Device lifecycle feature detail -->
+    <section class="py-20 sm:py-28 bg-white">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <FeatureDetail
+            title="Full lifecycle from purchase to sale"
+            subtitle="Track every device through a clear workflow: Purchased, Refurbishing, Ready for Sale, and Sold. Know exactly where each device stands and what it's worth at every stage."
+            badge="Device Lifecycle"
+            items={[
+              { icon: "tag", title: "Buy from customers or suppliers", description: "Record trade-in purchases with device details, purchase price, and seller information. Works for walk-in buybacks and supplier bulk buys alike." },
+              { icon: "clipboard-list", title: "Condition grading", description: "Grade every device as Excellent, Good, Fair, or Poor at the point of purchase. Grading drives which refurbishment checklist is applied." },
+              { icon: "refresh-cw", title: "Status tracking", description: "Devices move through Purchased, Refurbishing, Ready for Sale, and Sold. Always know what's on your bench and what's ready for the shelf." },
+              { icon: "smartphone", title: "IMEI & serial tracking", description: "Record IMEI or serial numbers at purchase for a complete audit trail. Verify provenance, handle warranty claims, and stay compliant." },
+            ]}
+          >
+            <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-lg">
+              <div class="mb-4 flex items-center justify-between">
+                <span class="text-sm font-semibold text-dark">Trade-In Pipeline</span>
+                <span class="rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">4 devices</span>
+              </div>
+              <div class="space-y-3">
+                <div class="rounded-lg border border-blue-200 bg-blue-50/50 p-3">
+                  <div class="flex items-center justify-between">
+                    <span class="text-sm font-medium text-dark">iPhone 14 Pro Max</span>
+                    <span class="rounded-full bg-blue-100 px-2 py-0.5 text-xs font-medium text-blue-700">Purchased</span>
+                  </div>
+                  <div class="mt-1 flex items-center justify-between">
+                    <span class="text-xs text-slate-500">Grade: Good &middot; IMEI: 35291...4820</span>
+                    <span class="text-xs font-medium text-dark">&pound;280.00</span>
+                  </div>
+                </div>
+                <div class="rounded-lg border border-amber-200 bg-amber-50/50 p-3">
+                  <div class="flex items-center justify-between">
+                    <span class="text-sm font-medium text-dark">Samsung Galaxy S23</span>
+                    <span class="rounded-full bg-amber-100 px-2 py-0.5 text-xs font-medium text-amber-700">Refurbishing</span>
+                  </div>
+                  <div class="mt-1 flex items-center justify-between">
+                    <span class="text-xs text-slate-500">Grade: Fair &middot; Screen + battery replacement</span>
+                    <span class="text-xs font-medium text-dark">&pound;145.00</span>
+                  </div>
+                </div>
+                <div class="rounded-lg border border-emerald-200 bg-emerald-50/50 p-3">
+                  <div class="flex items-center justify-between">
+                    <span class="text-sm font-medium text-dark">iPad Air 5th Gen</span>
+                    <span class="rounded-full bg-emerald-100 px-2 py-0.5 text-xs font-medium text-emerald-700">Ready for Sale</span>
+                  </div>
+                  <div class="mt-1 flex items-center justify-between">
+                    <span class="text-xs text-slate-500">Grade: Excellent &middot; Listed at &pound;349.00</span>
+                    <span class="text-xs font-medium text-dark">&pound;220.00</span>
+                  </div>
+                </div>
+                <div class="rounded-lg border border-slate-200 bg-slate-50/50 p-3">
+                  <div class="flex items-center justify-between">
+                    <span class="text-sm font-medium text-dark">Google Pixel 8</span>
+                    <span class="rounded-full bg-slate-200 px-2 py-0.5 text-xs font-medium text-slate-600">Sold</span>
+                  </div>
+                  <div class="mt-1 flex items-center justify-between">
+                    <span class="text-xs text-slate-500">Sold 14 Mar 2026 &middot; Margin: &pound;112.00</span>
+                    <span class="text-xs font-medium text-emerald-600">&pound;299.00</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </FeatureDetail>
+        </div>
+      </div>
+    </section>
+
+    <!-- Refurbishment checklists & cost tracking -->
+    <section class="py-20 sm:py-28 bg-slate-50">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <FeatureDetail
+            title="Refurbishment checklists and cost tracking"
+            subtitle="Different devices need different work. Set up refurbishment checklists per device type and condition grade, then track every cost — purchase price, parts, labour, and your final selling price — to see your real margin on every unit."
+            badge="Cost & Refurbishment"
+            reverse={true}
+            items={[
+              { icon: "check", title: "Per-device checklists", description: "Define what needs checking and replacing for each device type. Technicians work through the list, ticking off items as they go." },
+              { icon: "pound", title: "Full cost breakdown", description: "Track purchase price, refurbishment parts, labour costs, listed price, and sold price. See your margin per device instantly." },
+              { icon: "ticket", title: "Linked repair tickets", description: "Need to replace a screen or battery? Create a linked repair ticket for the refurbishment work. Parts and labour costs flow back automatically." },
+              { icon: "bar-chart", title: "Margin scheme VAT", description: "For VAT-registered businesses, calculate VAT on the profit margin rather than the full sale price. Stay compliant with HMRC second-hand goods rules." },
+            ]}
+          >
+            <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-lg">
+              <div class="mb-4 flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <span class="text-sm font-semibold text-dark">Samsung Galaxy S23</span>
+                  <span class="rounded-full bg-amber-100 px-2 py-0.5 text-xs font-medium text-amber-700">Refurbishing</span>
+                </div>
+                <span class="text-xs text-slate-500">Grade: Fair</span>
+              </div>
+              <div class="space-y-2 border-b border-slate-100 pb-3 mb-3">
+                <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Refurbishment Checklist</p>
+                <div class="flex items-center gap-2 text-xs">
+                  <div class="flex h-4 w-4 items-center justify-center rounded bg-emerald-100 text-emerald-600">
+                    <Icon name="check" size={10} />
+                  </div>
+                  <span class="text-slate-600">Factory reset &amp; data wipe</span>
+                </div>
+                <div class="flex items-center gap-2 text-xs">
+                  <div class="flex h-4 w-4 items-center justify-center rounded bg-emerald-100 text-emerald-600">
+                    <Icon name="check" size={10} />
+                  </div>
+                  <span class="text-slate-600">Screen replacement (OLED)</span>
+                </div>
+                <div class="flex items-center gap-2 text-xs">
+                  <div class="flex h-4 w-4 items-center justify-center rounded bg-amber-100 text-amber-600">
+                    <span class="block h-1.5 w-1.5 rounded-full bg-amber-500"></span>
+                  </div>
+                  <span class="text-slate-600">Battery replacement</span>
+                </div>
+                <div class="flex items-center gap-2 text-xs">
+                  <div class="flex h-4 w-4 items-center justify-center rounded bg-slate-100">
+                    <span class="block h-1.5 w-1.5 rounded-full bg-slate-300"></span>
+                  </div>
+                  <span class="text-slate-600">Full functionality test</span>
+                </div>
+                <div class="flex items-center gap-2 text-xs">
+                  <div class="flex h-4 w-4 items-center justify-center rounded bg-slate-100">
+                    <span class="block h-1.5 w-1.5 rounded-full bg-slate-300"></span>
+                  </div>
+                  <span class="text-slate-600">Clean &amp; polish housing</span>
+                </div>
+              </div>
+              <div class="space-y-1">
+                <div class="flex items-center justify-between text-xs">
+                  <span class="text-slate-500">Purchase price</span>
+                  <span class="text-slate-600">&pound;145.00</span>
+                </div>
+                <div class="flex items-center justify-between text-xs">
+                  <span class="text-slate-500">Refurb parts</span>
+                  <span class="text-slate-600">&pound;67.50</span>
+                </div>
+                <div class="flex items-center justify-between text-xs">
+                  <span class="text-slate-500">Labour</span>
+                  <span class="text-slate-600">&pound;25.00</span>
+                </div>
+                <div class="flex items-center justify-between text-xs font-semibold pt-1 border-t border-slate-100">
+                  <span class="text-dark">Total cost</span>
+                  <span class="text-dark">&pound;237.50</span>
+                </div>
+                <div class="flex items-center justify-between text-xs">
+                  <span class="text-slate-500">Listed price</span>
+                  <span class="text-emerald-600 font-medium">&pound;349.00</span>
+                </div>
+                <div class="flex items-center justify-between text-xs">
+                  <span class="text-slate-500">Projected margin</span>
+                  <span class="text-emerald-600 font-medium">&pound;111.50</span>
+                </div>
+              </div>
+            </div>
+          </FeatureDetail>
+        </div>
+      </div>
+    </section>
+
+    <!-- Margin scheme & compliance -->
+    <section class="py-20 sm:py-28 bg-white">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <FeatureDetail
+            title="Margin scheme and compliance built in"
+            subtitle="Buying and reselling second-hand devices comes with specific VAT requirements. RepairKeeper handles margin scheme calculations automatically, and every device carries a full audit trail from purchase through to sale."
+            badge="VAT & Compliance"
+            items={[
+              { icon: "shield", title: "Margin scheme VAT", description: "VAT is calculated on the profit margin, not the full sale price. RepairKeeper handles the calculation so you stay HMRC-compliant without a spreadsheet." },
+              { icon: "file-text", title: "Purchase records", description: "Record seller details, purchase date, price, and device condition for every trade-in. Build a clear paper trail for every device you buy." },
+              { icon: "search", title: "IMEI lookup & history", description: "Search your trade-in history by IMEI or serial number. See the full lifecycle of any device — who you bought it from, what work was done, and who you sold it to." },
+              { icon: "lock", title: "Full audit trail", description: "Every change to a trade-in record is logged with timestamps and user attribution. Know who did what, and when." },
+            ]}
+          >
+            <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-lg">
+              <div class="mb-4 flex items-center gap-2">
+                <span class="text-sm font-semibold text-dark">Margin Scheme Summary</span>
+                <span class="rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">VAT</span>
+              </div>
+              <div class="space-y-3">
+                <div class="rounded-lg border border-slate-100 p-3">
+                  <div class="flex items-center justify-between">
+                    <span class="text-sm font-medium text-dark">Google Pixel 8</span>
+                    <span class="rounded-full bg-slate-200 px-2 py-0.5 text-xs font-medium text-slate-600">Sold</span>
+                  </div>
+                  <div class="mt-2 space-y-1">
+                    <div class="flex items-center justify-between text-xs">
+                      <span class="text-slate-500">Purchase price</span>
+                      <span class="text-slate-600">&pound;187.00</span>
+                    </div>
+                    <div class="flex items-center justify-between text-xs">
+                      <span class="text-slate-500">Sold price</span>
+                      <span class="text-slate-600">&pound;299.00</span>
+                    </div>
+                    <div class="flex items-center justify-between text-xs">
+                      <span class="text-slate-500">Margin</span>
+                      <span class="text-slate-600">&pound;112.00</span>
+                    </div>
+                    <div class="flex items-center justify-between text-xs font-semibold pt-1 border-t border-slate-100">
+                      <span class="text-dark">VAT due (1/6 of margin)</span>
+                      <span class="text-dark">&pound;18.67</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="rounded-lg border border-slate-100 p-3">
+                  <div class="flex items-center justify-between">
+                    <span class="text-sm font-medium text-dark">iPhone 13</span>
+                    <span class="rounded-full bg-slate-200 px-2 py-0.5 text-xs font-medium text-slate-600">Sold</span>
+                  </div>
+                  <div class="mt-2 space-y-1">
+                    <div class="flex items-center justify-between text-xs">
+                      <span class="text-slate-500">Purchase price</span>
+                      <span class="text-slate-600">&pound;160.00</span>
+                    </div>
+                    <div class="flex items-center justify-between text-xs">
+                      <span class="text-slate-500">Sold price</span>
+                      <span class="text-slate-600">&pound;249.00</span>
+                    </div>
+                    <div class="flex items-center justify-between text-xs">
+                      <span class="text-slate-500">Margin</span>
+                      <span class="text-slate-600">&pound;89.00</span>
+                    </div>
+                    <div class="flex items-center justify-between text-xs font-semibold pt-1 border-t border-slate-100">
+                      <span class="text-dark">VAT due (1/6 of margin)</span>
+                      <span class="text-dark">&pound;14.83</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </FeatureDetail>
+        </div>
+      </div>
+    </section>
+
+    <!-- Additional trade-in features grid -->
+    <section class="py-20 sm:py-28 bg-slate-50">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <SectionHeading
+            title="Everything you need to run a trade-in operation"
+            subtitle="From buyback to resale — every tool a repair shop needs to manage second-hand device stock profitably."
+          />
+        </div>
+        <div class="reveal stagger grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {[
+            { icon: "tag", title: "Condition grading", desc: "Grade devices as Excellent, Good, Fair, or Poor at intake. Grading determines which refurbishment checklist is applied." },
+            { icon: "clipboard-list", title: "Refurbishment checklists", desc: "Define step-by-step checklists per device type and condition. Technicians work through each item before the device is cleared for sale." },
+            { icon: "pound", title: "Cost tracking", desc: "Track purchase price, parts, labour, and selling price per device. See your real margin on every unit — no spreadsheet needed." },
+            { icon: "shield", title: "Margin scheme VAT", desc: "Calculate VAT on profit margins for second-hand goods. Stay HMRC-compliant with automatic margin scheme support." },
+            { icon: "smartphone", title: "IMEI & serial tracking", desc: "Record IMEI or serial numbers at the point of purchase. Search and trace any device through your entire trade-in history." },
+            { icon: "ticket", title: "Linked repair tickets", desc: "Create repair tickets for refurbishment work. Parts and labour costs flow back to the trade-in record automatically." },
+            { icon: "inventory", title: "Stock integration", desc: "Refurbishment parts pull from your existing inventory. Stock is checked and allocated just like any repair job." },
+            { icon: "bar-chart", title: "Profitability reporting", desc: "See which device types and grades deliver the best margins. Make smarter buying decisions based on real data." },
+          ].map((item) => (
+            <div class="card-hover rounded-xl border border-slate-200 bg-white p-5">
+              <div class="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <Icon name={item.icon} size={20} />
+              </div>
+              <h3 class="text-sm font-semibold text-dark">{item.title}</h3>
+              <p class="mt-1 text-xs text-slate-600">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Related features -->
+    <section class="py-20 sm:py-28 bg-white">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <SectionHeading title="Trade-ins connect to your full workflow" subtitle="Refurbishment works alongside ticketing, inventory, and invoicing." />
+        </div>
+        <div class="reveal stagger grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {[
+            { icon: "ticket", title: "Repair ticket software", desc: "Create linked repair tickets for refurbishment work. Track parts, labour, and status — just like any customer repair.", href: "/repair-ticket-software" },
+            { icon: "inventory", title: "Inventory & stock management", desc: "Refurbishment parts pull from your existing stock. Automatic allocation and low stock alerts keep your workflow moving.", href: "/repair-shop-inventory-software" },
+            { icon: "invoice", title: "Quoting & invoicing", desc: "Generate invoices for sold devices with full cost history. PDF exports and online payment support included.", href: "/repair-shop-invoicing-software" },
+          ].map((item) => (
+            <a href={item.href} class="card-hover block rounded-xl border border-slate-200 bg-white p-6 transition-colors hover:border-primary/30">
+              <div class="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <Icon name={item.icon} size={20} />
+              </div>
+              <h3 class="font-semibold text-dark">{item.title}</h3>
+              <p class="mt-1 text-sm text-slate-600">{item.desc}</p>
+              <span class="mt-3 inline-flex items-center gap-1 text-sm font-medium text-primary">Learn more <Icon name="arrow-right" size={14} /></span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-20 sm:py-28 bg-slate-50">
+      <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <SectionHeading title="Trade-in software questions" badge="FAQ" />
+        </div>
+        <div class="reveal stagger space-y-3">
+          {[
+            { q: "How does the trade-in grading system work?", a: "When you buy a device from a customer or supplier, you assign a condition grade — Excellent, Good, Fair, or Poor. Each grade can have its own refurbishment checklist, so your team knows exactly what needs doing before the device is ready for resale." },
+            { q: "Can I track profit margins on refurbished devices?", a: "Yes. RepairKeeper tracks the full cost chain — purchase price, refurbishment parts and labour, and your listed and sold prices. You can see your margin per device at a glance, so you always know which trade-ins are profitable." },
+            { q: "Does RepairKeeper support the VAT margin scheme?", a: "Yes. For VAT-registered businesses buying and reselling second-hand goods, RepairKeeper supports the margin scheme. VAT is calculated on the profit margin rather than the full selling price, keeping you compliant with HMRC rules." },
+            { q: "Can I link a trade-in device to a repair ticket for refurbishment?", a: "Yes. When a device needs refurbishment work, you can create a linked repair ticket to track parts, labour, and costs. The refurbishment costs flow back into the trade-in record automatically, giving you an accurate total cost." },
+            { q: "How does IMEI and serial number tracking work?", a: "Every trade-in device records its IMEI or serial number at the point of purchase. This gives you a full audit trail from acquisition through refurbishment to sale — useful for warranty claims, compliance, and verifying device provenance." },
+          ].map((item) => (
+            <details class="group rounded-xl border border-slate-200 bg-white transition-all hover:border-primary/30">
+              <summary class="flex cursor-pointer items-center justify-between px-6 py-4 text-left">
+                <span class="pr-4 text-base font-semibold text-dark group-open:text-primary">{item.q}</span>
+                <svg class="h-5 w-5 shrink-0 text-slate-400 transition-transform group-open:rotate-180 group-open:text-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6" /></svg>
+              </summary>
+              <div class="px-6 pb-4">
+                <p class="text-sm leading-relaxed text-slate-600">{item.a}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="relative overflow-hidden bg-dark py-20 sm:py-28">
+      <div class="pointer-events-none absolute inset-0" aria-hidden="true">
+        <div class="absolute -top-32 -left-32 h-96 w-96 rounded-full bg-primary/20 blur-3xl"></div>
+        <div class="absolute -bottom-32 -right-32 h-96 w-96 rounded-full bg-accent/20 blur-3xl"></div>
+      </div>
+      <div class="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+        <div class="reveal">
+          <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+            Turn trade-ins into a profitable side of your business
+          </h2>
+          <p class="mx-auto mt-4 max-w-2xl text-lg text-slate-400">
+            RepairKeeper gives you device grading, refurbishment checklists, full cost tracking, margin scheme VAT, and IMEI traceability — all connected to your repair workflow. Start free today.
+          </p>
+          <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+            <a href="https://app.repairkeeper.co.uk/register" class="inline-flex items-center gap-2 rounded-lg bg-primary px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:bg-primary-light hover:shadow-xl hover:shadow-primary/30">
+              Get Started Free
+              <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </a>
+          </div>
+          <p class="mt-4 text-sm text-slate-500">
+            No credit card required. <a href="/pricing" class="text-primary-light hover:underline">See pricing</a>.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
+</BaseLayout>
