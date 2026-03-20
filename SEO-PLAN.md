@@ -170,8 +170,8 @@ Vertical landing pages for specific repair business types. These capture "[busin
 | Page | URL | Status | Primary Keywords |
 |------|-----|--------|-----------------|
 | Phone Repair Shops | `/phone-repair-shop-software` | ✅ Done | phone repair shop software, mobile phone repair software |
-| Computer Repair Shops | TBD | ❌ Phase 3 | computer repair shop software, computer repair business software |
-| Electronics Repair | TBD | ❌ Phase 3 | electronics repair software, electronics repair management |
+| Computer Repair Shops | `/computer-repair-shop-software` | ✅ Done | computer repair shop software, computer repair business software |
+| Electronics Repair | `/electronics-repair-software` | ✅ Done | electronics repair software, electronics repair management |
 
 **Content approach**: Each page speaks directly to that business type's workflow, pain points, and how RepairKeeper maps to their needs. Include relevant feature callouts and a tailored CTA.
 
@@ -322,35 +322,37 @@ This plan focuses on on-site SEO, but noting these for completeness:
    - [ ] Submit sitemap to GSC and Bing
    - ✅ Removed artificial aggregateRating schema
 
-### Phase 2: Expand (Weeks 5-8)
+### Phase 2: Expand ✅ COMPLETE
 **Goal**: Fill out remaining feature pages, add competitor comparisons, begin content.
 
-7. **Feature pages — second batch**
-   - [ ] Trade-In & Refurbishment
+7. ✅ **Feature pages — second batch**
+   - ✅ Trade-In & Refurbishment (`/repair-shop-trade-in-software`)
    - ~~Online Booking~~ (moved to Phase 1, done as `/repair-booking-software`)
-   - [ ] Team & Permissions
-   - [ ] Repair Wiki
+   - ✅ Team & Permissions (`/repair-shop-team-management`)
+   - ✅ Repair Wiki (`/repair-wiki-software`)
 
-8. **Comparison pages**
-   - [ ] RepairKeeper vs RepairDesk
-   - [ ] RepairKeeper vs RepairShopr
+8. ✅ **Comparison pages**
+   - ✅ RepairKeeper vs RepairDesk (`/repairkeeper-vs-repairdesk`)
+   - ✅ RepairKeeper vs RepairShopr (`/repairkeeper-vs-repairshopr`)
 
-9. **First blog articles**
-   - [ ] Pick 2-3 from the recommended list
-   - [ ] Set up `/blog/` route with proper article schema
+9. ✅ **First blog articles**
+   - ✅ Blog index (`/blog`)
+   - ✅ "How to manage a phone repair shop" (`/blog/how-to-manage-phone-repair-shop`)
+   - ✅ "Repair shop inventory management guide" (`/blog/repair-shop-inventory-management-guide`)
+   - ✅ "Multi-device repair tickets: why they matter" (`/blog/multi-device-repair-tickets`)
 
-### Phase 3: Deepen (Weeks 9-12)
+### Phase 3: Deepen ✅ COMPLETE
 **Goal**: Use-case pages, more content, refine based on data.
 
-10. **Use-case pages**
-    - ✅ Phone Repair Shops (`/phone-repair-shop-software`) — done early
-    - [ ] Computer Repair Shops
-    - [ ] Electronics Repair
+10. ✅ **Use-case pages**
+    - ✅ Phone Repair Shops (`/phone-repair-shop-software`) — done in Phase 1
+    - ✅ Computer Repair Shops (`/computer-repair-shop-software`)
+    - ✅ Electronics Repair (`/electronics-repair-software`)
 
-11. **Additional blog content** (Weeks 10-12)
+11. **Additional blog content** (Ongoing)
     - 2-3 more articles based on GSC data (what queries are we appearing for?)
 
-12. **Review and refine** (Week 12)
+12. **Review and refine** (Ongoing)
     - Analyse GSC data: which pages are indexed, which queries drive impressions
     - Identify underperforming pages and improve them
     - Look for new keyword opportunities from search query data

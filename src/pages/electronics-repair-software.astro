@@ -1,0 +1,284 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
+import Icon from "@components/Icon.astro";
+import SectionHeading from "@components/SectionHeading.astro";
+import FeatureDetail from "@components/FeatureDetail.astro";
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://repairkeeper.co.uk" },
+    { "@type": "ListItem", position: 2, name: "Electronics Repair Software", item: "https://repairkeeper.co.uk/electronics-repair-software" },
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "What types of electronics can I manage with RepairKeeper?",
+      acceptedAnswer: { "@type": "Answer", text: "RepairKeeper handles any device type — phones, tablets, laptops, games consoles, drones, audio equipment, appliances, and more. The system isn't locked to a single device category, so you can add custom device types to the repair wiki and track parts and faults for each." },
+    },
+    {
+      "@type": "Question",
+      name: "Can I track multiple devices from the same customer on one ticket?",
+      acceptedAnswer: { "@type": "Answer", text: "Yes. RepairKeeper supports multi-device tickets — a customer can drop off a phone, a console, and a pair of headphones on the same ticket. Each device is tracked independently with its own status, parts, and diagnosis." },
+    },
+    {
+      "@type": "Question",
+      name: "How does the repair wiki help electronics repair shops?",
+      acceptedAnswer: { "@type": "Answer", text: "The repair wiki lets you build a searchable knowledge base of devices, parts, common faults, and step-by-step repair guides. For electronics shops handling many device types, this means your team can quickly find the right guide for any repair — and new technicians get up to speed faster." },
+    },
+    {
+      "@type": "Question",
+      name: "Can I manage inventory for different device categories?",
+      acceptedAnswer: { "@type": "Answer", text: "Yes. RepairKeeper's inventory system tracks stock across multiple locations and supports any part type — phone screens, laptop keyboards, console HDMI ports, drone motors, and more. Parts are linked to devices in the wiki, so you always know which parts fit which devices." },
+    },
+    {
+      "@type": "Question",
+      name: "Is there a free plan for small electronics repair businesses?",
+      acceptedAnswer: { "@type": "Answer", text: "Yes. The Free plan includes 25 tickets per month with core ticketing, invoicing, and customer management. It's not a trial — you can use it indefinitely and upgrade when your business grows." },
+    },
+  ],
+};
+---
+
+<BaseLayout
+  title="Electronics Repair Software — Management for All Device Types | RepairKeeper"
+  description="Repair management software for electronics businesses. Handle phones, laptops, consoles, and more. Multi-device tickets, parts tracking, and invoicing. Free plan."
+>
+  <Header />
+  <main id="main-content">
+    <!-- Hero -->
+    <section class="hero-gradient relative overflow-hidden pt-28 pb-16 sm:pt-36 sm:pb-20">
+      <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+        <div class="absolute -top-24 -right-24 h-96 w-96 rounded-full bg-primary/5 blur-3xl animate-pulse-glow"></div>
+        <div class="absolute -bottom-24 -left-24 h-96 w-96 rounded-full bg-accent/5 blur-3xl animate-pulse-glow" style="animation-delay: 1.5s;"></div>
+      </div>
+      <div class="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+        <span class="mb-4 inline-block rounded-full bg-primary/10 px-4 py-1.5 text-sm font-semibold text-primary animate-fade-in">
+          For Electronics Repair
+        </span>
+        <h1 class="text-4xl font-extrabold tracking-tight text-dark sm:text-5xl animate-fade-up" style="animation-delay: 0.15s;">
+          Software built for <span class="gradient-text">electronics repair shops</span>
+        </h1>
+        <p class="mx-auto mt-4 max-w-2xl text-lg text-slate-600 animate-fade-up" style="animation-delay: 0.3s;">
+          Phones, laptops, consoles, drones, audio gear, appliances — your shop fixes everything. RepairKeeper is the management platform that keeps up, with multi-device tickets, parts tracking, and a repair wiki built for variety.
+        </p>
+        <div class="mt-8 flex flex-wrap items-center justify-center gap-4 animate-fade-up" style="animation-delay: 0.45s;">
+          <a href="https://app.repairkeeper.co.uk/register" class="inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 text-base font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:bg-primary-dark hover:shadow-xl hover:shadow-primary/30">
+            Get Started Free
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+          </a>
+          <a href="/pricing" class="inline-flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-6 py-3 text-base font-semibold text-slate-700 transition-all hover:border-primary/30 hover:text-primary">
+            View Pricing
+          </a>
+        </div>
+        <p class="mt-4 text-sm text-slate-500 animate-fade-up" style="animation-delay: 0.55s;">Free plan with 25 tickets/month. No credit card required.</p>
+      </div>
+    </section>
+
+    <!-- Why electronics repair shops need this -->
+    <section class="py-20 sm:py-28 bg-white">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <SectionHeading
+            title="Everything an electronics repair shop needs"
+            subtitle="From smartphones and laptops to consoles and drones — RepairKeeper handles every device type, every repair workflow, and every customer interaction in one place."
+          />
+        </div>
+        <div class="reveal stagger grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          {[
+            { icon: "ticket", title: "Multi-device tickets", desc: "Customer drops off a phone, a console, and a pair of headphones? One ticket, three devices. Each tracked independently with its own status and parts." },
+            { icon: "wiki", title: "Repair knowledge base", desc: "Build a searchable wiki of devices, parts, faults, and guides across every category you service. Share knowledge across your team or the RepairKeeper community." },
+            { icon: "inventory", title: "Diverse parts inventory", desc: "Track phone screens, laptop keyboards, console HDMI ports, and drone motors — all in one inventory system across multiple locations." },
+            { icon: "zap", title: "Auto-status updates", desc: "Order a part? The device moves to 'Awaiting Parts' automatically. Parts arrive? It advances again. No manual status changes needed." },
+            { icon: "tool", title: "Flexible status system", desc: "Customise statuses to match your workflow — different repair types may need different pipelines. Create your own names, colours, and ordering." },
+            { icon: "tracking", title: "Customer tracking page", desc: "Customers get a link to follow all their devices in real time. Fewer calls asking 'is my laptop ready yet?'." },
+            { icon: "invoice", title: "Quotes & invoices", desc: "Quote across multiple device types, get approval, then convert to an invoice. Customers can pay online via Stripe." },
+            { icon: "team", title: "Team with specialities", desc: "Assign tickets to technicians based on their skills. Granular permissions mean console specialists don't need access to inventory settings." },
+            { icon: "shield", title: "Digital signatures", desc: "Capture intake and collection signatures on screen. Essential when handling high-value electronics from multiple categories." },
+          ].map((item) => (
+            <div class="card-hover rounded-xl border border-slate-200 bg-white p-6">
+              <div class="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <Icon name={item.icon} size={20} />
+              </div>
+              <h3 class="font-semibold text-dark">{item.title}</h3>
+              <p class="mt-1 text-sm text-slate-600">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Multi-device + auto-status detail -->
+    <section class="py-20 sm:py-28 bg-slate-50">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <FeatureDetail
+            title="One ticket, many devices — all tracked independently"
+            subtitle="Electronics repair shops handle variety. A customer might bring in a phone with a cracked screen, a console with a faulty HDMI port, and wireless earbuds that won't charge. RepairKeeper tracks each device on a single ticket with independent statuses, parts, and diagnosis — and the ticket status always reflects the most behind device."
+            badge="Key Differentiator"
+            items={[
+              { icon: "smartphone", title: "Any device type", description: "Phones, tablets, laptops, consoles, drones, speakers, appliances — add any device to a ticket. No category restrictions." },
+              { icon: "zap", title: "Intelligent auto-status", description: "When you mark a part as ordered, the device moves to 'Awaiting Parts'. When parts arrive and are allocated, it advances automatically." },
+              { icon: "clipboard-list", title: "Per-device diagnosis", description: "Run diagnostics on each device separately. Share findings with the customer and let them approve or decline individual repairs." },
+              { icon: "users", title: "Route to the right tech", description: "Assign different devices to different technicians based on their speciality — phone repairs to one tech, console repairs to another." },
+            ]}
+          >
+            <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-lg">
+              <div class="mb-4 flex items-center justify-between">
+                <span class="text-sm font-semibold text-dark">Ticket RK-0112</span>
+                <span class="rounded-full bg-amber-100 px-2.5 py-0.5 text-xs font-medium text-amber-700">In Progress</span>
+              </div>
+              <div class="space-y-3">
+                <div class="rounded-lg border border-slate-100 p-3">
+                  <div class="flex items-center justify-between">
+                    <span class="text-sm font-medium text-dark">Samsung Galaxy S24</span>
+                    <span class="rounded-full bg-emerald-100 px-2 py-0.5 text-xs font-medium text-emerald-700">In Repair</span>
+                  </div>
+                  <p class="mt-1 text-xs text-slate-500">Screen replacement — parts allocated</p>
+                </div>
+                <div class="rounded-lg border border-slate-100 p-3">
+                  <div class="flex items-center justify-between">
+                    <span class="text-sm font-medium text-dark">PS5 Console</span>
+                    <span class="rounded-full bg-blue-100 px-2 py-0.5 text-xs font-medium text-blue-700">Awaiting Parts</span>
+                  </div>
+                  <p class="mt-1 text-xs text-slate-500">HDMI port replacement — part on order</p>
+                </div>
+                <div class="rounded-lg border border-slate-100 p-3">
+                  <div class="flex items-center justify-between">
+                    <span class="text-sm font-medium text-dark">AirPods Pro</span>
+                    <span class="rounded-full bg-emerald-100 px-2 py-0.5 text-xs font-medium text-emerald-700">Ready for Collection</span>
+                  </div>
+                  <p class="mt-1 text-xs text-slate-500">Charging case replaced — tested and working</p>
+                </div>
+              </div>
+              <p class="mt-3 text-xs text-slate-400">Ticket status reflects the most behind device</p>
+            </div>
+          </FeatureDetail>
+        </div>
+      </div>
+    </section>
+
+    <!-- Versatility section -->
+    <section class="py-20 sm:py-28 bg-white">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <div class="mx-auto max-w-3xl text-center">
+            <span class="mb-4 inline-block rounded-full bg-primary/10 px-4 py-1.5 text-sm font-semibold text-primary">Built for Variety</span>
+            <h2 class="text-3xl font-bold tracking-tight text-dark sm:text-4xl">
+              A flexible system for every device category
+            </h2>
+            <p class="mt-4 text-lg text-slate-600">
+              Most repair software is designed around phones and nothing else. RepairKeeper is built to be device-agnostic — the wiki, inventory, and status systems all flex to match the breadth of an electronics repair business. Whether you're fixing a drone one hour and a dishwasher the next, the workflow stays consistent.
+            </p>
+          </div>
+        </div>
+        <div class="reveal stagger mt-12 grid gap-6 sm:grid-cols-3">
+          {[
+            { icon: "wiki", title: "Knowledge for every device", desc: "Build repair guides per device type. Link faults, parts, and procedures so any technician can pick up any repair with confidence." },
+            { icon: "inventory", title: "Parts across categories", desc: "Track phone screens alongside laptop hinges and console disc drives. Multiple locations, supplier links, and low-stock alerts for all of it." },
+            { icon: "refresh-cw", title: "Customisable workflows", desc: "Create statuses that fit different repair types. Consumer devices, warranty work, refurbishments — each can follow its own pipeline." },
+          ].map((item) => (
+            <div class="card-hover rounded-xl border border-slate-200 bg-white p-6 text-center">
+              <div class="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <Icon name={item.icon} size={20} />
+              </div>
+              <h3 class="font-semibold text-dark">{item.title}</h3>
+              <p class="mt-1 text-sm text-slate-600">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Related pages -->
+    <section class="py-20 sm:py-28 bg-slate-50">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <SectionHeading title="Explore more features" />
+        </div>
+        <div class="reveal stagger grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {[
+            { icon: "ticket", title: "Repair ticket software", desc: "Deep dive into RepairKeeper's ticket management system — statuses, signatures, scheduling, and more.", href: "/repair-ticket-software" },
+            { icon: "inventory", title: "Repair shop inventory", desc: "Track stock across locations, manage suppliers, and automate parts allocation to open tickets.", href: "/repair-shop-inventory-software" },
+            { icon: "wiki", title: "Repair wiki software", desc: "Build a shared knowledge base of devices, parts, faults, and step-by-step repair guides.", href: "/repair-wiki-software" },
+          ].map((item) => (
+            <a href={item.href} class="card-hover block rounded-xl border border-slate-200 bg-white p-6 transition-colors hover:border-primary/30">
+              <div class="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <Icon name={item.icon} size={20} />
+              </div>
+              <h3 class="font-semibold text-dark">{item.title}</h3>
+              <p class="mt-1 text-sm text-slate-600">{item.desc}</p>
+              <span class="mt-3 inline-flex items-center gap-1 text-sm font-medium text-primary">Learn more <Icon name="arrow-right" size={14} /></span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-20 sm:py-28 bg-white">
+      <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <SectionHeading title="Electronics repair software questions" badge="FAQ" />
+        </div>
+        <div class="reveal stagger space-y-3">
+          {[
+            { q: "What types of electronics can I manage with RepairKeeper?", a: "RepairKeeper handles any device type — phones, tablets, laptops, games consoles, drones, audio equipment, appliances, and more. The system isn't locked to a single device category, so you can add custom device types to the repair wiki and track parts and faults for each." },
+            { q: "Can I track multiple devices from the same customer on one ticket?", a: "Yes. RepairKeeper supports multi-device tickets — a customer can drop off a phone, a console, and a pair of headphones on the same ticket. Each device is tracked independently with its own status, parts, and diagnosis." },
+            { q: "How does the repair wiki help electronics repair shops?", a: "The repair wiki lets you build a searchable knowledge base of devices, parts, common faults, and step-by-step repair guides. For electronics shops handling many device types, this means your team can quickly find the right guide for any repair — and new technicians get up to speed faster." },
+            { q: "Can I manage inventory for different device categories?", a: "Yes. RepairKeeper's inventory system tracks stock across multiple locations and supports any part type — phone screens, laptop keyboards, console HDMI ports, drone motors, and more. Parts are linked to devices in the wiki, so you always know which parts fit which devices." },
+            { q: "Is there a free plan for small electronics repair businesses?", a: "Yes. The Free plan includes 25 tickets per month with core ticketing, invoicing, and customer management. It's not a trial — you can use it indefinitely and upgrade when your business grows." },
+          ].map((item) => (
+            <details class="group rounded-xl border border-slate-200 bg-white transition-all hover:border-primary/30">
+              <summary class="flex cursor-pointer items-center justify-between px-6 py-4 text-left">
+                <span class="pr-4 text-base font-semibold text-dark group-open:text-primary">{item.q}</span>
+                <svg class="h-5 w-5 shrink-0 text-slate-400 transition-transform group-open:rotate-180 group-open:text-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6" /></svg>
+              </summary>
+              <div class="px-6 pb-4">
+                <p class="text-sm leading-relaxed text-slate-600">{item.a}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="relative overflow-hidden bg-dark py-20 sm:py-28">
+      <div class="pointer-events-none absolute inset-0" aria-hidden="true">
+        <div class="absolute -top-32 -left-32 h-96 w-96 rounded-full bg-primary/20 blur-3xl"></div>
+        <div class="absolute -bottom-32 -right-32 h-96 w-96 rounded-full bg-accent/20 blur-3xl"></div>
+      </div>
+      <div class="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+        <div class="reveal">
+          <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+            Ready to manage every repair, every device?
+          </h2>
+          <p class="mx-auto mt-4 max-w-2xl text-lg text-slate-400">
+            Join electronics repair shops across the UK already using RepairKeeper to handle the full range of devices, parts, and customers. Start free — upgrade when you're ready.
+          </p>
+          <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+            <a href="https://app.repairkeeper.co.uk/register" class="inline-flex items-center gap-2 rounded-lg bg-primary px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:bg-primary-light hover:shadow-xl hover:shadow-primary/30">
+              Get Started Free
+              <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </a>
+          </div>
+          <p class="mt-4 text-sm text-slate-500">
+            No credit card required. <a href="/pricing" class="text-primary-light hover:underline">See pricing</a>.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
+</BaseLayout>
