@@ -106,8 +106,8 @@ Specific business types searching for solutions.
 
 - [ ] Add `id` attributes to each major section for defined anchor links (some already exist)
 - [ ] Ensure the H1 contains a primary keyword variant. Current H1 ("Stop juggling spreadsheets...") is good for conversion but weak for SEO. **Recommendation**: keep the H1 for users but add a visually-hidden `<span>` or restructure so the primary keyword phrase appears in the hero section's semantic content (e.g. a `<p>` directly under the H1 that includes "repair shop management software")
-- [ ] The meta description is 77 words — far too long. Google will truncate it. **Trim to ~155 characters.** Suggested: "All-in-one repair shop management software for phone, electronics & computer repairs. Track tickets, manage inventory, invoice customers. Free plan available."
-- [ ] Add internal links to new feature pages from the relevant homepage sections (once created)
+- [x] ~~The meta description is 77 words — far too long.~~ **Done** — Trimmed to ~155 characters: "All-in-one repair shop management software for phone, electronics & computer repairs. Track tickets, manage inventory, invoice customers. Free plan available."
+- [x] ~~Add internal links to new feature pages from the relevant homepage sections~~ **Done** — Feature overview cards now link to their corresponding landing pages with "Learn more" links. Header nav has a features dropdown. Footer updated with all feature page links.
 
 #### Changelog `/changelog`
 **No SEO changes needed.** This page serves product credibility, not search traffic. It's fine as-is.
@@ -120,26 +120,26 @@ Each feature page targets a specific keyword cluster, provides genuine depth, an
 
 **Use a shared layout**: Badge → H1 → Description → Feature details (with screenshots/mockups) → How it works → Related features → CTA.
 
-| Page | URL | Target H1 | Primary Keywords | Intent |
-|------|-----|-----------|-----------------|--------|
-| Ticket Management | `/features/ticket-management` | "Repair ticket management that handles the complexity" | repair ticket system, repair ticket tracking, repair ticket software | Commercial |
-| Multi-Device Tickets | `/features/multi-device-tickets` | "Multi-device repair tickets with intelligent auto-status" | multi-device repair tickets, repair auto-status | Commercial (differentiator) |
-| Quoting & Invoicing | `/features/quoting-invoicing` | "Professional repair quotes and invoices in minutes" | repair shop invoicing software, repair shop quoting | Commercial |
-| Inventory Management | `/features/inventory-management` | "Repair shop inventory and stock management" | repair shop inventory management, repair parts tracking | Commercial |
-| Customer Tracking | `/features/customer-tracking` | "Let your customers track their repairs in real time" | customer repair tracking, repair tracking page | Commercial |
-| Trade-In & Refurbishment | `/features/trade-in-refurbishment` | "Buy, refurbish, and resell devices — tracked end to end" | trade-in software, phone buyback software, refurbishment tracking | Commercial |
-| Online Booking | `/features/online-booking` | "Online repair booking for your customers" | phone repair booking system, repair shop online booking | Commercial |
-| Team & Permissions | `/features/team-permissions` | "Team management built for repair shops" | repair shop team management, repair shop permissions | Commercial |
-| Repair Wiki | `/features/repair-wiki` | "A shared repair knowledge base for your team" | repair knowledge base, repair wiki software | Commercial |
+**URL structure note**: We use keyword-rich flat URLs (e.g. `/repair-ticket-software`) instead of the originally planned `/features/` subdirectory structure. This is better for SEO as it places target keywords directly in the URL path.
 
-**Important**: Each feature page should include:
-- Genuine screenshots or detailed mockups of the feature in action
-- A "How it works" section explaining the workflow
-- A "Who is this for?" paragraph
+| Page | URL | Status | Primary Keywords | Intent |
+|------|-----|--------|-----------------|--------|
+| Ticket Management + Multi-Device | `/repair-ticket-software` | ✅ Done | repair ticket system, repair ticket software, multi-device repair tickets | Commercial |
+| Quoting & Invoicing | `/repair-shop-invoicing-software` | ✅ Done | repair shop invoicing software, repair shop quoting | Commercial |
+| Customer CRM + Tracking | `/repair-shop-crm` | ✅ Done | repair shop CRM, customer repair tracking | Commercial |
+| Inventory Management | `/repair-shop-inventory-software` | ✅ Done | repair shop inventory management, repair parts tracking | Commercial |
+| Online Booking | `/repair-booking-software` | ✅ Done | phone repair booking system, repair shop online booking | Commercial |
+| Trade-In & Refurbishment | TBD | ❌ Phase 2 | trade-in software, phone buyback software, refurbishment tracking | Commercial |
+| Team & Permissions | TBD | ❌ Phase 2 | repair shop team management, repair shop permissions | Commercial |
+| Repair Wiki | TBD | ❌ Phase 2 | repair knowledge base, repair wiki software | Commercial |
+
+**Each feature page includes**:
+- HTML/CSS mockups of the feature in action
+- Feature detail sections with icon grids
 - Links to 2-3 related feature pages
-- A clear CTA to sign up or see pricing
+- CTA to sign up or see pricing
 - Unique meta title and description targeting the page's primary keywords
-- SoftwareApplication or Product structured data where appropriate
+- Breadcrumb and FAQ structured data (JSON-LD)
 
 ---
 
@@ -147,11 +147,11 @@ Each feature page targets a specific keyword cluster, provides genuine depth, an
 
 These target high-intent searchers who are already aware of competitors. Be factual and fair — not slimy. Focus on genuine differences.
 
-| Page | URL | Target H1 | Primary Keywords |
-|------|-----|-----------|-----------------|
-| RepairKeeper vs RepairDesk | `/compare/repairdesk` | "RepairKeeper vs RepairDesk — which repair shop software fits your business?" | RepairDesk alternative, RepairKeeper vs RepairDesk |
-| RepairKeeper vs RepairShopr | `/compare/repairshopr` | "RepairKeeper vs RepairShopr — a straightforward comparison" | RepairShopr alternative, RepairKeeper vs RepairShopr |
-| Best Repair Shop Software UK | `/compare/best-repair-shop-software-uk` | "Best repair shop software in the UK (2026)" | best repair shop software UK, repair shop software UK |
+| Page | URL | Status | Primary Keywords |
+|------|-----|--------|-----------------|
+| Best Repair Shop Software UK | `/best-repair-shop-software-uk` | ✅ Done | best repair shop software UK, repair shop software UK |
+| RepairKeeper vs RepairDesk | TBD | ❌ Phase 2 | RepairDesk alternative, RepairKeeper vs RepairDesk |
+| RepairKeeper vs RepairShopr | TBD | ❌ Phase 2 | RepairShopr alternative, RepairKeeper vs RepairShopr |
 
 **Content approach for comparison pages:**
 - Honest feature comparison table
@@ -167,11 +167,11 @@ These target high-intent searchers who are already aware of competitors. Be fact
 
 Vertical landing pages for specific repair business types. These capture "[business type] software" searches.
 
-| Page | URL | Target H1 | Primary Keywords |
-|------|-----|-----------|-----------------|
-| Phone Repair Shops | `/for/phone-repair-shops` | "Software built for phone repair shops" | phone repair shop software, mobile phone repair software |
-| Computer Repair Shops | `/for/computer-repair-shops` | "Management software for computer repair shops" | computer repair shop software, computer repair business software |
-| Electronics Repair | `/for/electronics-repair` | "Repair management for electronics repair businesses" | electronics repair software, electronics repair management |
+| Page | URL | Status | Primary Keywords |
+|------|-----|--------|-----------------|
+| Phone Repair Shops | `/phone-repair-shop-software` | ✅ Done | phone repair shop software, mobile phone repair software |
+| Computer Repair Shops | TBD | ❌ Phase 3 | computer repair shop software, computer repair business software |
+| Electronics Repair | TBD | ❌ Phase 3 | electronics repair software, electronics repair management |
 
 **Content approach**: Each page speaks directly to that business type's workflow, pain points, and how RepairKeeper maps to their needs. Include relevant feature callouts and a tailored CTA.
 
@@ -258,9 +258,9 @@ Internal linking is critical for a small site. Every page should link to related
 ## Technical SEO Actions
 
 ### Immediate
-- [ ] **Fix meta description length**: Homepage description is ~400 characters. Trim to 150-160 characters
-- [ ] **Add feature pages to sitemap**: Astro's sitemap plugin will handle this automatically when pages are created
-- [ ] **Breadcrumb structured data**: Add proper breadcrumbs to all new pages (Home > Features > [Page])
+- [x] ~~**Fix meta description length**~~ **Done** — Trimmed to ~155 characters
+- [x] ~~**Add feature pages to sitemap**~~ **Done** — Astro sitemap plugin auto-generates for all 10 pages
+- [x] ~~**Breadcrumb structured data**~~ **Done** — All feature and comparison pages include breadcrumb JSON-LD
 - [ ] **Image alt text audit**: Ensure all images have descriptive, keyword-relevant alt text (current mockups should have alt text describing the feature shown)
 - [ ] **Page speed**: Run Lighthouse audit on the live site. Astro is fast by default, but verify. Watch for large images (dashboard.png is 1504x848 — ensure it's optimised, consider WebP/AVIF format and srcset for responsive sizes)
 
@@ -274,7 +274,7 @@ Internal linking is critical for a small site. Every page should link to related
 ### Later
 - [ ] **Core Web Vitals monitoring**: Track LCP, FID, CLS monthly
 - [ ] **404 monitoring**: Watch for broken links as pages are added/moved
-- [ ] **Schema markup expansion**: Add Review/Rating schema when real reviews exist (remove the current aggregateRating of 5/5 from 1 rating — this looks artificial and could be flagged)
+- [x] ~~**Remove artificial aggregateRating**~~ **Done** — Removed the 5/5 from 1 rating. Will re-add Review/Rating schema when real reviews exist.
 
 ---
 
@@ -292,63 +292,60 @@ This plan focuses on on-site SEO, but noting these for completeness:
 
 ## Phased Execution Plan
 
-### Phase 1: Foundation (Weeks 1-4)
+### Phase 1: Foundation ✅ COMPLETE
 **Goal**: Fix what we have and create the highest-impact new pages.
 
-1. **Homepage optimisations** (Week 1)
-   - Fix meta description length
-   - Review and optimise image assets (WebP, srcset)
-   - Run Lighthouse audit and fix any issues
+1. ✅ **Homepage optimisations**
+   - ✅ Meta description trimmed to ~155 characters
+   - [ ] Review and optimise image assets (WebP, srcset)
+   - [ ] Run Lighthouse audit and fix any issues
 
-2. **Standalone Pricing page** (Week 1)
-   - Create `/pricing` with full plan comparison
-   - Target: "repair shop software pricing", "free repair shop software"
+2. ✅ **Standalone Pricing page** — `/pricing`
 
-3. **Feature pages — first batch** (Weeks 2-3)
-   - Ticket Management (`/features/ticket-management`)
-   - Multi-Device Tickets (`/features/multi-device-tickets`)
-   - Quoting & Invoicing (`/features/quoting-invoicing`)
-   - Customer Tracking (`/features/customer-tracking`)
-   - Inventory Management (`/features/inventory-management`)
+3. ✅ **Feature pages — first batch**
+   - ✅ Ticket Management + Multi-Device (`/repair-ticket-software`)
+   - ✅ Quoting & Invoicing (`/repair-shop-invoicing-software`)
+   - ✅ Customer CRM + Tracking (`/repair-shop-crm`)
+   - ✅ Inventory Management (`/repair-shop-inventory-software`)
+   - ✅ Online Booking (`/repair-booking-software`)
 
-4. **Internal linking pass** (Week 3)
-   - Add "Learn more" links from homepage sections to feature pages
-   - Cross-link feature pages to each other
-   - Update header/footer navigation
+4. ✅ **Internal linking pass**
+   - ✅ Homepage feature cards link to feature pages with "Learn more" CTAs
+   - ✅ Feature pages cross-link to each other
+   - ✅ Header nav features dropdown added
+   - ✅ Footer navigation updated with all feature pages
 
-5. **Comparison page — first one** (Week 4)
-   - Best Repair Shop Software UK (`/compare/best-repair-shop-software-uk`)
-   - This is the safest comparison page to start with — no direct competitor naming issues
+5. ✅ **Comparison page** — Best Repair Shop Software UK (`/best-repair-shop-software-uk`)
 
-6. **Technical SEO** (Ongoing through Phase 1)
-   - Verify GSC indexing
-   - Submit sitemap to GSC and Bing
-   - Fix aggregateRating schema (remove or get real reviews)
+6. **Technical SEO** (Partially complete)
+   - [ ] Verify GSC indexing
+   - [ ] Submit sitemap to GSC and Bing
+   - ✅ Removed artificial aggregateRating schema
 
 ### Phase 2: Expand (Weeks 5-8)
 **Goal**: Fill out remaining feature pages, add competitor comparisons, begin content.
 
-7. **Feature pages — second batch** (Weeks 5-6)
-   - Trade-In & Refurbishment (`/features/trade-in-refurbishment`)
-   - Online Booking (`/features/online-booking`)
-   - Team & Permissions (`/features/team-permissions`)
-   - Repair Wiki (`/features/repair-wiki`)
+7. **Feature pages — second batch**
+   - [ ] Trade-In & Refurbishment
+   - ~~Online Booking~~ (moved to Phase 1, done as `/repair-booking-software`)
+   - [ ] Team & Permissions
+   - [ ] Repair Wiki
 
-8. **Comparison pages** (Weeks 6-7)
-   - RepairKeeper vs RepairDesk (`/compare/repairdesk`)
-   - RepairKeeper vs RepairShopr (`/compare/repairshopr`)
+8. **Comparison pages**
+   - [ ] RepairKeeper vs RepairDesk
+   - [ ] RepairKeeper vs RepairShopr
 
-9. **First blog articles** (Weeks 7-8)
-   - Pick 2-3 from the recommended list
-   - Set up `/blog/` route with proper article schema
+9. **First blog articles**
+   - [ ] Pick 2-3 from the recommended list
+   - [ ] Set up `/blog/` route with proper article schema
 
 ### Phase 3: Deepen (Weeks 9-12)
 **Goal**: Use-case pages, more content, refine based on data.
 
-10. **Use-case pages** (Weeks 9-10)
-    - Phone Repair Shops (`/for/phone-repair-shops`)
-    - Computer Repair Shops (`/for/computer-repair-shops`)
-    - Electronics Repair (`/for/electronics-repair`)
+10. **Use-case pages**
+    - ✅ Phone Repair Shops (`/phone-repair-shop-software`) — done early
+    - [ ] Computer Repair Shops
+    - [ ] Electronics Repair
 
 11. **Additional blog content** (Weeks 10-12)
     - 2-3 more articles based on GSC data (what queries are we appearing for?)
@@ -382,11 +379,33 @@ This plan focuses on on-site SEO, but noting these for completeness:
 
 ## Summary
 
-The single most impactful thing we can do right now is **expand from 2 pages to ~15 pages** by creating dedicated feature pages, a standalone pricing page, and an initial comparison page. This gives Google actual pages to rank for specific queries instead of trying to rank one monolith page for everything.
+### Current State (Updated 2026-03-20)
 
-The second most impactful thing is **comparison and alternative pages** — these target the highest-intent searchers who are already in buying mode.
+**10 indexable pages** — up from 2. Phase 1 is complete.
+
+| Page | URL |
+|------|-----|
+| Homepage | `/` |
+| Pricing | `/pricing` |
+| Repair Tickets | `/repair-ticket-software` |
+| Quoting & Invoicing | `/repair-shop-invoicing-software` |
+| Customer CRM | `/repair-shop-crm` |
+| Inventory & Stock | `/repair-shop-inventory-software` |
+| Online Booking | `/repair-booking-software` |
+| Phone Repair Shops | `/phone-repair-shop-software` |
+| Best Repair Shop Software UK | `/best-repair-shop-software-uk` |
+| Changelog | `/changelog` |
+
+### What's Next (Phase 2)
+
+The next highest-impact work is:
+1. **Remaining feature pages** — Trade-in, Team & Permissions, Repair Wiki
+2. **Competitor comparison pages** — vs RepairDesk, vs RepairShopr (high purchase intent)
+3. **Blog setup** — supporting content targeting informational keywords
 
 Blog content is Phase 2-3 and should be treated as supporting infrastructure, not the primary strategy. A repair shop owner searching "repair shop invoicing software" is closer to buying than one searching "how to run a repair shop" — prioritise the commercial pages first.
+
+### SEO Advantages
 
 RepairKeeper's advantages in SEO will come from:
 1. **Sharper relevance** — purpose-built pages for repair shop searches, not generic helpdesk content

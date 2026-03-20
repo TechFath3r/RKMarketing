@@ -1,0 +1,343 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
+import Icon from "@components/Icon.astro";
+import SectionHeading from "@components/SectionHeading.astro";
+import FeatureDetail from "@components/FeatureDetail.astro";
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://repairkeeper.co.uk" },
+    { "@type": "ListItem", position: 2, name: "Repair Shop Inventory Software", item: "https://repairkeeper.co.uk/repair-shop-inventory-software" },
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "Can I track stock across multiple locations?",
+      acceptedAnswer: { "@type": "Answer", text: "Yes. RepairKeeper supports multiple stock locations — for example, your main shop, a warehouse, and a second branch. Each part tracks quantity per location independently, so you always know exactly where your stock is." },
+    },
+    {
+      "@type": "Question",
+      name: "How does automatic stock allocation work?",
+      acceptedAnswer: { "@type": "Answer", text: "When a technician adds a part to a repair ticket, RepairKeeper checks your stock levels instantly. If the part is available, it's decremented from inventory automatically. If it's not in stock, the system flags it as needing to be ordered — no manual stock adjustments needed." },
+    },
+    {
+      "@type": "Question",
+      name: "Does RepairKeeper track stock movements and changes?",
+      acceptedAnswer: { "@type": "Answer", text: "Yes. Every stock movement is logged in a full audit trail — including receives, adjustments, ticket usage, returns, and faulty items. You can see exactly what happened, when, and who made the change." },
+    },
+    {
+      "@type": "Question",
+      name: "Which plan includes inventory management?",
+      acceptedAnswer: { "@type": "Answer", text: "Inventory and stock management is available on the Standard plan (£30/month) and above. The Standard plan also includes up to 5 team members, asset tracking, the repair wiki, label printing, and team management with RBAC." },
+    },
+  ],
+};
+---
+
+<BaseLayout
+  title="Repair Shop Inventory Software — Stock, Parts & Supplier Management | RepairKeeper"
+  description="Inventory and stock management software for repair shops. Multi-location tracking, automatic allocation, low stock alerts. Free plan available."
+>
+  <Header />
+  <main id="main-content">
+    <!-- Hero -->
+    <section class="hero-gradient relative overflow-hidden pt-28 pb-16 sm:pt-36 sm:pb-20">
+      <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+        <div class="absolute -top-24 -right-24 h-96 w-96 rounded-full bg-primary/5 blur-3xl animate-pulse-glow"></div>
+        <div class="absolute -bottom-24 -left-24 h-96 w-96 rounded-full bg-accent/5 blur-3xl animate-pulse-glow" style="animation-delay: 1.5s;"></div>
+      </div>
+      <div class="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+        <span class="mb-4 inline-block rounded-full bg-primary/10 px-4 py-1.5 text-sm font-semibold text-primary animate-fade-in">
+          Inventory & Stock
+        </span>
+        <h1 class="text-4xl font-extrabold tracking-tight text-dark sm:text-5xl animate-fade-up" style="animation-delay: 0.15s;">
+          Repair shop inventory that <span class="gradient-text">manages itself</span>
+        </h1>
+        <p class="mx-auto mt-4 max-w-2xl text-lg text-slate-600 animate-fade-up" style="animation-delay: 0.3s;">
+          Multi-location stock tracking, automatic allocation when parts are added to tickets, low stock alerts, and full audit trails — built for repair shops that never want to lose track of a part.
+        </p>
+        <div class="mt-8 flex flex-wrap items-center justify-center gap-4 animate-fade-up" style="animation-delay: 0.45s;">
+          <a href="https://app.repairkeeper.co.uk/register" class="inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 text-base font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:bg-primary-dark hover:shadow-xl hover:shadow-primary/30">
+            Get Started Free
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+          </a>
+          <a href="/pricing" class="inline-flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-6 py-3 text-base font-semibold text-slate-700 transition-all hover:border-primary/30 hover:text-primary">
+            View Pricing
+          </a>
+        </div>
+        <p class="mt-4 text-sm text-slate-500 animate-fade-up" style="animation-delay: 0.55s;">Free plan available. Inventory features on Standard plan and above.</p>
+      </div>
+    </section>
+
+    <!-- Multi-location stock -->
+    <section class="py-20 sm:py-28 bg-white">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <FeatureDetail
+            title="Stock levels across every location"
+            subtitle="Whether you have one shop or several, RepairKeeper tracks stock per location — so you always know exactly where your parts are and how many you have."
+            badge="Multi-Location Stock"
+            items={[
+              { icon: "map-pin", title: "Multiple locations", description: "Track stock across your main shop, warehouse, second branch — as many locations as you need. Each part has independent quantities per location." },
+              { icon: "search", title: "Smart availability", description: "See at a glance which parts are in stock and which need ordering. Availability indicators show stock status across all locations." },
+              { icon: "alert-triangle", title: "Low stock alerts", description: "Set minimum stock levels per part per location. Get flagged the moment stock drops below your threshold — before you run out." },
+              { icon: "bar-chart", title: "Stock demand view", description: "See all parts needed across every open ticket in one view, with supplier links for quick reordering." },
+            ]}
+          >
+            <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-lg">
+              <div class="mb-4 flex items-center justify-between">
+                <span class="text-sm font-semibold text-dark">Stock Overview</span>
+                <span class="rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">3 locations</span>
+              </div>
+              <div class="space-y-3">
+                <div class="rounded-lg border border-slate-100 p-3">
+                  <div class="flex items-center justify-between">
+                    <span class="text-sm font-medium text-dark">iPhone 15 Pro OLED Screen</span>
+                    <span class="rounded-full bg-emerald-100 px-2 py-0.5 text-xs font-medium text-emerald-700">In Stock</span>
+                  </div>
+                  <div class="mt-2 grid grid-cols-3 gap-2 text-xs">
+                    <div class="rounded bg-slate-50 px-2 py-1.5 text-center">
+                      <span class="block text-slate-500">Main Shop</span>
+                      <span class="font-semibold text-dark">4</span>
+                    </div>
+                    <div class="rounded bg-slate-50 px-2 py-1.5 text-center">
+                      <span class="block text-slate-500">Warehouse</span>
+                      <span class="font-semibold text-dark">12</span>
+                    </div>
+                    <div class="rounded bg-slate-50 px-2 py-1.5 text-center">
+                      <span class="block text-slate-500">Branch 2</span>
+                      <span class="font-semibold text-dark">2</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="rounded-lg border border-slate-100 p-3">
+                  <div class="flex items-center justify-between">
+                    <span class="text-sm font-medium text-dark">Samsung S24 Battery</span>
+                    <span class="rounded-full bg-amber-100 px-2 py-0.5 text-xs font-medium text-amber-700">Low Stock</span>
+                  </div>
+                  <div class="mt-2 grid grid-cols-3 gap-2 text-xs">
+                    <div class="rounded bg-amber-50 px-2 py-1.5 text-center">
+                      <span class="block text-slate-500">Main Shop</span>
+                      <span class="font-semibold text-amber-700">1</span>
+                    </div>
+                    <div class="rounded bg-slate-50 px-2 py-1.5 text-center">
+                      <span class="block text-slate-500">Warehouse</span>
+                      <span class="font-semibold text-dark">0</span>
+                    </div>
+                    <div class="rounded bg-slate-50 px-2 py-1.5 text-center">
+                      <span class="block text-slate-500">Branch 2</span>
+                      <span class="font-semibold text-dark">0</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="rounded-lg border border-slate-100 p-3">
+                  <div class="flex items-center justify-between">
+                    <span class="text-sm font-medium text-dark">iPad Air 5 Digitiser</span>
+                    <span class="rounded-full bg-red-100 px-2 py-0.5 text-xs font-medium text-red-700">Out of Stock</span>
+                  </div>
+                  <div class="mt-2 grid grid-cols-3 gap-2 text-xs">
+                    <div class="rounded bg-red-50 px-2 py-1.5 text-center">
+                      <span class="block text-slate-500">Main Shop</span>
+                      <span class="font-semibold text-red-700">0</span>
+                    </div>
+                    <div class="rounded bg-slate-50 px-2 py-1.5 text-center">
+                      <span class="block text-slate-500">Warehouse</span>
+                      <span class="font-semibold text-dark">0</span>
+                    </div>
+                    <div class="rounded bg-slate-50 px-2 py-1.5 text-center">
+                      <span class="block text-slate-500">Branch 2</span>
+                      <span class="font-semibold text-dark">0</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </FeatureDetail>
+        </div>
+      </div>
+    </section>
+
+    <!-- Automatic allocation -->
+    <section class="py-20 sm:py-28 bg-slate-50">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <FeatureDetail
+            title="Parts auto-allocate to tickets"
+            subtitle="When a technician adds a part to a repair, RepairKeeper checks your stock levels instantly and decrements it. When stock arrives, allocate to waiting tickets with one click. No manual stock counts, no discrepancies."
+            badge="Automatic Allocation"
+            reverse={true}
+            items={[
+              { icon: "zap", title: "Instant stock check", description: "Add a part to a ticket and stock is checked and decremented immediately. If it's available, it's allocated. If not, it's flagged for ordering." },
+              { icon: "refresh-cw", title: "One-click allocation", description: "When stock arrives, see every ticket waiting for that part. Allocate with a single click — the device status advances automatically." },
+              { icon: "ticket", title: "Tied to auto-status", description: "Stock allocation feeds directly into the auto-status engine. Allocate a part → the device moves from 'Awaiting Parts' to 'Parts Arrived' automatically." },
+              { icon: "shield", title: "Full audit trail", description: "Every stock movement is logged — receives, adjustments, ticket usage, returns, and faulty items. See who did what, and when." },
+            ]}
+          >
+            <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-lg">
+              <div class="mb-4 flex items-center justify-between">
+                <span class="text-sm font-semibold text-dark">Parts Allocation</span>
+                <span class="rounded-full bg-emerald-100 px-2 py-0.5 text-xs font-medium text-emerald-700">Auto</span>
+              </div>
+              <div class="space-y-3">
+                <div class="rounded-lg border border-emerald-200 bg-emerald-50/50 p-3">
+                  <div class="flex items-center gap-2">
+                    <div class="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-100 text-emerald-600">
+                      <Icon name="check" size={14} />
+                    </div>
+                    <span class="text-sm font-medium text-dark">iPhone 15 Pro OLED Screen</span>
+                  </div>
+                  <p class="mt-1.5 ml-8 text-xs text-emerald-700">Allocated from Main Shop &mdash; stock: 4 &rarr; 3</p>
+                  <p class="ml-8 text-xs text-slate-500">Ticket RK-0247 &middot; auto-allocated</p>
+                </div>
+                <div class="rounded-lg border border-amber-200 bg-amber-50/50 p-3">
+                  <div class="flex items-center gap-2">
+                    <div class="flex h-6 w-6 items-center justify-center rounded-full bg-amber-100 text-amber-600">
+                      <Icon name="alert-triangle" size={14} />
+                    </div>
+                    <span class="text-sm font-medium text-dark">iPad Air 5 Digitiser</span>
+                  </div>
+                  <p class="mt-1.5 ml-8 text-xs text-amber-700">Not in stock &mdash; needs ordering</p>
+                  <p class="ml-8 text-xs text-slate-500">Ticket RK-0251 &middot; awaiting supplier</p>
+                </div>
+                <div class="rounded-lg border border-blue-200 bg-blue-50/50 p-3">
+                  <div class="flex items-center gap-2">
+                    <div class="flex h-6 w-6 items-center justify-center rounded-full bg-blue-100 text-blue-600">
+                      <Icon name="inventory" size={14} />
+                    </div>
+                    <span class="text-sm font-medium text-dark">Samsung S24 Battery</span>
+                  </div>
+                  <p class="mt-1.5 ml-8 text-xs text-blue-700">Stock arrived &mdash; ready to allocate</p>
+                  <p class="ml-8 text-xs text-slate-500">2 tickets waiting &middot; <span class="font-medium text-primary">allocate now</span></p>
+                </div>
+              </div>
+            </div>
+          </FeatureDetail>
+        </div>
+      </div>
+    </section>
+
+    <!-- Supplier management & audit trail -->
+    <section class="py-20 sm:py-28 bg-white">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <SectionHeading
+            title="Suppliers, auditing, and full visibility"
+            subtitle="Track every part from supplier to ticket — with complete records at every step."
+          />
+        </div>
+        <div class="reveal stagger grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {[
+            { icon: "globe", title: "Supplier directory", desc: "Store supplier details including website, contact info, SKUs, and cost prices. Link parts directly to their suppliers for fast reordering." },
+            { icon: "link", title: "Supplier links in demand view", desc: "The stock demand view shows all needed parts across open tickets, with direct links to your suppliers — so reordering is one click away." },
+            { icon: "clipboard-list", title: "Movement audit trail", desc: "Every stock movement is logged: receives, adjustments, ticket usage, returns, faulty items. Full accountability with timestamps and user attribution." },
+            { icon: "tag", title: "SKU & cost tracking", desc: "Track supplier SKUs and cost prices per part. Know exactly what you paid and where it came from." },
+            { icon: "map-pin", title: "Per-location minimums", desc: "Set minimum stock levels per part per location. Get alerted before you run out — not after." },
+            { icon: "inventory", title: "Stock receive & adjust", desc: "Receive stock against purchase orders or adjust quantities manually. Every change is logged in the audit trail." },
+            { icon: "refresh-cw", title: "Returns & faulty tracking", desc: "Log faulty parts and returns as distinct movement types. Keep your stock counts accurate and your supplier records clean." },
+            { icon: "bar-chart", title: "Demand forecasting", desc: "See which parts are most requested across your open tickets. Plan your purchasing based on real demand, not guesswork." },
+          ].map((item) => (
+            <div class="card-hover rounded-xl border border-slate-200 bg-white p-5">
+              <div class="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <Icon name={item.icon} size={20} />
+              </div>
+              <h3 class="text-sm font-semibold text-dark">{item.title}</h3>
+              <p class="mt-1 text-xs text-slate-600">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Related features -->
+    <section class="py-20 sm:py-28 bg-slate-50">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <SectionHeading title="Inventory connects to your whole workflow" subtitle="Stock management works alongside ticketing, invoicing, and your customer records." />
+        </div>
+        <div class="reveal stagger grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {[
+            { icon: "ticket", title: "Repair ticket software", desc: "Parts added to tickets automatically check and decrement stock. Auto-status advances when parts are allocated.", href: "/repair-ticket-software" },
+            { icon: "invoice", title: "Quoting & invoicing", desc: "Parts flow from inventory into quotes and invoices with accurate pricing. Generate professional PDFs and send directly to customers.", href: "/repair-shop-invoicing-software" },
+            { icon: "customers", title: "Customer CRM", desc: "Every ticket links to a customer profile with full history, duplicate detection, and balance tracking.", href: "/repair-shop-crm" },
+          ].map((item) => (
+            <a href={item.href} class="card-hover block rounded-xl border border-slate-200 bg-white p-6 transition-colors hover:border-primary/30">
+              <div class="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <Icon name={item.icon} size={20} />
+              </div>
+              <h3 class="font-semibold text-dark">{item.title}</h3>
+              <p class="mt-1 text-sm text-slate-600">{item.desc}</p>
+              <span class="mt-3 inline-flex items-center gap-1 text-sm font-medium text-primary">Learn more <Icon name="arrow-right" size={14} /></span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-20 sm:py-28 bg-white">
+      <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <SectionHeading title="Inventory software questions" badge="FAQ" />
+        </div>
+        <div class="reveal stagger space-y-3">
+          {[
+            { q: "Can I track stock across multiple locations?", a: "Yes. RepairKeeper supports multiple stock locations — for example, your main shop, a warehouse, and a second branch. Each part tracks quantity per location independently, so you always know exactly where your stock is." },
+            { q: "How does automatic stock allocation work?", a: "When a technician adds a part to a repair ticket, RepairKeeper checks your stock levels instantly. If the part is available, it's decremented from inventory automatically. If it's not in stock, the system flags it as needing to be ordered — no manual stock adjustments needed." },
+            { q: "Does RepairKeeper track stock movements and changes?", a: "Yes. Every stock movement is logged in a full audit trail — including receives, adjustments, ticket usage, returns, and faulty items. You can see exactly what happened, when, and who made the change." },
+            { q: "Which plan includes inventory management?", a: "Inventory and stock management is available on the Standard plan (£30/month) and above. The Standard plan also includes up to 5 team members, asset tracking, the repair wiki, label printing, and team management with RBAC." },
+            { q: "Can I manage suppliers in RepairKeeper?", a: "Yes. You can store supplier details including website, contact information, SKUs, and cost prices per part. Parts link directly to their suppliers, and the stock demand view includes supplier links for quick reordering." },
+          ].map((item) => (
+            <details class="group rounded-xl border border-slate-200 bg-white transition-all hover:border-primary/30">
+              <summary class="flex cursor-pointer items-center justify-between px-6 py-4 text-left">
+                <span class="pr-4 text-base font-semibold text-dark group-open:text-primary">{item.q}</span>
+                <svg class="h-5 w-5 shrink-0 text-slate-400 transition-transform group-open:rotate-180 group-open:text-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6" /></svg>
+              </summary>
+              <div class="px-6 pb-4">
+                <p class="text-sm leading-relaxed text-slate-600">{item.a}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="relative overflow-hidden bg-dark py-20 sm:py-28">
+      <div class="pointer-events-none absolute inset-0" aria-hidden="true">
+        <div class="absolute -top-32 -left-32 h-96 w-96 rounded-full bg-primary/20 blur-3xl"></div>
+        <div class="absolute -bottom-32 -right-32 h-96 w-96 rounded-full bg-accent/20 blur-3xl"></div>
+      </div>
+      <div class="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+        <div class="reveal">
+          <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+            Stop losing track of parts and stock
+          </h2>
+          <p class="mx-auto mt-4 max-w-2xl text-lg text-slate-400">
+            RepairKeeper gives you multi-location stock tracking, automatic allocation, low stock alerts, supplier management, and full audit trails — all connected to your tickets. Start free today.
+          </p>
+          <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+            <a href="https://app.repairkeeper.co.uk/register" class="inline-flex items-center gap-2 rounded-lg bg-primary px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:bg-primary-light hover:shadow-xl hover:shadow-primary/30">
+              Get Started Free
+              <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </a>
+          </div>
+          <p class="mt-4 text-sm text-slate-500">
+            No credit card required. <a href="/pricing" class="text-primary-light hover:underline">See pricing</a>.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
+</BaseLayout>

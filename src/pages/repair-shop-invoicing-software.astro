@@ -1,0 +1,385 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
+import Icon from "@components/Icon.astro";
+import SectionHeading from "@components/SectionHeading.astro";
+import FeatureDetail from "@components/FeatureDetail.astro";
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://repairkeeper.co.uk" },
+    { "@type": "ListItem", position: 2, name: "Repair Shop Invoicing Software", item: "https://repairkeeper.co.uk/repair-shop-invoicing-software" },
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "Can I send invoices directly to customers by email?",
+      acceptedAnswer: { "@type": "Answer", text: "Yes. RepairKeeper lets you email invoices to customers with one click. Sent dates are tracked so you always know when an invoice was delivered. Customers can view and pay invoices directly from their tracking page." },
+    },
+    {
+      "@type": "Question",
+      name: "Does RepairKeeper support online payments?",
+      acceptedAnswer: { "@type": "Answer", text: "Yes. With Stripe Connect integration (available on the Pro plan), customers can pay invoices online directly from their repair tracking page. Payment status updates automatically — no manual reconciliation needed." },
+    },
+    {
+      "@type": "Question",
+      name: "Can I request deposits before starting a repair?",
+      acceptedAnswer: { "@type": "Answer", text: "Yes. You can request a deposit upfront before starting work on a repair. This helps secure payment for parts and labour, especially on high-value repairs." },
+    },
+    {
+      "@type": "Question",
+      name: "Does RepairKeeper handle VAT on invoices?",
+      acceptedAnswer: { "@type": "Answer", text: "Yes. RepairKeeper supports VAT registration with configurable rates. You can set separate default VAT rates for quotes and invoices, and override the rate on individual documents. VAT is calculated and displayed automatically on PDF exports." },
+    },
+    {
+      "@type": "Question",
+      name: "Can I generate PDF invoices and quotes?",
+      acceptedAnswer: { "@type": "Answer", text: "Yes. RepairKeeper generates professional PDF invoices and quotes that you can download or email directly to customers. PDFs include your branding, line items, VAT breakdown, and payment details." },
+    },
+  ],
+};
+---
+
+<BaseLayout
+  title="Repair Shop Invoicing Software — Quotes, Invoices & Payments | RepairKeeper"
+  description="Professional quoting and invoicing software for repair shops. PDF invoices, Stripe payments, partial payments, and deposit requests. Free plan available."
+>
+  <Header />
+  <main id="main-content">
+    <!-- Hero -->
+    <section class="hero-gradient relative overflow-hidden pt-28 pb-16 sm:pt-36 sm:pb-20">
+      <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+        <div class="absolute -top-24 -right-24 h-96 w-96 rounded-full bg-primary/5 blur-3xl animate-pulse-glow"></div>
+        <div class="absolute -bottom-24 -left-24 h-96 w-96 rounded-full bg-accent/5 blur-3xl animate-pulse-glow" style="animation-delay: 1.5s;"></div>
+      </div>
+      <div class="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+        <span class="mb-4 inline-block rounded-full bg-primary/10 px-4 py-1.5 text-sm font-semibold text-primary animate-fade-in">
+          Quoting & Invoicing
+        </span>
+        <h1 class="text-4xl font-extrabold tracking-tight text-dark sm:text-5xl animate-fade-up" style="animation-delay: 0.15s;">
+          Repair shop invoicing software that <span class="gradient-text">gets you paid faster</span>
+        </h1>
+        <p class="mx-auto mt-4 max-w-2xl text-lg text-slate-600 animate-fade-up" style="animation-delay: 0.3s;">
+          Professional quotes, invoices, PDF exports, Stripe payments, and deposit requests — built for repair shops that want to stop chasing payments and start getting paid on time.
+        </p>
+        <div class="mt-8 flex flex-wrap items-center justify-center gap-4 animate-fade-up" style="animation-delay: 0.45s;">
+          <a href="https://app.repairkeeper.co.uk/register" class="inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 text-base font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:bg-primary-dark hover:shadow-xl hover:shadow-primary/30">
+            Get Started Free
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+          </a>
+          <a href="/pricing" class="inline-flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-6 py-3 text-base font-semibold text-slate-700 transition-all hover:border-primary/30 hover:text-primary">
+            View Pricing
+          </a>
+        </div>
+        <p class="mt-4 text-sm text-slate-500 animate-fade-up" style="animation-delay: 0.55s;">Free plan with 25 tickets/month. No credit card required.</p>
+      </div>
+    </section>
+
+    <!-- Professional invoices feature detail -->
+    <section class="py-20 sm:py-28 bg-white">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <FeatureDetail
+            title="Professional invoices in seconds"
+            subtitle="Create polished invoices with flexible line items, discounts, and VAT — then send them by email or let customers pay online. Finalised invoices are locked to prevent accidental changes, giving you a clear audit trail."
+            badge="Invoicing"
+            items={[
+              { icon: "file-text", title: "Flexible line items", description: "Add labour, parts, postage, and fees with quantity, unit price, and descriptions. Build invoices that reflect the real cost of the repair." },
+              { icon: "tag", title: "Discounts & VAT", description: "Apply fixed or percentage discounts. VAT is calculated automatically with configurable rates — override per document if needed." },
+              { icon: "lock", title: "Draft & finalised states", description: "Edit freely while in draft. Finalise to lock the invoice and generate a professional PDF. No accidental changes after the fact." },
+              { icon: "mail", title: "One-click email delivery", description: "Send invoices directly to customers by email. Sent dates are tracked so you know exactly when each invoice was delivered." },
+            ]}
+          >
+            <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-lg">
+              <div class="mb-4 flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <span class="text-sm font-semibold text-dark">Invoice #INV-0047</span>
+                  <span class="rounded-full bg-emerald-100 px-2 py-0.5 text-xs font-medium text-emerald-700">Finalised</span>
+                </div>
+                <span class="text-xs text-slate-500">Sent 18 Mar 2026</span>
+              </div>
+              <div class="space-y-2 border-b border-slate-100 pb-3 mb-3">
+                <div class="flex items-center justify-between text-xs">
+                  <span class="text-slate-600">iPhone 15 Pro screen replacement</span>
+                  <span class="font-medium text-dark">&pound;129.99</span>
+                </div>
+                <div class="flex items-center justify-between text-xs">
+                  <span class="text-slate-600">Labour &mdash; 45 mins</span>
+                  <span class="font-medium text-dark">&pound;35.00</span>
+                </div>
+                <div class="flex items-center justify-between text-xs">
+                  <span class="text-slate-600">Tempered glass protector</span>
+                  <span class="font-medium text-dark">&pound;12.99</span>
+                </div>
+              </div>
+              <div class="space-y-1">
+                <div class="flex items-center justify-between text-xs">
+                  <span class="text-slate-500">Subtotal</span>
+                  <span class="text-slate-600">&pound;177.98</span>
+                </div>
+                <div class="flex items-center justify-between text-xs">
+                  <span class="text-slate-500">Discount (10%)</span>
+                  <span class="text-emerald-600">&minus;&pound;17.80</span>
+                </div>
+                <div class="flex items-center justify-between text-xs">
+                  <span class="text-slate-500">VAT (20%)</span>
+                  <span class="text-slate-600">&pound;32.04</span>
+                </div>
+                <div class="flex items-center justify-between text-sm font-semibold pt-1 border-t border-slate-100">
+                  <span class="text-dark">Total</span>
+                  <span class="text-dark">&pound;192.22</span>
+                </div>
+              </div>
+              <div class="mt-3 flex items-center gap-2">
+                <span class="rounded-full bg-emerald-100 px-2 py-0.5 text-xs font-medium text-emerald-700">Paid</span>
+                <span class="text-xs text-slate-500">via Stripe &middot; 19 Mar 2026</span>
+              </div>
+            </div>
+          </FeatureDetail>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quoting feature detail -->
+    <section class="py-20 sm:py-28 bg-slate-50">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <FeatureDetail
+            title="Quote fast, win more jobs"
+            subtitle="Give customers a clear price before you start work. Use the Quick Quote calculator for fast estimates, or build detailed quotes with itemised labour, parts, and fees. Customers can accept or decline quotes directly from their tracking page."
+            badge="Quoting"
+            reverse={true}
+            items={[
+              { icon: "zap", title: "Quick Quote calculator", description: "Need a ballpark figure? Use the Quick Quote tool to generate fast estimates without creating a full ticket." },
+              { icon: "clipboard-list", title: "Detailed line-item quotes", description: "Build itemised quotes with labour, parts, postage, payment fees, and VAT. Give customers full transparency on costs." },
+              { icon: "tracking", title: "Customer acceptance", description: "Customers can view, accept, or decline quotes directly from their tracking page. No phone calls or emails needed." },
+              { icon: "download", title: "PDF quote export", description: "Generate professional PDF quotes to download or email. Branded, clear, and ready to share." },
+            ]}
+          >
+            <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-lg">
+              <div class="mb-4 flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <span class="text-sm font-semibold text-dark">Quote #QT-0023</span>
+                  <span class="rounded-full bg-blue-100 px-2 py-0.5 text-xs font-medium text-blue-700">Sent to customer</span>
+                </div>
+              </div>
+              <div class="space-y-2 border-b border-slate-100 pb-3 mb-3">
+                <div class="flex items-center justify-between text-xs">
+                  <span class="text-slate-600">MacBook Pro battery replacement</span>
+                  <span class="font-medium text-dark">&pound;89.00</span>
+                </div>
+                <div class="flex items-center justify-between text-xs">
+                  <span class="text-slate-600">Labour &mdash; diagnostic &amp; fit</span>
+                  <span class="font-medium text-dark">&pound;45.00</span>
+                </div>
+                <div class="flex items-center justify-between text-xs">
+                  <span class="text-slate-600">Return postage</span>
+                  <span class="font-medium text-dark">&pound;6.99</span>
+                </div>
+              </div>
+              <div class="space-y-1">
+                <div class="flex items-center justify-between text-xs">
+                  <span class="text-slate-500">Subtotal</span>
+                  <span class="text-slate-600">&pound;140.99</span>
+                </div>
+                <div class="flex items-center justify-between text-xs">
+                  <span class="text-slate-500">VAT (20%)</span>
+                  <span class="text-slate-600">&pound;28.20</span>
+                </div>
+                <div class="flex items-center justify-between text-sm font-semibold pt-1 border-t border-slate-100">
+                  <span class="text-dark">Total</span>
+                  <span class="text-dark">&pound;169.19</span>
+                </div>
+              </div>
+              <div class="mt-4 flex gap-2">
+                <div class="flex-1 rounded-lg bg-emerald-50 border border-emerald-200 py-2 text-center text-xs font-medium text-emerald-700">Accept Quote</div>
+                <div class="flex-1 rounded-lg bg-slate-50 border border-slate-200 py-2 text-center text-xs font-medium text-slate-500">Decline</div>
+              </div>
+            </div>
+          </FeatureDetail>
+        </div>
+      </div>
+    </section>
+
+    <!-- Payments feature detail -->
+    <section class="py-20 sm:py-28 bg-white">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <FeatureDetail
+            title="Get paid online with Stripe"
+            subtitle="Stop chasing payments. With Stripe Connect, customers can pay invoices directly from their repair tracking page. Payment status updates automatically — no manual reconciliation, no awkward phone calls."
+            badge="Online Payments"
+            items={[
+              { icon: "credit-card", title: "Stripe Connect integration", description: "Connect your Stripe account and start accepting online card payments. Customers pay from their tracking page in seconds." },
+              { icon: "refresh-cw", title: "Automatic reconciliation", description: "When a customer pays online, the invoice status updates to Paid automatically. No manual bookkeeping needed." },
+              { icon: "pound", title: "Deposit requests", description: "Request deposits upfront before starting work. Secure payment for parts on high-value repairs before you order." },
+              { icon: "bar-chart", title: "Full payment tracking", description: "Track every payment method — Cash, Bank Transfer, Card Terminal, Stripe, or Other. Always know what's been paid and what's outstanding." },
+            ]}
+          >
+            <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-lg">
+              <div class="mb-4 flex items-center gap-2">
+                <span class="text-sm font-semibold text-dark">Payment Status</span>
+                <span class="rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">Live</span>
+              </div>
+              <div class="space-y-3">
+                <div class="rounded-lg border border-slate-100 p-3">
+                  <div class="flex items-center justify-between">
+                    <span class="text-sm font-medium text-dark">INV-0047 &mdash; Screen repair</span>
+                    <span class="rounded-full bg-emerald-100 px-2 py-0.5 text-xs font-medium text-emerald-700">Paid</span>
+                  </div>
+                  <div class="mt-1 flex items-center justify-between">
+                    <span class="text-xs text-slate-500">Paid via Stripe &middot; 19 Mar 2026</span>
+                    <span class="text-xs font-medium text-dark">&pound;192.22</span>
+                  </div>
+                </div>
+                <div class="rounded-lg border border-slate-100 p-3">
+                  <div class="flex items-center justify-between">
+                    <span class="text-sm font-medium text-dark">INV-0048 &mdash; Laptop service</span>
+                    <span class="rounded-full bg-amber-100 px-2 py-0.5 text-xs font-medium text-amber-700">Deposit paid</span>
+                  </div>
+                  <div class="mt-1 flex items-center justify-between">
+                    <span class="text-xs text-slate-500">&pound;50.00 deposit received &middot; &pound;119.00 remaining</span>
+                    <span class="text-xs font-medium text-dark">&pound;169.00</span>
+                  </div>
+                </div>
+                <div class="rounded-lg border border-slate-100 p-3">
+                  <div class="flex items-center justify-between">
+                    <span class="text-sm font-medium text-dark">INV-0049 &mdash; Data recovery</span>
+                    <span class="rounded-full bg-red-100 px-2 py-0.5 text-xs font-medium text-red-700">Unpaid</span>
+                  </div>
+                  <div class="mt-1 flex items-center justify-between">
+                    <span class="text-xs text-slate-500">Sent 17 Mar 2026 &middot; Awaiting payment</span>
+                    <span class="text-xs font-medium text-dark">&pound;85.00</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </FeatureDetail>
+        </div>
+      </div>
+    </section>
+
+    <!-- Additional invoicing features grid -->
+    <section class="py-20 sm:py-28 bg-slate-50">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <SectionHeading
+            title="Everything you need to quote and get paid"
+            subtitle="From first estimate to final payment — every tool a repair shop needs for professional billing."
+          />
+        </div>
+        <div class="reveal stagger grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {[
+            { icon: "zap", title: "Quick Quote calculator", desc: "Generate fast ballpark estimates without creating a full ticket. Perfect for phone and walk-in enquiries." },
+            { icon: "file-text", title: "PDF export", desc: "Generate professional PDF invoices and quotes with your branding, line items, VAT breakdown, and payment details." },
+            { icon: "send", title: "Email invoices", desc: "Send invoices to customers with one click. Track when each invoice was sent and follow up on outstanding payments." },
+            { icon: "credit-card", title: "Multiple payment methods", desc: "Record payments by Cash, Bank Transfer, Card Terminal, Stripe, or Other. Full flexibility for how your customers pay." },
+            { icon: "pound", title: "Deposit requests", desc: "Request deposits before starting work. Protect your business on high-value repairs by securing payment for parts upfront." },
+            { icon: "tag", title: "Flexible discounts", desc: "Apply fixed-amount or percentage discounts to any invoice. Reward loyal customers or run promotions with ease." },
+            { icon: "shield", title: "Invoice locking", desc: "Finalised invoices are locked to prevent accidental edits. Maintain a clean audit trail for your accounts." },
+            { icon: "globe", title: "Customer self-service", desc: "Customers view invoices and pay online from their tracking page. Less chasing, faster payments." },
+          ].map((item) => (
+            <div class="card-hover rounded-xl border border-slate-200 bg-white p-5">
+              <div class="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <Icon name={item.icon} size={20} />
+              </div>
+              <h3 class="text-sm font-semibold text-dark">{item.title}</h3>
+              <p class="mt-1 text-xs text-slate-600">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Related features -->
+    <section class="py-20 sm:py-28 bg-white">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <SectionHeading title="Invoicing connects to everything" subtitle="Quoting and invoicing works alongside your full repair workflow." />
+        </div>
+        <div class="reveal stagger grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {[
+            { icon: "ticket", title: "Repair ticket software", desc: "Invoices link directly to tickets. Track the full lifecycle from intake to payment in one system.", href: "/repair-ticket-software" },
+            { icon: "customers", title: "Customer management & CRM", desc: "Every invoice ties to a customer profile with balance tracking, payment history, and contact details.", href: "/repair-shop-crm" },
+            { icon: "inventory", title: "Inventory & stock management", desc: "Parts added to tickets feed into invoice line items. Stock costs flow through to accurate pricing.", href: "/repair-shop-inventory-software" },
+          ].map((item) => (
+            <a href={item.href} class="card-hover block rounded-xl border border-slate-200 bg-white p-6 transition-colors hover:border-primary/30">
+              <div class="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <Icon name={item.icon} size={20} />
+              </div>
+              <h3 class="font-semibold text-dark">{item.title}</h3>
+              <p class="mt-1 text-sm text-slate-600">{item.desc}</p>
+              <span class="mt-3 inline-flex items-center gap-1 text-sm font-medium text-primary">Learn more <Icon name="arrow-right" size={14} /></span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-20 sm:py-28 bg-slate-50">
+      <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <SectionHeading title="Invoicing software questions" badge="FAQ" />
+        </div>
+        <div class="reveal stagger space-y-3">
+          {[
+            { q: "Can I send invoices directly to customers by email?", a: "Yes. RepairKeeper lets you email invoices to customers with one click. Sent dates are tracked so you always know when an invoice was delivered. Customers can view and pay invoices directly from their tracking page." },
+            { q: "Does RepairKeeper support online payments?", a: "Yes. With Stripe Connect integration (available on the Pro plan), customers can pay invoices online directly from their repair tracking page. Payment status updates automatically — no manual reconciliation needed." },
+            { q: "Can I request deposits before starting a repair?", a: "Yes. You can request a deposit upfront before starting work on a repair. This helps secure payment for parts and labour, especially on high-value repairs." },
+            { q: "Does RepairKeeper handle VAT on invoices?", a: "Yes. RepairKeeper supports VAT registration with configurable rates. You can set separate default VAT rates for quotes and invoices, and override the rate on individual documents. VAT is calculated and displayed automatically on PDF exports." },
+            { q: "Can I generate PDF invoices and quotes?", a: "Yes. RepairKeeper generates professional PDF invoices and quotes that you can download or email directly to customers. PDFs include your branding, line items, VAT breakdown, and payment details." },
+          ].map((item) => (
+            <details class="group rounded-xl border border-slate-200 bg-white transition-all hover:border-primary/30">
+              <summary class="flex cursor-pointer items-center justify-between px-6 py-4 text-left">
+                <span class="pr-4 text-base font-semibold text-dark group-open:text-primary">{item.q}</span>
+                <svg class="h-5 w-5 shrink-0 text-slate-400 transition-transform group-open:rotate-180 group-open:text-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6" /></svg>
+              </summary>
+              <div class="px-6 pb-4">
+                <p class="text-sm leading-relaxed text-slate-600">{item.a}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="relative overflow-hidden bg-dark py-20 sm:py-28">
+      <div class="pointer-events-none absolute inset-0" aria-hidden="true">
+        <div class="absolute -top-32 -left-32 h-96 w-96 rounded-full bg-primary/20 blur-3xl"></div>
+        <div class="absolute -bottom-32 -right-32 h-96 w-96 rounded-full bg-accent/20 blur-3xl"></div>
+      </div>
+      <div class="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+        <div class="reveal">
+          <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+            Stop chasing payments. Start getting paid on time.
+          </h2>
+          <p class="mx-auto mt-4 max-w-2xl text-lg text-slate-400">
+            RepairKeeper gives you professional quotes, invoices, PDF exports, online payments, and deposit requests — all built for repair shops. Start free today.
+          </p>
+          <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+            <a href="https://app.repairkeeper.co.uk/register" class="inline-flex items-center gap-2 rounded-lg bg-primary px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:bg-primary-light hover:shadow-xl hover:shadow-primary/30">
+              Get Started Free
+              <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </a>
+          </div>
+          <p class="mt-4 text-sm text-slate-500">
+            No credit card required. <a href="/pricing" class="text-primary-light hover:underline">See pricing</a>.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
+</BaseLayout>

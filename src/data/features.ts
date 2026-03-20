@@ -2,6 +2,7 @@ export interface Feature {
   title: string;
   description: string;
   icon: string;
+  href?: string;
 }
 
 export const features: Feature[] = [
@@ -10,24 +11,28 @@ export const features: Feature[] = [
     description:
       "Multi-device tickets with digital signatures, intelligent auto-status, diagnosis workflows, and subcontractor tracking — all in one view.",
     icon: "ticket",
+    href: "/repair-ticket-software",
   },
   {
     title: "Quoting & Invoicing",
     description:
       "Professional quotes with customer accept/decline, invoices with partial payments, PDF export, deposit requests, and Stripe online payments.",
     icon: "invoice",
+    href: "/repair-shop-invoicing-software",
   },
   {
     title: "Customer Management",
     description:
       "Full customer profiles with smart duplicate detection, one-click merge, GDPR anonymisation, and per-customer notification preferences.",
     icon: "customers",
+    href: "/repair-shop-crm",
   },
   {
     title: "Inventory & Stock",
     description:
       "Track stock across multiple locations with automatic allocation, low stock alerts, supplier management, and full audit trail on every movement.",
     icon: "inventory",
+    href: "/repair-shop-inventory-software",
   },
   {
     title: "Trade-in & Refurbishment",
@@ -46,6 +51,7 @@ export const features: Feature[] = [
     description:
       "Let customers book repairs directly from your website. Service selection, availability management, and deposit collection — all automated.",
     icon: "calendar",
+    href: "/repair-booking-software",
   },
   {
     title: "Reporting & Analytics",
