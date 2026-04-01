@@ -10,10 +10,6 @@ A running record of changes shipped to beta testers. Newest entries at the top.
 - **Key Dates — Time Saving** — Fixed a bug where editing a collection, drop-off, or repair due date would revert to the wrong time after saving. Entering 15:30 would save as 16:30 due to a timezone offset issue. Now saves correctly.
 - **Booking Calendar** — Fixed calendar dates shifting one column right in BST (e.g. April 1 appearing under Thursday instead of Wednesday). Also fixed today's highlight showing on the wrong date.
 
-### Platform
-- **New Subscriber Notifications** — Platform now sends an email notification when a new organisation subscribes to a paid plan.
-- **Feedback Notifications** — Platform now sends an email notification when a user submits feedback or a feature suggestion.
-
 ---
 
 ## 31 March 2026
@@ -39,7 +35,6 @@ A running record of changes shipped to beta testers. Newest entries at the top.
 ## 25 March 2026
 
 ### Payments
-- **Stripe Webhook Hardening** — Fixed dual-secret verification to correctly route platform subscription events and Connect payment events through separate signing secrets. Prevents webhook delivery failures when both event types are active.
 - **Invoice Auto-Marking** — Invoices paid via Stripe Connect now automatically update to "Paid" status without manual intervention.
 
 ### Bookings
@@ -63,10 +58,8 @@ A running record of changes shipped to beta testers. Newest entries at the top.
 
 ## 17 March 2026
 
-### Security & Performance
-- **Security Hardening** — Multiple security improvements applied across the API layer following an internal audit.
-- **Soft-Delete** — Organisations, customers, leads, and invoices can now be soft-deleted (recoverable) rather than permanently removed. Cascade protections prevent data loss on related records.
-- **Session Type Safety** — Internal session typing overhauled to remove unsafe casts and improve reliability.
+### Accounts & Data
+- **Recoverable Deletes** — Organisations, customers, leads, and invoices can now be soft-deleted and recovered if removed by mistake.
 
 ### API
 - **API Keys for Standard Plan** — Organisation API keys are now available to Standard plan subscribers (previously restricted to higher tiers).
