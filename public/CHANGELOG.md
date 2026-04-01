@@ -1,6 +1,75 @@
 # RepairKeeper Changelog
 
-A running record of changes shipped to RepairKeeper. Newest entries at the top.
+A running record of changes shipped to beta testers. Newest entries at the top.
+
+---
+
+## 1 April 2026
+
+### Bug Fixes
+- **Key Dates — Time Saving** — Fixed a bug where editing a collection, drop-off, or repair due date would revert to the wrong time after saving. Entering 15:30 would save as 16:30 due to a timezone offset issue. Now saves correctly.
+- **Booking Calendar** — Fixed calendar dates shifting one column right in BST (e.g. April 1 appearing under Thursday instead of Wednesday). Also fixed today's highlight showing on the wrong date.
+
+### Platform
+- **New Subscriber Notifications** — Platform now sends an email notification when a new organisation subscribes to a paid plan.
+- **Feedback Notifications** — Platform now sends an email notification when a user submits feedback or a feature suggestion.
+
+---
+
+## 31 March 2026
+
+### Diagnostics
+- **Customer Reference in Diagnosis Email** — The customer's own reference number now appears prominently in the diagnosis approval email subject line and body, making it easier for customers to match the email to their repair.
+- **Customer Reference on Tracking Portal** — The customer reference is now shown clearly at the top of the device card on the repair tracking page.
+
+---
+
+## 28 March 2026
+
+### Invoices
+- **Multiple Invoices Per Ticket** — Tickets can now have more than one invoice. Useful for deposits followed by final invoices, or splitting charges across visits.
+- **VAT Settings Respected** — Fixed an issue where invoices were created with VAT applied even when the organisation had VAT disabled in settings.
+
+### Tickets & Devices
+- **Customer Reference in Search** — Global search now includes customer reference numbers, making it faster to pull up a ticket from a customer's own job number.
+- **Corporate Device Auto-Email Bypass** — Fixed an edge case where the auto-email setting was being ignored for corporate-owned devices.
+
+---
+
+## 25 March 2026
+
+### Payments
+- **Stripe Webhook Hardening** — Fixed dual-secret verification to correctly route platform subscription events and Connect payment events through separate signing secrets. Prevents webhook delivery failures when both event types are active.
+- **Invoice Auto-Marking** — Invoices paid via Stripe Connect now automatically update to "Paid" status without manual intervention.
+
+### Bookings
+- **Phone Number Validation** — Fixed a validation error that was blocking booking enquiry form submissions when a customer phone number wasn't provided.
+
+---
+
+## 20 March 2026
+
+### Accounts & Billing
+- **Billing Tab** — A new Billing tab in Settings shows your current plan and links directly to manage your subscription via Stripe.
+- **Plan Indicator** — Your active plan is now shown clearly in account settings.
+- **Beta Transition** — The app now displays a transition notice for beta users ahead of the move to paid plans. The banner can be dismissed. A grace period applies before any access changes take effect.
+- **Free Plan Default** — New sign-ups now correctly start on the Free plan rather than Beta.
+
+### Settings
+- **URL-Driven Tab Routing** — Settings tabs now use `?tab=` query parameters, so you can deep-link directly to a specific settings section.
+- **API Keys Moved** — API Keys have moved to Settings > Account for a cleaner layout.
+
+---
+
+## 17 March 2026
+
+### Security & Performance
+- **Security Hardening** — Multiple security improvements applied across the API layer following an internal audit.
+- **Soft-Delete** — Organisations, customers, leads, and invoices can now be soft-deleted (recoverable) rather than permanently removed. Cascade protections prevent data loss on related records.
+- **Session Type Safety** — Internal session typing overhauled to remove unsafe casts and improve reliability.
+
+### API
+- **API Keys for Standard Plan** — Organisation API keys are now available to Standard plan subscribers (previously restricted to higher tiers).
 
 ---
 
