@@ -1,148 +1,95 @@
 ---
-import BaseLayout from "@layouts/BaseLayout.astro";
-import Header from "@components/Header.astro";
-import Footer from "@components/Footer.astro";
-
-const breadcrumbJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: [
-    { "@type": "ListItem", position: 1, name: "Home", item: "https://repairkeeper.co.uk" },
-    { "@type": "ListItem", position: 2, name: "Blog", item: "https://repairkeeper.co.uk/blog" },
-    { "@type": "ListItem", position: 3, name: "Your Repair Shop, Run by AI Agents", item: "https://repairkeeper.co.uk/blog/ai-agents-repair-shop" },
-  ],
-};
-
-const articleJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Article",
-  headline: "Your repair shop, run by AI agents",
-  description: "AI agents are becoming the operating system for modern businesses. Here's how repair shops can connect them directly to RepairKeeper — and what that actually means in practice.",
-  datePublished: "2026-04-01",
-  author: { "@type": "Organization", name: "RepairKeeper" },
-  publisher: { "@type": "Organization", name: "RepairKeeper", url: "https://repairkeeper.co.uk" },
-};
+import BlogLayout from "@layouts/BlogLayout.astro";
 ---
 
-<BaseLayout
+<BlogLayout
   title="Your Repair Shop, Run by AI Agents | RepairKeeper"
   description="AI agents are becoming the operating system for modern businesses. Here's how repair shops can connect them directly to RepairKeeper — and what that actually means in practice."
+  date="2026-04-01"
+  dateFormatted="1 April 2026"
+  readTime="8 min read"
+  slug="ai-agents-repair-shop"
+  headline="Your repair shop, run by AI agents"
+  subtitle="AI agents are moving from novelty to necessity. Here's what that means for repair businesses — and how to connect them to the software you already use."
+  gradientWord="AI agents"
 >
-  <Header />
-  <main id="main-content">
-    <section class="hero-gradient relative overflow-hidden pt-28 pb-12 sm:pt-36 sm:pb-16">
-      <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
-        <div class="absolute -top-24 -right-24 h-96 w-96 rounded-full bg-primary/5 blur-3xl animate-pulse-glow"></div>
-      </div>
-      <div class="relative mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
-        <div class="mb-4 flex items-center justify-center gap-3 text-sm text-slate-500">
-          <a href="/blog" class="hover:text-primary">Blog</a>
-          <span>&middot;</span>
-          <time datetime="2026-04-01">1 April 2026</time>
-          <span>&middot;</span>
-          <span>8 min read</span>
-        </div>
-        <h1 class="text-3xl font-extrabold tracking-tight text-dark sm:text-4xl lg:text-5xl animate-fade-up">
-          Your repair shop, run by AI agents
-        </h1>
-        <p class="mt-4 text-lg text-slate-600 animate-fade-up" style="animation-delay: 0.15s;">
-          AI agents are moving from novelty to necessity. Here&rsquo;s what that means for repair businesses &mdash; and how to connect them to the software you already use.
-        </p>
-      </div>
-    </section>
 
-    <article class="py-16 sm:py-20">
-      <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-        <div class="prose prose-slate prose-lg max-w-none">
+  <h2>Something is shifting</h2>
+  <p>
+    For the last couple of years, AI has mostly meant chatbots. You type a question, you get an answer. Useful, but limited &mdash; the AI can talk, but it cannot do anything on its own.
+  </p>
+  <p>
+    That is changing fast. The current generation of AI agents can plan multi-step tasks, call APIs, make decisions based on real data, and execute workflows without someone typing instructions at every step. Industry analysts are calling agents &ldquo;the next operating system&rdquo; for businesses &mdash; not because of hype, but because the capability is genuinely there now. Agents can read your inbox, check your inventory, update your records, chase your invoices, and report back &mdash; all without human intervention.
+  </p>
+  <p>
+    This is not a future prediction. Businesses are already connecting agents to their tools and seeing measurable results. The question for repair shops is not whether this will be relevant, but how quickly you can take advantage of it.
+  </p>
 
-          <h2>Something is shifting</h2>
-          <p>
-            For the last couple of years, AI has mostly meant chatbots. You type a question, you get an answer. Useful, but limited &mdash; the AI can talk, but it cannot do anything on its own.
-          </p>
-          <p>
-            That is changing fast. The current generation of AI agents can plan multi-step tasks, call APIs, make decisions based on real data, and execute workflows without someone typing instructions at every step. Industry analysts are calling agents &ldquo;the next operating system&rdquo; for businesses &mdash; not because of hype, but because the capability is genuinely there now. Agents can read your inbox, check your inventory, update your records, chase your invoices, and report back &mdash; all without human intervention.
-          </p>
-          <p>
-            This is not a future prediction. Businesses are already connecting agents to their tools and seeing measurable results. The question for repair shops is not whether this will be relevant, but how quickly you can take advantage of it.
-          </p>
+  <div class="callout">
+    <p>Agents can read your inbox, check your inventory, update your records, chase your invoices, and report back — all without human intervention. This is not a future prediction — it is happening now.</p>
+  </div>
 
-          <h2>What &ldquo;bring your own AI&rdquo; means</h2>
-          <p>
-            Most software companies are racing to bolt AI features onto their products &mdash; a chatbot here, an auto-suggest there. The problem with this approach is that you are locked into whatever AI capabilities that vendor decides to build, on their timeline, with their limitations.
-          </p>
-          <p>
-            RepairKeeper takes a different approach. Instead of building a walled garden of AI features, we expose a full REST API with org-scoped API keys. This means you can connect <em>any</em> AI agent, automation platform, or custom tool directly to your shop&rsquo;s data. You are not waiting for us to build the AI feature you need &mdash; you can build it yourself, or use an off-the-shelf agent platform to do it.
-          </p>
-          <p>
-            Org-scoped keys mean each API key is tied to your organisation and its permissions. Your data stays isolated, access is auditable, and you can revoke a key instantly if needed. It is the same security model your team uses, extended to the tools you connect.
-          </p>
-          <p>
-            The API covers everything: tickets, customers, invoices, parts, statuses, inventory, leads. If you can do it in the RepairKeeper dashboard, an agent can do it through the API.
-          </p>
+  <h2>What &ldquo;bring your own AI&rdquo; means</h2>
+  <p>
+    Most software companies are racing to bolt AI features onto their products &mdash; a chatbot here, an auto-suggest there. The problem with this approach is that you are locked into whatever AI capabilities that vendor decides to build, on their timeline, with their limitations.
+  </p>
+  <p>
+    RepairKeeper takes a different approach. Instead of building a walled garden of AI features, we expose a full REST API with org-scoped API keys. This means you can connect <em>any</em> AI agent, automation platform, or custom tool directly to your shop&rsquo;s data. You are not waiting for us to build the AI feature you need &mdash; you can build it yourself, or use an off-the-shelf agent platform to do it.
+  </p>
+  <p>
+    Org-scoped keys mean each API key is tied to your organisation and its permissions. Your data stays isolated, access is auditable, and you can revoke a key instantly if needed. It is the same security model your team uses, extended to the tools you connect.
+  </p>
+  <p>
+    The API covers everything: tickets, customers, invoices, parts, statuses, inventory, leads. If you can do it in the RepairKeeper dashboard, an agent can do it through the API.
+  </p>
 
-          <h2>What agents can actually do for a repair shop</h2>
-          <p>
-            Abstract talk about AI is easy to tune out. Here are concrete examples of what an agent connected to RepairKeeper could handle for you, today.
-          </p>
-          <p>
-            <strong>Automatic ticket creation from enquiries.</strong> An agent monitors your email or web enquiries. When a new message comes in describing a broken screen or a water-damaged phone, the agent creates a ticket in RepairKeeper with the customer details, device type, and fault description already filled in. It assigns the ticket to a technician based on current workload. By the time you look at the board, the job is already queued.
-          </p>
-          <p>
-            <strong>Invoice chasing on autopilot.</strong> Outstanding invoices are a fact of life in repair. An agent can monitor unpaid invoices and send follow-up emails at intervals you define &mdash; a gentle nudge after three days, a firmer reminder after a week, and an escalation after two weeks. No more manually checking who has paid and who has not.
-          </p>
-          <p>
-            <strong>Parts stock monitoring and reordering.</strong> An agent watches your inventory levels. When a commonly used part &mdash; say, iPhone 15 screens &mdash; drops below your minimum threshold, it alerts you or places an order with your preferred supplier automatically. No more discovering you are out of stock mid-repair.
-          </p>
-          <p>
-            <strong>Proactive customer updates.</strong> When a repair status changes &mdash; parts arrived, repair completed, ready for collection &mdash; an agent can send a personalised message to the customer via their preferred contact method. Not a generic template, but a message that references their specific device and repair. Customers feel looked after without you lifting a finger.
-          </p>
-          <p>
-            <strong>Weekly business reports.</strong> Every Monday morning, an agent pulls your data and generates a summary: jobs completed, revenue, average repair time, outstanding invoices, parts running low. It sends the report to your phone. You start the week knowing exactly where you stand, without opening a single spreadsheet.
-          </p>
+  <h2>What agents can actually do for a repair shop</h2>
+  <p>
+    Abstract talk about AI is easy to tune out. Here are concrete examples of what an agent connected to RepairKeeper could handle for you, today.
+  </p>
+  <p>
+    <strong>Automatic ticket creation from enquiries.</strong> An agent monitors your email or web enquiries. When a new message comes in describing a broken screen or a water-damaged phone, the agent creates a ticket in RepairKeeper with the customer details, device type, and fault description already filled in. It assigns the ticket to a technician based on current workload. By the time you look at the board, the job is already queued.
+  </p>
+  <p>
+    <strong>Invoice chasing on autopilot.</strong> Outstanding invoices are a fact of life in repair. An agent can monitor unpaid invoices and send follow-up emails at intervals you define &mdash; a gentle nudge after three days, a firmer reminder after a week, and an escalation after two weeks. No more manually checking who has paid and who has not.
+  </p>
+  <p>
+    <strong>Parts stock monitoring and reordering.</strong> An agent watches your inventory levels. When a commonly used part &mdash; say, iPhone 15 screens &mdash; drops below your minimum threshold, it alerts you or places an order with your preferred supplier automatically. No more discovering you are out of stock mid-repair.
+  </p>
+  <p>
+    <strong>Proactive customer updates.</strong> When a repair status changes &mdash; parts arrived, repair completed, ready for collection &mdash; an agent can send a personalised message to the customer via their preferred contact method. Not a generic template, but a message that references their specific device and repair. Customers feel looked after without you lifting a finger.
+  </p>
+  <p>
+    <strong>Weekly business reports.</strong> Every Monday morning, an agent pulls your data and generates a summary: jobs completed, revenue, average repair time, outstanding invoices, parts running low. It sends the report to your phone. You start the week knowing exactly where you stand, without opening a single spreadsheet.
+  </p>
 
-          <h2>Why this matters for repair shops specifically</h2>
-          <p>
-            Repair shops are lean operations. Most are run by one or two people who do everything &mdash; take in devices, diagnose faults, order parts, do the repairs, chase payments, answer the phone, and handle the bookkeeping. Every minute spent on admin is a minute not spent on the bench, and the bench is where the money is made.
-          </p>
-          <p>
-            Hiring a second person to handle the paperwork is expensive and often not justified by the volume of work. But the admin still needs doing. This is exactly the gap that AI agents fill. They handle the repetitive, time-consuming tasks that keep your business running &mdash; creating tickets, chasing invoices, updating customers, tracking stock &mdash; while you focus on repairs.
-          </p>
-          <p>
-            The repair industry is also highly operational. The work is structured: a device comes in, gets diagnosed, parts get ordered, the repair happens, the customer collects. This kind of predictable, step-based workflow is exactly what agents are good at managing. Unlike creative or strategic work, most repair shop admin follows clear rules that an agent can execute reliably.
-          </p>
-          <p>
-            And because RepairKeeper already tracks every step of this workflow through its <a href="/repair-ticket-software">ticket system</a>, the data is already there for agents to work with. You do not need to set up new integrations or restructure how you work. The API connects to the system you are already using.
-          </p>
+  <h2>Why this matters for repair shops specifically</h2>
+  <p>
+    Repair shops are lean operations. Most are run by one or two people who do everything &mdash; take in devices, diagnose faults, order parts, do the repairs, chase payments, answer the phone, and handle the bookkeeping. Every minute spent on admin is a minute not spent on the bench, and the bench is where the money is made.
+  </p>
+  <p>
+    Hiring a second person to handle the paperwork is expensive and often not justified by the volume of work. But the admin still needs doing. This is exactly the gap that AI agents fill. They handle the repetitive, time-consuming tasks that keep your business running &mdash; creating tickets, chasing invoices, updating customers, tracking stock &mdash; while you focus on repairs.
+  </p>
+  <p>
+    The repair industry is also highly operational. The work is structured: a device comes in, gets diagnosed, parts get ordered, the repair happens, the customer collects. This kind of predictable, step-based workflow is exactly what agents are good at managing. Unlike creative or strategic work, most repair shop admin follows clear rules that an agent can execute reliably.
+  </p>
+  <p>
+    And because RepairKeeper already tracks every step of this workflow through its <a href="/repair-ticket-software">ticket system</a>, the data is already there for agents to work with. You do not need to set up new integrations or restructure how you work. The API connects to the system you are already using.
+  </p>
 
-          <h2>Getting started</h2>
-          <p>
-            API access is available on the Standard plan and above. To generate your API key, go to <strong>Settings &gt; Account</strong> in your RepairKeeper dashboard. The key is scoped to your organisation, so any agent or tool you connect will only access your shop&rsquo;s data.
-          </p>
-          <p>
-            From there, point any agent platform &mdash; or your own custom code &mdash; at the RepairKeeper API. Whether you use an off-the-shelf automation tool, a custom AI agent, or something a developer builds for you, the API gives you full control over tickets, customers, invoices, inventory, and more.
-          </p>
-          <p>
-            You do not need to be a developer to benefit from this. Agent platforms are becoming increasingly accessible, with visual builders and pre-built templates. If you can describe what you want to happen (&ldquo;when a new enquiry comes in, create a ticket and assign it to the next available tech&rdquo;), an agent can do it.
-          </p>
-          <p>
-            If you are not on RepairKeeper yet, <a href="https://app.repairkeeper.co.uk/register">create a free account</a> and explore how the platform works. When you are ready to connect agents, upgrade to Standard and generate your first API key. Your shop does not need to get bigger to get more done &mdash; it just needs to be better connected.
-          </p>
+  <h2>Getting started</h2>
+  <p>
+    API access is available on the Standard plan and above. To generate your API key, go to <strong>Settings &gt; Account</strong> in your RepairKeeper dashboard. The key is scoped to your organisation, so any agent or tool you connect will only access your shop&rsquo;s data.
+  </p>
+  <p>
+    From there, point any agent platform &mdash; or your own custom code &mdash; at the RepairKeeper API. Whether you use an off-the-shelf automation tool, a custom AI agent, or something a developer builds for you, the API gives you full control over tickets, customers, invoices, inventory, and more.
+  </p>
+  <p>
+    You do not need to be a developer to benefit from this. Agent platforms are becoming increasingly accessible, with visual builders and pre-built templates. If you can describe what you want to happen (&ldquo;when a new enquiry comes in, create a ticket and assign it to the next available tech&rdquo;), an agent can do it.
+  </p>
+  <p>
+    If you are not on RepairKeeper yet, <a href="https://app.repairkeeper.co.uk/register">create a free account</a> and explore how the platform works. When you are ready to connect agents, upgrade to Standard and generate your first API key. Your shop does not need to get bigger to get more done &mdash; it just needs to be better connected.
+  </p>
 
-        </div>
-      </div>
-    </article>
-
-    <section class="py-16 sm:py-20 bg-slate-50">
-      <div class="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
-        <p class="text-lg text-slate-600">Ready to connect AI agents to your repair shop? Start with a free account and upgrade when you need API access.</p>
-        <a href="https://app.repairkeeper.co.uk/register" class="mt-6 inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 text-base font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:bg-primary-dark">
-          Try RepairKeeper Free
-          <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
-        </a>
-      </div>
-    </section>
-  </main>
-  <Footer />
-  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
-  <script type="application/ld+json" set:html={JSON.stringify(articleJsonLd)} />
-</BaseLayout>
+  <p slot="cta-text" class="text-lg text-slate-300">Ready to connect AI agents to your repair shop? Start with a free account and upgrade when you need API access.</p>
+</BlogLayout>

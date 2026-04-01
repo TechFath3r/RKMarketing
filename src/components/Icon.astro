@@ -279,4 +279,18 @@ const { name, class: className = "", size = 24 } = Astro.props;
       <line x1="12" x2="12" y1="15" y2="3" />
     </Fragment>
   )}
+  {name === "code" && (
+    <Fragment>
+      <polyline points="16 18 22 12 16 6" />
+      <polyline points="8 6 2 12 8 18" />
+    </Fragment>
+  )}
+  {name === "key" && (
+    <Fragment>
+      <circle cx="7.5" cy="15.5" r="5.5" />
+      <path d="m11.5 11.5 5.5-5.5" />
+      <path d="M17 7l3-3" />
+      <path d="M17 3h3v3" />
+    </Fragment>
+  )}
 </svg>

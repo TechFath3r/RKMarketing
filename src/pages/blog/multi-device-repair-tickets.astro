@@ -1,186 +1,133 @@
 ---
-import BaseLayout from "@layouts/BaseLayout.astro";
-import Header from "@components/Header.astro";
-import Footer from "@components/Footer.astro";
-
-const breadcrumbJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: [
-    { "@type": "ListItem", position: 1, name: "Home", item: "https://repairkeeper.co.uk" },
-    { "@type": "ListItem", position: 2, name: "Blog", item: "https://repairkeeper.co.uk/blog" },
-    { "@type": "ListItem", position: 3, name: "Multi-Device Repair Tickets", item: "https://repairkeeper.co.uk/blog/multi-device-repair-tickets" },
-  ],
-};
-
-const articleJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Article",
-  headline: "Multi-device repair tickets: why they matter",
-  description: "Most repair software treats a ticket as one device. Here's why multi-device tickets with independent statuses change how repair shops work.",
-  datePublished: "2026-03-20",
-  author: { "@type": "Organization", name: "RepairKeeper" },
-  publisher: { "@type": "Organization", name: "RepairKeeper", url: "https://repairkeeper.co.uk" },
-};
+import BlogLayout from "@layouts/BlogLayout.astro";
 ---
 
-<BaseLayout
+<BlogLayout
   title="Multi-Device Repair Tickets: Why They Matter | RepairKeeper"
   description="Most repair software treats a ticket as one device. Here's why multi-device tickets with independent statuses change how repair shops work."
+  date="2026-03-20"
+  dateFormatted="20 March 2026"
+  readTime="7 min read"
+  slug="multi-device-repair-tickets"
+  headline="Multi-device repair tickets: why they matter"
+  subtitle="When a customer drops off more than one device, your ticket system should keep up — not double your admin."
+  gradientWord="matter"
 >
-  <Header />
-  <main id="main-content">
-    <section class="hero-gradient relative overflow-hidden pt-28 pb-12 sm:pt-36 sm:pb-16">
-      <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
-        <div class="absolute -top-24 -right-24 h-96 w-96 rounded-full bg-primary/5 blur-3xl animate-pulse-glow"></div>
-      </div>
-      <div class="relative mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
-        <div class="mb-4 flex items-center justify-center gap-3 text-sm text-slate-500">
-          <a href="/blog" class="hover:text-primary">Blog</a>
-          <span>&middot;</span>
-          <time datetime="2026-03-20">20 March 2026</time>
-          <span>&middot;</span>
-          <span>7 min read</span>
-        </div>
-        <h1 class="text-3xl font-extrabold tracking-tight text-dark sm:text-4xl lg:text-5xl animate-fade-up">
-          Multi-device repair tickets: why they matter
-        </h1>
-        <p class="mt-4 text-lg text-slate-600 animate-fade-up" style="animation-delay: 0.15s;">
-          When a customer drops off more than one device, your ticket system should keep up &mdash; not double your admin.
-        </p>
-      </div>
-    </section>
 
-    <article class="py-16 sm:py-20">
-      <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-        <div class="prose prose-slate prose-lg max-w-none">
+  <h2>The scenario every repair shop knows</h2>
+  <p>
+    A customer walks in with a phone that has a cracked screen and a tablet that won't charge. Both belong to the same person, brought in at the same time, and they'd like a single point of contact for the whole job. Simple enough in real life &mdash; but in most <a href="/repair-ticket-software">repair ticket systems</a>, it immediately creates a problem.
+  </p>
+  <p>
+    The standard approach is to create two separate tickets: one for the phone, one for the tablet. Each ticket gets its own reference number, its own status updates, and its own invoice. The customer now has two tracking numbers to keep tabs on and two payment requests to deal with. Internally, your team has two tickets cluttering the board for what is, in practice, a single customer interaction.
+  </p>
+  <p>
+    Multi-device repair tickets solve this by letting you attach multiple devices to a single ticket &mdash; each with its own status, parts list, diagnosis, and cost &mdash; while keeping everything under one roof. It sounds like a small structural change, but it has a significant impact on how a repair shop operates day to day.
+  </p>
 
-          <h2>The scenario every repair shop knows</h2>
-          <p>
-            A customer walks in with a phone that has a cracked screen and a tablet that won't charge. Both belong to the same person, brought in at the same time, and they'd like a single point of contact for the whole job. Simple enough in real life &mdash; but in most <a href="/repair-ticket-software">repair ticket systems</a>, it immediately creates a problem.
-          </p>
-          <p>
-            The standard approach is to create two separate tickets: one for the phone, one for the tablet. Each ticket gets its own reference number, its own status updates, and its own invoice. The customer now has two tracking numbers to keep tabs on and two payment requests to deal with. Internally, your team has two tickets cluttering the board for what is, in practice, a single customer interaction.
-          </p>
-          <p>
-            Multi-device repair tickets solve this by letting you attach multiple devices to a single ticket &mdash; each with its own status, parts list, diagnosis, and cost &mdash; while keeping everything under one roof. It sounds like a small structural change, but it has a significant impact on how a repair shop operates day to day.
-          </p>
+  <h2>The problem with single-device tickets</h2>
+  <p>
+    When your ticket system assumes one ticket equals one device, several things start to break down as your shop gets busier.
+  </p>
+  <p>
+    <strong>Duplicate admin.</strong> Every device needs its own ticket, which means entering the same customer details, the same contact preferences, and the same drop-off date multiple times. Multiply that across a busy day and it adds up fast.
+  </p>
+  <p>
+    <strong>Confused customers.</strong> The customer dropped off two devices in one visit, but now they receive separate status updates, separate tracking links, and separate invoices. From their perspective, it feels disjointed &mdash; especially if one device is ready but the other isn't, and they're not sure whether to come in or wait.
+  </p>
+  <p>
+    <strong>Split invoicing.</strong> Creating two invoices for what the customer sees as one transaction creates friction at the point of payment. It also makes it harder to apply discounts across the whole job or give an accurate total upfront. If you're using <a href="/repair-shop-invoicing-software">invoicing software</a> that ties invoices to individual tickets, you're stuck generating multiple documents whether you want to or not.
+  </p>
+  <p>
+    <strong>Lost context.</strong> When tickets are separate, you lose the relationship between them. There's no easy way to see that the phone and the tablet came in together, were promised by the same deadline, or that the customer mentioned a bulk discount when they dropped off. Notes get split, and technicians working on one device don't see what's happening with the other.
+  </p>
 
-          <h2>The problem with single-device tickets</h2>
-          <p>
-            When your ticket system assumes one ticket equals one device, several things start to break down as your shop gets busier.
-          </p>
-          <p>
-            <strong>Duplicate admin.</strong> Every device needs its own ticket, which means entering the same customer details, the same contact preferences, and the same drop-off date multiple times. Multiply that across a busy day and it adds up fast.
-          </p>
-          <p>
-            <strong>Confused customers.</strong> The customer dropped off two devices in one visit, but now they receive separate status updates, separate tracking links, and separate invoices. From their perspective, it feels disjointed &mdash; especially if one device is ready but the other isn't, and they're not sure whether to come in or wait.
-          </p>
-          <p>
-            <strong>Split invoicing.</strong> Creating two invoices for what the customer sees as one transaction creates friction at the point of payment. It also makes it harder to apply discounts across the whole job or give an accurate total upfront. If you're using <a href="/repair-shop-invoicing-software">invoicing software</a> that ties invoices to individual tickets, you're stuck generating multiple documents whether you want to or not.
-          </p>
-          <p>
-            <strong>Lost context.</strong> When tickets are separate, you lose the relationship between them. There's no easy way to see that the phone and the tablet came in together, were promised by the same deadline, or that the customer mentioned a bulk discount when they dropped off. Notes get split, and technicians working on one device don't see what's happening with the other.
-          </p>
+  <div class="callout">
+    <p>Multi-device tickets cut duplicate admin, unify invoicing, and give both your team and your customers a single source of truth for every job.</p>
+  </div>
 
-          <h2>What multi-device tickets look like</h2>
-          <p>
-            A multi-device repair ticket is a single ticket that acts as a container for one or more devices. The ticket itself holds the shared information &mdash; the customer, the drop-off date, the collection deadline, any intake signatures, and the invoice. Each device within the ticket holds its own specific data: the fault description, the diagnosis, the parts needed, the repair cost, and crucially, its own status.
-          </p>
-          <p>
-            In practice, this means you create one ticket when the customer walks in. You add their phone as the first device and enter the cracked-screen fault. You add the tablet as the second device and note the charging issue. Both devices sit inside the same ticket, visible on the same screen, linked to the same customer record.
-          </p>
-          <p>
-            Your technicians can work on each device independently. The phone might be a quick screen swap that's done within the hour. The tablet might need a replacement charging port that has to be ordered. Each device progresses through its own workflow without affecting the other &mdash; but they're never disconnected from the parent ticket.
-          </p>
+  <h2>What multi-device tickets look like</h2>
+  <p>
+    A multi-device repair ticket is a single ticket that acts as a container for one or more devices. The ticket itself holds the shared information &mdash; the customer, the drop-off date, the collection deadline, any intake signatures, and the invoice. Each device within the ticket holds its own specific data: the fault description, the diagnosis, the parts needed, the repair cost, and crucially, its own status.
+  </p>
+  <p>
+    In practice, this means you create one ticket when the customer walks in. You add their phone as the first device and enter the cracked-screen fault. You add the tablet as the second device and note the charging issue. Both devices sit inside the same ticket, visible on the same screen, linked to the same customer record.
+  </p>
+  <p>
+    Your technicians can work on each device independently. The phone might be a quick screen swap that's done within the hour. The tablet might need a replacement charging port that has to be ordered. Each device progresses through its own workflow without affecting the other &mdash; but they're never disconnected from the parent ticket.
+  </p>
 
-          <h2>Why independent status tracking matters</h2>
-          <p>
-            This is where multi-device ticket tracking becomes more than a convenience feature. If both devices shared a single status, you'd have no way to accurately represent reality. The phone is ready for collection, but the tablet is awaiting parts &mdash; so what status does the ticket show?
-          </p>
-          <p>
-            With independent device statuses, each device has its own position in the workflow. The phone can be marked "Ready for Collection" while the tablet sits at "Awaiting Parts". The ticket-level status then derives from the devices it contains &mdash; typically reflecting the most behind device, so your team always knows whether the whole job is ready or not.
-          </p>
-          <p>
-            This two-tier status model gives you accuracy at both levels. At a glance, the ticket tells you the job isn't fully complete. Drill into the devices and you see exactly where each one stands. No guesswork, no manual status juggling, and no risk of telling the customer everything's ready when half the job is still in progress.
-          </p>
+  <h2>Why independent status tracking matters</h2>
+  <p>
+    This is where multi-device ticket tracking becomes more than a convenience feature. If both devices shared a single status, you'd have no way to accurately represent reality. The phone is ready for collection, but the tablet is awaiting parts &mdash; so what status does the ticket show?
+  </p>
+  <p>
+    With independent device statuses, each device has its own position in the workflow. The phone can be marked "Ready for Collection" while the tablet sits at "Awaiting Parts". The ticket-level status then derives from the devices it contains &mdash; typically reflecting the most behind device, so your team always knows whether the whole job is ready or not.
+  </p>
+  <p>
+    This two-tier status model gives you accuracy at both levels. At a glance, the ticket tells you the job isn't fully complete. Drill into the devices and you see exactly where each one stands. No guesswork, no manual status juggling, and no risk of telling the customer everything's ready when half the job is still in progress.
+  </p>
 
-          <h2>Auto-status and parts workflow across devices</h2>
-          <p>
-            Independent statuses become even more powerful when combined with automation. In a well-designed repair ticket system, status changes can be triggered by actions rather than manual updates. For example, when a technician marks a part as "ordered" for the tablet, that device's status automatically moves to "Awaiting Parts". When the part arrives and gets allocated to the ticket, the status advances again.
-          </p>
-          <p>
-            Because each device has its own parts list and its own status, these automations work independently. The phone's screen replacement arrives on Monday and its status moves forward. The tablet's charging port arrives on Wednesday and its status catches up. The ticket-level status updates itself based on the current state of all devices &mdash; no one has to remember to go back and change anything.
-          </p>
-          <p>
-            This matters most during busy periods. When your team is juggling dozens of open jobs, the difference between manual status updates and automatic ones is the difference between an accurate board and a board full of stale, misleading statuses. With multi-device tickets and per-device automation, the system stays accurate even when the team is focused on repairs, not admin.
-          </p>
+  <h2>Auto-status and parts workflow across devices</h2>
+  <p>
+    Independent statuses become even more powerful when combined with automation. In a well-designed repair ticket system, status changes can be triggered by actions rather than manual updates. For example, when a technician marks a part as "ordered" for the tablet, that device's status automatically moves to "Awaiting Parts". When the part arrives and gets allocated to the ticket, the status advances again.
+  </p>
+  <p>
+    Because each device has its own parts list and its own status, these automations work independently. The phone's screen replacement arrives on Monday and its status moves forward. The tablet's charging port arrives on Wednesday and its status catches up. The ticket-level status updates itself based on the current state of all devices &mdash; no one has to remember to go back and change anything.
+  </p>
+  <p>
+    This matters most during busy periods. When your team is juggling dozens of open jobs, the difference between manual status updates and automatic ones is the difference between an accurate board and a board full of stale, misleading statuses. With multi-device tickets and per-device automation, the system stays accurate even when the team is focused on repairs, not admin.
+  </p>
 
-          <h2>A better experience for the customer</h2>
-          <p>
-            From the <a href="/repair-shop-crm">customer's perspective</a>, multi-device tickets simplify everything. They get one tracking link that shows the status of every device they dropped off. They can see that their phone is ready but their tablet is still being worked on &mdash; without having to cross-reference multiple emails or tracking pages.
-          </p>
-          <p>
-            When it's time to pay, they receive one invoice that covers all devices. Line items are clearly broken down per device, so they can see exactly what they're paying for, but there's only one payment to make. If you offer online payments, the customer clicks one link and settles the entire bill in one go.
-          </p>
-          <p>
-            This kind of clarity builds trust. Customers feel like their devices are being managed professionally, not cobbled together across disconnected systems. It also cuts down on inbound queries &mdash; fewer "which ticket was my tablet under?" calls and emails, because there's only one ticket to know about.
-          </p>
+  <h2>A better experience for the customer</h2>
+  <p>
+    From the <a href="/repair-shop-crm">customer's perspective</a>, multi-device tickets simplify everything. They get one tracking link that shows the status of every device they dropped off. They can see that their phone is ready but their tablet is still being worked on &mdash; without having to cross-reference multiple emails or tracking pages.
+  </p>
+  <p>
+    When it's time to pay, they receive one invoice that covers all devices. Line items are clearly broken down per device, so they can see exactly what they're paying for, but there's only one payment to make. If you offer online payments, the customer clicks one link and settles the entire bill in one go.
+  </p>
+  <p>
+    This kind of clarity builds trust. Customers feel like their devices are being managed professionally, not cobbled together across disconnected systems. It also cuts down on inbound queries &mdash; fewer "which ticket was my tablet under?" calls and emails, because there's only one ticket to know about.
+  </p>
 
-          <h2>Reporting and workload visibility</h2>
-          <p>
-            Multi-device tickets also change how you understand your workload. If a customer drops off three devices on a single ticket, a single-device system shows that as three tickets. Your ticket count looks inflated, your revenue-per-ticket metric is artificially low, and your board is busier than reality.
-          </p>
-          <p>
-            With multi-device tickets, you can distinguish between tickets (customer interactions) and devices (units of work). This gives you more accurate reporting: how many customers you're serving, how many devices you're repairing, what the average revenue per job actually is, and how long each type of device takes. These are the numbers that help you make better decisions about staffing, pricing, and capacity.
-          </p>
-          <p>
-            For workload planning, knowing that you have 30 tickets with 45 devices is very different from showing 45 tickets. It tells you something meaningful about how many handoffs, customer conversations, and collection appointments you're actually going to have.
-          </p>
+  <h2>Reporting and workload visibility</h2>
+  <p>
+    Multi-device tickets also change how you understand your workload. If a customer drops off three devices on a single ticket, a single-device system shows that as three tickets. Your ticket count looks inflated, your revenue-per-ticket metric is artificially low, and your board is busier than reality.
+  </p>
+  <p>
+    With multi-device tickets, you can distinguish between tickets (customer interactions) and devices (units of work). This gives you more accurate reporting: how many customers you're serving, how many devices you're repairing, what the average revenue per job actually is, and how long each type of device takes. These are the numbers that help you make better decisions about staffing, pricing, and capacity.
+  </p>
+  <p>
+    For workload planning, knowing that you have 30 tickets with 45 devices is very different from showing 45 tickets. It tells you something meaningful about how many handoffs, customer conversations, and collection appointments you're actually going to have.
+  </p>
 
-          <h2>When you need multi-device tickets most</h2>
-          <p>
-            Some shops will see multi-device drop-offs every day, while others encounter them less frequently. But there are a few scenarios where this capability goes from nice-to-have to essential.
-          </p>
-          <p>
-            <strong>Family drop-offs.</strong> A parent brings in phones for the whole family &mdash; a cracked screen on one, a battery replacement on another, and a software issue on a third. One customer, one visit, one promise of when it'll all be ready. Creating three separate tickets makes this unnecessarily complex for everyone involved.
-          </p>
-          <p>
-            <strong>Business clients.</strong> A local company sends over a batch of laptops that need servicing, or a school drops off a set of tablets for repair. These clients expect a single point of contact and a single invoice. Multi-device tickets let you manage the relationship properly without fragmenting it across dozens of individual tickets.
-          </p>
-          <p>
-            <strong>Insurance claims.</strong> When a customer makes a claim that covers multiple devices &mdash; say, water damage to a phone and a smartwatch &mdash; the insurer typically wants one reference, one report, and one invoice. Having everything on a single ticket with per-device breakdowns makes the paperwork straightforward.
-          </p>
-          <p>
-            <strong>Repeat customers with multiple devices.</strong> Customers who trust your shop will bring back everything they need fixed. Over time, being able to handle their multi-device jobs cleanly becomes part of the service quality that keeps them coming back.
-          </p>
+  <h2>When you need multi-device tickets most</h2>
+  <p>
+    Some shops will see multi-device drop-offs every day, while others encounter them less frequently. But there are a few scenarios where this capability goes from nice-to-have to essential.
+  </p>
+  <p>
+    <strong>Family drop-offs.</strong> A parent brings in phones for the whole family &mdash; a cracked screen on one, a battery replacement on another, and a software issue on a third. One customer, one visit, one promise of when it'll all be ready. Creating three separate tickets makes this unnecessarily complex for everyone involved.
+  </p>
+  <p>
+    <strong>Business clients.</strong> A local company sends over a batch of laptops that need servicing, or a school drops off a set of tablets for repair. These clients expect a single point of contact and a single invoice. Multi-device tickets let you manage the relationship properly without fragmenting it across dozens of individual tickets.
+  </p>
+  <p>
+    <strong>Insurance claims.</strong> When a customer makes a claim that covers multiple devices &mdash; say, water damage to a phone and a smartwatch &mdash; the insurer typically wants one reference, one report, and one invoice. Having everything on a single ticket with per-device breakdowns makes the paperwork straightforward.
+  </p>
+  <p>
+    <strong>Repeat customers with multiple devices.</strong> Customers who trust your shop will bring back everything they need fixed. Over time, being able to handle their multi-device jobs cleanly becomes part of the service quality that keeps them coming back.
+  </p>
 
-          <h2>Choosing a system that supports it</h2>
-          <p>
-            Most repair shop management platforms were built on a one-ticket-one-device assumption. It's baked into how they structure data, generate invoices, and track statuses. Retrofitting multi-device support onto that foundation is difficult, which is why relatively few systems offer it properly.
-          </p>
-          <p>
-            When evaluating a repair ticket system, it's worth asking a few specific questions: can a single ticket contain multiple devices? Does each device have its own independent status? Can statuses advance automatically based on parts workflow? Does the customer see all their devices in one tracking view? Is invoicing unified or split?
-          </p>
-          <p>
-            RepairKeeper was built from the ground up with multi-device tickets as a core concept, not an afterthought. Each device within a ticket has its own status, parts, and diagnosis, with an intelligent auto-status engine that keeps everything moving without manual intervention. If this is a workflow that matters to your shop, it's worth exploring on the <a href="https://app.repairkeeper.co.uk/register">free plan</a>.
-          </p>
+  <h2>Choosing a system that supports it</h2>
+  <p>
+    Most repair shop management platforms were built on a one-ticket-one-device assumption. It's baked into how they structure data, generate invoices, and track statuses. Retrofitting multi-device support onto that foundation is difficult, which is why relatively few systems offer it properly.
+  </p>
+  <p>
+    When evaluating a repair ticket system, it's worth asking a few specific questions: can a single ticket contain multiple devices? Does each device have its own independent status? Can statuses advance automatically based on parts workflow? Does the customer see all their devices in one tracking view? Is invoicing unified or split?
+  </p>
+  <p>
+    RepairKeeper was built from the ground up with multi-device tickets as a core concept, not an afterthought. Each device within a ticket has its own status, parts, and diagnosis, with an intelligent auto-status engine that keeps everything moving without manual intervention. If this is a workflow that matters to your shop, it's worth exploring on the <a href="https://app.repairkeeper.co.uk/register">free plan</a>.
+  </p>
 
-        </div>
-      </div>
-    </article>
-
-    <section class="py-16 sm:py-20 bg-slate-50">
-      <div class="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
-        <p class="text-lg text-slate-600">See how multi-device tickets work in practice &mdash; create your free account and try it with real jobs.</p>
-        <a href="https://app.repairkeeper.co.uk/register" class="mt-6 inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 text-base font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:bg-primary-dark">
-          Try RepairKeeper Free
-          <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
-        </a>
-      </div>
-    </section>
-  </main>
-  <Footer />
-  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
-  <script type="application/ld+json" set:html={JSON.stringify(articleJsonLd)} />
-</BaseLayout>
+  <p slot="cta-text" class="text-lg text-slate-300">See how multi-device tickets work in practice &mdash; create your free account and try it with real jobs.</p>
+</BlogLayout>

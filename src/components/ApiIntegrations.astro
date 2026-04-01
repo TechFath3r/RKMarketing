@@ -1,0 +1,162 @@
+---
+import FeatureDetail from "./FeatureDetail.astro";
+---
+
+<section class="py-20 sm:py-28">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="reveal">
+      <FeatureDetail
+        title="Connect your tools, agents, and automations"
+        subtitle="RepairKeeper has a full REST API with org-scoped keys. Connect AI agents, Zapier, Make, or your own software — and automate the repetitive parts of running a repair shop."
+        badge="Open API"
+        reverse
+        items={[
+          {
+            icon: "code",
+            title: "Full REST API",
+            description: "Every core function — tickets, customers, devices, invoices, stock, statuses — is accessible via a clean REST API. Build on top of RepairKeeper or connect any tool that speaks HTTP."
+          },
+          {
+            icon: "cpu",
+            title: "AI agent integration",
+            description: "Connect Claude, GPT, or any agent platform. Agents can open tickets from emails, chase invoices, update statuses, reorder stock, and send customer updates — without you touching anything."
+          },
+          {
+            icon: "key",
+            title: "Org-scoped API keys",
+            description: "Generate API keys in Settings with custom scopes. Keys use a rk_live_ prefix, are hashed and never stored in plain text, and support per-key IP allowlists."
+          },
+          {
+            icon: "zap",
+            title: "Outbound webhooks",
+            description: "Push real-time events to external systems the moment something changes — ticket created, device status updated, invoice paid, quote accepted. Payloads are HMAC-signed and retried on failure."
+          },
+          {
+            icon: "refresh-cw",
+            title: "Zapier & Make compatible",
+            description: "Any platform that can hit an HTTP endpoint works with RepairKeeper. Build automations in Zapier, Make, n8n, or your own tooling without writing a line of code."
+          },
+          {
+            icon: "shield",
+            title: "Secure by default",
+            description: "All API traffic is over HTTPS. Keys are scoped to your organisation, hashed at rest, and can be revoked instantly. You stay in control of what connects and what it can do."
+          }
+        ]}
+      >
+        <!-- API Hub Diagram -->
+        <div class="rounded-2xl bg-dark p-8 shadow-2xl relative overflow-hidden">
+          <!-- Grid background pattern -->
+          <div class="absolute inset-0 opacity-[0.04]" aria-hidden="true">
+            <svg width="100%" height="100%">
+              <defs>
+                <pattern id="api-grid" width="24" height="24" patternUnits="userSpaceOnUse">
+                  <path d="M 24 0 L 0 0 0 24" fill="none" stroke="white" stroke-width="0.5" />
+                </pattern>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#api-grid)" />
+            </svg>
+          </div>
+
+          <div class="relative">
+            <!-- Title -->
+            <div class="mb-6 flex items-center gap-2">
+              <span class="text-sm font-semibold text-white">Integration Hub</span>
+              <span class="rounded-full bg-primary/20 px-2 py-0.5 text-xs font-medium text-primary-light">REST API</span>
+            </div>
+
+            <!-- Hub diagram -->
+            <div class="flex flex-col items-center gap-6">
+              <!-- External services row (top) -->
+              <div class="flex flex-wrap justify-center gap-3">
+                <div class="flex items-center gap-2 rounded-lg bg-slate-800/80 px-3 py-2 ring-1 ring-slate-700/50">
+                  <div class="flex h-6 w-6 items-center justify-center rounded bg-violet-500/20">
+                    <svg class="h-3.5 w-3.5 text-violet-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2" /><rect x="9" y="9" width="6" height="6" /><path d="M15 2v2M15 20v2M2 15h2M2 9h2M20 15h2M20 9h2M9 2v2M9 20v2" /></svg>
+                  </div>
+                  <span class="text-xs font-medium text-slate-300">Claude / AI</span>
+                </div>
+                <div class="flex items-center gap-2 rounded-lg bg-slate-800/80 px-3 py-2 ring-1 ring-slate-700/50">
+                  <div class="flex h-6 w-6 items-center justify-center rounded bg-orange-500/20">
+                    <svg class="h-3.5 w-3.5 text-orange-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z" /></svg>
+                  </div>
+                  <span class="text-xs font-medium text-slate-300">Zapier</span>
+                </div>
+                <div class="flex items-center gap-2 rounded-lg bg-slate-800/80 px-3 py-2 ring-1 ring-slate-700/50">
+                  <div class="flex h-6 w-6 items-center justify-center rounded bg-fuchsia-500/20">
+                    <svg class="h-3.5 w-3.5 text-fuchsia-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" /><path d="M21 3v5h-5" /><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16" /><path d="M8 16H3v5" /></svg>
+                  </div>
+                  <span class="text-xs font-medium text-slate-300">Make</span>
+                </div>
+              </div>
+
+              <!-- Connection lines -->
+              <div class="flex items-center gap-1.5">
+                <div class="h-8 w-px bg-gradient-to-b from-primary/60 to-primary/20"></div>
+                <div class="h-8 w-px bg-gradient-to-b from-primary/60 to-primary/20"></div>
+                <div class="h-8 w-px bg-gradient-to-b from-primary/60 to-primary/20"></div>
+              </div>
+
+              <!-- Central API hub -->
+              <div class="relative w-full max-w-xs">
+                <div class="rounded-xl bg-gradient-to-br from-primary/20 to-accent/10 p-px">
+                  <div class="rounded-xl bg-slate-900 px-6 py-4 text-center">
+                    <div class="flex items-center justify-center gap-2">
+                      <svg class="h-5 w-5 text-primary" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6" /><polyline points="8 6 2 12 8 18" /></svg>
+                      <span class="text-sm font-bold text-white">RepairKeeper API</span>
+                    </div>
+                    <p class="mt-1.5 text-xs text-slate-500">Tickets &middot; Customers &middot; Invoices &middot; Stock</p>
+                  </div>
+                </div>
+                <!-- Glow effect -->
+                <div class="absolute -inset-1 -z-10 rounded-xl bg-primary/10 blur-lg" aria-hidden="true"></div>
+              </div>
+
+              <!-- Connection lines -->
+              <div class="flex items-center gap-1.5">
+                <div class="h-8 w-px bg-gradient-to-b from-primary/20 to-primary/60"></div>
+                <div class="h-8 w-px bg-gradient-to-b from-primary/20 to-primary/60"></div>
+                <div class="h-8 w-px bg-gradient-to-b from-primary/20 to-primary/60"></div>
+              </div>
+
+              <!-- External services row (bottom) -->
+              <div class="flex flex-wrap justify-center gap-3">
+                <div class="flex items-center gap-2 rounded-lg bg-slate-800/80 px-3 py-2 ring-1 ring-slate-700/50">
+                  <div class="flex h-6 w-6 items-center justify-center rounded bg-emerald-500/20">
+                    <svg class="h-3.5 w-3.5 text-emerald-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" /><path d="M2 12h20" /></svg>
+                  </div>
+                  <span class="text-xs font-medium text-slate-300">n8n</span>
+                </div>
+                <div class="flex items-center gap-2 rounded-lg bg-slate-800/80 px-3 py-2 ring-1 ring-slate-700/50">
+                  <div class="flex h-6 w-6 items-center justify-center rounded bg-sky-500/20">
+                    <svg class="h-3.5 w-3.5 text-sky-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" /><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" /></svg>
+                  </div>
+                  <span class="text-xs font-medium text-slate-300">Webhooks</span>
+                </div>
+                <div class="flex items-center gap-2 rounded-lg bg-slate-800/80 px-3 py-2 ring-1 ring-slate-700/50">
+                  <div class="flex h-6 w-6 items-center justify-center rounded bg-amber-500/20">
+                    <svg class="h-3.5 w-3.5 text-amber-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6" /><polyline points="8 6 2 12 8 18" /></svg>
+                  </div>
+                  <span class="text-xs font-medium text-slate-300">Custom App</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- API key example -->
+            <div class="mt-6 rounded-lg bg-slate-800/60 px-4 py-3 ring-1 ring-slate-700/30">
+              <div class="flex items-center gap-2 text-xs">
+                <span class="text-slate-500">API Key</span>
+                <code class="font-mono text-primary-light">rk_live_••••••••••••••••</code>
+                <span class="ml-auto rounded bg-success/20 px-1.5 py-0.5 text-[10px] font-semibold text-success">ACTIVE</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </FeatureDetail>
+      <div class="mt-8 text-center lg:text-right">
+        <a href="/blog/ai-agents-repair-shop" class="inline-flex items-center gap-2 text-sm font-semibold text-primary transition-colors hover:text-primary-dark">
+          Read: Your repair shop, run by AI agents
+          <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

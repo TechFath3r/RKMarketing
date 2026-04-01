@@ -1,191 +1,145 @@
 ---
-import BaseLayout from "@layouts/BaseLayout.astro";
-import Header from "@components/Header.astro";
-import Footer from "@components/Footer.astro";
-
-const breadcrumbJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: [
-    { "@type": "ListItem", position: 1, name: "Home", item: "https://repairkeeper.co.uk" },
-    { "@type": "ListItem", position: 2, name: "Blog", item: "https://repairkeeper.co.uk/blog" },
-    { "@type": "ListItem", position: 3, name: "Repair Shop Inventory Management Guide", item: "https://repairkeeper.co.uk/blog/repair-shop-inventory-management-guide" },
-  ],
-};
-
-const articleJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Article",
-  headline: "Repair shop inventory management: a practical guide",
-  description: "How to track parts, manage suppliers, and avoid stock-outs in a repair business. Covers multi-location stock, reorder points, and audit trails.",
-  datePublished: "2026-03-20",
-  author: { "@type": "Organization", name: "RepairKeeper" },
-  publisher: { "@type": "Organization", name: "RepairKeeper", url: "https://repairkeeper.co.uk" },
-};
+import BlogLayout from "@layouts/BlogLayout.astro";
 ---
 
-<BaseLayout title="Repair shop inventory management: a practical guide | RepairKeeper" description="How to track parts, manage suppliers, and avoid stock-outs in a repair business. Covers multi-location stock, reorder points, and audit trails.">
-  <Header />
-  <main id="main-content">
-    <section class="hero-gradient relative overflow-hidden pt-28 pb-12 sm:pt-36 sm:pb-16">
-      <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
-        <div class="absolute -top-24 -right-24 h-96 w-96 rounded-full bg-primary/5 blur-3xl animate-pulse-glow"></div>
-      </div>
-      <div class="relative mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
-        <div class="mb-4 flex items-center justify-center gap-3 text-sm text-slate-500">
-          <a href="/blog" class="hover:text-primary">Blog</a>
-          <span>&middot;</span>
-          <time datetime="2026-03-20">20 March 2026</time>
-          <span>&middot;</span>
-          <span>8 min read</span>
-        </div>
-        <h1 class="text-3xl font-extrabold tracking-tight text-dark sm:text-4xl lg:text-5xl animate-fade-up">
-          Repair shop inventory management: a practical guide
-        </h1>
-        <p class="mt-4 text-lg text-slate-600 animate-fade-up" style="animation-delay: 0.15s;">
-          How to track parts, manage suppliers, and keep your shelves stocked without tying up cash in dead inventory.
-        </p>
-      </div>
-    </section>
+<BlogLayout
+  title="Repair Shop Inventory Management: A Practical Guide | RepairKeeper"
+  description="How to track parts, manage suppliers, and avoid stock-outs in a repair business. Covers multi-location stock, reorder points, and audit trails."
+  date="2026-03-20"
+  dateFormatted="20 March 2026"
+  readTime="8 min read"
+  slug="repair-shop-inventory-management-guide"
+  headline="Repair shop inventory management: a practical guide"
+  subtitle="How to track parts, manage suppliers, and keep your shelves stocked without tying up cash in dead inventory."
+  gradientWord="inventory"
+>
 
-    <article class="py-16 sm:py-20">
-      <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-        <div class="prose prose-slate prose-lg max-w-none">
+  <p>
+    Every repair shop owner has been there. A customer walks in with a cracked screen, you quote the job, and then realise the part you need is out of stock. You lose the sale, the customer walks down the road to a competitor, and you spend the rest of the day chasing a supplier for next-day delivery. Multiply that by a few times a week and the lost revenue adds up fast.
+  </p>
+  <p>
+    On the flip side, poor repair shop inventory management can also mean shelves full of parts you bought six months ago and never used. Dead stock ties up cash that could be spent on parts you actually need, marketing, or better tooling.
+  </p>
+  <p>
+    Whether you run a phone repair shop, a computer service centre, or a general electronics repair business, getting your stock control right is one of the highest-leverage things you can do. This guide covers the practical steps to manage repair parts effectively, from organising your catalogue to building supplier relationships and avoiding the most common mistakes.
+  </p>
 
-          <p>
-            Every repair shop owner has been there. A customer walks in with a cracked screen, you quote the job, and then realise the part you need is out of stock. You lose the sale, the customer walks down the road to a competitor, and you spend the rest of the day chasing a supplier for next-day delivery. Multiply that by a few times a week and the lost revenue adds up fast.
-          </p>
-          <p>
-            On the flip side, poor repair shop inventory management can also mean shelves full of parts you bought six months ago and never used. Dead stock ties up cash that could be spent on parts you actually need, marketing, or better tooling.
-          </p>
-          <p>
-            Whether you run a phone repair shop, a computer service centre, or a general electronics repair business, getting your stock control right is one of the highest-leverage things you can do. This guide covers the practical steps to manage repair parts effectively, from organising your catalogue to building supplier relationships and avoiding the most common mistakes.
-          </p>
+  <h2>Organise your parts catalogue</h2>
+  <p>
+    Before you can manage stock levels, you need a clean, consistent parts catalogue. This sounds obvious, but many repair shops start with a spreadsheet that grows organically &mdash; one person writes "iPhone 14 Pro Max Screen (Black)", another writes "i14PM LCD blk", and within six months nobody can search for anything reliably.
+  </p>
+  <p>
+    Start with a clear naming convention and stick to it. A good pattern for repair parts is: <strong>Device &rarr; Part Type &rarr; Variant</strong>. For example, "iPhone 14 Pro Max &mdash; Screen Assembly &mdash; Black (OLED)" tells you everything you need at a glance.
+  </p>
+  <p>
+    Beyond naming, categorise parts by device family or manufacturer. This makes it far easier to browse your catalogue when you are quoting a job. If a customer hands you a Samsung Galaxy S24, you want to quickly filter to all Samsung Galaxy S24 parts rather than scrolling through hundreds of items.
+  </p>
+  <p>
+    Assign each part a unique SKU or internal reference code. Even a simple numbering scheme (e.g. <code>SCR-IPH14PM-BLK</code>) makes stock counts, purchase orders, and supplier communication much smoother. If your suppliers already use their own SKU codes, record those too &mdash; it saves time when reordering.
+  </p>
 
-          <h2>Organise your parts catalogue</h2>
-          <p>
-            Before you can manage stock levels, you need a clean, consistent parts catalogue. This sounds obvious, but many repair shops start with a spreadsheet that grows organically &mdash; one person writes "iPhone 14 Pro Max Screen (Black)", another writes "i14PM LCD blk", and within six months nobody can search for anything reliably.
-          </p>
-          <p>
-            Start with a clear naming convention and stick to it. A good pattern for repair parts is: <strong>Device &rarr; Part Type &rarr; Variant</strong>. For example, "iPhone 14 Pro Max &mdash; Screen Assembly &mdash; Black (OLED)" tells you everything you need at a glance.
-          </p>
-          <p>
-            Beyond naming, categorise parts by device family or manufacturer. This makes it far easier to browse your catalogue when you are quoting a job. If a customer hands you a Samsung Galaxy S24, you want to quickly filter to all Samsung Galaxy S24 parts rather than scrolling through hundreds of items.
-          </p>
-          <p>
-            Assign each part a unique SKU or internal reference code. Even a simple numbering scheme (e.g. <code>SCR-IPH14PM-BLK</code>) makes stock counts, purchase orders, and supplier communication much smoother. If your suppliers already use their own SKU codes, record those too &mdash; it saves time when reordering.
-          </p>
+  <div class="callout">
+    <p>Getting stock control right is one of the highest-leverage things a repair shop can do. Every stock-out is a lost sale, and every excess part is cash sitting on a shelf.</p>
+  </div>
 
-          <h2>Track stock levels properly</h2>
-          <p>
-            Knowing what you have right now is the foundation of repair shop stock control. At a minimum, you need a live count of every part, updated whenever you receive stock, use a part on a job, or adjust for damaged or faulty items.
-          </p>
-          <p>
-            Two numbers make all the difference: <strong>minimum stock level</strong> and <strong>reorder point</strong>. The minimum stock level is the lowest quantity you are comfortable holding. The reorder point is the quantity at which you actually place a new order, factoring in supplier lead time. If your most popular screen takes three working days to arrive and you use roughly two per week, a reorder point of three or four keeps you covered.
-          </p>
-          <p>
-            If you operate from more than one location &mdash; say a main shop and a secondary branch or a storage unit &mdash; track stock per location. Knowing you have five screens "somewhere" is not the same as knowing you have three at the shop and two in the warehouse. Per-location tracking avoids wasted trips and lets you transfer stock between sites when demand shifts.
-          </p>
-          <p>
-            Low-stock alerts are worth setting up even if your catalogue is small. A daily or real-time notification when a part drops below its reorder point means you can act before you are caught short. As your business grows, <a href="/repair-shop-inventory-software">dedicated inventory software</a> can automate these alerts and give you a demand-driven view of what needs ordering across all open jobs.
-          </p>
+  <h2>Track stock levels properly</h2>
+  <p>
+    Knowing what you have right now is the foundation of repair shop stock control. At a minimum, you need a live count of every part, updated whenever you receive stock, use a part on a job, or adjust for damaged or faulty items.
+  </p>
+  <p>
+    Two numbers make all the difference: <strong>minimum stock level</strong> and <strong>reorder point</strong>. The minimum stock level is the lowest quantity you are comfortable holding. The reorder point is the quantity at which you actually place a new order, factoring in supplier lead time. If your most popular screen takes three working days to arrive and you use roughly two per week, a reorder point of three or four keeps you covered.
+  </p>
+  <p>
+    If you operate from more than one location &mdash; say a main shop and a secondary branch or a storage unit &mdash; track stock per location. Knowing you have five screens "somewhere" is not the same as knowing you have three at the shop and two in the warehouse. Per-location tracking avoids wasted trips and lets you transfer stock between sites when demand shifts.
+  </p>
+  <p>
+    Low-stock alerts are worth setting up even if your catalogue is small. A daily or real-time notification when a part drops below its reorder point means you can act before you are caught short. As your business grows, <a href="/repair-shop-inventory-software">dedicated inventory software</a> can automate these alerts and give you a demand-driven view of what needs ordering across all open jobs.
+  </p>
 
-          <h2>Manage your suppliers</h2>
-          <p>
-            Your parts suppliers are a critical part of your business, and treating that relationship as transactional is a missed opportunity. Build a short list of reliable suppliers for each part category. For every supplier, record their website, main contact, payment terms, and typical delivery time.
-          </p>
-          <p>
-            Track the cost of every part you buy, including shipping. This lets you compare suppliers over time and spot when prices are creeping up. It also feeds directly into your pricing &mdash; if you do not know your true cost per part, your quotes and invoices may be leaving money on the table. For more on getting your <a href="/repair-shop-invoicing-software">invoicing and cost tracking</a> right, that is a topic in its own right.
-          </p>
-          <p>
-            Having at least two suppliers for your highest-volume parts protects you against stockouts caused by a single supplier running dry. It also gives you negotiating leverage. You do not need dozens of supplier relationships &mdash; two or three reliable options per category is usually plenty.
-          </p>
-          <p>
-            When you receive a delivery, check it against the order immediately. Record the quantity received, inspect for quality, and flag any issues while the delivery is fresh. This sounds basic, but skipping goods-in checks is one of the fastest ways to end up with inventory counts that do not match reality.
-          </p>
+  <h2>Manage your suppliers</h2>
+  <p>
+    Your parts suppliers are a critical part of your business, and treating that relationship as transactional is a missed opportunity. Build a short list of reliable suppliers for each part category. For every supplier, record their website, main contact, payment terms, and typical delivery time.
+  </p>
+  <p>
+    Track the cost of every part you buy, including shipping. This lets you compare suppliers over time and spot when prices are creeping up. It also feeds directly into your pricing &mdash; if you do not know your true cost per part, your quotes and invoices may be leaving money on the table. For more on getting your <a href="/repair-shop-invoicing-software">invoicing and cost tracking</a> right, that is a topic in its own right.
+  </p>
+  <p>
+    Having at least two suppliers for your highest-volume parts protects you against stockouts caused by a single supplier running dry. It also gives you negotiating leverage. You do not need dozens of supplier relationships &mdash; two or three reliable options per category is usually plenty.
+  </p>
+  <p>
+    When you receive a delivery, check it against the order immediately. Record the quantity received, inspect for quality, and flag any issues while the delivery is fresh. This sounds basic, but skipping goods-in checks is one of the fastest ways to end up with inventory counts that do not match reality.
+  </p>
 
-          <h2>Link parts to repair jobs</h2>
-          <p>
-            The real power of good inventory management comes when your stock system talks to your <a href="/repair-ticket-software">repair ticket system</a>. When a technician adds a part to a job, the stock count should decrease automatically. When a part is returned (maybe the fault was elsewhere), the stock count should increase. Manual adjustments between two separate systems are where errors creep in.
-          </p>
-          <p>
-            This connection also unlocks demand-driven ordering. Instead of guessing what to buy, you can see exactly which parts are needed across all open repair jobs. If you have eight tickets waiting for the same Samsung battery, that tells you something useful about what to order and in what quantity.
-          </p>
-          <p>
-            Automatic allocation &mdash; where adding a part to a ticket instantly reserves or deducts from available stock &mdash; eliminates the problem of two technicians both thinking the last screen on the shelf is theirs. It is a small thing that prevents a surprising number of mix-ups in busy shops.
-          </p>
+  <h2>Link parts to repair jobs</h2>
+  <p>
+    The real power of good inventory management comes when your stock system talks to your <a href="/repair-ticket-software">repair ticket system</a>. When a technician adds a part to a job, the stock count should decrease automatically. When a part is returned (maybe the fault was elsewhere), the stock count should increase. Manual adjustments between two separate systems are where errors creep in.
+  </p>
+  <p>
+    This connection also unlocks demand-driven ordering. Instead of guessing what to buy, you can see exactly which parts are needed across all open repair jobs. If you have eight tickets waiting for the same Samsung battery, that tells you something useful about what to order and in what quantity.
+  </p>
+  <p>
+    Automatic allocation &mdash; where adding a part to a ticket instantly reserves or deducts from available stock &mdash; eliminates the problem of two technicians both thinking the last screen on the shelf is theirs. It is a small thing that prevents a surprising number of mix-ups in busy shops.
+  </p>
 
-          <h2>Audit everything</h2>
-          <p>
-            An audit trail records every stock movement: who did it, when, and why. This includes receiving deliveries, using parts on jobs, manual adjustments, returns, and marking items as faulty.
-          </p>
-          <p>
-            Why does this matter? Three reasons:
-          </p>
-          <ul>
-            <li><strong>Accountability.</strong> If stock counts are wrong, the audit trail tells you where the discrepancy happened. Without it, you are left guessing and pointing fingers.</li>
-            <li><strong>Dispute resolution.</strong> If a supplier claims they sent ten units and you only received eight, a timestamped goods-in record settles the argument.</li>
-            <li><strong>Shrinkage detection.</strong> Theft and misuse are uncomfortable topics, but they happen. An audit trail that logs every movement makes it much harder for stock to disappear unnoticed.</li>
-          </ul>
-          <p>
-            You do not need to review the audit log every day. But when something goes wrong &mdash; and eventually it will &mdash; having a complete history saves hours of investigation and protects your business.
-          </p>
+  <h2>Audit everything</h2>
+  <p>
+    An audit trail records every stock movement: who did it, when, and why. This includes receiving deliveries, using parts on jobs, manual adjustments, returns, and marking items as faulty.
+  </p>
+  <p>
+    Why does this matter? Three reasons:
+  </p>
+  <ul>
+    <li><strong>Accountability.</strong> If stock counts are wrong, the audit trail tells you where the discrepancy happened. Without it, you are left guessing and pointing fingers.</li>
+    <li><strong>Dispute resolution.</strong> If a supplier claims they sent ten units and you only received eight, a timestamped goods-in record settles the argument.</li>
+    <li><strong>Shrinkage detection.</strong> Theft and misuse are uncomfortable topics, but they happen. An audit trail that logs every movement makes it much harder for stock to disappear unnoticed.</li>
+  </ul>
+  <p>
+    You do not need to review the audit log every day. But when something goes wrong &mdash; and eventually it will &mdash; having a complete history saves hours of investigation and protects your business.
+  </p>
 
-          <h2>Common inventory mistakes to avoid</h2>
-          <p>
-            Even shops that take inventory management seriously can fall into a few traps:
-          </p>
-          <h3>Over-ordering "just in case"</h3>
-          <p>
-            It feels safe to buy in bulk, and sometimes volume discounts make it tempting. But if you order fifty of a part and only use ten over the next three months, you have cash sitting on a shelf doing nothing. Worse, device models change fast in the repair world. That bulk order of iPhone 13 screens becomes dead stock the moment demand shifts to newer models. Order based on actual demand data, not gut feeling.
-          </p>
-          <h3>Not tracking true part costs</h3>
-          <p>
-            The price on the supplier invoice is not your full cost. Factor in shipping, import duties if applicable, and the occasional faulty unit that gets returned. If you price your repairs based on the headline part cost alone, your margins are thinner than you think.
-          </p>
-          <h3>Ignoring slow-moving stock</h3>
-          <p>
-            Run a report every month or quarter on parts that have not moved. If something has been sitting on the shelf for ninety days, consider discounting it, bundling it, or selling it to another shop. The longer it sits, the less likely you are to recover your cost.
-          </p>
-          <h3>Relying on memory</h3>
-          <p>
-            In a one-person shop, you might know off the top of your head that you have two iPhone 15 batteries left. But the moment you hire a second technician or take a day off, that knowledge is locked in your head. Any system &mdash; even a simple spreadsheet &mdash; is better than relying on memory. A proper stock management tool is better still.
-          </p>
+  <h2>Common inventory mistakes to avoid</h2>
+  <p>
+    Even shops that take inventory management seriously can fall into a few traps:
+  </p>
 
-          <h2>Moving from spreadsheets to proper tooling</h2>
-          <p>
-            Many repair shops start with a spreadsheet for inventory, and that is perfectly fine when you are doing a handful of repairs a week. The problems start when the business grows: multiple technicians updating the same sheet, stock counts drifting out of sync, no automatic link between parts used and stock levels.
-          </p>
-          <p>
-            Dedicated <a href="/repair-shop-inventory-software">repair shop inventory software</a> solves these problems by connecting your stock to your tickets, automating allocation, tracking per-location levels, and logging every movement. If you are at the point where spreadsheet errors are costing you time or money, it is worth making the switch.
-          </p>
-          <p>
-            The key is to pick a tool that fits your workflow rather than forcing your workflow to fit the tool. Look for multi-location support if you need it, automatic stock deduction when parts are added to jobs, supplier tracking, and a proper audit trail. These are the features that save the most time day-to-day.
-          </p>
+  <h3>Over-ordering "just in case"</h3>
+  <p>
+    It feels safe to buy in bulk, and sometimes volume discounts make it tempting. But if you order fifty of a part and only use ten over the next three months, you have cash sitting on a shelf doing nothing. Worse, device models change fast in the repair world. That bulk order of iPhone 13 screens becomes dead stock the moment demand shifts to newer models. Order based on actual demand data, not gut feeling.
+  </p>
 
-          <h2>Summary</h2>
-          <p>
-            Good repair shop inventory management boils down to a few principles: keep your parts catalogue clean and consistent, track stock levels with reorder points, maintain solid supplier relationships, link your inventory to your repair jobs, and log every movement. Avoid the common traps of over-ordering, ignoring true costs, and letting slow-moving stock accumulate.
-          </p>
-          <p>
-            Get these fundamentals right and you will spend less time chasing parts, lose fewer sales to stock-outs, and have a much clearer picture of where your money is going.
-          </p>
+  <h3>Not tracking true part costs</h3>
+  <p>
+    The price on the supplier invoice is not your full cost. Factor in shipping, import duties if applicable, and the occasional faulty unit that gets returned. If you price your repairs based on the headline part cost alone, your margins are thinner than you think.
+  </p>
 
-        </div>
-      </div>
-    </article>
+  <h3>Ignoring slow-moving stock</h3>
+  <p>
+    Run a report every month or quarter on parts that have not moved. If something has been sitting on the shelf for ninety days, consider discounting it, bundling it, or selling it to another shop. The longer it sits, the less likely you are to recover your cost.
+  </p>
 
-    <section class="py-16 sm:py-20 bg-slate-50">
-      <div class="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
-        <p class="text-lg text-slate-600">RepairKeeper includes built-in inventory management with multi-location stock tracking, automatic allocation, and full audit trails &mdash; all connected to your repair tickets.</p>
-        <a href="https://app.repairkeeper.co.uk/register" class="mt-6 inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 text-base font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:bg-primary-dark">
-          Try RepairKeeper Free
-          <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
-        </a>
-      </div>
-    </section>
-  </main>
-  <Footer />
-  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
-  <script type="application/ld+json" set:html={JSON.stringify(articleJsonLd)} />
-</BaseLayout>
+  <h3>Relying on memory</h3>
+  <p>
+    In a one-person shop, you might know off the top of your head that you have two iPhone 15 batteries left. But the moment you hire a second technician or take a day off, that knowledge is locked in your head. Any system &mdash; even a simple spreadsheet &mdash; is better than relying on memory. A proper stock management tool is better still.
+  </p>
+
+  <h2>Moving from spreadsheets to proper tooling</h2>
+  <p>
+    Many repair shops start with a spreadsheet for inventory, and that is perfectly fine when you are doing a handful of repairs a week. The problems start when the business grows: multiple technicians updating the same sheet, stock counts drifting out of sync, no automatic link between parts used and stock levels.
+  </p>
+  <p>
+    Dedicated <a href="/repair-shop-inventory-software">repair shop inventory software</a> solves these problems by connecting your stock to your tickets, automating allocation, tracking per-location levels, and logging every movement. If you are at the point where spreadsheet errors are costing you time or money, it is worth making the switch.
+  </p>
+  <p>
+    The key is to pick a tool that fits your workflow rather than forcing your workflow to fit the tool. Look for multi-location support if you need it, automatic stock deduction when parts are added to jobs, supplier tracking, and a proper audit trail. These are the features that save the most time day-to-day.
+  </p>
+
+  <h2>Summary</h2>
+  <p>
+    Good repair shop inventory management boils down to a few principles: keep your parts catalogue clean and consistent, track stock levels with reorder points, maintain solid supplier relationships, link your inventory to your repair jobs, and log every movement. Avoid the common traps of over-ordering, ignoring true costs, and letting slow-moving stock accumulate.
+  </p>
+  <p>
+    Get these fundamentals right and you will spend less time chasing parts, lose fewer sales to stock-outs, and have a much clearer picture of where your money is going.
+  </p>
+
+  <p slot="cta-text" class="text-lg text-slate-300">RepairKeeper includes built-in inventory management with multi-location stock tracking, automatic allocation, and full audit trails &mdash; all connected to your repair tickets.</p>
+</BlogLayout>
