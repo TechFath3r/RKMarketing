@@ -412,7 +412,7 @@ paths:
       operationId: updateCustomer
       tags: [Customers]
       summary: Update a customer
-      description: Partially update customer fields. Pass `{ "restore": true }` to restore a soft-deleted customer.
+      description: "Partially update customer fields. Pass `{ \"restore\": true }` to restore a soft-deleted customer."
       requestBody:
         required: true
         content:
@@ -1046,7 +1046,7 @@ paths:
       operationId: updateProduct
       tags: [Catalogue]
       summary: Update a product
-      description: Partially update product fields. Pass `{ "restore": true }` to restore a soft-deleted product.
+      description: "Partially update product fields. Pass `{ \"restore\": true }` to restore a soft-deleted product."
       requestBody:
         required: true
         content:
@@ -1546,7 +1546,7 @@ components:
 
     UpdateCustomerInput:
       type: object
-      description: All fields are optional. Pass `{ "restore": true }` to restore a soft-deleted customer.
+      description: "All fields are optional. Pass `{ \"restore\": true }` to restore a soft-deleted customer."
       properties:
         restore: { type: boolean }
         name: { type: string }
