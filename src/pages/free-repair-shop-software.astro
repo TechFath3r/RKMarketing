@@ -1,0 +1,353 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
+import Icon from "@components/Icon.astro";
+import SectionHeading from "@components/SectionHeading.astro";
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://repairkeeper.co.uk" },
+    { "@type": "ListItem", position: 2, name: "Free Repair Shop Software", item: "https://repairkeeper.co.uk/free-repair-shop-software" },
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "Is the RepairKeeper free plan actually free?",
+      acceptedAnswer: { "@type": "Answer", text: "Yes. RepairKeeper's free plan is not a trial — there is no time limit and no credit card required. You get 25 tickets per month with core ticketing, customer management, and invoicing included. You can use it indefinitely." },
+    },
+    {
+      "@type": "Question",
+      name: "What is included in the free plan?",
+      acceptedAnswer: { "@type": "Answer", text: "The free plan includes core ticket management, customer management, quoting and invoicing, PDF export, email notifications, digital signatures, and the customer tracking page. It supports 1 team member and 25 tickets per month." },
+    },
+    {
+      "@type": "Question",
+      name: "Do I need a credit card to sign up?",
+      acceptedAnswer: { "@type": "Answer", text: "No. You can sign up for the free plan without entering any payment details. You only need to provide payment information if you choose to upgrade to a paid plan later." },
+    },
+    {
+      "@type": "Question",
+      name: "Can I upgrade from the free plan later?",
+      acceptedAnswer: { "@type": "Answer", text: "Yes. You can upgrade to Lite (£20/mo), Standard (£30/mo), or Pro (£55/mo) at any time from your dashboard. All your existing data carries over — nothing is lost when you upgrade." },
+    },
+  ],
+};
+---
+
+<BaseLayout
+  title="Free Repair Shop Software — No Trial, No Credit Card | RepairKeeper"
+  description="RepairKeeper offers a genuinely free plan for repair shops — not a trial. Manage tickets, customers, and invoicing at no cost. UK-based. No credit card required."
+>
+  <Header />
+  <main id="main-content">
+    <!-- Hero -->
+    <section class="hero-gradient relative overflow-hidden pt-28 pb-16 sm:pt-36 sm:pb-20">
+      <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+        <div class="absolute -top-24 -right-24 h-96 w-96 rounded-full bg-primary/5 blur-3xl animate-pulse-glow"></div>
+        <div class="absolute -bottom-24 -left-24 h-96 w-96 rounded-full bg-accent/5 blur-3xl animate-pulse-glow" style="animation-delay: 1.5s;"></div>
+      </div>
+      <div class="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+        <span class="mb-4 inline-block rounded-full bg-primary/10 px-4 py-1.5 text-sm font-semibold text-primary animate-fade-in">
+          Free Forever
+        </span>
+        <h1 class="text-4xl font-extrabold tracking-tight text-dark sm:text-5xl animate-fade-up" style="animation-delay: 0.15s;">
+          Free repair shop software — <span class="gradient-text">not a trial</span>
+        </h1>
+        <p class="mx-auto mt-4 max-w-2xl text-lg text-slate-600 animate-fade-up" style="animation-delay: 0.3s;">
+          RepairKeeper's free plan gives you real repair shop management — tickets, customers, invoicing, and a customer tracking page — with no time limit and no credit card required.
+        </p>
+        <div class="mt-8 flex flex-wrap items-center justify-center gap-4 animate-fade-up" style="animation-delay: 0.45s;">
+          <a href="https://app.repairkeeper.co.uk/register" class="inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 text-base font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:bg-primary-dark hover:shadow-xl hover:shadow-primary/30">
+            Get Started Free
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+          </a>
+          <a href="/pricing" class="inline-flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-6 py-3 text-base font-semibold text-slate-700 transition-all hover:border-primary/30 hover:text-primary">
+            Compare All Plans
+          </a>
+        </div>
+        <p class="mt-4 text-sm text-slate-500 animate-fade-up" style="animation-delay: 0.55s;">No credit card required. No time limit. 25 tickets/month included.</p>
+      </div>
+    </section>
+
+    <!-- Why free matters -->
+    <section class="py-16 sm:py-20 bg-white">
+      <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <div class="prose prose-slate max-w-none">
+            <p class="text-lg leading-relaxed text-slate-600">
+              Most repair shop software either charges from day one or offers a 14-day trial that expires before you have had a chance to properly evaluate it. RepairKeeper takes a different approach. The <strong>free plan is genuinely free</strong> — it is not a trial, there is no countdown timer, and you will never be asked for a credit card to keep using it.
+            </p>
+            <p class="mt-4 text-lg leading-relaxed text-slate-600">
+              Whether you are a solo technician just getting started, a side hustle repairing phones from home, or an established shop that wants to test the waters before committing — the free plan gives you a real working system. You get proper ticket management, customer records, quoting and invoicing, digital signatures, and a customer-facing tracking page. Not a stripped-down demo.
+            </p>
+            <p class="mt-4 text-lg leading-relaxed text-slate-600">
+              If your business grows and you need more tickets, team members, or advanced features like inventory management and the repair wiki — you can upgrade at any time. Your data carries over seamlessly. But for many small repair operations, the free plan is enough on its own.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- What's included in the free plan -->
+    <section class="py-20 sm:py-28 bg-slate-50">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <SectionHeading
+            title="What's included in the free plan"
+            subtitle="Everything you need to start managing repairs professionally — at no cost."
+            badge="Free"
+          />
+        </div>
+        <div class="reveal stagger grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          {[
+            { icon: "ticket", title: "25 tickets per month", desc: "Create up to 25 repair tickets every month. Each ticket supports multiple devices, full fault descriptions, accessories, and passcodes." },
+            { icon: "customers", title: "Customer management", desc: "Full customer profiles with contact details, repair history, and notes. Smart duplicate detection included." },
+            { icon: "invoice", title: "Quoting & invoicing", desc: "Create detailed quotes and professional invoices with line items, VAT support, and PDF export. Email invoices directly to customers." },
+            { icon: "tracking", title: "Customer tracking page", desc: "Every ticket generates a unique tracking link. Customers can check their repair status in real time without calling you." },
+            { icon: "camera", title: "Digital signatures", desc: "Capture intake and collection signatures on screen. A clear record of what was agreed and when the device changed hands." },
+            { icon: "zap", title: "Auto-status engine", desc: "Intelligent status automation — device statuses advance based on your parts workflow. The ticket status always reflects reality." },
+            { icon: "send", title: "Email notifications", desc: "Customers receive automatic email updates when their ticket is created and when statuses change. Keeps them informed without extra effort." },
+            { icon: "tag", title: "Label printing", desc: "Generate adhesive labels with QR codes, ticket reference, serial number, and fault description. Configurable dimensions." },
+            { icon: "shield", title: "Secure & private", desc: "Encrypted passwords, passkey login support, multi-tenancy isolation, and GDPR-aware data handling — even on the free plan." },
+          ].map((item) => (
+            <div class="card-hover rounded-xl border border-slate-200 bg-white p-6">
+              <div class="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <Icon name={item.icon} size={20} />
+              </div>
+              <h3 class="font-semibold text-dark">{item.title}</h3>
+              <p class="mt-1 text-sm text-slate-600">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Free vs paid -->
+    <section class="py-20 sm:py-28 bg-white">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <SectionHeading
+            title="Free vs paid plans"
+            subtitle="The free plan covers the essentials. Paid plans unlock more capacity and advanced features."
+          />
+        </div>
+        <div class="reveal overflow-x-auto rounded-2xl border border-slate-200 bg-white shadow-sm">
+          <table class="w-full min-w-[520px] text-sm">
+            <thead>
+              <tr class="border-b border-slate-200 bg-slate-50">
+                <th class="px-5 py-3.5 text-left font-semibold text-dark">Feature</th>
+                <th class="px-4 py-3.5 text-center font-semibold text-primary">Free</th>
+                <th class="px-4 py-3.5 text-center font-semibold text-dark">Lite £20/mo</th>
+                <th class="px-4 py-3.5 text-center font-semibold text-dark">Standard £30/mo</th>
+                <th class="px-4 py-3.5 text-center font-semibold text-dark">Pro £55/mo</th>
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                { feature: "Tickets per month", free: "25", lite: "100", standard: "Unlimited", pro: "Unlimited" },
+                { feature: "Team members", free: "1", lite: "1", standard: "5", pro: "Unlimited" },
+                { feature: "Ticketing & invoicing", free: true, lite: true, standard: true, pro: true },
+                { feature: "Customer tracking page", free: true, lite: true, standard: true, pro: true },
+                { feature: "Digital signatures", free: true, lite: true, standard: true, pro: true },
+                { feature: "Auto-status engine", free: true, lite: true, standard: true, pro: true },
+                { feature: "Public enquiry form", free: false, lite: true, standard: true, pro: true },
+                { feature: "Custom ticket prefix", free: false, lite: true, standard: true, pro: true },
+                { feature: "Inventory management", free: false, lite: false, standard: true, pro: true },
+                { feature: "Repair wiki / knowledge base", free: false, lite: false, standard: true, pro: true },
+                { feature: "Team management & RBAC", free: false, lite: false, standard: true, pro: true },
+                { feature: "Stripe Connect payments", free: false, lite: false, standard: false, pro: true },
+                { feature: "Branding removal", free: false, lite: false, standard: false, pro: true },
+              ].map((row, i) => (
+                <tr class={i % 2 === 0 ? 'bg-white' : 'bg-slate-50/50'}>
+                  <td class="px-5 py-3 font-medium text-dark">{row.feature}</td>
+                  {[row.free, row.lite, row.standard, row.pro].map((val) => (
+                    <td class="px-4 py-3 text-center">
+                      {val === true ? (
+                        <span class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-emerald-100 text-emerald-600">
+                          <Icon name="check" size={14} />
+                        </span>
+                      ) : val === false ? (
+                        <span class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-slate-100 text-slate-400">
+                          <Icon name="x" size={14} />
+                        </span>
+                      ) : (
+                        <span class="text-sm font-medium text-dark">{val}</span>
+                      )}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p class="mt-4 text-center text-xs text-slate-400">Monthly and yearly billing available on paid plans. <a href="/pricing" class="text-primary hover:underline">See full pricing details</a>.</p>
+      </div>
+    </section>
+
+    <!-- Who is the free plan for -->
+    <section class="py-20 sm:py-28 bg-slate-50">
+      <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <SectionHeading
+            title="Who is the free plan for?"
+            subtitle="The free plan works for a range of repair businesses and situations."
+          />
+        </div>
+        <div class="reveal stagger grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {[
+            { icon: "smartphone", title: "Solo technicians", desc: "Running a one-person phone repair operation? 25 tickets a month covers many small shops. Get professional ticketing and invoicing without the overhead." },
+            { icon: "star", title: "New repair businesses", desc: "Just getting started? Use the free plan to build your workflow from day one. No need to invest in software before you have revenue coming in." },
+            { icon: "tool", title: "Side hustle repairs", desc: "Repairing devices evenings and weekends? The free plan gives you a proper system to track jobs and customers without cutting into your margins." },
+            { icon: "bar-chart", title: "Evaluating software", desc: "Tired of 14-day trials that expire before you have properly tested? Use RepairKeeper as long as you need to decide. There is no deadline." },
+            { icon: "users", title: "Low-volume shops", desc: "Some shops handle fewer than 25 repairs a month. If that is you, the free plan may be all you ever need — and it is not a compromise." },
+            { icon: "pound", title: "Budget-conscious businesses", desc: "Every pound matters when you are running a small business. Start free, prove the value, and upgrade only when the numbers justify it." },
+          ].map((item) => (
+            <div class="card-hover rounded-xl border border-slate-200 bg-white p-6">
+              <div class="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <Icon name={item.icon} size={20} />
+              </div>
+              <h3 class="font-semibold text-dark">{item.title}</h3>
+              <p class="mt-1 text-sm text-slate-600">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- How free compares to competitors -->
+    <section class="py-20 sm:py-28 bg-white">
+      <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <SectionHeading
+            title="How RepairKeeper's free plan compares"
+            subtitle="Most repair shop software does not offer a free tier at all. Here is how RepairKeeper stacks up."
+          />
+        </div>
+        <div class="reveal stagger grid gap-6 sm:grid-cols-2">
+          <div class="card-hover rounded-2xl border border-primary/40 ring-2 ring-primary/10 bg-white p-6 sm:p-8">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <Icon name="star" size={20} />
+              </div>
+              <h3 class="text-lg font-bold text-dark">RepairKeeper</h3>
+            </div>
+            <ul class="space-y-3">
+              <li class="flex items-start gap-2 text-sm text-slate-600">
+                <svg class="mt-0.5 h-4 w-4 shrink-0 text-emerald-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" /></svg>
+                <span><strong class="text-dark">Free forever</strong> — 25 tickets/mo, no credit card</span>
+              </li>
+              <li class="flex items-start gap-2 text-sm text-slate-600">
+                <svg class="mt-0.5 h-4 w-4 shrink-0 text-emerald-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" /></svg>
+                <span>Full ticketing, invoicing, and customer management included</span>
+              </li>
+              <li class="flex items-start gap-2 text-sm text-slate-600">
+                <svg class="mt-0.5 h-4 w-4 shrink-0 text-emerald-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" /></svg>
+                <span>Customer tracking page and email notifications</span>
+              </li>
+              <li class="flex items-start gap-2 text-sm text-slate-600">
+                <svg class="mt-0.5 h-4 w-4 shrink-0 text-emerald-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" /></svg>
+                <span>Paid plans from just <strong class="text-dark">£20/mo</strong> when you need more</span>
+              </li>
+            </ul>
+          </div>
+          <div class="card-hover rounded-2xl border border-slate-200 bg-white p-6 sm:p-8">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-slate-100 text-slate-500">
+                <Icon name="globe" size={20} />
+              </div>
+              <h3 class="text-lg font-bold text-dark">Most competitors</h3>
+            </div>
+            <ul class="space-y-3">
+              <li class="flex items-start gap-2 text-sm text-slate-600">
+                <svg class="mt-0.5 h-4 w-4 shrink-0 text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
+                <span>No free plan — paid from day one or short trial periods</span>
+              </li>
+              <li class="flex items-start gap-2 text-sm text-slate-600">
+                <svg class="mt-0.5 h-4 w-4 shrink-0 text-amber-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /><path d="M12 8v4" /><path d="M12 16h.01" /></svg>
+                <span>RepairDesk starts from ~$99/mo USD, Syncro from ~$139/mo USD</span>
+              </li>
+              <li class="flex items-start gap-2 text-sm text-slate-600">
+                <svg class="mt-0.5 h-4 w-4 shrink-0 text-amber-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /><path d="M12 8v4" /><path d="M12 16h.01" /></svg>
+                <span>Repair Pilot and RepairBook — no publicly listed free plans</span>
+              </li>
+              <li class="flex items-start gap-2 text-sm text-slate-600">
+                <svg class="mt-0.5 h-4 w-4 shrink-0 text-amber-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /><path d="M12 8v4" /><path d="M12 16h.01" /></svg>
+                <span>Credit card often required even for trials</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-20 sm:py-28 bg-slate-50">
+      <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <SectionHeading title="Free plan questions" badge="FAQ" />
+        </div>
+        <div class="reveal stagger space-y-3">
+          {[
+            { q: "Is the RepairKeeper free plan actually free?", a: "Yes. It is not a trial — there is no time limit and no credit card required. You get 25 tickets per month with core ticketing, customer management, and invoicing included. You can use it indefinitely." },
+            { q: "What is included in the free plan?", a: "The free plan includes core ticket management, customer management, quoting and invoicing, PDF export, email notifications, digital signatures, auto-status automation, label printing, and the customer tracking page. It supports 1 team member and 25 tickets per month." },
+            { q: "Do I need a credit card to sign up?", a: "No. You can sign up for the free plan without entering any payment details. You only need to provide payment information if you choose to upgrade to a paid plan later." },
+            { q: "Can I upgrade from the free plan later?", a: "Yes. You can upgrade to Lite (£20/mo), Standard (£30/mo), or Pro (£55/mo) at any time from your dashboard. All your existing data carries over seamlessly — nothing is lost when you upgrade." },
+            { q: "What happens if I exceed 25 tickets in a month?", a: "You will not be able to create new tickets until the next month rolls over or you upgrade to a paid plan. Existing tickets and data remain accessible." },
+            { q: "Is the free plan available to UK businesses?", a: "Yes. RepairKeeper is built in the UK, priced in GBP, and includes VAT support. The free plan is available to repair businesses worldwide, with UK shops being the primary audience." },
+          ].map((item) => (
+            <details class="group rounded-xl border border-slate-200 bg-white transition-all hover:border-primary/30">
+              <summary class="flex cursor-pointer items-center justify-between px-6 py-4 text-left">
+                <span class="pr-4 text-base font-semibold text-dark group-open:text-primary">{item.q}</span>
+                <svg class="h-5 w-5 shrink-0 text-slate-400 transition-transform group-open:rotate-180 group-open:text-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6" /></svg>
+              </summary>
+              <div class="px-6 pb-4">
+                <p class="text-sm leading-relaxed text-slate-600">{item.a}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="relative overflow-hidden bg-dark py-20 sm:py-28">
+      <div class="pointer-events-none absolute inset-0" aria-hidden="true">
+        <div class="absolute -top-32 -left-32 h-96 w-96 rounded-full bg-primary/20 blur-3xl"></div>
+        <div class="absolute -bottom-32 -right-32 h-96 w-96 rounded-full bg-accent/20 blur-3xl"></div>
+      </div>
+      <div class="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+        <div class="reveal">
+          <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+            Start managing repairs for free — today
+          </h2>
+          <p class="mx-auto mt-4 max-w-2xl text-lg text-slate-400">
+            No credit card. No time limit. No catch. Sign up in under a minute and start creating tickets immediately.
+          </p>
+          <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+            <a href="https://app.repairkeeper.co.uk/register" class="inline-flex items-center gap-2 rounded-lg bg-primary px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:bg-primary-light hover:shadow-xl hover:shadow-primary/30">
+              Get Started Free
+              <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </a>
+            <a href="/pricing" class="inline-flex items-center gap-2 rounded-lg border border-slate-600 bg-transparent px-6 py-3.5 text-base font-semibold text-white transition-all hover:border-slate-400">
+              View All Plans
+            </a>
+          </div>
+          <p class="mt-4 text-sm text-slate-500">
+            No credit card required. <a href="/pricing" class="text-primary-light hover:underline">See all plans</a>.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
+</BaseLayout>

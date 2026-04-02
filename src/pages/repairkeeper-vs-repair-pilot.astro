@@ -1,0 +1,408 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
+import Icon from "@components/Icon.astro";
+import SectionHeading from "@components/SectionHeading.astro";
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://repairkeeper.co.uk" },
+    { "@type": "ListItem", position: 2, name: "RepairKeeper vs Repair Pilot", item: "https://repairkeeper.co.uk/repairkeeper-vs-repair-pilot" },
+  ],
+};
+
+const comparisonFeatures = [
+  { feature: "Multi-device tickets", rk: true, rp: false },
+  { feature: "Auto-status engine", rk: true, rp: false },
+  { feature: "Repair wiki / knowledge base", rk: true, rp: false },
+  { feature: "Customer self-service tracking", rk: true, rp: true },
+  { feature: "Online payments (Stripe)", rk: true, rp: false },
+  { feature: "API & webhooks", rk: true, rp: false },
+  { feature: "Booking widget / enquiry form", rk: true, rp: true },
+  { feature: "Inventory management", rk: true, rp: true },
+  { feature: "Team roles & permissions", rk: true, rp: true },
+  { feature: "Free plan", rk: true, rp: false },
+  { feature: "UK-based / GBP pricing", rk: true, rp: true },
+  { feature: "Digital signatures", rk: true, rp: false },
+  { feature: "Supports non-electronics trades", rk: false, rp: true },
+];
+---
+
+<BaseLayout
+  title="RepairKeeper vs Repair Pilot — Honest Comparison for Repair Shops (2026)"
+  description="RepairKeeper vs Repair Pilot — an honest comparison for UK repair shop owners in 2026. Features, pricing, and which platform suits phone, laptop, and electronics repair."
+>
+  <Header />
+  <main id="main-content">
+    <!-- Hero -->
+    <section class="hero-gradient relative overflow-hidden pt-28 pb-16 sm:pt-36 sm:pb-20">
+      <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+        <div class="absolute -top-24 -right-24 h-96 w-96 rounded-full bg-primary/5 blur-3xl animate-pulse-glow"></div>
+        <div class="absolute -bottom-24 -left-24 h-96 w-96 rounded-full bg-accent/5 blur-3xl animate-pulse-glow" style="animation-delay: 1.5s;"></div>
+      </div>
+      <div class="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+        <span class="mb-4 inline-block rounded-full bg-primary/10 px-4 py-1.5 text-sm font-semibold text-primary animate-fade-in">
+          Comparison
+        </span>
+        <h1 class="text-4xl font-extrabold tracking-tight text-dark sm:text-5xl animate-fade-up" style="animation-delay: 0.15s;">
+          RepairKeeper vs Repair Pilot — <span class="gradient-text">honest comparison</span>
+        </h1>
+        <p class="mx-auto mt-4 max-w-2xl text-lg text-slate-600 animate-fade-up" style="animation-delay: 0.3s;">
+          Two UK-based repair shop platforms with different approaches. We break down the features, pricing, and honest differences so you can choose the right fit for your business.
+        </p>
+      </div>
+    </section>
+
+    <!-- Intro -->
+    <section class="py-16 sm:py-20 bg-white">
+      <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <div class="prose prose-slate max-w-none">
+            <p class="text-lg leading-relaxed text-slate-600">
+              Repair Pilot is a UK-based repair shop management system that serves a wide range of repair trades — from phone and laptop repair to jewellery, watches, scuba equipment, and musical instruments. It has built a solid reputation as a versatile platform that can be adapted to many different repair workflows.
+            </p>
+            <p class="mt-4 text-lg leading-relaxed text-slate-600">
+              RepairKeeper is also UK-built but takes a more focused approach. It is designed specifically for <strong>electronics, phone, and computer repair shops</strong>, with features like multi-device tickets, an intelligent auto-status engine, a shared repair wiki, and an API with webhooks for automation. If you are looking for a <strong>Repair Pilot alternative</strong> that goes deeper on electronics repair workflows, this comparison will help you decide.
+            </p>
+            <p class="mt-4 text-lg leading-relaxed text-slate-600">
+              This comparison is based on publicly available information as of April 2026 and aims to be fair to both platforms. Both are legitimate UK options — the right choice depends on what your business actually needs.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Feature Comparison Table -->
+    <section class="py-20 sm:py-28 bg-slate-50">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <SectionHeading
+            title="Feature-by-feature comparison"
+            subtitle="A side-by-side look at the capabilities that matter most for repair shops."
+          />
+        </div>
+        <div class="reveal overflow-x-auto rounded-2xl border border-slate-200 bg-white shadow-sm">
+          <table class="w-full min-w-[480px] text-sm">
+            <thead>
+              <tr class="border-b border-slate-200 bg-slate-50">
+                <th class="px-5 py-3.5 text-left font-semibold text-dark">Feature</th>
+                <th class="px-4 py-3.5 text-center font-semibold text-primary">RepairKeeper</th>
+                <th class="px-4 py-3.5 text-center font-semibold text-dark">Repair Pilot</th>
+              </tr>
+            </thead>
+            <tbody>
+              {comparisonFeatures.map((row, i) => (
+                <tr class={i % 2 === 0 ? 'bg-white' : 'bg-slate-50/50'}>
+                  <td class="px-5 py-3 font-medium text-dark">{row.feature}</td>
+                  <td class="px-4 py-3 text-center">
+                    {row.rk ? (
+                      <span class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-emerald-100 text-emerald-600">
+                        <Icon name="check" size={14} />
+                      </span>
+                    ) : (
+                      <span class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-slate-100 text-slate-400">
+                        <Icon name="x" size={14} />
+                      </span>
+                    )}
+                  </td>
+                  <td class="px-4 py-3 text-center">
+                    {row.rp ? (
+                      <span class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-emerald-100 text-emerald-600">
+                        <Icon name="check" size={14} />
+                      </span>
+                    ) : (
+                      <span class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-slate-100 text-slate-400">
+                        <Icon name="x" size={14} />
+                      </span>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p class="mt-4 text-center text-xs text-slate-400">Feature availability based on publicly available information as of April 2026. Contact individual providers for the latest details.</p>
+      </div>
+    </section>
+
+    <!-- Where RepairKeeper excels -->
+    <section class="py-20 sm:py-28 bg-white">
+      <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <SectionHeading
+            title="Where RepairKeeper stands out"
+            subtitle="The features and design choices that set RepairKeeper apart from Repair Pilot."
+          />
+        </div>
+        <div class="reveal stagger grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {[
+            {
+              icon: "ticket",
+              title: "Multi-device tickets",
+              desc: "A single ticket can hold multiple devices — each with its own status, parts, and tracking. Repair Pilot uses one ticket per device. This matters when a customer drops off a phone and a tablet together.",
+              link: "/repair-ticket-software",
+            },
+            {
+              icon: "zap",
+              title: "Auto-status engine",
+              desc: "Statuses move themselves based on your parts workflow. When a part is ordered, the device status advances automatically. The ticket status always reflects the most behind device — zero manual updates needed.",
+              link: "/repair-ticket-software",
+            },
+            {
+              icon: "wiki",
+              title: "Repair wiki / knowledge base",
+              desc: "Build a shared knowledge base of devices, parts, faults, and repair guides. Contribute to a global database visible to all RepairKeeper shops, or keep entries private to your organisation.",
+              link: null,
+            },
+            {
+              icon: "link",
+              title: "API & webhooks",
+              desc: "RepairKeeper offers a REST API and webhooks for automation and integrations. Connect to AI agents, Zapier, custom dashboards, or your own tools. Repair Pilot does not publicly offer API access.",
+              link: "/api-reference",
+            },
+            {
+              icon: "star",
+              title: "Generous free plan",
+              desc: "Get started with 25 tickets per month at no cost — no credit card required. Repair Pilot does not offer a free tier, with plans requiring payment from the start.",
+              link: "/free-repair-shop-software",
+            },
+            {
+              icon: "tracking",
+              title: "Customer self-service + payments",
+              desc: "Customers get a tracking link to see real-time repair progress and pay invoices online via Stripe. A complete self-service experience from a single link.",
+              link: null,
+            },
+          ].map((item) => (
+            <div class="card-hover rounded-xl border border-slate-200 bg-white p-5">
+              <div class="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <Icon name={item.icon} size={20} />
+              </div>
+              <h3 class="text-sm font-semibold text-dark">{item.title}</h3>
+              <p class="mt-1 text-xs text-slate-600 leading-relaxed">{item.desc}</p>
+              {item.link && (
+                <a href={item.link} class="mt-2 inline-flex items-center gap-1 text-xs font-medium text-primary hover:text-primary-dark">
+                  Learn more
+                  <svg class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+                </a>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Where Repair Pilot excels -->
+    <section class="py-20 sm:py-28 bg-slate-50">
+      <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <SectionHeading
+            title="Where Repair Pilot has the edge"
+            subtitle="Credit where it is due — Repair Pilot brings strengths that are worth acknowledging."
+          />
+        </div>
+        <div class="reveal stagger grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {[
+            {
+              icon: "tool",
+              title: "Multi-trade support",
+              desc: "Repair Pilot serves a wide range of repair trades — jewellery, watches, scuba equipment, musical instruments, and more. If your business repairs non-electronics items, Repair Pilot is designed to accommodate that.",
+            },
+            {
+              icon: "globe",
+              title: "Established track record",
+              desc: "Repair Pilot has been in the market longer and has built a solid reputation among UK repair businesses. A longer track record means more battle-tested workflows and documented edge cases.",
+            },
+            {
+              icon: "users",
+              title: "Broader industry presence",
+              desc: "With users across multiple repair trades, Repair Pilot has a wider community. If you value a platform used by a diverse range of repair businesses, this is a genuine advantage.",
+            },
+            {
+              icon: "send",
+              title: "Communication tools",
+              desc: "Repair Pilot includes SMS and email communication features for customer updates. While RepairKeeper offers email notifications, Repair Pilot may offer more communication channel options.",
+            },
+            {
+              icon: "credit-card",
+              title: "Payment integrations",
+              desc: "Repair Pilot integrates with payment providers for in-store and online transactions. The specific integrations may differ from RepairKeeper's Stripe-focused approach.",
+            },
+            {
+              icon: "bar-chart",
+              title: "Reporting",
+              desc: "Repair Pilot offers reporting and analytics features that help shops track performance metrics. The depth and customisation of these reports may differ between platforms.",
+            },
+          ].map((item) => (
+            <div class="card-hover rounded-xl border border-slate-200 bg-white p-5">
+              <div class="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-slate-100 text-slate-500">
+                <Icon name={item.icon} size={20} />
+              </div>
+              <h3 class="text-sm font-semibold text-dark">{item.title}</h3>
+              <p class="mt-1 text-xs text-slate-600 leading-relaxed">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing comparison -->
+    <section class="py-20 sm:py-28 bg-white">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <SectionHeading
+            title="Pricing comparison"
+            subtitle="How the two platforms compare on cost — an important factor for independent repair shops."
+          />
+        </div>
+        <div class="reveal stagger grid gap-6 sm:grid-cols-2">
+          <!-- RepairKeeper pricing -->
+          <div class="card-hover rounded-2xl border border-primary/40 ring-2 ring-primary/10 bg-white p-6 sm:p-8">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <Icon name="star" size={20} />
+              </div>
+              <h3 class="text-lg font-bold text-dark">RepairKeeper</h3>
+            </div>
+            <ul class="space-y-3">
+              <li class="flex items-start gap-2 text-sm text-slate-600">
+                <svg class="mt-0.5 h-4 w-4 shrink-0 text-emerald-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" /></svg>
+                <span><strong class="text-dark">Free</strong> — 25 tickets/mo, 1 user</span>
+              </li>
+              <li class="flex items-start gap-2 text-sm text-slate-600">
+                <svg class="mt-0.5 h-4 w-4 shrink-0 text-emerald-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" /></svg>
+                <span><strong class="text-dark">Lite</strong> — £20/mo, 100 tickets/mo</span>
+              </li>
+              <li class="flex items-start gap-2 text-sm text-slate-600">
+                <svg class="mt-0.5 h-4 w-4 shrink-0 text-emerald-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" /></svg>
+                <span><strong class="text-dark">Standard</strong> — £30/mo, unlimited tickets, 5 users</span>
+              </li>
+              <li class="flex items-start gap-2 text-sm text-slate-600">
+                <svg class="mt-0.5 h-4 w-4 shrink-0 text-emerald-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" /></svg>
+                <span><strong class="text-dark">Pro</strong> — £55/mo, unlimited everything</span>
+              </li>
+            </ul>
+            <p class="mt-4 text-xs text-slate-500">All prices in GBP. Monthly and yearly billing available. No credit card required for Free plan.</p>
+            <a href="/pricing" class="mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary hover:text-primary-dark">
+              View full pricing
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </a>
+          </div>
+
+          <!-- Repair Pilot pricing -->
+          <div class="card-hover rounded-2xl border border-slate-200 bg-white p-6 sm:p-8">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-slate-100 text-slate-500">
+                <Icon name="globe" size={20} />
+              </div>
+              <h3 class="text-lg font-bold text-dark">Repair Pilot</h3>
+            </div>
+            <ul class="space-y-3">
+              <li class="flex items-start gap-2 text-sm text-slate-600">
+                <svg class="mt-0.5 h-4 w-4 shrink-0 text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
+                <span>No free plan available</span>
+              </li>
+              <li class="flex items-start gap-2 text-sm text-slate-600">
+                <svg class="mt-0.5 h-4 w-4 shrink-0 text-amber-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /><path d="M12 8v4" /><path d="M12 16h.01" /></svg>
+                <span>Paid plans from the start — check their website for current pricing</span>
+              </li>
+              <li class="flex items-start gap-2 text-sm text-slate-600">
+                <svg class="mt-0.5 h-4 w-4 shrink-0 text-emerald-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" /></svg>
+                <span>UK-based with GBP pricing</span>
+              </li>
+              <li class="flex items-start gap-2 text-sm text-slate-600">
+                <svg class="mt-0.5 h-4 w-4 shrink-0 text-emerald-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" /></svg>
+                <span>Multiple tiers available</span>
+              </li>
+            </ul>
+            <p class="mt-4 text-xs text-slate-500">Pricing based on publicly available information. Check Repair Pilot's website for current plans and pricing.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Who should choose which -->
+    <section class="py-20 sm:py-28 bg-slate-50">
+      <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <SectionHeading
+            title="Which platform is right for you?"
+            subtitle="Honest guidance based on what each platform does best."
+          />
+        </div>
+        <div class="reveal stagger grid gap-6 sm:grid-cols-2">
+          <div class="card-hover rounded-2xl border border-primary/40 ring-2 ring-primary/10 bg-white p-6 sm:p-8">
+            <h3 class="text-lg font-bold text-dark mb-3">Choose RepairKeeper if you...</h3>
+            <ul class="space-y-2">
+              {[
+                "Run a phone, electronics, or computer repair shop",
+                "Handle multi-device repairs and need independent per-device tracking",
+                "Want intelligent automation that moves statuses for you",
+                "Need a free plan to get started without financial commitment",
+                "Want an API and webhooks for automation and AI agent integrations",
+                "Value a shared repair knowledge base across your team or industry",
+                "Want customer self-service tracking with online Stripe payments",
+              ].map((item) => (
+                <li class="flex items-start gap-2 text-sm text-slate-600">
+                  <svg class="mt-0.5 h-4 w-4 shrink-0 text-emerald-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" /></svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="card-hover rounded-2xl border border-slate-200 bg-white p-6 sm:p-8">
+            <h3 class="text-lg font-bold text-dark mb-3">Choose Repair Pilot if you...</h3>
+            <ul class="space-y-2">
+              {[
+                "Repair non-electronics items like jewellery, watches, or musical instruments",
+                "Need a platform that serves a wide variety of repair trades",
+                "Prefer a longer-established platform with a broader user base",
+                "Value multi-trade versatility over electronics-specific depth",
+                "Want a platform that has been specifically tested across diverse repair industries",
+              ].map((item) => (
+                <li class="flex items-start gap-2 text-sm text-slate-600">
+                  <svg class="mt-0.5 h-4 w-4 shrink-0 text-emerald-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" /></svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="relative overflow-hidden bg-dark py-20 sm:py-28">
+      <div class="pointer-events-none absolute inset-0" aria-hidden="true">
+        <div class="absolute -top-32 -left-32 h-96 w-96 rounded-full bg-primary/20 blur-3xl"></div>
+        <div class="absolute -bottom-32 -right-32 h-96 w-96 rounded-full bg-accent/20 blur-3xl"></div>
+      </div>
+      <div class="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+        <div class="reveal">
+          <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+            Try RepairKeeper free — no commitment
+          </h2>
+          <p class="mx-auto mt-4 max-w-2xl text-lg text-slate-400">
+            See how RepairKeeper compares in practice. Start with 25 free tickets per month and decide for yourself whether it is the right fit for your repair shop.
+          </p>
+          <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+            <a href="https://app.repairkeeper.co.uk/register" class="inline-flex items-center gap-2 rounded-lg bg-primary px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:bg-primary-light hover:shadow-xl hover:shadow-primary/30">
+              Get Started Free
+              <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            </a>
+            <a href="/pricing" class="inline-flex items-center gap-2 rounded-lg border border-slate-600 bg-transparent px-6 py-3.5 text-base font-semibold text-white transition-all hover:border-slate-400">
+              View Pricing
+            </a>
+          </div>
+          <p class="mt-4 text-sm text-slate-500">
+            No credit card required. <a href="/pricing" class="text-primary-light hover:underline">See all plans</a>.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
+</BaseLayout>
