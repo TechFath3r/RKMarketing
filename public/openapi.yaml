@@ -1,0 +1,2098 @@
+openapi: 3.1.0
+info:
+  title: RepairKeeper API
+  version: 1.0.0
+  description: |
+    REST API for RepairKeeper — a repair shop management platform.
+    Manage tickets, customers, devices, invoices, inventory, and more.
+
+    **Authentication**: All requests require a Bearer token. Generate an API key from
+    **Settings > Account > API Keys** inside the RepairKeeper app.
+
+    **Base URL**: `https://app.repairkeeper.co.uk/api`
+
+    **Rate limits**: Most mutating endpoints are rate-limited (typically 5–30 requests per window).
+    A `429 Too Many Requests` response is returned when limits are exceeded.
+
+    **Plan restrictions**: Some endpoints require a Standard plan or above.
+    These are noted in endpoint descriptions.
+  contact:
+    name: RepairKeeper Support
+    url: https://repairkeeper.co.uk
+    email: support@contact.repairkeeper.co.uk
+
+servers:
+  - url: https://app.repairkeeper.co.uk
+
+security:
+  - BearerAuth: []
+
+tags:
+  - name: Tickets
+    description: Create and manage repair tickets, devices, notes, and parts
+  - name: Customers
+    description: Customer profiles, notes, and assets
+  - name: Invoices
+    description: Draft, finalise, and collect payment on invoices
+  - name: Webhooks
+    description: Outbound webhook endpoints and delivery logs. Requires Standard plan or above.
+  - name: API Keys
+    description: Manage API keys for programmatic access. Requires Standard plan or above.
+  - name: Reports
+    description: Revenue, repair, and summary reports. Requires a plan with reporting enabled.
+  - name: Catalogue
+    description: Services, products, and ticket statuses
+
+paths:
+  # ──────────────────────────── TICKETS ────────────────────────────
+  /api/tickets:
+    get:
+      operationId: listTickets
+      tags: [Tickets]
+      summary: List tickets
+      description: Returns a paginated, filterable list of repair tickets.
+      parameters:
+        - name: search
+          in: query
+          schema: { type: string }
+          description: Free-text search across reference, customer name, complaint, services, brand/model.
+        - name: hideClosed
+          in: query
+          schema: { type: string, enum: ["true", "false"], default: "true" }
+          description: Hide tickets whose status is terminal (closed/collected).
+        - name: hideCollected
+          in: query
+          schema: { type: string, enum: ["true", "false"], default: "true" }
+          description: Hide collected tickets.
+        - name: status
+          in: query
+          schema: { type: string }
+          description: Comma-separated status IDs to filter by.
+          example: "cls123,cls456"
+        - name: assignedTo
+          in: query
+          schema: { type: string }
+          description: Filter by assigned user ID.
+        - name: paymentStatus
+          in: query
+          schema: { type: string, enum: [PAID, UNPAID, NONE] }
+          description: Filter by payment status.
+        - name: custody
+          in: query
+          schema: { type: string, enum: [withCustomer, inShop] }
+          description: Filter by device custody.
+        - name: diagnosisStatus
+          in: query
+          schema: { type: string, enum: [pending, responded] }
+        - name: cursor
+          in: query
+          schema: { type: string }
+          description: Cursor for pagination (ticket ID).
+        - name: limit
+          in: query
+          schema: { type: integer, default: 20, minimum: 1, maximum: 100 }
+        - name: sortBy
+          in: query
+          schema: { type: string, enum: [reference, customer, status, estimate, assigned, updated, created], default: updated }
+        - name: sortDir
+          in: query
+          schema: { type: string, enum: [asc, desc], default: desc }
+      responses:
+        "200":
+          description: Paginated ticket list.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  tickets:
+                    type: array
+                    items: { $ref: "#/components/schemas/TicketSummary" }
+                  nextCursor:
+                    type: string
+                    nullable: true
+                  totalCount:
+                    type: integer
+                    example: 142
+        "401": { $ref: "#/components/responses/Unauthorized" }
+
+    post:
+      operationId: createTicket
+      tags: [Tickets]
+      summary: Create a ticket
+      description: Create a new repair ticket with one or more devices.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/CreateTicketInput" }
+      responses:
+        "201":
+          description: Ticket created.
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Ticket" }
+        "400": { $ref: "#/components/responses/ValidationError" }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+        "429": { $ref: "#/components/responses/RateLimited" }
+
+  /api/tickets/{id}:
+    parameters:
+      - $ref: "#/components/parameters/ResourceId"
+    get:
+      operationId: getTicket
+      tags: [Tickets]
+      summary: Get a ticket
+      description: Returns a single ticket with full details including customer, devices, notes, parts, quotes, and email logs.
+      responses:
+        "200":
+          description: Full ticket object.
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Ticket" }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+        "404": { $ref: "#/components/responses/NotFound" }
+
+    patch:
+      operationId: updateTicket
+      tags: [Tickets]
+      summary: Update a ticket
+      description: Partially update ticket fields such as assigned technician, dates, signatures, or estimated cost.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/UpdateTicketInput" }
+      responses:
+        "200":
+          description: Updated ticket.
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Ticket" }
+        "400": { $ref: "#/components/responses/ValidationError" }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+        "404": { $ref: "#/components/responses/NotFound" }
+
+    delete:
+      operationId: deleteTicket
+      tags: [Tickets]
+      summary: Delete a ticket
+      description: Soft-deletes a ticket. It can be restored within 30 days.
+      responses:
+        "200":
+          description: Ticket deleted.
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/SuccessResponse" }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+        "404": { $ref: "#/components/responses/NotFound" }
+
+  /api/tickets/{id}/devices:
+    parameters:
+      - $ref: "#/components/parameters/ResourceId"
+    post:
+      operationId: addDevice
+      tags: [Tickets]
+      summary: Add a device to a ticket
+      description: Attach an additional device to an existing ticket.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/TicketDeviceInput" }
+      responses:
+        "201":
+          description: Device added.
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Device" }
+        "400": { $ref: "#/components/responses/ValidationError" }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+        "404": { $ref: "#/components/responses/NotFound" }
+
+  /api/tickets/{id}/devices/{deviceId}:
+    parameters:
+      - $ref: "#/components/parameters/ResourceId"
+      - name: deviceId
+        in: path
+        required: true
+        schema: { type: string }
+    patch:
+      operationId: updateDevice
+      tags: [Tickets]
+      summary: Update a device
+      description: Update device fields, status, diagnosis info, subcontractor details, or warranty.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/UpdateTicketDeviceInput" }
+      responses:
+        "200":
+          description: Updated device.
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Device" }
+        "400": { $ref: "#/components/responses/ValidationError" }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+        "404": { $ref: "#/components/responses/NotFound" }
+
+    delete:
+      operationId: removeDevice
+      tags: [Tickets]
+      summary: Remove a device from a ticket
+      responses:
+        "200":
+          description: Device removed.
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/SuccessResponse" }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+        "404": { $ref: "#/components/responses/NotFound" }
+
+  /api/tickets/{id}/notes:
+    parameters:
+      - $ref: "#/components/parameters/ResourceId"
+    post:
+      operationId: addNote
+      tags: [Tickets]
+      summary: Add a note to a ticket
+      description: Attach an internal or public note (with optional file attachments) to a ticket.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/CreateTicketNoteInput" }
+      responses:
+        "201":
+          description: Note created.
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Note" }
+        "400": { $ref: "#/components/responses/ValidationError" }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+        "404": { $ref: "#/components/responses/NotFound" }
+
+  /api/tickets/{id}/parts:
+    parameters:
+      - $ref: "#/components/parameters/ResourceId"
+    get:
+      operationId: listTicketParts
+      tags: [Tickets]
+      summary: List parts on a ticket
+      description: Returns all parts allocated to a ticket, with available stock counts.
+      parameters:
+        - name: deviceId
+          in: query
+          schema: { type: string }
+          description: Filter parts by a specific device on the ticket.
+      responses:
+        "200":
+          description: Parts list.
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: "#/components/schemas/TicketPart" }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+        "404": { $ref: "#/components/responses/NotFound" }
+
+    post:
+      operationId: addPart
+      tags: [Tickets]
+      summary: Add a part to a ticket
+      description: Allocate a part from inventory to a ticket. Stock is decremented automatically if available.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/CreateTicketPartInput" }
+      responses:
+        "200":
+          description: Part added.
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/TicketPart" }
+        "400": { $ref: "#/components/responses/ValidationError" }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+        "404": { $ref: "#/components/responses/NotFound" }
+
+  # ──────────────────────────── CUSTOMERS ────────────────────────────
+  /api/customers:
+    get:
+      operationId: listCustomers
+      tags: [Customers]
+      summary: List customers
+      description: Returns a paginated list of customers with balance information.
+      parameters:
+        - name: search
+          in: query
+          schema: { type: string }
+          description: Search by name, email, phone, landline, or company.
+        - name: sortBy
+          in: query
+          schema: { type: string, enum: [name, email, createdAt, balance], default: name }
+        - name: sortDir
+          in: query
+          schema: { type: string, enum: [asc, desc], default: asc }
+        - name: cursor
+          in: query
+          schema: { type: string }
+          description: Cursor-based pagination (customer ID).
+        - name: offset
+          in: query
+          schema: { type: integer }
+          description: Offset-based pagination alternative.
+        - name: limit
+          in: query
+          schema: { type: integer, default: 20, minimum: 1, maximum: 100 }
+        - name: distinctContactMethods
+          in: query
+          schema: { type: string, enum: ["true", "false"] }
+          description: When true, returns distinct contact method values for combobox population.
+      responses:
+        "200":
+          description: Paginated customer list.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  customers:
+                    type: array
+                    items: { $ref: "#/components/schemas/Customer" }
+                  nextCursor:
+                    type: string
+                    nullable: true
+                  nextOffset:
+                    type: integer
+                    nullable: true
+                  totalCount:
+                    type: integer
+                    example: 84
+        "401": { $ref: "#/components/responses/Unauthorized" }
+
+    post:
+      operationId: createCustomer
+      tags: [Customers]
+      summary: Create a customer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/CreateCustomerInput" }
+      responses:
+        "201":
+          description: Customer created.
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Customer" }
+        "400": { $ref: "#/components/responses/ValidationError" }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+        "409": { $ref: "#/components/responses/Conflict" }
+
+  /api/customers/{id}:
+    parameters:
+      - $ref: "#/components/parameters/ResourceId"
+    get:
+      operationId: getCustomer
+      tags: [Customers]
+      summary: Get a customer
+      description: Returns a customer with their tickets, notes, and registered assets.
+      responses:
+        "200":
+          description: Full customer object.
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/CustomerDetail" }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+        "404": { $ref: "#/components/responses/NotFound" }
+
+    patch:
+      operationId: updateCustomer
+      tags: [Customers]
+      summary: Update a customer
+      description: Partially update customer fields. Pass `{ "restore": true }` to restore a soft-deleted customer.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/UpdateCustomerInput" }
+      responses:
+        "200":
+          description: Updated customer.
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Customer" }
+        "400": { $ref: "#/components/responses/ValidationError" }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+        "404": { $ref: "#/components/responses/NotFound" }
+
+    delete:
+      operationId: deleteCustomer
+      tags: [Customers]
+      summary: Delete a customer
+      description: Soft-deletes a customer.
+      responses:
+        "200":
+          description: Customer deleted.
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/SuccessResponse" }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+        "404": { $ref: "#/components/responses/NotFound" }
+
+  # ──────────────────────────── INVOICES ────────────────────────────
+  /api/invoices:
+    get:
+      operationId: listInvoices
+      tags: [Invoices]
+      summary: List invoices
+      description: Returns a paginated list of invoices with optional status and payment filters.
+      parameters:
+        - name: status
+          in: query
+          schema: { type: string, enum: [DRAFT, FINALISED] }
+        - name: paymentStatus
+          in: query
+          schema: { type: string, enum: [UNPAID, PARTIALLY_PAID, PAID] }
+        - name: overdue
+          in: query
+          schema: { type: string, enum: ["true"] }
+          description: Filter for finalised, unpaid invoices past their due date.
+        - name: unpaid
+          in: query
+          schema: { type: string, enum: ["true"] }
+          description: Filter for all finalised unpaid invoices.
+        - name: offset
+          in: query
+          schema: { type: integer, default: 0 }
+        - name: limit
+          in: query
+          schema: { type: integer, default: 30, minimum: 1, maximum: 100 }
+      responses:
+        "200":
+          description: Paginated invoice list.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  invoices:
+                    type: array
+                    items: { $ref: "#/components/schemas/InvoiceSummary" }
+                  totalCount:
+                    type: integer
+                    example: 56
+        "401": { $ref: "#/components/responses/Unauthorized" }
+
+  /api/invoices/{id}:
+    parameters:
+      - $ref: "#/components/parameters/ResourceId"
+    get:
+      operationId: getInvoice
+      tags: [Invoices]
+      summary: Get an invoice
+      description: Returns a single invoice with line items, payments, and totals.
+      responses:
+        "200":
+          description: Full invoice object.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  invoice: { $ref: "#/components/schemas/Invoice" }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+        "404": { $ref: "#/components/responses/NotFound" }
+
+    patch:
+      operationId: updateInvoice
+      tags: [Invoices]
+      summary: Update a draft invoice
+      description: Update line items, VAT rate, discounts, notes, or payment terms. Only draft invoices can be edited.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/UpdateInvoiceInput" }
+      responses:
+        "200":
+          description: Updated invoice.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  invoice: { $ref: "#/components/schemas/Invoice" }
+        "400": { $ref: "#/components/responses/ValidationError" }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+        "403": { $ref: "#/components/responses/Forbidden" }
+        "404": { $ref: "#/components/responses/NotFound" }
+
+    delete:
+      operationId: deleteInvoice
+      tags: [Invoices]
+      summary: Delete an invoice
+      description: Soft-deletes an invoice.
+      responses:
+        "200":
+          description: Invoice deleted.
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/SuccessResponse" }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+        "404": { $ref: "#/components/responses/NotFound" }
+
+  /api/invoices/{id}/finalise:
+    parameters:
+      - $ref: "#/components/parameters/ResourceId"
+    post:
+      operationId: finaliseInvoice
+      tags: [Invoices]
+      summary: Finalise an invoice
+      description: |
+        Locks the invoice, assigns a sequential invoice number (e.g. `INV-0001`),
+        and calculates the due date from payment terms. Once finalised, line items cannot be changed.
+      responses:
+        "200":
+          description: Finalised invoice.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  invoice: { $ref: "#/components/schemas/Invoice" }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+        "404": { $ref: "#/components/responses/NotFound" }
+        "409": { $ref: "#/components/responses/Conflict" }
+
+  /api/invoices/{id}/pay:
+    parameters:
+      - $ref: "#/components/parameters/ResourceId"
+    post:
+      operationId: recordPayment
+      tags: [Invoices]
+      summary: Record a payment
+      description: Record a payment against a finalised invoice. If `amount` is omitted the remaining balance is used.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/InvoicePaymentInput" }
+      responses:
+        "200":
+          description: Payment recorded.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  invoice: { $ref: "#/components/schemas/Invoice" }
+        "400": { $ref: "#/components/responses/ValidationError" }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+        "404": { $ref: "#/components/responses/NotFound" }
+
+  # ──────────────────────────── WEBHOOKS ────────────────────────────
+  /api/webhook-endpoints:
+    get:
+      operationId: listWebhookEndpoints
+      tags: [Webhooks]
+      summary: List webhook endpoints
+      description: Returns all configured webhook endpoints. Requires Standard plan or above.
+      responses:
+        "200":
+          description: Webhook endpoint list.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  endpoints:
+                    type: array
+                    items: { $ref: "#/components/schemas/WebhookEndpoint" }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+        "403": { $ref: "#/components/responses/Forbidden" }
+
+    post:
+      operationId: createWebhookEndpoint
+      tags: [Webhooks]
+      summary: Create a webhook endpoint
+      description: Register a new webhook URL. The signing secret is returned only once in the response. Requires Standard plan or above.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/CreateWebhookEndpointInput" }
+      responses:
+        "201":
+          description: Webhook endpoint created. The `secret` field is included only in this response.
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/WebhookEndpointWithSecret" }
+        "400": { $ref: "#/components/responses/ValidationError" }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+        "403": { $ref: "#/components/responses/Forbidden" }
+
+  /api/webhook-endpoints/{id}:
+    parameters:
+      - $ref: "#/components/parameters/ResourceId"
+    get:
+      operationId: getWebhookEndpoint
+      tags: [Webhooks]
+      summary: Get a webhook endpoint
+      responses:
+        "200":
+          description: Webhook endpoint details.
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/WebhookEndpoint" }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+        "404": { $ref: "#/components/responses/NotFound" }
+
+    patch:
+      operationId: updateWebhookEndpoint
+      tags: [Webhooks]
+      summary: Update a webhook endpoint
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/UpdateWebhookEndpointInput" }
+      responses:
+        "200":
+          description: Updated webhook endpoint.
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/WebhookEndpoint" }
+        "400": { $ref: "#/components/responses/ValidationError" }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+        "404": { $ref: "#/components/responses/NotFound" }
+
+    delete:
+      operationId: deleteWebhookEndpoint
+      tags: [Webhooks]
+      summary: Delete a webhook endpoint
+      responses:
+        "200":
+          description: Webhook endpoint deleted.
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/SuccessResponse" }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+        "404": { $ref: "#/components/responses/NotFound" }
+
+  /api/webhook-endpoints/{id}/deliveries:
+    parameters:
+      - $ref: "#/components/parameters/ResourceId"
+    get:
+      operationId: listWebhookDeliveries
+      tags: [Webhooks]
+      summary: List webhook deliveries
+      description: Returns a paginated delivery log for a webhook endpoint.
+      parameters:
+        - name: cursor
+          in: query
+          schema: { type: string }
+        - name: limit
+          in: query
+          schema: { type: integer, default: 20, minimum: 1, maximum: 100 }
+      responses:
+        "200":
+          description: Delivery list.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  deliveries:
+                    type: array
+                    items: { $ref: "#/components/schemas/WebhookDelivery" }
+                  nextCursor:
+                    type: string
+                    nullable: true
+        "401": { $ref: "#/components/responses/Unauthorized" }
+        "404": { $ref: "#/components/responses/NotFound" }
+
+  # ──────────────────────────── API KEYS ────────────────────────────
+  /api/api-keys:
+    get:
+      operationId: listApiKeys
+      tags: [API Keys]
+      summary: List API keys
+      description: Returns all API keys for the organisation. Requires Standard plan or above.
+      responses:
+        "200":
+          description: API key list.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  keys:
+                    type: array
+                    items: { $ref: "#/components/schemas/ApiKey" }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+        "403": { $ref: "#/components/responses/Forbidden" }
+
+    post:
+      operationId: createApiKey
+      tags: [API Keys]
+      summary: Create an API key
+      description: |
+        Generate a new API key. The full key value is returned only once in this response —
+        store it securely. Requires Standard plan or above.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/CreateApiKeyInput" }
+      responses:
+        "201":
+          description: API key created. The `key` field contains the full key and is only returned once.
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/ApiKeyWithSecret" }
+        "400": { $ref: "#/components/responses/ValidationError" }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+        "403": { $ref: "#/components/responses/Forbidden" }
+
+  /api/api-keys/{id}:
+    parameters:
+      - $ref: "#/components/parameters/ResourceId"
+    get:
+      operationId: getApiKey
+      tags: [API Keys]
+      summary: Get an API key
+      responses:
+        "200":
+          description: API key details.
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/ApiKey" }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+        "404": { $ref: "#/components/responses/NotFound" }
+
+    patch:
+      operationId: updateApiKey
+      tags: [API Keys]
+      summary: Update an API key
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/UpdateApiKeyInput" }
+      responses:
+        "200":
+          description: Updated API key.
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/ApiKey" }
+        "400": { $ref: "#/components/responses/ValidationError" }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+        "404": { $ref: "#/components/responses/NotFound" }
+
+    delete:
+      operationId: revokeApiKey
+      tags: [API Keys]
+      summary: Revoke an API key
+      description: Soft-revokes the key by setting `revokedAt`. The key can no longer be used for authentication.
+      responses:
+        "200":
+          description: API key revoked.
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/SuccessResponse" }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+        "404": { $ref: "#/components/responses/NotFound" }
+
+  # ──────────────────────────── REPORTS ────────────────────────────
+  /api/reports/summary:
+    get:
+      operationId: getSummaryReport
+      tags: [Reports]
+      summary: Summary dashboard report
+      description: Returns a 30-day snapshot of revenue, repairs, customers, and inventory. Requires a plan with reporting enabled.
+      responses:
+        "200":
+          description: Summary report.
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/SummaryReport" }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+        "403": { $ref: "#/components/responses/Forbidden" }
+
+  /api/reports/revenue:
+    get:
+      operationId: getRevenueReport
+      tags: [Reports]
+      summary: Revenue report
+      description: Detailed revenue breakdown with time series, payment methods, VAT quarters, and accounts receivable aging. Requires a plan with reporting enabled.
+      parameters:
+        - name: from
+          in: query
+          schema: { type: string, format: date }
+          description: Start date (ISO 8601). Defaults to 30 days ago.
+          example: "2025-03-01"
+        - name: to
+          in: query
+          schema: { type: string, format: date }
+          description: End date (ISO 8601). Defaults to today.
+          example: "2025-03-31"
+        - name: bucket
+          in: query
+          schema: { type: string, enum: [day, week, month], default: day }
+          description: Time series bucket size.
+      responses:
+        "200":
+          description: Revenue report.
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/RevenueReport" }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+        "403": { $ref: "#/components/responses/Forbidden" }
+
+  /api/reports/repairs:
+    get:
+      operationId: getRepairsReport
+      tags: [Reports]
+      summary: Repairs report
+      description: Repair volume, turnaround, top brands/faults, and technician breakdown. Requires a plan with reporting enabled.
+      parameters:
+        - name: from
+          in: query
+          schema: { type: string, format: date }
+          description: Start date (ISO 8601). Defaults to 30 days ago.
+        - name: to
+          in: query
+          schema: { type: string, format: date }
+          description: End date (ISO 8601). Defaults to today.
+        - name: bucket
+          in: query
+          schema: { type: string, enum: [day, week, month], default: day }
+      responses:
+        "200":
+          description: Repairs report.
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/RepairsReport" }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+        "403": { $ref: "#/components/responses/Forbidden" }
+
+  # ──────────────────────────── CATALOGUE ────────────────────────────
+  /api/statuses:
+    get:
+      operationId: listStatuses
+      tags: [Catalogue]
+      summary: List ticket statuses
+      description: Returns all ticket statuses for the organisation, ordered by their display order.
+      responses:
+        "200":
+          description: Status list.
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: "#/components/schemas/TicketStatus" }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+
+    put:
+      operationId: replaceStatuses
+      tags: [Catalogue]
+      summary: Replace all statuses
+      description: Replaces the full set of ticket statuses. Statuses in use cannot be removed. Requires `canManageStatuses` permission.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [statuses]
+              properties:
+                statuses:
+                  type: array
+                  items: { $ref: "#/components/schemas/TicketStatusInput" }
+      responses:
+        "200":
+          description: Updated status list.
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: "#/components/schemas/TicketStatus" }
+        "400": { $ref: "#/components/responses/ValidationError" }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+        "403": { $ref: "#/components/responses/Forbidden" }
+
+  /api/services:
+    get:
+      operationId: listServices
+      tags: [Catalogue]
+      summary: List services
+      description: Returns organisation-scoped and global services.
+      parameters:
+        - name: search
+          in: query
+          schema: { type: string }
+          description: Filter by service name.
+      responses:
+        "200":
+          description: Service list.
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: "#/components/schemas/Service" }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+
+    post:
+      operationId: createService
+      tags: [Catalogue]
+      summary: Create a service
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/CreateServiceInput" }
+      responses:
+        "201":
+          description: Service created.
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Service" }
+        "400": { $ref: "#/components/responses/ValidationError" }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+
+  /api/products:
+    get:
+      operationId: listProducts
+      tags: [Catalogue]
+      summary: List products
+      description: Returns a paginated list of products (parts/inventory items). Requires catalogue feature access.
+      parameters:
+        - name: search
+          in: query
+          schema: { type: string }
+          description: Search by name, SKU, or category.
+        - name: stockStatus
+          in: query
+          schema: { type: string, enum: [in_stock, out_of_stock] }
+        - name: offset
+          in: query
+          schema: { type: integer, default: 0 }
+        - name: limit
+          in: query
+          schema: { type: integer, default: 50, minimum: 1, maximum: 100 }
+      responses:
+        "200":
+          description: Paginated product list.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  products:
+                    type: array
+                    items: { $ref: "#/components/schemas/Product" }
+                  totalCount:
+                    type: integer
+        "401": { $ref: "#/components/responses/Unauthorized" }
+        "403": { $ref: "#/components/responses/Forbidden" }
+
+    post:
+      operationId: createProduct
+      tags: [Catalogue]
+      summary: Create a product
+      description: Create a new product/part. Optionally set initial stock level.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/CreateProductInput" }
+      responses:
+        "201":
+          description: Product created.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  product: { $ref: "#/components/schemas/Product" }
+        "400": { $ref: "#/components/responses/ValidationError" }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+        "403": { $ref: "#/components/responses/Forbidden" }
+
+  /api/products/{id}:
+    parameters:
+      - $ref: "#/components/parameters/ResourceId"
+    get:
+      operationId: getProduct
+      tags: [Catalogue]
+      summary: Get a product
+      description: Returns a product with stock levels, supplier info, and recent stock movements.
+      responses:
+        "200":
+          description: Full product object.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  product: { $ref: "#/components/schemas/ProductDetail" }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+        "404": { $ref: "#/components/responses/NotFound" }
+
+    patch:
+      operationId: updateProduct
+      tags: [Catalogue]
+      summary: Update a product
+      description: Partially update product fields. Pass `{ "restore": true }` to restore a soft-deleted product.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/UpdateProductInput" }
+      responses:
+        "200":
+          description: Updated product.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  product: { $ref: "#/components/schemas/Product" }
+        "400": { $ref: "#/components/responses/ValidationError" }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+        "404": { $ref: "#/components/responses/NotFound" }
+
+    delete:
+      operationId: deleteProduct
+      tags: [Catalogue]
+      summary: Delete a product
+      description: Soft-deletes a product. Fails if the product still has stock on hand.
+      responses:
+        "200":
+          description: Product deleted.
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/SuccessResponse" }
+        "400": { $ref: "#/components/responses/ValidationError" }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+        "404": { $ref: "#/components/responses/NotFound" }
+
+# ═══════════════════════════════════════════════════════════════════
+# COMPONENTS
+# ═══════════════════════════════════════════════════════════════════
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: |
+        API key generated from **Settings > Account > API Keys**.
+        Pass as `Authorization: Bearer rk_live_...`
+
+  parameters:
+    ResourceId:
+      name: id
+      in: path
+      required: true
+      schema: { type: string }
+      description: Resource ID.
+
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error: { type: string, example: "Unauthorized" }
+              code: { type: string, example: "UNAUTHORIZED" }
+
+    Forbidden:
+      description: Insufficient permissions or plan.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error: { type: string, example: "Forbidden" }
+              code: { type: string, example: "FORBIDDEN" }
+
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error: { type: string, example: "Not found" }
+              code: { type: string, example: "NOT_FOUND" }
+
+    ValidationError:
+      description: Request body failed validation.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error: { type: string, example: "Validation failed" }
+              code: { type: string, example: "VALIDATION_ERROR" }
+              details:
+                type: object
+                additionalProperties:
+                  type: array
+                  items: { type: string }
+                example:
+                  name: ["Required"]
+                  email: ["Invalid email"]
+
+    Conflict:
+      description: Unique constraint violation or conflicting state.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error: { type: string, example: "A record with that value already exists" }
+              code: { type: string, example: "CONFLICT" }
+
+    RateLimited:
+      description: Rate limit exceeded.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error: { type: string, example: "Too many requests" }
+              code: { type: string, example: "RATE_LIMITED" }
+
+  schemas:
+    # ── Shared ──
+    SuccessResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+
+    # ── Tickets ──
+    TicketSummary:
+      type: object
+      properties:
+        id: { type: string, example: "clx9abc123" }
+        reference: { type: string, example: "RK-0042" }
+        workType: { type: string, enum: [REPAIR, REFURBISHMENT], example: "REPAIR" }
+        createdAt: { type: string, format: date-time }
+        updatedAt: { type: string, format: date-time }
+        deviceReceived: { type: boolean, example: true }
+        isBookedIn: { type: boolean }
+        deviceCount: { type: integer, example: 2 }
+        hasPartsAvailable: { type: boolean }
+        quoteStatus: { type: string, nullable: true }
+        diagnosisApprovalFlag: { type: string, nullable: true }
+        estimatedCost: { type: number, nullable: true, example: 85.00 }
+        customer:
+          type: object
+          nullable: true
+          properties:
+            id: { type: string }
+            name: { type: string, example: "Jane Smith" }
+            email: { type: string, nullable: true }
+            phone: { type: string, nullable: true }
+        status:
+          type: object
+          nullable: true
+          properties:
+            id: { type: string }
+            name: { type: string, example: "In Repair" }
+            colour: { type: string, example: "#3B82F6" }
+        assignedTo:
+          type: object
+          nullable: true
+          properties:
+            id: { type: string }
+            name: { type: string, example: "Dan" }
+
+    Ticket:
+      type: object
+      description: Full ticket object returned by GET /api/tickets/{id} and POST /api/tickets.
+      properties:
+        id: { type: string }
+        reference: { type: string, example: "RK-0042" }
+        workType: { type: string, enum: [REPAIR, REFURBISHMENT] }
+        estimatedCost: { type: number, nullable: true }
+        deviceReceived: { type: boolean }
+        dropOffDate: { type: string, format: date-time, nullable: true }
+        collectionDate: { type: string, format: date-time, nullable: true }
+        repairDueBy: { type: string, format: date-time, nullable: true }
+        intakeSignature: { type: string, nullable: true }
+        collectionSignature: { type: string, nullable: true }
+        authorizedCollector: { type: string, nullable: true }
+        termsAccepted: { type: boolean }
+        bookedInAt: { type: string, format: date-time, nullable: true }
+        createdAt: { type: string, format: date-time }
+        updatedAt: { type: string, format: date-time }
+        deletedAt: { type: string, format: date-time, nullable: true }
+        customer: { $ref: "#/components/schemas/Customer" }
+        status:
+          $ref: "#/components/schemas/TicketStatus"
+        assignedTo:
+          type: object
+          nullable: true
+          properties:
+            id: { type: string }
+            name: { type: string }
+        devices:
+          type: array
+          items: { $ref: "#/components/schemas/Device" }
+        notes:
+          type: array
+          items: { $ref: "#/components/schemas/Note" }
+        parts:
+          type: array
+          items: { $ref: "#/components/schemas/TicketPart" }
+
+    CreateTicketInput:
+      type: object
+      required: [devices]
+      properties:
+        customerId: { type: string, nullable: true }
+        workType: { type: string, enum: [REPAIR, REFURBISHMENT], default: "REPAIR" }
+        tradeDeviceId: { type: string, nullable: true }
+        devices:
+          type: array
+          minItems: 1
+          items: { $ref: "#/components/schemas/TicketDeviceInput" }
+        intakeSignature: { type: string, nullable: true }
+        deviceReceived: { type: boolean }
+        authorizedCollector: { type: string, nullable: true }
+        dropOffDate: { type: string, format: date-time, nullable: true }
+        collectionDate: { type: string, format: date-time, nullable: true }
+        repairDueBy: { type: string, format: date-time, nullable: true }
+        assignedToId: { type: string, nullable: true }
+        reference: { type: string, maxLength: 50, description: "Custom reference. Auto-generated if omitted." }
+        termsAccepted: { type: boolean }
+        agreedByName: { type: string, nullable: true }
+        estimatedCost: { type: number, nullable: true }
+
+    UpdateTicketInput:
+      type: object
+      properties:
+        customerId: { type: string }
+        estimatedCost: { type: number, nullable: true }
+        dropOffDate: { type: string, format: date-time }
+        collectionDate: { type: string, format: date-time }
+        repairDueBy: { type: string, format: date-time }
+        intakeSignature: { type: string }
+        collectionSignature: { type: string }
+        authorizedCollector: { type: string }
+        assignedToId: { type: string, nullable: true }
+        deviceReceived: { type: boolean }
+        bookedInAt: { type: string, format: date-time }
+        termsAccepted: { type: boolean }
+        agreedByName: { type: string }
+
+    # ── Devices ──
+    Device:
+      type: object
+      properties:
+        id: { type: string }
+        deviceBrand: { type: string, example: "Apple" }
+        deviceModel: { type: string, example: "iPhone 15 Pro" }
+        deviceSerial: { type: string, nullable: true }
+        customerComplaint: { type: string, example: "Cracked screen, touch not responding" }
+        requiresDiagnosis: { type: boolean }
+        diagnosisNotes: { type: string, nullable: true }
+        diagnosedAt: { type: string, format: date-time, nullable: true }
+        conditionNotes: { type: string, nullable: true }
+        accessories: { type: string, nullable: true }
+        passcode: { type: string, nullable: true }
+        customerReference: { type: string, nullable: true }
+        actionTaken: { type: string, nullable: true }
+        estimatedCost: { type: number, nullable: true }
+        warrantyExpiresAt: { type: string, format: date-time, nullable: true }
+        collectedAt: { type: string, format: date-time, nullable: true }
+        sentOutAt: { type: string, format: date-time, nullable: true }
+        sentOutTo: { type: string, nullable: true }
+        courierName: { type: string, nullable: true }
+        trackingNumber: { type: string, nullable: true }
+        returnedFromSubcontractorAt: { type: string, format: date-time, nullable: true }
+        createdAt: { type: string, format: date-time }
+        status:
+          $ref: "#/components/schemas/TicketStatus"
+        services:
+          type: array
+          items:
+            type: object
+            properties:
+              id: { type: string }
+              description: { type: string }
+
+    TicketDeviceInput:
+      type: object
+      required: [customerComplaint]
+      properties:
+        deviceBrand: { type: string, example: "Samsung" }
+        deviceModel: { type: string, example: "Galaxy S24" }
+        deviceSerial: { type: string }
+        customerComplaint: { type: string, example: "Battery draining fast" }
+        conditionNotes: { type: string }
+        accessories: { type: string }
+        passcode: { type: string }
+        customerReference: { type: string }
+        wikiDeviceId: { type: string, nullable: true }
+        requiresDiagnosis: { type: boolean, default: false }
+        transferOwnership: { type: boolean }
+        services:
+          type: array
+          items:
+            type: object
+            properties:
+              serviceId: { type: string, nullable: true }
+              description: { type: string }
+
+    UpdateTicketDeviceInput:
+      type: object
+      properties:
+        statusId: { type: string }
+        deviceBrand: { type: string }
+        deviceModel: { type: string }
+        deviceSerial: { type: string }
+        customerComplaint: { type: string }
+        requiresDiagnosis: { type: boolean }
+        diagnosisNotes: { type: string }
+        diagnosedAt: { type: string, format: date-time }
+        conditionNotes: { type: string }
+        accessories: { type: string }
+        passcode: { type: string }
+        customerReference: { type: string }
+        actionTaken: { type: string }
+        sentOutAt: { type: string, format: date-time }
+        sentOutTo: { type: string }
+        courierName: { type: string }
+        trackingNumber: { type: string }
+        returnedFromSubcontractorAt: { type: string, format: date-time }
+        collectedAt: { type: string, format: date-time }
+        estimatedCost: { type: number, nullable: true }
+        warrantyExpiresAt: { type: string, format: date-time }
+        diagnosisSharedWithCustomer: { type: boolean }
+
+    # ── Notes ──
+    Note:
+      type: object
+      properties:
+        id: { type: string }
+        content: { type: string, example: "Customer called — wants update by Friday." }
+        isPublic: { type: boolean, example: false }
+        createdAt: { type: string, format: date-time }
+        author:
+          type: object
+          properties:
+            id: { type: string }
+            name: { type: string, example: "Dan" }
+        attachments:
+          type: array
+          items:
+            type: object
+            properties:
+              id: { type: string }
+              fileName: { type: string }
+              url: { type: string }
+
+    CreateTicketNoteInput:
+      type: object
+      required: [content]
+      properties:
+        content: { type: string, example: "Ordered replacement screen from supplier." }
+        isPublic: { type: boolean, default: false }
+        uploadIds:
+          type: array
+          items: { type: string }
+          default: []
+
+    # ── Parts ──
+    TicketPart:
+      type: object
+      properties:
+        id: { type: string }
+        quantity: { type: integer, example: 1 }
+        availableStock: { type: integer, example: 5 }
+        createdAt: { type: string, format: date-time }
+        part:
+          type: object
+          properties:
+            id: { type: string }
+            name: { type: string, example: "iPhone 15 Pro OLED Screen" }
+            sku: { type: string, nullable: true }
+            costPrice: { type: number, nullable: true }
+            salePrice: { type: number, nullable: true }
+        location:
+          type: object
+          nullable: true
+          properties:
+            id: { type: string }
+            name: { type: string, example: "Main Shop" }
+
+    CreateTicketPartInput:
+      type: object
+      required: [partId, quantity]
+      properties:
+        partId: { type: string }
+        quantity: { type: integer, minimum: 1, example: 1 }
+        locationId: { type: string }
+        ticketDeviceId: { type: string }
+
+    # ── Customers ──
+    Customer:
+      type: object
+      properties:
+        id: { type: string, example: "clx9cust01" }
+        name: { type: string, example: "Jane Smith" }
+        firstName: { type: string, nullable: true }
+        lastName: { type: string, nullable: true }
+        company: { type: string, nullable: true, example: "Smith Electronics" }
+        email: { type: string, nullable: true, example: "jane@example.com" }
+        billingEmail: { type: string, nullable: true }
+        phone: { type: string, nullable: true, example: "07700 900123" }
+        landline: { type: string, nullable: true }
+        address: { type: string, nullable: true }
+        address2: { type: string, nullable: true }
+        city: { type: string, nullable: true }
+        county: { type: string, nullable: true }
+        postcode: { type: string, nullable: true }
+        addressNotes: { type: string, nullable: true }
+        source: { type: string, nullable: true }
+        contactMethod: { type: string, nullable: true }
+        emailNotifications: { type: boolean }
+        balance: { type: number, example: 0 }
+        createdAt: { type: string, format: date-time }
+        deletedAt: { type: string, format: date-time, nullable: true }
+
+    CustomerDetail:
+      allOf:
+        - $ref: "#/components/schemas/Customer"
+        - type: object
+          properties:
+            tickets:
+              type: array
+              items:
+                type: object
+                properties:
+                  id: { type: string }
+                  reference: { type: string }
+                  createdAt: { type: string, format: date-time }
+                  status:
+                    type: object
+                    properties:
+                      name: { type: string }
+                      colour: { type: string }
+                  devices:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        deviceBrand: { type: string }
+                        deviceModel: { type: string }
+                        customerComplaint: { type: string }
+                  _count:
+                    type: object
+                    properties:
+                      devices: { type: integer }
+            notes:
+              type: array
+              items: { $ref: "#/components/schemas/Note" }
+            assets:
+              type: array
+              items:
+                type: object
+                properties:
+                  id: { type: string }
+                  device:
+                    type: object
+                    properties:
+                      id: { type: string }
+                      brand: { type: string }
+                      model: { type: string }
+                      category: { type: string, nullable: true }
+                  _count:
+                    type: object
+                    properties:
+                      ticketDevices: { type: integer }
+
+    CreateCustomerInput:
+      type: object
+      required: [name]
+      properties:
+        name: { type: string, example: "Jane Smith" }
+        firstName: { type: string }
+        lastName: { type: string }
+        company: { type: string }
+        email: { type: string, format: email, nullable: true }
+        billingEmail: { type: string, format: email, nullable: true }
+        phone: { type: string }
+        landline: { type: string }
+        address: { type: string }
+        address2: { type: string }
+        city: { type: string }
+        county: { type: string }
+        postcode: { type: string }
+        addressNotes: { type: string }
+        source: { type: string }
+        contactMethod: { type: string }
+        emailNotifications: { type: boolean, default: true }
+
+    UpdateCustomerInput:
+      type: object
+      description: All fields are optional. Pass `{ "restore": true }` to restore a soft-deleted customer.
+      properties:
+        restore: { type: boolean }
+        name: { type: string }
+        firstName: { type: string }
+        lastName: { type: string }
+        company: { type: string }
+        email: { type: string, format: email, nullable: true }
+        billingEmail: { type: string, format: email, nullable: true }
+        phone: { type: string }
+        landline: { type: string }
+        address: { type: string }
+        address2: { type: string }
+        city: { type: string }
+        county: { type: string }
+        postcode: { type: string }
+        addressNotes: { type: string }
+        source: { type: string }
+        contactMethod: { type: string }
+        emailNotifications: { type: boolean }
+
+    # ── Invoices ──
+    InvoiceSummary:
+      type: object
+      properties:
+        id: { type: string }
+        invoiceNumber: { type: string, nullable: true, example: "INV-0001" }
+        status: { type: string, enum: [DRAFT, FINALISED] }
+        paymentStatus: { type: string, enum: [UNPAID, PARTIALLY_PAID, PAID], nullable: true }
+        total: { type: number, example: 125.00 }
+        amountPaid: { type: number, example: 0 }
+        balanceRemaining: { type: number, example: 125.00 }
+        finalisedAt: { type: string, format: date-time, nullable: true }
+        dueDate: { type: string, format: date-time, nullable: true }
+        createdAt: { type: string, format: date-time }
+        invoiceEmail: { type: string, nullable: true }
+        lastEmailedAt: { type: string, format: date-time, nullable: true }
+        ticket:
+          type: object
+          properties:
+            id: { type: string }
+            reference: { type: string, example: "RK-0042" }
+            customer:
+              type: object
+              properties:
+                name: { type: string }
+                email: { type: string, nullable: true }
+                billingEmail: { type: string, nullable: true }
+
+    Invoice:
+      type: object
+      properties:
+        id: { type: string }
+        invoiceNumber: { type: string, nullable: true, example: "INV-0001" }
+        status: { type: string, enum: [DRAFT, FINALISED] }
+        paymentStatus: { type: string, enum: [UNPAID, PARTIALLY_PAID, PAID], nullable: true }
+        total: { type: number, example: 125.00 }
+        subtotal: { type: number, example: 104.17 }
+        vatAmount: { type: number, example: 20.83 }
+        vatRate: { type: number, example: 20 }
+        discountType: { type: string, nullable: true, enum: [FIXED, PERCENTAGE] }
+        discountValue: { type: number, nullable: true }
+        discountAmount: { type: number, example: 0 }
+        amountPaid: { type: number }
+        notes: { type: string, nullable: true }
+        invoiceEmail: { type: string, nullable: true }
+        depositRequired: { type: number, nullable: true }
+        paymentTermsDays: { type: integer, nullable: true, example: 14 }
+        dueDate: { type: string, format: date-time, nullable: true }
+        finalisedAt: { type: string, format: date-time, nullable: true }
+        createdAt: { type: string, format: date-time }
+        deletedAt: { type: string, format: date-time, nullable: true }
+        items:
+          type: array
+          items: { $ref: "#/components/schemas/InvoiceItem" }
+        payments:
+          type: array
+          items: { $ref: "#/components/schemas/Payment" }
+
+    InvoiceItem:
+      type: object
+      properties:
+        id: { type: string }
+        description: { type: string, example: "Screen replacement — iPhone 15 Pro" }
+        quantity: { type: integer, example: 1 }
+        unitPrice: { type: number, example: 89.99 }
+        ticketDeviceId: { type: string, nullable: true }
+        productId: { type: string, nullable: true }
+
+    Payment:
+      type: object
+      properties:
+        id: { type: string }
+        amount: { type: number, example: 125.00 }
+        paymentMethod: { type: string, example: "Card Terminal" }
+        note: { type: string, nullable: true }
+        createdAt: { type: string, format: date-time }
+        recordedBy:
+          type: object
+          properties:
+            name: { type: string, example: "Dan" }
+
+    UpdateInvoiceInput:
+      type: object
+      properties:
+        invoiceEmail: { type: string, format: email }
+        items:
+          type: array
+          items:
+            type: object
+            required: [description, quantity, unitPrice]
+            properties:
+              description: { type: string }
+              quantity: { type: integer, minimum: 1 }
+              unitPrice: { type: number }
+              ticketDeviceId: { type: string }
+              productId: { type: string, nullable: true }
+        vatRate: { type: number }
+        discountType: { type: string, nullable: true, enum: [FIXED, PERCENTAGE] }
+        discountValue: { type: number, nullable: true }
+        notes: { type: string }
+        depositRequired: { type: number, nullable: true }
+        paymentTermsDays: { type: integer, nullable: true }
+        allowOnlinePayment: { type: boolean }
+
+    InvoicePaymentInput:
+      type: object
+      required: [paymentMethod]
+      properties:
+        paymentMethod: { type: string, example: "Bank Transfer" }
+        amount: { type: number, description: "Amount to record. Defaults to remaining balance if omitted." }
+        note: { type: string }
+
+    # ── Webhooks ──
+    WebhookEndpoint:
+      type: object
+      properties:
+        id: { type: string }
+        url: { type: string, format: uri, example: "https://example.com/webhooks/rk" }
+        description: { type: string, nullable: true }
+        events:
+          type: array
+          items: { type: string }
+          example: ["ticket.created", "invoice.paid"]
+        enabled: { type: boolean, example: true }
+        createdAt: { type: string, format: date-time }
+        updatedAt: { type: string, format: date-time }
+        createdBy:
+          type: object
+          properties:
+            id: { type: string }
+            name: { type: string }
+        _count:
+          type: object
+          properties:
+            deliveries: { type: integer }
+
+    WebhookEndpointWithSecret:
+      allOf:
+        - $ref: "#/components/schemas/WebhookEndpoint"
+        - type: object
+          properties:
+            secret:
+              type: string
+              description: HMAC signing secret. Only returned at creation time.
+              example: "whsec_abc123..."
+
+    CreateWebhookEndpointInput:
+      type: object
+      required: [url, events]
+      properties:
+        url: { type: string, format: uri, example: "https://example.com/webhooks/rk" }
+        description: { type: string }
+        events:
+          type: array
+          items: { type: string }
+          example: ["ticket.created", "ticket.updated", "invoice.paid"]
+
+    UpdateWebhookEndpointInput:
+      type: object
+      properties:
+        url: { type: string, format: uri }
+        events:
+          type: array
+          items: { type: string }
+        enabled: { type: boolean }
+        description: { type: string }
+
+    WebhookDelivery:
+      type: object
+      properties:
+        id: { type: string }
+        eventType: { type: string, example: "ticket.created" }
+        status: { type: string, example: "delivered" }
+        httpStatus: { type: integer, nullable: true, example: 200 }
+        error: { type: string, nullable: true }
+        attempts: { type: integer, example: 1 }
+        createdAt: { type: string, format: date-time }
+        completedAt: { type: string, format: date-time, nullable: true }
+
+    # ── API Keys ──
+    ApiKey:
+      type: object
+      properties:
+        id: { type: string }
+        name: { type: string, example: "Production key" }
+        prefix: { type: string, example: "rk_live_abc" }
+        permissions:
+          type: object
+          additionalProperties: { type: boolean }
+          example: { tickets: true, customers: true, invoices: false }
+        ipAllowlist:
+          type: array
+          items: { type: string }
+          nullable: true
+        rateLimit: { type: integer, example: 60 }
+        lastUsedAt: { type: string, format: date-time, nullable: true }
+        expiresAt: { type: string, format: date-time, nullable: true }
+        revokedAt: { type: string, format: date-time, nullable: true }
+        createdAt: { type: string, format: date-time }
+        createdBy:
+          type: object
+          properties:
+            id: { type: string }
+            name: { type: string }
+
+    ApiKeyWithSecret:
+      allOf:
+        - $ref: "#/components/schemas/ApiKey"
+        - type: object
+          properties:
+            key:
+              type: string
+              description: Full API key. Only returned at creation time — store it securely.
+              example: "rk_live_abc123def456..."
+
+    CreateApiKeyInput:
+      type: object
+      required: [name, permissions]
+      properties:
+        name: { type: string, example: "Zapier integration" }
+        permissions:
+          type: object
+          additionalProperties: { type: boolean }
+        ipAllowlist:
+          type: array
+          items: { type: string }
+        rateLimit: { type: integer }
+        expiresAt: { type: string, format: date-time }
+
+    UpdateApiKeyInput:
+      type: object
+      properties:
+        name: { type: string }
+        permissions:
+          type: object
+          additionalProperties: { type: boolean }
+        ipAllowlist:
+          type: array
+          items: { type: string }
+        expiresAt: { type: string, format: date-time }
+        rateLimit: { type: integer }
+
+    # ── Reports ──
+    SummaryReport:
+      type: object
+      properties:
+        generatedAt: { type: string, format: date-time }
+        period:
+          type: object
+          properties:
+            from: { type: string, format: date-time }
+            to: { type: string, format: date-time }
+        organisation:
+          type: object
+          properties:
+            name: { type: string, example: "DannStarr Electronics" }
+            plan: { type: string, example: "STANDARD" }
+        revenue:
+          type: object
+          properties:
+            totalRevenue: { type: number, example: 4250.00 }
+            paidRevenue: { type: number, example: 3800.00 }
+            outstandingRevenue: { type: number, example: 450.00 }
+            avgInvoiceValue: { type: number, example: 85.00 }
+        repairs:
+          type: object
+          properties:
+            totalTickets: { type: integer, example: 47 }
+            avgTurnaroundHours: { type: number, nullable: true, example: 36.5 }
+            topBrand: { type: string, nullable: true, example: "Apple" }
+            topFault: { type: string, nullable: true, example: "Screen replacement" }
+        customers:
+          type: object
+          properties:
+            newCustomers: { type: integer, example: 12 }
+            repeatRate: { type: number, example: 0.28 }
+            leadConversionRate: { type: number, example: 0.65 }
+        inventory:
+          type: object
+          properties:
+            available: { type: boolean }
+            totalPartsUsed: { type: integer }
+            faultyRate: { type: number }
+
+    RevenueReport:
+      type: object
+      properties:
+        summary:
+          type: object
+          properties:
+            totalRevenue: { type: number }
+            paidRevenue: { type: number }
+            outstandingRevenue: { type: number }
+            invoiceCount: { type: integer }
+            averageInvoiceValue: { type: number }
+        timeSeries:
+          type: array
+          items:
+            type: object
+            properties:
+              period: { type: string, format: date-time }
+              revenue: { type: number }
+              vat: { type: number }
+              invoiceCount: { type: integer }
+        byPaymentStatus:
+          type: array
+          items:
+            type: object
+            properties:
+              status: { type: string }
+              total: { type: number }
+              count: { type: integer }
+        byPaymentMethod:
+          type: array
+          items:
+            type: object
+            properties:
+              method: { type: string }
+              total: { type: number }
+              count: { type: integer }
+        vatByQuarter:
+          type: array
+          items:
+            type: object
+            properties:
+              quarter: { type: string, format: date-time }
+              net: { type: number }
+              vat: { type: number }
+              gross: { type: number }
+              invoiceCount: { type: integer }
+        arAging:
+          type: object
+          properties:
+            buckets:
+              type: object
+              properties:
+                current: { $ref: "#/components/schemas/AgingBucket" }
+                thirtyPlus: { $ref: "#/components/schemas/AgingBucket" }
+                sixtyPlus: { $ref: "#/components/schemas/AgingBucket" }
+                ninetyPlus: { $ref: "#/components/schemas/AgingBucket" }
+            invoices:
+              type: array
+              items:
+                type: object
+                properties:
+                  invoiceNumber: { type: string }
+                  customerName: { type: string, nullable: true }
+                  finalisedAt: { type: string, format: date-time }
+                  total: { type: number }
+                  amountPaid: { type: number }
+                  outstanding: { type: number }
+                  daysOutstanding: { type: integer }
+                  dueDate: { type: string, format: date-time, nullable: true }
+
+    AgingBucket:
+      type: object
+      properties:
+        count: { type: integer }
+        total: { type: number }
+
+    RepairsReport:
+      type: object
+      properties:
+        summary:
+          type: object
+          properties:
+            totalTickets: { type: integer }
+            avgTurnaroundHours: { type: number, nullable: true }
+        timeSeries:
+          type: array
+          items:
+            type: object
+            properties:
+              period: { type: string, format: date-time }
+              ticketCount: { type: integer }
+        byStatus:
+          type: array
+          items:
+            type: object
+            properties:
+              statusName: { type: string }
+              colour: { type: string }
+              count: { type: integer }
+        topBrands:
+          type: array
+          items:
+            type: object
+            properties:
+              brand: { type: string }
+              count: { type: integer }
+        topFaults:
+          type: array
+          items:
+            type: object
+            properties:
+              fault: { type: string }
+              count: { type: integer }
+        byTechnician:
+          type: array
+          items:
+            type: object
+            properties:
+              userName: { type: string }
+              count: { type: integer }
+
+    # ── Catalogue ──
+    TicketStatus:
+      type: object
+      properties:
+        id: { type: string }
+        name: { type: string, example: "In Repair" }
+        order: { type: integer, example: 6 }
+        colour: { type: string, example: "#3B82F6" }
+        isTerminal: { type: boolean, example: false }
+        staleAfterDays: { type: integer, nullable: true }
+        urgentAfterDays: { type: integer, nullable: true }
+
+    TicketStatusInput:
+      type: object
+      properties:
+        id: { type: string, description: "Omit for new statuses." }
+        name: { type: string }
+        order: { type: integer }
+        colour: { type: string }
+        isTerminal: { type: boolean }
+        staleAfterDays: { type: integer, nullable: true }
+        urgentAfterDays: { type: integer, nullable: true }
+
+    Service:
+      type: object
+      properties:
+        id: { type: string }
+        name: { type: string, example: "Screen Replacement" }
+        category: { type: string, nullable: true, example: "Display" }
+        price: { type: number, nullable: true, example: 79.99 }
+        turnaroundDescription: { type: string, nullable: true, example: "Same day" }
+        showOnBookingPage: { type: boolean }
+        bookingDepositRequired: { type: boolean }
+        bookingDepositType: { type: string, enum: [FIXED, PERCENTAGE] }
+        bookingDepositAmount: { type: number, nullable: true }
+        bookingDepositPercent: { type: number, nullable: true }
+        organisationId: { type: string, nullable: true }
+
+    CreateServiceInput:
+      type: object
+      required: [name]
+      properties:
+        name: { type: string, maxLength: 100, example: "Battery Replacement" }
+        category: { type: string, maxLength: 100 }
+        price: { type: number }
+        turnaroundDescription: { type: string, maxLength: 200 }
+        showOnBookingPage: { type: boolean, default: true }
+        bookingDepositRequired: { type: boolean, default: false }
+        bookingDepositType: { type: string, enum: [FIXED, PERCENTAGE], default: "FIXED" }
+        bookingDepositAmount: { type: number }
+        bookingDepositPercent: { type: number }
+
+    Product:
+      type: object
+      properties:
+        id: { type: string }
+        name: { type: string, example: "iPhone 15 Pro OLED Screen" }
+        sku: { type: string, nullable: true, example: "SCR-IP15P-OLED" }
+        description: { type: string, nullable: true }
+        category: { type: string, nullable: true, example: "Screens" }
+        costPrice: { type: number, nullable: true, example: 45.00 }
+        salePrice: { type: number, nullable: true, example: 89.99 }
+        trackStock: { type: boolean }
+        createdAt: { type: string, format: date-time }
+        stock:
+          type: array
+          items:
+            type: object
+            properties:
+              quantity: { type: integer }
+        supplier:
+          type: object
+          nullable: true
+          properties:
+            id: { type: string }
+            name: { type: string }
+
+    ProductDetail:
+      allOf:
+        - $ref: "#/components/schemas/Product"
+        - type: object
+          properties:
+            stockMovements:
+              type: array
+              description: Last 10 stock movements.
+              items:
+                type: object
+                properties:
+                  id: { type: string }
+                  type: { type: string, example: "RECEIVE" }
+                  quantity: { type: integer }
+                  createdAt: { type: string, format: date-time }
+                  user:
+                    type: object
+                    nullable: true
+                    properties:
+                      name: { type: string }
+
+    CreateProductInput:
+      type: object
+      required: [name]
+      properties:
+        name: { type: string, example: "iPhone 15 Pro OLED Screen" }
+        sku: { type: string }
+        description: { type: string }
+        category: { type: string }
+        costPrice: { type: number }
+        salePrice: { type: number }
+        trackStock: { type: boolean, default: true }
+        supplierId: { type: string }
+        initialStock: { type: integer, description: "Initial stock quantity to create." }
+
+    UpdateProductInput:
+      type: object
+      properties:
+        restore: { type: boolean }
+        name: { type: string }
+        sku: { type: string }
+        description: { type: string }
+        category: { type: string }
+        costPrice: { type: number }
+        salePrice: { type: number }
+        trackStock: { type: boolean }
+        supplierId: { type: string }
