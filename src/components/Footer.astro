@@ -9,6 +9,10 @@ const footerLinks = {
     { label: "Get Started Free", href: "https://app.repairkeeper.co.uk/register" },
     { label: "Changelog", href: "/changelog" },
   ],
+  legal: [
+    { label: "Privacy Policy", href: "/privacy" },
+    { label: "Terms of Service", href: "/terms" },
+  ],
   features: [
     { label: "Repair Tickets", href: "/repair-ticket-software" },
     { label: "Quoting & Invoicing", href: "/repair-shop-invoicing-software" },
@@ -84,8 +88,17 @@ const footerLinks = {
     </div>
 
     <!-- Bottom bar -->
-    <div class="mt-12 border-t border-slate-800 pt-8 text-center text-sm">
+    <div class="mt-12 flex flex-col items-center gap-4 border-t border-slate-800 pt-8 text-sm sm:flex-row sm:justify-between">
       <p>&copy; {currentYear} RepairKeeper. All rights reserved.</p>
+      <ul class="flex items-center gap-6">
+        {footerLinks.legal.map((link) => (
+          <li>
+            <a href={link.href} class="transition-colors hover:text-white">
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
     </div>
   </div>
 </footer>
