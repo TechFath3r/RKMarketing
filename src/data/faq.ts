@@ -12,7 +12,22 @@ export const faqs: FAQItem[] = [
   {
     question: "Is there a free plan?",
     answer:
-      "Yes! The Free plan includes core ticketing and invoicing for up to 25 tickets per month at no cost — forever, not a trial. Paid plans start at £12/mo for higher limits and additional features.",
+      "We no longer offer a permanent free plan to new signups. Instead, every paid plan — starting from £12/mo with Solo — comes with a 14-day free trial. You'll need to enter a card at signup, but we don't charge anything until the trial ends, and you can cancel any time before then with no charge. If you were a RepairKeeper user before April 2026, your free plan is grandfathered and still works as it always has.",
+  },
+  {
+    question: "How long is the free trial?",
+    answer:
+      "14 days on whichever plan you choose. You get full access to that plan's feature set from day one, and we send a reminder email 3 days before the trial ends so nothing surprises you.",
+  },
+  {
+    question: "Do I need a credit card to start the trial?",
+    answer:
+      "Yes — Stripe holds the card on file and only charges on day 14 if you haven't cancelled. We've found that requiring a card leads to far better onboarding (fewer abandoned accounts, more engaged trials), but you're never locked in: cancel any time during the trial and you won't be charged a penny.",
+  },
+  {
+    question: "What happens if I cancel during the trial?",
+    answer:
+      "No charge at all. Your subscription ends immediately, your account loses access to the app when the trial period ends, and your data is retained for 30 days in case you decide to come back. After 30 days, the data is permanently deleted unless you reactivate.",
   },
   {
     question: "What makes RepairKeeper different from other repair shop software?",
@@ -77,6 +92,6 @@ export const faqs: FAQItem[] = [
   {
     question: "How do I get started?",
     answer:
-      "Click 'Get Started Free' and create your account in under a minute. No credit card required. You'll have a fully functional repair management system ready to use immediately.",
+      "Click 'Start 14-day free trial', pick the plan that fits your shop, and create your account in under a minute. You'll have full access to your chosen plan immediately, and Stripe won't charge your card until day 14.",
   },
 ];

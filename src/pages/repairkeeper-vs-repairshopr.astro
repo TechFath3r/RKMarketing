@@ -23,7 +23,7 @@ const comparisonFeatures = [
   { feature: "RMM / PSA integration", rk: false, rs: true },
   { feature: "Inventory management", rk: true, rs: true },
   { feature: "Team roles & permissions", rk: true, rs: true },
-  { feature: "Free plan", rk: true, rs: false },
+  { feature: "14-day free trial", rk: true, rs: false },
   { feature: "UK-based / GBP pricing", rk: true, rs: false },
   { feature: "Trade-in & refurbishment", rk: true, rs: false },
   { feature: "Digital signatures", rk: true, rs: false },
@@ -180,7 +180,7 @@ const comparisonFeatures = [
             { icon: "pound", title: "UK-built, GBP pricing", desc: "RepairKeeper is built in the UK, priced in GBP, and handles VAT natively. No currency conversion or US-centric tax assumptions to work around.", link: "/pricing" },
             { icon: "shield", title: "Granular permissions & audit trail", desc: "11 permission flags per team member, full audit logging with before/after diffs, and complete user attribution on every change.", link: null },
             { icon: "camera", title: "Digital signatures", desc: "Capture intake and collection signatures on-screen. The booking-in workflow automatically advances device statuses when a signature is captured.", link: null },
-            { icon: "star", title: "Generous free plan", desc: "Get started with 25 tickets per month completely free. No credit card required, no time limit — upgrade only when you need to.", link: "/pricing" },
+            { icon: "star", title: "14-day free trial on every plan", desc: "Every paid plan — from Solo at £12/month up to Pro — starts with a 14-day free trial. Card required at signup, cancel any time before day 14 and you won't be charged.", link: "/pricing" },
           ].map((item) => (
             <div class="card-hover rounded-xl border border-slate-200 bg-white p-5">
               <div class="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
@@ -263,7 +263,7 @@ const comparisonFeatures = [
         <div class="reveal">
           <SectionHeading
             title="Pricing comparison"
-            subtitle="RepairKeeper offers a free plan and significantly lower price points than Syncro."
+            subtitle="RepairKeeper offers a 14-day free trial on every plan and significantly lower price points than Syncro."
           />
         </div>
         <div class="reveal stagger grid gap-6 sm:grid-cols-2">
@@ -276,7 +276,6 @@ const comparisonFeatures = [
             </div>
             <ul class="space-y-3">
               {[
-                { plan: "Free", price: "Free forever", detail: "25 tickets/mo, 1 user" },
                 { plan: "Solo", price: "£12/mo", detail: "75 tickets/mo, 1 user" },
                 { plan: "Lite", price: "£20/mo", detail: "150 tickets/mo, 1 user" },
                 { plan: "Standard", price: "£30/mo", detail: "Unlimited tickets, 5 users" },
@@ -317,7 +316,7 @@ const comparisonFeatures = [
               ))}
             </ul>
             <p class="mt-4 text-xs text-slate-500">
-              Syncro pricing is in USD. There is no free plan or lower-cost tier specifically for repair-only businesses. Pricing includes RMM and PSA tools which may not be needed for standalone repair shops.
+              Syncro pricing is in USD. There is no free trial or lower-cost tier specifically for repair-only businesses. Pricing includes RMM and PSA tools which may not be needed for standalone repair shops.
             </p>
           </div>
         </div>
@@ -358,7 +357,7 @@ const comparisonFeatures = [
                 "Want multi-device tickets with automatic status tracking",
                 "Need a platform purpose-built for repair workflows",
                 "Prefer UK-based software with GBP pricing and VAT support",
-                "Want to start free and scale up as your business grows",
+                "Want a 14-day free trial on every plan to test before committing",
                 "Value a shared repair wiki and knowledge base",
               ].map((item) => (
                 <li class="flex items-start gap-2 text-sm text-slate-600">
@@ -381,14 +380,14 @@ const comparisonFeatures = [
       <div class="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
         <div class="reveal">
           <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            Try RepairKeeper free today
+            Try RepairKeeper free for 14 days
           </h2>
           <p class="mx-auto mt-4 max-w-2xl text-lg text-slate-400">
-            See why UK repair shops are switching to RepairKeeper. Start with 25 free tickets per month — no credit card required, no time limit.
+            See why UK repair shops are switching to RepairKeeper. Start a 14-day free trial on any plan — card required at signup, cancel before day 14 and you won't be charged.
           </p>
           <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
             <a href="https://app.repairkeeper.co.uk/register" class="inline-flex items-center gap-2 rounded-lg bg-primary px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:bg-primary-light hover:shadow-xl hover:shadow-primary/30">
-              Get Started Free
+              Start 14-day free trial
               <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
             </a>
             <a href="/pricing" class="inline-flex items-center gap-2 rounded-lg border border-slate-600 bg-transparent px-6 py-3.5 text-base font-semibold text-white transition-all hover:border-slate-400">
@@ -396,7 +395,7 @@ const comparisonFeatures = [
             </a>
           </div>
           <p class="mt-4 text-sm text-slate-500">
-            No credit card required. <a href="/pricing" class="text-primary-light hover:underline">See all plans</a>.
+            Card required &mdash; cancel any time before day 14 and you won't be charged. <a href="/pricing" class="text-primary-light hover:underline">See all plans</a>.
           </p>
         </div>
       </div>

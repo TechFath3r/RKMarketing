@@ -41,8 +41,8 @@ const faqJsonLd = {
     },
     {
       "@type": "Question",
-      name: "Is there a free plan for small electronics repair businesses?",
-      acceptedAnswer: { "@type": "Answer", text: "Yes. The Free plan includes 25 tickets per month with core ticketing, invoicing, and customer management. It's not a trial — you can use it indefinitely and upgrade when your business grows." },
+      name: "Is there a free trial for small electronics repair businesses?",
+      acceptedAnswer: { "@type": "Answer", text: "Yes. Every paid plan starts with a 14-day free trial — including Solo at £12/month with 75 tickets, ideal for a one-person electronics repair business. Card details are required at signup, but you aren't charged until day 14 and you can cancel any time before then." },
     },
   ],
 };
@@ -50,7 +50,7 @@ const faqJsonLd = {
 
 <BaseLayout
   title="Electronics Repair Software — Management for All Device Types | RepairKeeper"
-  description="Repair management software for electronics businesses. Handle phones, laptops, consoles, and more. Multi-device tickets, parts tracking, and invoicing. Free plan."
+  description="Repair management software for electronics businesses. Handle phones, laptops, consoles, and more. Multi-device tickets, parts tracking, and invoicing. 14-day free trial."
 >
   <Header />
   <main id="main-content">
@@ -72,14 +72,14 @@ const faqJsonLd = {
         </p>
         <div class="mt-8 flex flex-wrap items-center justify-center gap-4 animate-fade-up" style="animation-delay: 0.45s;">
           <a href="https://app.repairkeeper.co.uk/register" class="inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 text-base font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:bg-primary-dark hover:shadow-xl hover:shadow-primary/30">
-            Get Started Free
+            Start 14-day free trial
             <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
           </a>
           <a href="/pricing" class="inline-flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-6 py-3 text-base font-semibold text-slate-700 transition-all hover:border-primary/30 hover:text-primary">
             View Pricing
           </a>
         </div>
-        <p class="mt-4 text-sm text-slate-500 animate-fade-up" style="animation-delay: 0.55s;">Free plan with 25 tickets/month. No credit card required.</p>
+        <p class="mt-4 text-sm text-slate-500 animate-fade-up" style="animation-delay: 0.55s;">14-day free trial on every plan. Card required, cancel before day 14.</p>
       </div>
     </section>
 
@@ -235,7 +235,7 @@ const faqJsonLd = {
             { q: "Can I track multiple devices from the same customer on one ticket?", a: "Yes. RepairKeeper supports multi-device tickets — a customer can drop off a phone, a console, and a pair of headphones on the same ticket. Each device is tracked independently with its own status, parts, and diagnosis." },
             { q: "How does the repair wiki help electronics repair shops?", a: "The repair wiki lets you build a searchable knowledge base of devices, parts, common faults, and step-by-step repair guides. For electronics shops handling many device types, this means your team can quickly find the right guide for any repair — and new technicians get up to speed faster." },
             { q: "Can I manage inventory for different device categories?", a: "Yes. RepairKeeper's inventory system tracks stock across multiple locations and supports any part type — phone screens, laptop keyboards, console HDMI ports, drone motors, and more. Parts are linked to devices in the wiki, so you always know which parts fit which devices." },
-            { q: "Is there a free plan for small electronics repair businesses?", a: "Yes. The Free plan includes 25 tickets per month with core ticketing, invoicing, and customer management. It's not a trial — you can use it indefinitely and upgrade when your business grows." },
+            { q: "Is there a free trial for small electronics repair businesses?", a: "Yes. Every paid plan starts with a 14-day free trial — including Solo at £12/month with 75 tickets, ideal for a one-person electronics repair business. Card details are required at signup, but you aren't charged until day 14 and you can cancel any time before then." },
           ].map((item) => (
             <details class="group rounded-xl border border-slate-200 bg-white transition-all hover:border-primary/30">
               <summary class="flex cursor-pointer items-center justify-between px-6 py-4 text-left">
@@ -263,16 +263,16 @@ const faqJsonLd = {
             Ready to manage every repair, every device?
           </h2>
           <p class="mx-auto mt-4 max-w-2xl text-lg text-slate-400">
-            Join electronics repair shops across the UK already using RepairKeeper to handle the full range of devices, parts, and customers. Start free — upgrade when you're ready.
+            Join electronics repair shops across the UK already using RepairKeeper to handle the full range of devices, parts, and customers. Start your 14-day free trial — cancel any time before day 14 and you won't be charged.
           </p>
           <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
             <a href="https://app.repairkeeper.co.uk/register" class="inline-flex items-center gap-2 rounded-lg bg-primary px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:bg-primary-light hover:shadow-xl hover:shadow-primary/30">
-              Get Started Free
+              Start 14-day free trial
               <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
             </a>
           </div>
           <p class="mt-4 text-sm text-slate-500">
-            No credit card required. <a href="/pricing" class="text-primary-light hover:underline">See pricing</a>.
+            Card required &mdash; cancel any time before day 14 and you won't be charged. <a href="/pricing" class="text-primary-light hover:underline">See pricing</a>.
           </p>
         </div>
       </div>

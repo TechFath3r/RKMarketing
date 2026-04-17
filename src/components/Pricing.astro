@@ -9,7 +9,7 @@ import SectionHeading from "./SectionHeading.astro";
     <div class="reveal">
       <SectionHeading
         title="Simple, transparent pricing"
-        subtitle="Start free. Upgrade as your shop grows. No hidden fees."
+        subtitle="Every plan starts with a 14-day free trial. Cancel any time before day 14 and you won't be charged."
         badge="Pricing"
       />
     </div>
@@ -35,8 +35,8 @@ import SectionHeading from "./SectionHeading.astro";
       </div>
     </div>
 
-    <!-- Plans grid — 5 columns on large screens -->
-    <div class="reveal stagger grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
+    <!-- Plans grid — 4 columns on large screens -->
+    <div class="reveal stagger grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
       {plans.map((plan) => (
         <div
           class:list={[
@@ -62,28 +62,19 @@ import SectionHeading from "./SectionHeading.astro";
 
           <!-- Price -->
           <div class="mb-5">
-            {plan.monthlyPrice === 0 ? (
+            {/* Monthly price — shown by default, hidden when yearly selected */}
+            <div class="monthly-price flex items-baseline gap-1">
+              <span class="text-3xl font-extrabold text-dark">&pound;{plan.monthlyPrice}</span>
+              <span class="text-sm text-slate-500">/mo</span>
+            </div>
+            {/* Yearly price — hidden by default, shown when yearly selected */}
+            <div class="yearly-price hidden">
               <div class="flex items-baseline gap-1">
-                <span class="text-3xl font-extrabold text-dark">&pound;0</span>
+                <span class="text-3xl font-extrabold text-dark">&pound;{Math.round(plan.yearlyPrice! / 12)}</span>
                 <span class="text-sm text-slate-500">/mo</span>
               </div>
-            ) : (
-              <>
-                {/* Monthly price — shown by default, hidden when yearly selected */}
-                <div class="monthly-price flex items-baseline gap-1">
-                  <span class="text-3xl font-extrabold text-dark">&pound;{plan.monthlyPrice}</span>
-                  <span class="text-sm text-slate-500">/mo</span>
-                </div>
-                {/* Yearly price — hidden by default, shown when yearly selected */}
-                <div class="yearly-price hidden">
-                  <div class="flex items-baseline gap-1">
-                    <span class="text-3xl font-extrabold text-dark">&pound;{Math.round(plan.yearlyPrice! / 12)}</span>
-                    <span class="text-sm text-slate-500">/mo</span>
-                  </div>
-                  <p class="mt-0.5 text-xs text-slate-400">&pound;{plan.yearlyPrice} billed yearly</p>
-                </div>
-              </>
-            )}
+              <p class="mt-0.5 text-xs text-slate-400">&pound;{plan.yearlyPrice} billed yearly</p>
+            </div>
           </div>
 
           <!-- CTA -->
@@ -129,6 +120,11 @@ import SectionHeading from "./SectionHeading.astro";
         </div>
       ))}
     </div>
+
+    <!-- Trial trust note -->
+    <p class="reveal mt-6 text-center text-sm text-slate-500">
+      Card required at signup &mdash; we don't charge until day 14, and you can cancel any time before then.
+    </p>
 
     <!-- Enterprise banner -->
     <div class="reveal mt-8 rounded-2xl border border-slate-200 bg-slate-50 p-8 sm:p-10">

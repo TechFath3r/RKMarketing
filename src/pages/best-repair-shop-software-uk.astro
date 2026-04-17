@@ -33,8 +33,8 @@ const software = [
       "Newer to market than some competitors",
       "Mobile app not yet available (fully responsive web app)",
     ],
-    pricing: "Free plan (25 tickets/mo), Solo £12/mo, Lite £20/mo, Standard £30/mo, Pro £55/mo",
-    bestFor: "Independent UK repair shops wanting a modern, all-in-one solution with a generous free tier",
+    pricing: "Solo £12/mo, Lite £20/mo, Standard £30/mo, Pro £55/mo — all with a 14-day free trial",
+    bestFor: "Independent UK repair shops wanting a modern, all-in-one solution with a 14-day free trial on every plan",
     link: "https://repairkeeper.co.uk",
     icon: "star",
   },
@@ -131,7 +131,7 @@ const comparisonFeatures = [
   { feature: "Stripe payments", rk: true, rd: false, rs: false, mg: false, fx: false },
   { feature: "Repair wiki / knowledge base", rk: true, rd: false, rs: false, mg: false, fx: false },
   { feature: "Team management & RBAC", rk: true, rd: true, rs: true, mg: false, fx: true },
-  { feature: "Free plan available", rk: true, rd: false, rs: false, mg: false, fx: false },
+  { feature: "14-day free trial", rk: true, rd: false, rs: false, mg: false, fx: false },
   { feature: "UK-based", rk: true, rd: false, rs: false, mg: true, fx: false },
 ];
 ---
@@ -254,7 +254,7 @@ const comparisonFeatures = [
               {item.recommended && (
                 <div class="mt-5">
                   <a href="https://app.repairkeeper.co.uk/register" class="inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-2.5 text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:bg-primary-dark hover:shadow-xl hover:shadow-primary/30">
-                    Try RepairKeeper Free
+                    Start 14-day free trial
                     <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
                   </a>
                 </div>
@@ -394,14 +394,14 @@ const comparisonFeatures = [
       <div class="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
         <div class="reveal">
           <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            Try RepairKeeper free today
+            Try RepairKeeper free for 14 days
           </h2>
           <p class="mx-auto mt-4 max-w-2xl text-lg text-slate-400">
-            Join UK repair shops already using RepairKeeper to manage tickets, track parts, and get paid faster. Start with 25 free tickets per month — no credit card required.
+            Join UK repair shops already using RepairKeeper to manage tickets, track parts, and get paid faster. Every plan starts with a 14-day free trial — card required at signup, cancel any time before day 14.
           </p>
           <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
             <a href="https://app.repairkeeper.co.uk/register" class="inline-flex items-center gap-2 rounded-lg bg-primary px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:bg-primary-light hover:shadow-xl hover:shadow-primary/30">
-              Get Started Free
+              Start 14-day free trial
               <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
             </a>
             <a href="/pricing" class="inline-flex items-center gap-2 rounded-lg border border-slate-600 bg-transparent px-6 py-3.5 text-base font-semibold text-white transition-all hover:border-slate-400">
@@ -409,7 +409,7 @@ const comparisonFeatures = [
             </a>
           </div>
           <p class="mt-4 text-sm text-slate-500">
-            No credit card required. <a href="/pricing" class="text-primary-light hover:underline">See all plans</a>.
+            Card required at signup. Cancel before day 14 to avoid any charge. <a href="/pricing" class="text-primary-light hover:underline">See all plans</a>.
           </p>
         </div>
       </div>
