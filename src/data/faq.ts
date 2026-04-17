@@ -12,7 +12,7 @@ export const faqs: FAQItem[] = [
   {
     question: "Is there a free plan?",
     answer:
-      "Yes! The Free plan includes core ticketing and invoicing for up to 25 tickets per month at no cost — forever, not a trial. Paid plans start at £20/mo for higher limits and additional features.",
+      "Yes! The Free plan includes core ticketing and invoicing for up to 25 tickets per month at no cost — forever, not a trial. Paid plans start at £12/mo for higher limits and additional features.",
   },
   {
     question: "What makes RepairKeeper different from other repair shop software?",

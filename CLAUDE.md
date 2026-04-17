@@ -177,26 +177,36 @@ RepairKeeper is a **repair shop management platform** built for independent repa
 
 ## Pricing Plans
 
-|                                     | Free   | Lite (£20/mo) | Standard (£30/mo) | Pro (£55/mo) |
-| ----------------------------------- | ------ | ------------- | ------------------ | ------------ |
-| Tickets per month                   | 25     | 100           | Unlimited          | Unlimited    |
-| Team members                        | 1      | 1             | 5                  | Unlimited    |
-| Core ticketing & invoicing          | Yes    | Yes           | Yes                | Yes          |
-| Public enquiry form                 | —     | Yes           | Yes                | Yes          |
-| Custom ticket prefix                | —     | Yes           | Yes                | Yes          |
-| CSV export                          | —     | Yes           | Yes                | Yes          |
-| Asset tracking                      | —     | —            | Yes                | Yes          |
-| Repair wiki / knowledge base        | —     | —            | Yes                | Yes          |
-| Inventory & stock management        | —     | —            | Yes                | Yes          |
-| Label printing                      | —     | —            | Yes                | Yes          |
-| Team management & RBAC              | —     | —            | Yes                | Yes          |
-| Audit log viewing                   | —     | —            | Yes                | Yes          |
-| Stripe Connect (online payments)    | —     | —            | —                 | Yes          |
-| Branding removal                    | —     | —            | —                 | Yes          |
+|                                     | Free | Solo (£12/mo) | Lite (£20/mo) | Standard (£30/mo) | Pro (£55/mo) |
+| ----------------------------------- | ---- | ------------- | ------------- | ------------------ | ------------ |
+| Tickets per month                   | 25   | 75            | 150           | Unlimited          | Unlimited    |
+| Team members                        | 1    | 1             | 1             | 5                  | 15           |
+| Core ticketing & invoicing          | Yes  | Yes           | Yes           | Yes                | Yes          |
+| Customer tracking page              | Yes  | Yes           | Yes           | Yes                | Yes          |
+| Public enquiry form                 | Yes  | Yes           | Yes           | Yes                | Yes          |
+| Custom ticket prefix                | Yes  | Yes           | Yes           | Yes                | Yes          |
+| CSV export                          | Yes  | Yes           | Yes           | Yes                | Yes          |
+| Inventory & stock management        | Yes  | Yes           | Yes           | Yes                | Yes          |
+| Repair wiki / knowledge base        | Yes  | Yes           | Yes           | Yes                | Yes          |
+| Asset tracking                      | Yes  | Yes           | Yes           | Yes                | Yes          |
+| Label printing                      | Yes  | Yes           | Yes           | Yes                | Yes          |
+| Custom SMTP & email templates       | —   | Yes           | Yes           | Yes                | Yes          |
+| Stripe Connect (online payments)    | —   | Yes           | Yes           | Yes                | Yes          |
+| Trade-in & refurbishment            | —   | —            | Yes           | Yes                | Yes          |
+| Product catalogue                   | —   | —            | Yes           | Yes                | Yes          |
+| Online repair booking               | —   | —            | Yes           | Yes                | Yes          |
+| Team management & RBAC              | —   | —            | —            | Yes                | Yes          |
+| Audit log & activity history        | —   | —            | —            | Yes                | Yes          |
+| Reporting & analytics               | —   | —            | —            | Yes                | Yes          |
+| Device photos on tickets            | —   | —            | —            | Yes                | Yes          |
+| Branding removal                    | —   | —            | —            | Yes                | Yes          |
+| Webhooks & integrations             | —   | —            | —            | Yes                | Yes          |
+| Note file attachments               | —   | —            | —            | —                 | Yes          |
+| Multiple locations / branches       | Enterprise only                                                   |
 
 (There is also a BETA plan used during early access that grants all features.)
 
-Monthly and yearly billing options are available via Stripe Checkout.
+Monthly and yearly billing options are available via Stripe Checkout (yearly = ~2 months free).
 
 ---
 

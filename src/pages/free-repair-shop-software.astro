@@ -36,7 +36,7 @@ const faqJsonLd = {
     {
       "@type": "Question",
       name: "Can I upgrade from the free plan later?",
-      acceptedAnswer: { "@type": "Answer", text: "Yes. You can upgrade to Lite (£20/mo), Standard (£30/mo), or Pro (£55/mo) at any time from your dashboard. All your existing data carries over — nothing is lost when you upgrade." },
+      acceptedAnswer: { "@type": "Answer", text: "Yes. You can upgrade to Solo (£12/mo), Lite (£20/mo), Standard (£30/mo), or Pro (£55/mo) at any time from your dashboard. All your existing data carries over — nothing is lost when you upgrade." },
     },
   ],
 };
@@ -140,36 +140,41 @@ const faqJsonLd = {
           />
         </div>
         <div class="reveal overflow-x-auto rounded-2xl border border-slate-200 bg-white shadow-sm">
-          <table class="w-full min-w-[520px] text-sm">
+          <table class="w-full min-w-[680px] text-sm">
             <thead>
               <tr class="border-b border-slate-200 bg-slate-50">
                 <th class="px-5 py-3.5 text-left font-semibold text-dark">Feature</th>
-                <th class="px-4 py-3.5 text-center font-semibold text-primary">Free</th>
-                <th class="px-4 py-3.5 text-center font-semibold text-dark">Lite £20/mo</th>
-                <th class="px-4 py-3.5 text-center font-semibold text-dark">Standard £30/mo</th>
-                <th class="px-4 py-3.5 text-center font-semibold text-dark">Pro £55/mo</th>
+                <th class="px-3 py-3.5 text-center font-semibold text-primary">Free</th>
+                <th class="px-3 py-3.5 text-center font-semibold text-dark">Solo £12/mo</th>
+                <th class="px-3 py-3.5 text-center font-semibold text-dark">Lite £20/mo</th>
+                <th class="px-3 py-3.5 text-center font-semibold text-dark">Standard £30/mo</th>
+                <th class="px-3 py-3.5 text-center font-semibold text-dark">Pro £55/mo</th>
               </tr>
             </thead>
             <tbody>
               {[
-                { feature: "Tickets per month", free: "25", lite: "100", standard: "Unlimited", pro: "Unlimited" },
-                { feature: "Team members", free: "1", lite: "1", standard: "5", pro: "Unlimited" },
-                { feature: "Ticketing & invoicing", free: true, lite: true, standard: true, pro: true },
-                { feature: "Customer tracking page", free: true, lite: true, standard: true, pro: true },
-                { feature: "Digital signatures", free: true, lite: true, standard: true, pro: true },
-                { feature: "Auto-status engine", free: true, lite: true, standard: true, pro: true },
-                { feature: "Public enquiry form", free: false, lite: true, standard: true, pro: true },
-                { feature: "Custom ticket prefix", free: false, lite: true, standard: true, pro: true },
-                { feature: "Inventory management", free: false, lite: false, standard: true, pro: true },
-                { feature: "Repair wiki / knowledge base", free: false, lite: false, standard: true, pro: true },
-                { feature: "Team management & RBAC", free: false, lite: false, standard: true, pro: true },
-                { feature: "Stripe Connect payments", free: false, lite: false, standard: false, pro: true },
-                { feature: "Branding removal", free: false, lite: false, standard: false, pro: true },
+                { feature: "Tickets per month", free: "25", solo: "75", lite: "150", standard: "Unlimited", pro: "Unlimited" },
+                { feature: "Team members", free: "1", solo: "1", lite: "1", standard: "5", pro: "15" },
+                { feature: "Ticketing & invoicing", free: true, solo: true, lite: true, standard: true, pro: true },
+                { feature: "Customer tracking page", free: true, solo: true, lite: true, standard: true, pro: true },
+                { feature: "Digital signatures", free: true, solo: true, lite: true, standard: true, pro: true },
+                { feature: "Auto-status engine", free: true, solo: true, lite: true, standard: true, pro: true },
+                { feature: "Public enquiry form", free: true, solo: true, lite: true, standard: true, pro: true },
+                { feature: "Custom ticket prefix", free: true, solo: true, lite: true, standard: true, pro: true },
+                { feature: "Inventory management", free: true, solo: true, lite: true, standard: true, pro: true },
+                { feature: "Repair wiki / knowledge base", free: true, solo: true, lite: true, standard: true, pro: true },
+                { feature: "Stripe Connect payments", free: false, solo: true, lite: true, standard: true, pro: true },
+                { feature: "Custom SMTP & email templates", free: false, solo: true, lite: true, standard: true, pro: true },
+                { feature: "Online repair booking", free: false, solo: false, lite: true, standard: true, pro: true },
+                { feature: "Trade-in & refurbishment", free: false, solo: false, lite: true, standard: true, pro: true },
+                { feature: "Team management & RBAC", free: false, solo: false, lite: false, standard: true, pro: true },
+                { feature: "Audit log & reporting", free: false, solo: false, lite: false, standard: true, pro: true },
+                { feature: "Branding removal", free: false, solo: false, lite: false, standard: true, pro: true },
               ].map((row, i) => (
                 <tr class={i % 2 === 0 ? 'bg-white' : 'bg-slate-50/50'}>
                   <td class="px-5 py-3 font-medium text-dark">{row.feature}</td>
-                  {[row.free, row.lite, row.standard, row.pro].map((val) => (
-                    <td class="px-4 py-3 text-center">
+                  {[row.free, row.solo, row.lite, row.standard, row.pro].map((val) => (
+                    <td class="px-3 py-3 text-center">
                       {val === true ? (
                         <span class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-emerald-100 text-emerald-600">
                           <Icon name="check" size={14} />
@@ -254,7 +259,7 @@ const faqJsonLd = {
               </li>
               <li class="flex items-start gap-2 text-sm text-slate-600">
                 <svg class="mt-0.5 h-4 w-4 shrink-0 text-emerald-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" /></svg>
-                <span>Paid plans from just <strong class="text-dark">£20/mo</strong> when you need more</span>
+                <span>Paid plans from just <strong class="text-dark">£12/mo</strong> when you need more</span>
               </li>
             </ul>
           </div>
@@ -299,7 +304,7 @@ const faqJsonLd = {
             { q: "Is the RepairKeeper free plan actually free?", a: "Yes. It is not a trial — there is no time limit and no credit card required. You get 25 tickets per month with core ticketing, customer management, and invoicing included. You can use it indefinitely." },
             { q: "What is included in the free plan?", a: "The free plan includes core ticket management, customer management, quoting and invoicing, PDF export, email notifications, digital signatures, auto-status automation, label printing, and the customer tracking page. It supports 1 team member and 25 tickets per month." },
             { q: "Do I need a credit card to sign up?", a: "No. You can sign up for the free plan without entering any payment details. You only need to provide payment information if you choose to upgrade to a paid plan later." },
-            { q: "Can I upgrade from the free plan later?", a: "Yes. You can upgrade to Lite (£20/mo), Standard (£30/mo), or Pro (£55/mo) at any time from your dashboard. All your existing data carries over seamlessly — nothing is lost when you upgrade." },
+            { q: "Can I upgrade from the free plan later?", a: "Yes. You can upgrade to Solo (£12/mo), Lite (£20/mo), Standard (£30/mo), or Pro (£55/mo) at any time from your dashboard. All your existing data carries over seamlessly — nothing is lost when you upgrade." },
             { q: "What happens if I exceed 25 tickets in a month?", a: "You will not be able to create new tickets until the next month rolls over or you upgrade to a paid plan. Existing tickets and data remain accessible." },
             { q: "Is the free plan available to UK businesses?", a: "Yes. RepairKeeper is built in the UK, priced in GBP, and includes VAT support. The free plan is available to repair businesses worldwide, with UK shops being the primary audience." },
           ].map((item) => (
