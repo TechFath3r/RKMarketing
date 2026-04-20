@@ -19,7 +19,7 @@ info:
   contact:
     name: RepairKeeper Support
     url: https://repairkeeper.co.uk
-    email: support@contact.repairkeeper.co.uk
+    email: support@repairkeeper.co.uk
 
 servers:
   - url: https://app.repairkeeper.co.uk
