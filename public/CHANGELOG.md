@@ -1,6 +1,118 @@
 # RepairKeeper Changelog
 
-A running record of changes shipped to beta testers. Newest entries at the top.
+Selected features and improvements for repair shops. Newest updates first.
+
+---
+
+## 1 November 2026
+
+### Scheduling
+- **Upcoming, Overdue and History** — See active visits and deadlines from today onwards, review past outstanding items separately, and find closed repairs and finished visits in History.
+- **Resolve old booking dates** — Clear outdated ticket dates and legacy website bookings from outstanding items while keeping the original date and resolution history. Restore a date from the ticket or booking if needed.
+- **A consistent dashboard** — The dashboard now reads the same diary as Schedule, so completed and cancelled visits leave the outstanding list.
+
+---
+
+## 31 October 2026
+
+### Scheduling
+- **One shop diary** — Manage drop-offs, collections and other customer visits from Schedule, leads and tickets. Book an exact time or an arrival window, with shared availability and capacity checks.
+- **Customers can manage their visit** — Private booking links work before a ticket exists and continue after conversion. Customers can move or cancel within your shop’s cutoff, and you can invite them to choose a collection time from tracking.
+- **Google Calendar pilot** — Publish visits to a dedicated calendar and check selected calendars for busy periods. The connection is being piloted while Google verification for wider access is completed; the RepairKeeper diary also works without Google.
+
+### Diagnosis Approvals
+- **Offer repair choices** — Share a diagnosis with several repair options and prices. Customers can review the choices and approve an option or decline through their tracking page.
+- **A clear record of the decision** — Shared proposals retain the details and prices the customer saw. Revised proposals and the approval history stay with the device, so staff can see what was agreed.
+- **Questions stay with the repair** — Customers can ask questions about a device from tracking. Shop replies and conversation history stay alongside the diagnosis, with shop and ticket controls for customer messaging.
+- **Approval is easier to follow** — Awaiting Approval, Work Approved and Approval Declined statuses help staff see what needs attention. Choosing a priced option updates the device’s estimate.
+
+---
+
+## 23 September 2026
+
+### Settings
+- **Intake wording that fits your shop** — Customise the labels used while a repair is waiting for a booking or for the device to arrive.
+
+---
+
+## 15 July 2026
+
+### Imports
+- **Review and undo imports** — Keep track of import batches and preview the records affected before undoing an import.
+
+### Trade-In & Refurbishment
+- **From refurbishment to retail stock** — Move a refurbished device into saleable stock when it is ready, keeping the handover connected to the original trade device.
+- **Retail stock labels** — Print labels for retail stock items to make devices easier to identify and organise.
+
+### Customer Experience
+- **Branded tracking previews** — Shared tracking links use the repair shop’s branding, helping customers recognise who the link is from.
+
+---
+
+## 25 June 2026
+
+### Bookings
+- **Review requests before confirming** — Website booking preferences arrive as requests for staff to review. Service details, time preferences and paid deposit information stay with the enquiry when it becomes a ticket.
+- **Availability that reflects your opening days** — Configure booking time windows and block ranges of dates when the shop cannot accept bookings.
+- **Clearer booking confirmations** — Add an agreed time window and a message when confirming a booking, with calendar information for the customer.
+
+---
+
+## 8 June 2026
+
+### Invoices
+- **Choose your invoice style** — Select an invoice template, choose an accent colour and add bank details. Customer company and address details help keep business invoices clear.
+
+---
+
+## 30 April 2026
+
+### Tickets
+- **Notes for each device** — Keep device-specific notes separate on multi-device tickets, so the right repair details stay with the right item.
+
+---
+
+## 27 April 2026
+
+### Tickets & Devices
+- **Device colour and trade references** — Record a device’s colour and choose the reference when starting refurbishment from a trade device.
+
+### Invoices
+- **More control over invoice branding** — Adjust your logo size and invoice introduction text to suit your business.
+
+---
+
+## 17 April 2026
+
+### Settings
+- **Country and currency settings** — Set your organisation’s country and currency so customer-facing amounts and documents suit your business.
+
+### Plans
+- **Try RepairKeeper with a 14-day trial** — New subscriptions start with a trial, with trial status visible in billing settings and a reminder before it ends.
+
+---
+
+## 16 April 2026
+
+### Accounts
+- **Trusted devices** — Choose to trust a device for 30 days when using two-factor authentication, and review or remove trusted devices from your account.
+
+### Plans
+- **Solo plan** — A plan for a one-person shop, with 75 tickets per month and the core tools for managing repairs.
+
+---
+
+## 10 April 2026
+
+### Quotes
+- **Quote follow-up notes** — Keep follow-up notes with a formal quote so staff can see the latest conversation and next steps.
+
+---
+
+## 2 April 2026
+
+### Tickets & Devices
+- **Track when each device arrives** — Record receipt separately for each device, so physical custody stays clear even when parts or repair preparation move ahead before drop-off.
 
 ---
 
@@ -192,19 +304,15 @@ A running record of changes shipped to beta testers. Newest entries at the top.
 ### Repair Wiki
 - **Automatic Part–Device Linking** — When you mark a part as installed on a ticket, the wiki now automatically links that part to the device it was fitted to. Going forward, the wiki device page will show which parts have been used on it, and the wiki part page will show which devices it's been fitted to — without any manual linking needed.
 
-
-
 ### Invoices
 - **Customer Invoice Download** — Customers can now download their invoice as a PDF directly from the tracking page. The invoice number is now a clickable link that opens the PDF in a new tab — no login required.
+- **Invoice Hub** — A dedicated Invoices page is now in the sidebar, giving you a full overview of all invoices across every ticket. Filter by All, Drafts, Unpaid, Overdue, or Paid. Overdue invoices are highlighted in red. Click any row to jump straight to the ticket.
+- **Send Payment Reminders** — From the Invoice Hub, send a payment reminder email directly to a customer (with the invoice PDF attached) without needing to open the ticket first.
+- **Company & VAT Number on Invoices** — You can now add your Companies House registration number and VAT number in Settings → Invoices. Both are printed on all invoices when set.
 
 ### Quotes
 - **Revise Accepted Quotes** — If a customer accidentally accepts the wrong quote, you can now revise it. An accepted quote can be reopened as a draft, edited, and resent for the customer to re-approve. If the quote has already been converted to an invoice, delete the draft invoice first and then use Revise.
 - **Edit Draft Quotes** — Draft quotes on a ticket can now be edited before sending. A pre-populated editor lets you update line items, VAT, discounts, notes, and expiry date.
-
-### Invoices
-- **Invoice Hub** — A dedicated Invoices page is now in the sidebar, giving you a full overview of all invoices across every ticket. Filter by All, Drafts, Unpaid, Overdue, or Paid. Overdue invoices are highlighted in red. Click any row to jump straight to the ticket.
-- **Send Payment Reminders** — From the Invoice Hub, send a payment reminder email directly to a customer (with the invoice PDF attached) without needing to open the ticket first.
-- **Company & VAT Number on Invoices** — You can now add your Companies House registration number and VAT number in Settings → Invoices. Both are printed on all invoices when set.
 
 ---
 
@@ -332,6 +440,3 @@ A running record of changes shipped to beta testers. Newest entries at the top.
 ### Bug Fixes
 - Fixed mobile scrolling inside dialogs.
 - Fixed review link URLs causing relative-path 404s.
-
----
-
