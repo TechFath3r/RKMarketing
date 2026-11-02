@@ -68,6 +68,8 @@ if (currentEntry) {
 
 // --- Category badge colours ---
 const categoryColors: Record<string, { bg: string; text: string; border: string }> = {
+  Scheduling:       { bg: "bg-indigo-50", text: "text-indigo-700", border: "border-indigo-200" },
+  "Diagnosis Approvals": { bg: "bg-emerald-50", text: "text-emerald-700", border: "border-emerald-200" },
   Tickets:          { bg: "bg-blue-50",    text: "text-blue-700",    border: "border-blue-200" },
   Invoices:         { bg: "bg-emerald-50", text: "text-emerald-700", border: "border-emerald-200" },
   Quotes:           { bg: "bg-amber-50",   text: "text-amber-700",   border: "border-amber-200" },
@@ -111,7 +113,7 @@ const jsonLdItemList = {
 
 <BaseLayout
   title="Changelog — RepairKeeper | Latest Updates & Features"
-  description="See everything shipped to RepairKeeper — new features, improvements, and fixes for your repair shop management software."
+  description="Selected RepairKeeper features and improvements, explained for repair shop owners and their teams."
 >
   <Header />
 
@@ -120,12 +122,17 @@ const jsonLdItemList = {
     <div class="sticky top-[57px] z-30 border-b border-slate-200/60 bg-white/90 backdrop-blur-lg">
       <div class="mx-auto max-w-4xl px-4 py-4 sm:px-6 lg:px-8">
         <h1 class="text-2xl font-bold text-dark sm:text-3xl">Changelog</h1>
-        <p class="mt-1 text-sm text-slate-500">Everything shipped to RepairKeeper</p>
+        <p class="mt-1 text-sm text-slate-500">Features and improvements for your repair shop</p>
       </div>
     </div>
 
     <section class="py-12 sm:py-16">
       <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <aside class="mb-10 rounded-xl border border-primary/20 bg-primary/5 p-5">
+          <p class="font-semibold text-dark">A closer look at the latest updates</p>
+          <p class="mt-2 text-slate-600">See how the new diary, customer booking controls and expanded diagnosis approvals work together.</p>
+          <a href="/blog/booking-to-collection" class="mt-3 inline-block font-semibold text-primary hover:underline">From booking to collection →</a>
+        </aside>
         <div class="relative">
             {/* Timeline line */}
             <div class="absolute left-[15px] top-2 bottom-2 hidden w-px bg-slate-200 sm:block" aria-hidden="true"></div>

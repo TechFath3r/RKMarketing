@@ -1,0 +1,63 @@
+---
+import BlogLayout from "@layouts/BlogLayout.astro";
+---
+
+<BlogLayout
+  title="From Booking to Collection: A Clearer Repair Journey | RepairKeeper"
+  description="A look at RepairKeeper's new shop diary, customer booking controls, repair options and diagnosis approvals, with practical examples for a busy repair shop."
+  date="2026-11-02"
+  dateFormatted="2 November 2026"
+  readTime="5 min read"
+  slug="booking-to-collection"
+  headline="From booking to collection: a clearer repair journey"
+  subtitle="A better diary, clearer repair choices and customer conversations that stay with the job. Here is how the latest RepairKeeper updates fit together."
+  gradientWord="clearer"
+>
+  <p>A customer asks to drop off a laptop on Tuesday morning. After diagnosis, you have two repair options to explain. Later, you need to arrange collection. Each step is straightforward on its own, but keeping the dates, decisions and conversations together can take more effort than the repair shop would like.</p>
+  <p>Our recent updates bring those steps closer together. RepairKeeper now has a shared shop diary, more useful booking controls for customers, and expanded diagnosis approvals that let you offer clear choices and retain a record of what was agreed.</p>
+
+  <h2>A booking request becomes an agreed visit</h2>
+  <p>There is a difference between a customer asking for “Tuesday morning” and the shop agreeing “Tuesday, between 10 and 12”. The diary now makes that distinction clear.</p>
+  <p>A website booking can still arrive as a request with the customer's preferred date and time. Staff review it and agree either an exact visit time or a bounded arrival window. That agreed visit becomes the appointment you manage in the diary.</p>
+  <p>You can book from Schedule, a lead or a ticket. When a lead becomes a repair ticket, its agreed appointment stays connected to the job. You can also create a standalone visit for something that does not yet need a ticket.</p>
+  <p>Availability checks bring together your shop hours, blackout dates and visit capacity. Repair deadlines stay separately labelled, so a promised completion date does not occupy a customer visit slot.</p>
+
+  <h2>Give customers a useful booking link</h2>
+  <p>Once a visit is confirmed, the customer can use a private booking-management link even before a ticket exists. After conversion, the normal repair tracking page also shows customer-visible appointments.</p>
+  <p>Customers can choose an available replacement time or cancel within your shop's change cutoff. The default cutoff is two hours before the visit starts, and you can configure it to suit your business. Inside the cutoff, the page directs them to contact the shop.</p>
+  <p>Staff see the changed appointment in the same diary. Cancellation releases the visit capacity and keeps its history. If a paid deposit is involved, it is flagged for staff to handle; cancellation does not automatically refund the deposit or close the repair.</p>
+  <p>You can also enable an appointment reminder around a day before the visit. Customer emails follow notification settings, and a moved or cancelled appointment's old reminder is suppressed.</p>
+
+  <h2>Explain the diagnosis and offer a choice</h2>
+  <p>After assessing the laptop, perhaps you can offer a smaller repair or a more extensive replacement. A single approve-or-decline button is less helpful when the customer has a real choice to make.</p>
+  <p>You can now share a diagnosis with several repair options, each with its own description and price. The customer reviews them on their tracking page, chooses the option they want to approve, or declines the proposal.</p>
+  <p>For example, you might describe a repair at £90 and an alternative replacement at £150. Those are example figures, but the point is practical: the customer can see what each choice covers before deciding. Approving a priced option updates the device's estimate. It is an approval of the proposed work, rather than a payment.</p>
+  <p>The shared proposal retains the details and prices the customer saw. If the scope changes, you can prepare a revised proposal while keeping the earlier proposal and decision history with the device. Staff can refer back to the agreement when planning work or answering a question.</p>
+
+  <h2>Keep questions beside the repair</h2>
+  <p>Customers may need to ask whether an option includes parts, whether their files will be affected, or why one repair costs more. Device conversations let them ask through tracking and keep your replies alongside that device's repair information.</p>
+  <p>On a multi-device ticket, each device keeps its own repair choices and conversation. Staff can see which proposal has been approved, declined or is still awaiting approval. Shop defaults and ticket controls let you decide when customers can send messages.</p>
+  <p>Approval statuses also make the next step clearer in the staff workflow. Awaiting Approval, Work Approved and Approval Declined help distinguish work that can proceed from a job that still needs a customer decision.</p>
+
+  <h2>Arrange collection when the job is ready</h2>
+  <p>When the repair is ready, staff can invite the customer to book a collection time from their tracking page. Sending or opening the invitation does not reserve capacity. A collection appointment is created when the customer chooses an available slot.</p>
+  <p>Staff can also book on the customer's behalf, which is useful when someone calls or arranges collection at the counter.</p>
+
+  <h2>A diary that stays useful over time</h2>
+  <p>Schedule now separates All Upcoming, Overdue and History. Upcoming shows active visits and deadlines from today onwards. Overdue gives you a place to review older outstanding items on open repairs. History keeps closed repairs, finished appointments and resolved dates available to look back on.</p>
+  <p>For new visits, mark the outcome as Completed, Cancelled or No-show when appropriate. For old Key Dates or legacy website bookings, Resolve date removes an outdated item from the outstanding list while preserving its original date and resolution history. You can restore it if needed.</p>
+
+  <h2>Google Calendar is being piloted</h2>
+  <p>The optional Google Calendar connection publishes agreed visits to a dedicated RepairKeeper calendar and can use selected calendars' busy periods to block booking times. RepairKeeper owns the appointment changes, so create, move and cancel visits in the app.</p>
+  <p>We are piloting the connection while completing Google's verification for wider access. The shop diary and customer booking controls work without Google. Our <a href="/google-calendar">Google Calendar guide</a> explains the connection, permissions and access controls.</p>
+
+  <h2>Try the updated workflow</h2>
+  <p>For shops with scheduling included in their plan, start in Settings → General → Scheduling to enable appointments. Configure the diary under Settings → Booking, then open Schedule to book a visit. On a repair ticket, use the diagnosis and repair options to prepare the choices you want the customer to review.</p>
+  <p>Start with a test job and follow it through booking, proposal, decision and collection. The aim is to make the next step clear to both the customer and the person working on the repair.</p>
+  <p>For a shorter record of the changes, see the <a href="/changelog">RepairKeeper changelog</a>. If something in your shop's workflow needs a closer look, email <a href="mailto:support@repairkeeper.co.uk">support@repairkeeper.co.uk</a>.</p>
+
+  <Fragment slot="cta-text">
+    <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Keep the next step clear</h2>
+    <p class="mt-4 text-lg text-slate-400">Manage customer visits, repair choices and conversations alongside the job in RepairKeeper.</p>
+  </Fragment>
+</BlogLayout>
