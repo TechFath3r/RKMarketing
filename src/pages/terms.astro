@@ -1,4 +1,5 @@
 ---
+import "../styles/policy.css";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import Header from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
@@ -14,13 +15,13 @@ import Footer from "@components/Footer.astro";
       <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
         <header class="mb-12">
           <h1 class="text-4xl font-extrabold text-dark sm:text-5xl">Terms of Service</h1>
-          <p class="mt-4 text-sm text-slate-500">Last updated: 5 April 2026</p>
+          <p class="mt-4 text-sm text-slate-500">Last updated: 2 November 2026</p>
           <p class="mt-6 text-lg leading-relaxed text-slate-600">
             These are the terms that apply when you use RepairKeeper. By creating an account you agree to them, so please read them. We've aimed to keep them plain and fair.
           </p>
         </header>
 
-        <div class="prose prose-slate max-w-none prose-headings:text-dark prose-h2:text-2xl prose-h2:font-bold prose-h2:mt-12 prose-h2:mb-4 prose-h3:text-lg prose-h3:font-semibold prose-h3:mt-8 prose-h3:mb-3 prose-p:text-slate-600 prose-p:leading-relaxed prose-li:text-slate-600 prose-a:text-primary prose-a:font-medium hover:prose-a:text-primary-dark prose-strong:text-dark">
+        <div class="policy-content">
 
           <h2>1. The basics</h2>
           <p>
@@ -137,6 +138,20 @@ import Footer from "@components/Footer.astro";
           <h2>9. Third-party services</h2>
           <p>
             RepairKeeper integrates with third-party services (such as Stripe for payments). Your use of those services is governed by their own terms, which you should review. We are not responsible for third-party services or their availability.
+          </p>
+
+          <h3>Google Calendar appointments</h3>
+          <p>
+            A shop owner or administrator can authorise the optional Google Calendar connection for their organisation. You must have authority to connect that Google account and to use the calendars you select. Each RepairKeeper organisation manages its own calendar connection and availability settings.
+          </p>
+          <p>
+            RepairKeeper manages appointment changes and publishes corresponding events to a dedicated Google calendar. Make booking changes in RepairKeeper; edits made directly to the Google event are not imported into RepairKeeper. Google availability checks use the busy intervals of the calendars you select. You are responsible for selecting appropriate calendars and checking their sharing settings.
+          </p>
+          <p>
+            Google service interruptions, revoked access or permission changes may delay event publishing or prevent availability checks. RepairKeeper keeps an agreed appointment when publishing needs to be retried. Review connection errors and pending updates in Settings. Removing Google's authorisation stops future authorised access but does not automatically cancel appointments or remove events already published.
+          </p>
+          <p>
+            Our <a href="/google-calendar">Google Calendar guide</a> explains connection, revocation and deletion requests. Our <a href="/privacy#google-calendar">Privacy Policy</a> explains the Google data used by this feature. Google's own terms and privacy policy also apply to your use of Google Calendar.
           </p>
 
           <h2>10. Termination</h2>

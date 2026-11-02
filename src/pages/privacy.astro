@@ -1,4 +1,5 @@
 ---
+import "../styles/policy.css";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import Header from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
@@ -14,13 +15,13 @@ import Footer from "@components/Footer.astro";
       <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
         <header class="mb-12">
           <h1 class="text-4xl font-extrabold text-dark sm:text-5xl">Privacy Policy</h1>
-          <p class="mt-4 text-sm text-slate-500">Last updated: 5 April 2026</p>
+          <p class="mt-4 text-sm text-slate-500">Last updated: 2 November 2026</p>
           <p class="mt-6 text-lg leading-relaxed text-slate-600">
             This policy explains what personal data RepairKeeper collects, how we use it, how long we keep it, and the rights you have under UK data protection law. We've aimed to write it plainly. If anything is unclear, email us.
           </p>
         </header>
 
-        <div class="prose prose-slate max-w-none prose-headings:text-dark prose-h2:text-2xl prose-h2:font-bold prose-h2:mt-12 prose-h2:mb-4 prose-h3:text-lg prose-h3:font-semibold prose-h3:mt-8 prose-h3:mb-3 prose-p:text-slate-600 prose-p:leading-relaxed prose-li:text-slate-600 prose-a:text-primary prose-a:font-medium hover:prose-a:text-primary-dark prose-strong:text-dark">
+        <div class="policy-content">
 
           <h2>1. Who we are</h2>
           <p>
@@ -30,7 +31,7 @@ import Footer from "@components/Footer.astro";
             Throughout this policy, "we", "us", and "our" refer to DannStarr Electronics Limited. "You" refers to the individual using RepairKeeper (typically a repair shop owner, manager, or team member).
           </p>
           <p>
-            Our data protection contact is <a href="mailto:support@repairkeeper.co.uk">support@repairkeeper.co.uk</a>. We are registered with the UK Information Commissioner's Office (registration number <strong>[ICO_REGISTRATION_NUMBER]</strong>).
+            Our data protection contact is <a href="mailto:support@repairkeeper.co.uk">support@repairkeeper.co.uk</a>.
           </p>
 
           <h2>2. The two roles we play</h2>
@@ -79,6 +80,37 @@ import Footer from "@components/Footer.astro";
             <li>Feedback items you submit through the in-app feedback tool</li>
           </ul>
 
+          <h3 id="google-calendar">Google Calendar connection</h3>
+          <p>
+            Google Calendar is an optional connection for shops using appointments. A shop owner or administrator chooses whether to connect a Google account and which calendars should block customer booking times. You can use RepairKeeper without connecting Google. See our <a href="/google-calendar">Google Calendar guide</a> for the setup steps and controls.
+          </p>
+          <p><strong>What we access and why:</strong></p>
+          <ul>
+            <li><strong>Calendar list:</strong> we retrieve calendar names and identifiers so you can choose the calendars used for availability checks.</li>
+            <li><strong>Availability:</strong> we request busy start and end times from the calendars you select. This check does not request the titles, descriptions, locations or attendees of events in those calendars.</li>
+            <li><strong>RepairKeeper calendar:</strong> we create a dedicated calendar in the connected Google account and create, update or remove appointment events there as staff or customers manage bookings in RepairKeeper.</li>
+            <li><strong>Connection credentials:</strong> Google gives us authorisation credentials so the connection can continue working when you are not signed in. We store the refresh token encrypted, along with the dedicated calendar identifier and the identifiers of the calendars you select. Temporary access tokens are used to make authorised requests to Google.</li>
+          </ul>
+          <p>
+            Published appointment events contain the visit type, its time or arrival window, and a staff link back to RepairKeeper. They do not include customer names, private repair notes, device passcodes or private customer booking and tracking links. Who can see a published event also depends on the calendar's sharing settings in Google.
+          </p>
+          <p>
+            Busy intervals are used during availability checks; we do not keep a copy of the events in your other calendars. Connection identifiers, encrypted credentials and sync status are held in the systems we use to operate RepairKeeper. We send Google the information needed to create and maintain your appointment events. Google handles that information under its own <a href="https://policies.google.com/privacy">Privacy Policy</a>.
+          </p>
+          <p>
+            We use Google user data to provide and maintain the calendar connection you choose, including availability checks, appointment publishing, security and troubleshooting. We do not sell Google user data, use it for advertising or use it to train general-purpose AI models. Human access is limited to what is necessary for support you request, security investigations or legal obligations.
+          </p>
+          <p>
+            RepairKeeper follows the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including its Limited Use requirements, when using or transferring information received from Google APIs.
+          </p>
+          <p><strong>Retention, revocation and deletion:</strong></p>
+          <p>
+            We retain the connection information while it is configured for your shop, unless you ask us to remove it or your organisation is deleted. You can stop future authorised access by removing RepairKeeper from your <a href="https://myaccount.google.com/connections">Google Account's third-party connections</a>. Revocation does not itself delete appointment records in RepairKeeper, calendar events already published to Google, or connection identifiers held by RepairKeeper.
+          </p>
+          <p>
+            To request deletion of stored Google connection data, email <a href="mailto:support@repairkeeper.co.uk?subject=Google%20Calendar%20data%20deletion">support@repairkeeper.co.uk</a> and identify your RepairKeeper organisation. We will verify your authority to make the request and handle it under the deletion and rights provisions of this policy. Backup copies follow the retention periods in Section 7. You can manage or delete Google Calendar event copies in Google Calendar separately. Repair records and resolution history have their own retention rules, also explained in Section 7.
+          </p>
+
           <h2>4. How we use your data, and our legal basis</h2>
           <p>We rely on the following legal bases under Article 6 of the UK GDPR:</p>
 
@@ -89,6 +121,7 @@ import Footer from "@components/Footer.astro";
             <li>Processing payments for paid plans</li>
             <li>Sending transactional emails (verification, password reset, invoices, product notifications)</li>
             <li>Providing customer support</li>
+            <li>Providing the optional Google Calendar connection when an authorised shop user enables it</li>
           </ul>
 
           <h3>Legitimate interests (Art 6(1)(f))</h3>
@@ -129,6 +162,10 @@ import Footer from "@components/Footer.astro";
           </p>
           <p>
             We will update this list as it changes and notify active users of material changes. We do not sell your personal data under any circumstances.
+          </p>
+
+          <p>
+            If you connect Google Calendar, appointment information is also sent to Google to provide that connection, as described in the <a href="#google-calendar">Google Calendar section</a> above. Access is limited to the Google permissions you authorise.
           </p>
 
           <h2>6. International transfers</h2>

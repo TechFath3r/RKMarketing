@@ -1,0 +1,74 @@
+---
+import "../styles/policy.css";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
+
+const permissions = [
+  ["calendar.app.created", "Create the dedicated RepairKeeper calendar and maintain appointment events on calendars created by the app."],
+  ["calendar.calendarlist.readonly", "Show your calendar names so you can choose which calendars should block booking times."],
+  ["calendar.events.freebusy", "Check busy start and end times on the calendars you select."],
+];
+---
+<BaseLayout title="Google Calendar connection | RepairKeeper" description="How RepairKeeper connects to Google Calendar, checks availability, publishes appointments, and lets you revoke access or request deletion of connection data.">
+  <Header />
+  <main id="main-content" class="pt-24">
+    <section class="py-16 sm:py-20">
+      <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+        <header class="mb-12">
+          <p class="mb-3 text-sm font-semibold uppercase tracking-wide text-primary">Connections</p>
+          <h1 class="text-4xl font-extrabold text-dark sm:text-5xl">Google Calendar and your shop diary</h1>
+          <p class="mt-6 text-lg leading-relaxed text-slate-600">Keep agreed customer visits in a dedicated calendar and check your other commitments before offering a booking time. Each shop connects its own Google account.</p>
+          <p class="mt-4 text-sm text-slate-500">Last updated: 2 November 2026</p>
+        </header>
+        <div class="policy-content">
+          <h2>What the connection does</h2>
+          <p>RepairKeeper creates a dedicated calendar called <strong>RepairKeeper</strong> in the Google account you connect. Agreed drop-offs, collections and other visits are published there. Moving a visit in RepairKeeper updates its event; cancelling the visit removes the event.</p>
+          <p>You can choose other calendars whose busy events should block customer booking times. The dedicated publishing calendar is excluded from these checks because RepairKeeper already counts those appointments. Leave any older RepairKeeper calendar subscription unselected too.</p>
+          <p>The connection is optional. RepairKeeper's diary also works without Google. The connection is available to shops with scheduling included in their plan and appointments enabled.</p>
+
+          <h2 id="connect">Connect your shop</h2>
+          <ol>
+            <li>Sign in to <a href="https://app.repairkeeper.co.uk">RepairKeeper</a> as your shop's owner or an administrator.</li>
+            <li>Enable appointments under <strong>Settings → General → Scheduling</strong>.</li>
+            <li>Open <strong>Settings → Booking → Shop diary → Google Calendar</strong> and choose <strong>Connect Google Calendar</strong>.</li>
+            <li>Choose the Google account you want to use and review the permissions shown by Google.</li>
+            <li>Back in RepairKeeper, select the calendars whose busy times should block bookings.</li>
+          </ol>
+          <p>Your shop does not need to create its own Google Cloud project or supply OAuth credentials. Authorisation is through Google's consent screen.</p>
+
+          <h2 id="permissions">Permissions and data</h2>
+          <p>RepairKeeper requests these Google Calendar permissions. The scope names below all use the prefix <code>https://www.googleapis.com/auth/</code>.</p>
+          <dl class="space-y-5">
+            {permissions.map(([scope, purpose]) => <div>
+              <dt class="break-words font-semibold text-dark"><code>{scope}</code></dt>
+              <dd class="mt-1 text-slate-600">{purpose}</dd>
+            </div>)}
+          </dl>
+          <p>The availability check reads busy intervals. It does not request the titles, descriptions or attendees of events in your other calendars. RepairKeeper saves the dedicated calendar identifier, your selected calendar identifiers and an encrypted refresh token so the connection can work when you are signed out.</p>
+          <p>Published events contain the visit type, time or arrival window, and a staff link to RepairKeeper. Private repair notes, device passcodes, customer names and customer tracking tokens are not included in those events. The event is visible to people who have access under your Google calendar sharing settings.</p>
+          <p>Our <a href="/privacy#google-calendar">Privacy Policy's Google Calendar section</a> explains access, use, storage, sharing, retention and deletion. RepairKeeper follows the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including its Limited Use requirements.</p>
+
+          <h2>Manage visits in RepairKeeper</h2>
+          <p>Create, move, cancel or complete appointments in RepairKeeper. Changes made directly to a Google event do not update the RepairKeeper appointment. Staff can manage visits from Schedule, leads and tickets; customers can use their private booking or tracking link when changes are allowed.</p>
+          <p>Check Settings for connection errors and pending updates. A publishing delay leaves the agreed RepairKeeper appointment in place for retry. If selected busy calendars cannot be checked, automatic booking commitments pause until availability can be checked again; website requests can still be received for staff review.</p>
+
+          <h2 id="revoke">Stop Google access</h2>
+          <ol>
+            <li>Open your <a href="https://myaccount.google.com/connections">Google Account's third-party connections</a>.</li>
+            <li>Select RepairKeeper and remove its access.</li>
+          </ol>
+          <p>This stops future authorised access. It does not cancel your repairs, delete appointments in RepairKeeper or remove events already published in Google Calendar. You can manage those event copies separately in Google Calendar. To connect again, use the reconnect action in RepairKeeper Settings.</p>
+
+          <h2 id="delete">Request deletion of connection data</h2>
+          <p>Email <a href="mailto:support@repairkeeper.co.uk?subject=Google%20Calendar%20data%20deletion">support@repairkeeper.co.uk</a> with your RepairKeeper organisation name and a request to remove its Google Calendar connection data. We will verify that you are authorised to make the request. Do not send passwords, OAuth client secrets or access tokens.</p>
+          <p>You can request removal of the stored connection credentials and calendar selections. Revoking access in Google does not itself delete those saved details. Repair records, previously published Google events and backup copies are handled separately as explained in our <a href="/privacy#google-calendar">Privacy Policy</a>.</p>
+
+          <h2>Need help?</h2>
+          <p>Contact <a href="mailto:support@repairkeeper.co.uk">support@repairkeeper.co.uk</a>. You can also read our <a href="/terms">Terms of Service</a> and <a href="/privacy">Privacy Policy</a>.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
