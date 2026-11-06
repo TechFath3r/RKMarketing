@@ -4,6 +4,16 @@ Selected features and improvements for repair shops. Newest updates first.
 
 ---
 
+## 6 November 2026
+
+### Leads
+- **Richer email replies** — Format lead replies with links, lists and text styling, clean up pasted formatting, and include your business name and configured email footer automatically.
+
+### Scheduling
+- **Agree an exception with a customer** — Staff can override availability restrictions when confirming, booking or moving a visit, including closed days, full arrival windows and Google Calendar conflicts. Customer self-service choices continue to follow the shop’s availability rules.
+
+---
+
 ## 1 November 2026
 
 ### Scheduling
