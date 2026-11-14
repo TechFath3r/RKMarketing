@@ -4,6 +4,26 @@ Selected features and improvements for repair shops. Newest updates first.
 
 ---
 
+## 14 November 2026
+
+### Integrations
+- **Read-only AI pilot** — Invited shops with API access can let members check repair progress through a connected assistant. Each member chooses what to share and can revoke access in AI Integrations.
+
+### Billing
+- **Plan ending notices** — See when your paid features are due to end. Your shop moves to Free after the payment grace period or at cancellation, and your paid features return when your subscription recovers.
+
+### Help & Support
+- **Private support conversations** — Ask RepairKeeper a question, report a problem or suggest a feature from your dashboard. An email takes you back to the conversation when support replies.
+
+---
+
+## 7 November 2026
+
+### Scheduling
+- **Visits finish when devices arrive or leave** — Recording receipt or collection now completes the matching drop-off or collection appointment and stops its reminders. Multi-device jobs wait until all expected devices have arrived or been collected. Original dates and completed visits remain in History, including legacy bookings.
+
+---
+
 ## 6 November 2026
 
 ### Leads
