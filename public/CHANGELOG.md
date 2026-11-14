@@ -14,6 +14,7 @@ Selected features and improvements for repair shops. Newest updates first.
 
 ### Help & Support
 - **Private support conversations** — Ask RepairKeeper a question, report a problem or suggest a feature from your dashboard. An email takes you back to the conversation when support replies.
+- **Support conversation management** — RepairKeeper support can close resolved conversations and remove completed items and published issue summaries.
 
 ---
 
