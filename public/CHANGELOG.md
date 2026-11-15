@@ -12,6 +12,9 @@ Selected features and improvements for repair shops. Newest updates first.
 ### Billing
 - **Plan ending notices** — See when your paid features are due to end. Your shop moves to Free after the payment grace period or at cancellation, and your paid features return when your subscription recovers.
 
+### Team
+- **Staff inbox** — See customer replies, repair decisions, booking changes and work assigned to you in one inbox across your computer and phone. Choose who handles new enquiries and unassigned work in Settings.
+
 ### Help & Support
 - **Private support conversations** — Ask RepairKeeper a question, report a problem or suggest a feature from your dashboard. An email takes you back to the conversation when support replies.
 - **Support conversation management** — RepairKeeper support can close resolved conversations and remove completed items and published issue summaries.
