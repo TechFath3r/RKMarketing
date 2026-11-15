@@ -1,0 +1,89 @@
+---
+import BlogLayout from "@layouts/BlogLayout.astro";
+---
+
+<BlogLayout
+  title="Set Up Staff Inbox and Push Notifications | RepairKeeper"
+  description="Enable RepairKeeper push alerts on iPhone, Android and desktop, choose your notification types, and fix Brave or Windows notification settings."
+  date="2026-11-15"
+  dateFormatted="15 November 2026"
+  readTime="6 min read"
+  slug="staff-inbox-push-notifications"
+  headline="How to set up RepairKeeper notifications on your phone and computer"
+  subtitle="Keep customer messages, repair decisions and changes to visits within reach, with a personal staff inbox and push alerts on your enabled devices."
+  ctaHref="https://app.repairkeeper.co.uk/dashboard/inbox"
+  ctaLabel="Open your staff inbox"
+  ctaNote="Sign in to RepairKeeper to view your inbox and available notification controls."
+>
+  <p>A customer approves a repair while you are working at the bench. Another sends a question about their device, or moves today's collection to next week. Your staff inbox brings those updates together, with a link to the job that needs your attention.</p>
+  <p>Push notifications can also alert you on your phone or computer. You choose which updates deserve an alert and enable each device separately.</p>
+
+  <h2>Check availability</h2>
+  <p><strong>Push notifications are currently being piloted with selected shops.</strong> If your shop has access, you will see <strong>Push notifications</strong> in your staff inbox. The setup below applies once that option is available to you. Your staff inbox is available independently of the push pilot.</p>
+
+  <h2>Start with your staff inbox</h2>
+  <p>On a computer, select <strong>Staff inbox</strong> in the navigation. On mobile, use the bell in the top bar. The unread count tells you how many items need reading.</p>
+  <p>Items appear newest first. Use <strong>Unread</strong> to narrow the list, open an item to go to its record, or use <strong>Mark as read</strong> and <strong>Mark all as read</strong>. Read state follows your account across devices, so reading on your phone also updates your desktop inbox when it refreshes.</p>
+  <p>Opening a customer's message from the inbox leaves the repair's separate handled state for you to update when you have dealt with it.</p>
+
+  <h2>Choose who receives the work</h2>
+  <p>If you manage shop settings, go to <strong>Settings → General → Staff notifications</strong>. Select who receives new enquiries and unassigned work, then choose which inbox notification types each team member receives. Save your notification settings when you have finished.</p>
+  <p>Assigned work normally goes straight to the person responsible. Repair messages and decisions go to the ticket's assigned technician. Visit changes go to the appointment assignee, then the linked ticket's assignee. Formal quote responses go to an eligible person who can open the quote. Where an event falls back to the shop's selected recipients, each eligible person receives their own inbox item. Eligible owners and admins are the fallback when nobody selected can receive it.</p>
+  <p>A one-person shop routes to its owner automatically. Each person gets their own read state, so one colleague opening an item leaves it unread for everyone else who received a copy.</p>
+
+  <h2>Install RepairKeeper on the device</h2>
+  <h3>iPhone or iPad</h3>
+  <ol>
+    <li>Open <strong>app.repairkeeper.co.uk</strong> in Safari.</li>
+    <li>Open the Share menu and choose <strong>Add to Home Screen</strong>. If offered an <strong>Open as Web App</strong> option, leave it enabled.</li>
+    <li>Launch RepairKeeper from its Home Screen icon and sign in.</li>
+  </ol>
+  <p>Home Screen push notifications require iOS or iPadOS 16.4 or later. Open the installed app to enable them. <a href="https://webkit.org/blog/13878/web-push-for-web-apps-on-ios-and-ipados/">Apple's WebKit guide explains Home Screen notifications</a>.</p>
+
+  <h3>Android</h3>
+  <p>Open RepairKeeper in Chrome and use the browser menu to install it. Depending on your device and browser version, this may appear as <strong>Install app</strong> or <strong>Add to Home screen</strong>. Launch the installed RepairKeeper app and sign in.</p>
+
+  <h3>Windows or Mac</h3>
+  <p>In a browser that supports installing web apps, such as Chrome or Edge, open RepairKeeper and use the install option in the address bar or browser menu. Launch the installed app and sign in. Browser support varies, and RepairKeeper will show guidance if the device cannot enable push alerts.</p>
+
+  <h2>Enable alerts on each device</h2>
+  <ol>
+    <li>In the installed app, open <strong>Staff inbox → Push notifications</strong>.</li>
+    <li>Select <strong>Enable on this device</strong>.</li>
+    <li>Choose <strong>Allow</strong> when your browser or device asks for notification permission.</li>
+    <li>Check that RepairKeeper says <strong>Push alerts are on for this device</strong>.</li>
+  </ol>
+  <p>Repeat these steps on each phone, tablet or computer where you want alerts. Enabling your phone leaves your laptop for you to enable separately. New activity after you enable a device can generate push alerts.</p>
+
+  <h2>Choose which updates alert you</h2>
+  <p>In the same panel, adjust <strong>Alert types</strong> and select <strong>Save alert types</strong>. These choices apply to your account in this shop across your enabled devices.</p>
+  <ul>
+    <li><strong>Customer repair messages</strong> and <strong>repair approvals and declines</strong> are on by default.</li>
+    <li><strong>Customer collection bookings and visit changes</strong> default to <strong>Same-day only</strong>. You can choose <strong>Off</strong> or <strong>All visits</strong>.</li>
+    <li><strong>New repair enquiries</strong>, <strong>bookings ready for review</strong>, <strong>quote acceptances and declines</strong>, and <strong>work assigned to you</strong> start off. Enable the ones you want.</li>
+  </ul>
+  <p>Same-day uses your shop's time zone and includes either the old or new visit date. If a customer moves today's collection to next week, it still qualifies.</p>
+  <p>A category marked <strong>Disabled in shop settings</strong> needs enabling by someone with shop settings permission before you can receive it. Push alerts follow the inbox's recipients and record permissions.</p>
+
+  <h2>Use an alert to open the job</h2>
+  <p>The alert shows a short description of the event. Customer names, message text, device details and appointment times stay inside the signed-in app.</p>
+  <p>Tap an alert to open the relevant enquiry, quote, visit or device on a ticket. If you need to sign in, RepairKeeper returns you to the item afterward. Opening marks it read in your inbox. Receiving or dismissing the alert leaves it unread.</p>
+  <p>To pause alerts on one device, open the notification panel there and select <strong>Turn off on this device</strong>. Your other enabled devices keep their own registration. Signing out disconnects that installation, and the next person using it must enable alerts for their own account.</p>
+
+  <h2>If an alert does not appear</h2>
+  <h3>Brave reports “Registration failed — push service error”</h3>
+  <p>Brave has an additional push setting. Open <strong>Brave Settings → Privacy and security</strong>, search for <strong>Use Google services for push messaging</strong>, and enable it. Fully close Brave and RepairKeeper, reopen the installed app, then try enabling alerts again. This allows Brave to use Google's delivery service for push messages. <a href="https://community.brave.app/t/use-google-services-for-push-messaging/642680">See the Brave support discussion</a>.</p>
+
+  <h3>Windows receives the alert but shows no pop-up</h3>
+  <p>Check Windows Notification Centre first. If the alert is there, open <strong>Windows Settings → System → Notifications</strong>. Turn off <strong>Do not disturb</strong> or <strong>Focus assist</strong>, then check that notification banners are enabled for Brave, your browser, or RepairKeeper. <a href="https://support.microsoft.com/en-us/windows/experience/notifications-and-do-not-disturb-in-windows">Microsoft's guide covers notification settings</a>.</p>
+
+  <h3>Permission is blocked, or a device needs reconnecting</h3>
+  <p>If notifications are blocked, allow them for RepairKeeper in your browser or device settings and return to the app. If RepairKeeper offers <strong>Reconnect this device</strong>, use it to restore the registration.</p>
+  <p>Keep the device online and check its Focus or notification settings. For a first desktop test, leave the browser running in the background. Delivery while the browser is fully closed depends on the browser and its background settings.</p>
+  <p>If you still need help, tell us your device, browser, what the notification panel says, and whether the alert appears in Notification Centre. Email <a href="mailto:support@repairkeeper.co.uk">support@repairkeeper.co.uk</a> or use <strong>Help &amp; Support</strong> in RepairKeeper.</p>
+
+  <Fragment slot="cta-text">
+    <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Choose the updates you want to hear about</h2>
+    <p class="mt-4 text-lg text-slate-400">Open your staff inbox to review new activity and configure alerts on this device.</p>
+  </Fragment>
+</BlogLayout>
