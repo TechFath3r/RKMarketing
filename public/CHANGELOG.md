@@ -4,6 +4,13 @@ Selected features and improvements for repair shops. Newest updates first.
 
 ---
 
+## 15 November 2026
+
+### Team
+- **Staff notification settings** — Find notification recipients at the top of General settings and choose which inbox notification types each person receives.
+
+---
+
 ## 14 November 2026
 
 ### Integrations
