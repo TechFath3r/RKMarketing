@@ -8,6 +8,7 @@ Selected features and improvements for repair shops. Newest updates first.
 
 ### Team
 - **Staff notification settings** — Find notification recipients at the top of General settings and choose which inbox notification types each person receives.
+- **Staff inbox push alerts** — Staff in pilot shops can enable alerts on each installed device, choose which work needs their attention, and tap an alert to open the repair, quote, enquiry, or visit.
 
 ---
 
