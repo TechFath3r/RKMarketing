@@ -6,6 +6,9 @@ Selected features and improvements for repair shops. Newest updates first.
 
 ## 15 November 2026
 
+### Integrations
+- **AI shop control pilot** — Invited shops can authorise an assistant to update repairs, customers, stock and bookings, manage quotes and invoices, and administer shop settings and the team. Shops can choose whether customer messages, financial actions and deletions require an additional approval in RepairKeeper. These approvals are enabled by default.
+
 ### Team
 - **Staff notification settings** — Find notification recipients at the top of General settings and choose which inbox notification types each person receives.
 - **Staff inbox push alerts** — Staff in all shops can enable alerts on each installed device, choose which work needs their attention, and tap an alert to open the repair, quote, enquiry, or visit.
