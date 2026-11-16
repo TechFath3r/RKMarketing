@@ -4,6 +4,14 @@ Selected features and improvements for repair shops. Newest updates first.
 
 ---
 
+## 16 November 2026
+
+### Workflow
+- **Inbox controls** — RepairKeeper remembers your All or Unread choice. Clear individual notifications or clear read items while keeping the linked repair records available.
+- **Bulk cleanup** — Select multiple leads or eligible quotes and delete them together, with confirmation before deletion.
+
+---
+
 ## 15 November 2026
 
 ### Integrations
