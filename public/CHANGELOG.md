@@ -6,6 +6,10 @@ Selected features and improvements for repair shops. Newest updates first.
 
 ## 16 November 2026
 
+### Customers
+- **File a lead** — Use the lead’s three-dot menu to save its enquiry and recorded emails to an existing or new customer. Find them under Enquiries after the lead leaves your list.
+- **Customer groups** — Create a group while adding or editing a customer, then select it on the Customers page to find everyone in it. Each shop can use its own groups whenever it needs them.
+
 ### Workflow
 - **Inbox controls** — RepairKeeper remembers your All or Unread choice. Clear individual notifications or clear read items while keeping the linked repair records available.
 - **Bulk cleanup** — Select multiple leads or eligible quotes and delete them together, with confirmation before deletion.
