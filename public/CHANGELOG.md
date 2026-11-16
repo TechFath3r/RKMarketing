@@ -6,6 +6,9 @@ Selected features and improvements for repair shops. Newest updates first.
 
 ## 16 November 2026
 
+### Scheduling
+- **Use your shop’s own wording** — In Booking settings, choose an item label such as “Instrument” and add an example for customers filling in your booking and enquiry forms. Booking acknowledgement emails use the same label.
+
 ### Customers
 - **File a lead** — Use the lead’s three-dot menu to save its enquiry and recorded emails to an existing or new customer. Find them under Enquiries after the lead leaves your list.
 - **Customer groups** — Create a group while adding or editing a customer, then select it on the Customers page to find everyone in it. Each shop can use its own groups whenever it needs them.
