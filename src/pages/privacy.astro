@@ -15,7 +15,7 @@ import Footer from "@components/Footer.astro";
       <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
         <header class="mb-12">
           <h1 class="text-4xl font-extrabold text-dark sm:text-5xl">Privacy Policy</h1>
-          <p class="mt-4 text-sm text-slate-500">Last updated: 2 November 2026</p>
+          <p class="mt-4 text-sm text-slate-500">Last updated: 16 November 2026</p>
           <p class="mt-6 text-lg leading-relaxed text-slate-600">
             This policy explains what personal data RepairKeeper collects, how we use it, how long we keep it, and the rights you have under UK data protection law. We've aimed to write it plainly. If anything is unclear, email us.
           </p>
@@ -111,6 +111,32 @@ import Footer from "@components/Footer.astro";
             To request deletion of stored Google connection data, email <a href="mailto:support@repairkeeper.co.uk?subject=Google%20Calendar%20data%20deletion">support@repairkeeper.co.uk</a> and identify your RepairKeeper organisation. We will verify your authority to make the request and handle it under the deletion and rights provisions of this policy. Backup copies follow the retention periods in Section 7. You can manage or delete Google Calendar event copies in Google Calendar separately. Repair records and resolution history have their own retention rules, also explained in Section 7.
           </p>
 
+          <h3 id="google-contacts">Google Contacts connection</h3>
+          <p>
+            Google Contacts is an optional connection. A shop user with permission to manage settings and customers can choose a Google account and authorise access through Google. You can choose a different account for Contacts and Calendar.
+          </p>
+          <p>
+            We read existing Google contacts, including names, email addresses, telephone numbers, companies, postal addresses and contact identifiers, to suggest matches with your RepairKeeper customers. You review the suggestions and choose whether to link an existing contact, create a contact or skip a customer before enabling automatic synchronisation. Possible matches found for new customers are held for review.
+          </p>
+          <p>
+            Once enabled, the connection sends customer names, email addresses, mobile and landline numbers, companies and postal addresses from RepairKeeper to the selected Google account. It creates contacts for new customers and updates linked contacts when these details change. Synced contacts receive a RepairKeeper label. Information sent to Google is handled under Google's <a href="https://policies.google.com/privacy">Privacy Policy</a> and the sharing settings of your Google account.
+          </p>
+          <p>
+            We use Google contact data solely to provide the matching, synchronisation, security and troubleshooting functions of the connection you enable. The limits on sale, advertising and general-purpose AI model training described in the Google Calendar section also apply to Google Contacts data. Human access is limited to support you request, security investigations and legal obligations. RepairKeeper follows the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including its Limited Use requirements, when using or transferring Google contact data.
+          </p>
+          <p>
+            We store the connected Google account's identifier and email address, an encrypted refresh token for background access, and the link between each approved customer and their Google contact. We also store review decisions, the contact values last managed by RepairKeeper, and sync times and error status. Google contact details are processed while finding matches and updating linked contacts. Temporary access tokens are used for authorised requests.
+          </p>
+          <p>
+            Connection information is retained while the connection is configured. To stop synchronisation and delete the stored Contacts credentials, account details and customer contact links from active systems, choose Disconnect under Settings &gt; General &gt; Google Contacts. Backup copies follow the retention periods in Section 7. You can also revoke RepairKeeper's access through your <a href="https://myaccount.google.com/connections">Google Account's third-party connections</a>.
+          </p>
+          <p>
+            After disconnection, contacts already sent to Google remain in that account, where you can manage or delete them through Google Contacts. RepairKeeper customer records retain their own retention rules under Section 7. Deleting or anonymising a customer in RepairKeeper stops further synchronisation for that record and leaves any existing Google contact for you to manage separately.
+          </p>
+          <p>
+            To request deletion of stored Google Contacts connection data or help exercising your data rights, email <a href="mailto:support@repairkeeper.co.uk?subject=Google%20Contacts%20data%20deletion">support@repairkeeper.co.uk</a> and identify your RepairKeeper organisation. We will verify your authority to make the request and handle it under this policy's deletion and rights provisions.
+          </p>
+
           <h2>4. How we use your data, and our legal basis</h2>
           <p>We rely on the following legal bases under Article 6 of the UK GDPR:</p>
 
@@ -121,7 +147,7 @@ import Footer from "@components/Footer.astro";
             <li>Processing payments for paid plans</li>
             <li>Sending transactional emails (verification, password reset, invoices, product notifications)</li>
             <li>Providing customer support</li>
-            <li>Providing the optional Google Calendar connection when an authorised shop user enables it</li>
+            <li>Providing the optional Google Calendar and Google Contacts connections when an authorised shop user enables them</li>
           </ul>
 
           <h3>Legitimate interests (Art 6(1)(f))</h3>
@@ -165,7 +191,7 @@ import Footer from "@components/Footer.astro";
           </p>
 
           <p>
-            If you connect Google Calendar, appointment information is also sent to Google to provide that connection, as described in the <a href="#google-calendar">Google Calendar section</a> above. Access is limited to the Google permissions you authorise.
+            If you connect Google Calendar or Google Contacts, appointment or customer contact information is also sent to Google to provide the connection you enable, as described in the <a href="#google-calendar">Google Calendar</a> and <a href="#google-contacts">Google Contacts</a> sections above. Access is limited to the Google permissions you authorise.
           </p>
 
           <h2>6. International transfers</h2>
