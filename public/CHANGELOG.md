@@ -9,7 +9,7 @@ Selected features and improvements for repair shops. Newest updates first.
 ### Customers
 - **File a lead** — Use the lead’s three-dot menu to save its enquiry and recorded emails to an existing or new customer. Find them under Enquiries after the lead leaves your list.
 - **Customer groups** — Create a group while adding or editing a customer, then select it on the Customers page to find everyone in it. Each shop can use its own groups whenever it needs them.
-- **Google Contacts sync** — Available in a Dannstarr Electronics pilot while Google verification is pending. Connect your shop’s Google account, review suggested customer matches, and keep contact details up to date from RepairKeeper.
+- **Google Contacts sync** — Available in a Dannstarr Electronics pilot while Google verification is pending. Connect your shop’s Google account, review suggested customer matches, and keep contact details up to date from RepairKeeper. Bulk-approve your full customer list and review ambiguous matches separately.
 
 ### Workflow
 - **Inbox controls** — RepairKeeper remembers your All or Unread choice. Clear individual notifications or clear read items while keeping the linked repair records available.
