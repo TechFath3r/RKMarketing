@@ -4,6 +4,13 @@ Selected features and improvements for repair shops. Newest updates first.
 
 ---
 
+## 18 November 2026
+
+### Bookings
+- **One-click booking acceptance** — Shops can enable combined booking acceptance in Booking settings. Accepting a request then creates the customer's repair ticket straight away and clears the request from your Leads page, so there's no separate convert or delete step. Choose an existing customer using group filters or create a new one, review contact changes, and link the device to your wiki while accepting. The customer receives a single email with their booking details and a link to track their repair, instead of two separate emails.
+
+---
+
 ## 16 November 2026
 
 ### Scheduling
@@ -12,6 +19,7 @@ Selected features and improvements for repair shops. Newest updates first.
 ### Customers
 - **File a lead** — Use the lead’s three-dot menu to save its enquiry and recorded emails to an existing or new customer. Find them under Enquiries after the lead leaves your list.
 - **Customer groups** — Create a group while adding or editing a customer, then select it on the Customers page to find everyone in it. Each shop can use its own groups whenever it needs them.
+- **Customer selection** — Filter customers by group when booking a ticket, changing its customer or filing a lead. Review email and mobile differences before adding them to a customer’s file.
 - **Google Contacts sync** — Available in a Dannstarr Electronics pilot while Google verification is pending. Connect your shop’s Google account, review suggested customer matches, and keep contact details up to date from RepairKeeper. Bulk-approve your full customer list and review ambiguous matches separately.
 
 ### Workflow
